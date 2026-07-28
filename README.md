@@ -54,7 +54,12 @@ ignored, so you can keep private notes in extra columns.
 
 Link columns — each non-empty one becomes a button, in this order:
 
-`live` · `chrome` · `firefox` · `appstore` · `download` · `github` · `article`
+`site` · `live` · `chrome` · `firefox` · `appstore` · `download` · `github` · `article`
+
+`site` is for a product page of its own — see
+[`ai-screen-translator/`](ai-screen-translator/), which lives in this repo and is
+served at `/ai-screen-translator/`. The first link a project has becomes its
+highlighted button, so the order above is also the priority order.
 
 For anything else, use the `links` column: `Label|URL; Label|URL`
 (e.g. `Demo video|https://youtu.be/…; Docs|https://…`).

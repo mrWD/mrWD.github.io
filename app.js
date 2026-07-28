@@ -56,6 +56,7 @@ const FALLBACK = [
     accent: '#67e8c3',
     status: 'Open source',
     order: '3',
+    site: 'https://mrwd.github.io/ai-screen-translator/',
     github: 'https://github.com/mrWD/ai-screen-translator',
   },
   {
@@ -91,7 +92,8 @@ const FALLBACK = [
 
 /* Known link columns, in the order the buttons should appear. */
 const LINK_FIELDS = [
-  { key: 'live', label: 'Open app', primary: true },
+  { key: 'site', label: 'Learn more' },
+  { key: 'live', label: 'Open app' },
   { key: 'chrome', label: 'Chrome', icon: 'chrome' },
   { key: 'firefox', label: 'Firefox', icon: 'firefox' },
   { key: 'appstore', label: 'App Store' },
@@ -292,15 +294,16 @@ function buildCard(project) {
     ...extraLinks(project),
   ];
 
+  // LINK_FIELDS is ordered by importance, so whichever link a project happens
+  // to have first is the one worth highlighting.
   buttons.forEach((link, index) => {
+    const primary = index === 0;
     const a = document.createElement('a');
-    a.className = `btn${link.primary || index === 0 ? ' primary' : ''}`;
+    a.className = `btn${primary ? ' primary' : ''}`;
     a.href = link.url;
     a.target = '_blank';
     a.rel = 'noopener noreferrer';
-    a.innerHTML = `${link.icon ? icon(link.icon) : ''}<span></span>${
-      link.primary || index === 0 ? icon('arrow') : ''
-    }`;
+    a.innerHTML = `${link.icon ? icon(link.icon) : ''}<span></span>${primary ? icon('arrow') : ''}`;
     a.querySelector('span').textContent = link.label;
     a.setAttribute('aria-label', `${link.label} — ${project.name}`);
     links.append(a);

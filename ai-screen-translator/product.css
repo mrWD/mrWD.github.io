@@ -1,0 +1,263 @@
+/* Product page — builds on ../styles.css (tokens, header, footer, .btn).
+   The accent matches this product's card on the index page. */
+:root {
+  --accent: #67e8c3;
+  --accent-2: #7c9cff;
+}
+
+html[data-theme='light'] {
+  --accent: #0e9c7c;
+  --accent-2: #3b5ce0;
+}
+
+/* The shared .btn styles read --card-accent, which only cards set. */
+body { --card-accent: var(--accent); }
+
+/* ------------------------------------------------------------------- hero */
+.eyebrow {
+  margin: 0 0 0.6rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--accent) 75%, var(--text-muted));
+}
+
+.lead {
+  max-width: 54ch;
+  font-size: clamp(1.02rem, 1.7vw, 1.18rem);
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 1.4rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.badges li {
+  padding: 0.28rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.6rem;
+}
+
+.cta .btn { padding: 0.62rem 1.05rem; font-size: 0.92rem; }
+
+/* --------------------------------------------------------------- sections */
+.section {
+  padding: 2.75rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.section:first-child { border-top: 0; }
+
+.section-title {
+  margin: 0 0 1.4rem;
+  font-size: clamp(1.35rem, 2.6vw, 1.75rem);
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.prose {
+  max-width: 68ch;
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.note {
+  max-width: 68ch;
+  margin: 1.1rem 0 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+kbd {
+  padding: 0.1rem 0.4rem;
+  border: 1px solid var(--border-strong);
+  border-bottom-width: 2px;
+  border-radius: 6px;
+  background: var(--surface-hover);
+  font: inherit;
+  font-size: 0.85em;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+code {
+  padding: 0.1rem 0.35rem;
+  border-radius: 5px;
+  background: var(--surface-hover);
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace;
+  font-size: 0.87em;
+}
+
+.kbd-ish {
+  display: inline-block;
+  padding: 0 0.3rem;
+  border-radius: 5px;
+  background: var(--surface-hover);
+}
+
+/* ------------------------------------------------------- before / after */
+/* Two up only when each half is wide enough to read the overlaid text;
+   below that the pair stacks. */
+.compare {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+  gap: 1rem;
+}
+
+figure {
+  margin: 0;
+}
+
+.shot {
+  display: block;
+  border-radius: 12px;
+  cursor: zoom-in;
+}
+
+.compare img,
+.shots img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  transition: border-color 0.15s ease;
+}
+
+.shot:hover img { border-color: color-mix(in srgb, var(--accent) 55%, var(--border)); }
+
+figcaption {
+  margin-top: 0.55rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------- features */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.feature-grid li {
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.feature-icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 0.8rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  border-radius: 11px;
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  font-size: 1.2rem;
+}
+
+.feature-grid h3,
+.platform h3,
+.steps h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  font-weight: 650;
+}
+
+.feature-grid p,
+.platform p,
+.steps p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+/* ------------------------------------------------------------------ steps */
+.steps {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) minmax(300px, 1.15fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .steps { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+
+.steps ol {
+  counter-reset: step;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.steps ol li {
+  position: relative;
+  padding: 0 0 1.4rem 2.6rem;
+}
+
+.steps ol li::before {
+  counter-increment: step;
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  color: color-mix(in srgb, var(--accent) 80%, var(--text));
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.steps ol li:last-child { padding-bottom: 0; }
+
+.shots {
+  display: grid;
+  gap: 1rem;
+}
+
+/* -------------------------------------------------------------- platforms */
+.platforms {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.platform {
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.platform-note {
+  margin-top: 0.6rem !important;
+  font-size: 0.86rem !important;
+  opacity: 0.85;
+}
