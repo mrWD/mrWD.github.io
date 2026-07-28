@@ -163,6 +163,11 @@ figure img {
 
 .shot:hover img { border-color: color-mix(in srgb, var(--accent) 55%, var(--border)); }
 
+/* Screenshots come in pairs so the app on the page matches the theme the
+   reader picked. data-theme is set before first paint, so only one ever shows. */
+html[data-theme='dark'] .shot-light,
+html[data-theme='light'] .shot-dark { display: none; }
+
 figcaption {
   margin-top: 0.55rem;
   font-size: 0.85rem;
