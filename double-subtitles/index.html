@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Double Subtitles — two subtitle tracks at once, for language learners</title>
+  <meta name="description" content="A browser extension that shows subtitles in your native and target language at the same time on Netflix, Prime Video and Disney+, and saves words to Anki or Quizlet." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Double Subtitles" />
+  <meta property="og:description" content="Native and target language subtitles side by side, with words saved to Anki or Quizlet. Free, open source, no data collected." />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📺</text></svg>" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../product.css" />
+  <style>
+    :root { --accent: #a78bfa; --accent-2: #67e8c3; }
+    html[data-theme='light'] { --accent: #6d3bd4; --accent-2: #0e9c7c; }
+  </style>
+</head>
+<body>
+  <div class="glow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <div class="header-top">
+        <a class="brand" href="../">
+          <span class="brand-mark">VL</span>
+          <span class="brand-text">Viktor Lavrov</span>
+        </a>
+        <nav class="header-links">
+          <a href="../">All products</a>
+          <a href="https://github.com/mrWD/double-subtitles" target="_blank" rel="noopener">GitHub</a>
+          <button id="theme-toggle" class="icon-btn" type="button" aria-label="Toggle colour theme">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path class="icon-moon" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/><g class="icon-sun"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></g></svg>
+          </button>
+        </nav>
+      </div>
+
+      <p class="eyebrow">Browser extension · Chrome</p>
+      <h1 class="title">Double Subtitles</h1>
+      <p class="subtitle lead">
+        Watch with subtitles in your native <em>and</em> your target language at the
+        same time. When a line teaches you a word, save it straight to Anki or
+        Quizlet without leaving the episode.
+      </p>
+
+      <ul class="badges">
+        <li>Free</li>
+        <li>Open source</li>
+        <li>No data collected</li>
+      </ul>
+
+      <div class="cta">
+        <a class="btn primary" href="https://chromewebstore.google.com/detail/cpnlpffdpcpoabpahdgfnecgngapjibn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.4"/><path d="M21 8.2H12M8.6 13.7 4.1 6M15.4 13.7l-4.5 7.8"/></svg>
+          <span>Add to Chrome</span>
+        </a>
+        <a class="btn" href="https://github.com/mrWD/double-subtitles" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="solid" d="M12 1.7a10.3 10.3 0 0 0-3.26 20.07c.52.1.7-.22.7-.5v-1.9c-2.86.62-3.47-1.2-3.47-1.2-.47-1.2-1.15-1.52-1.15-1.52-.94-.64.07-.63.07-.63 1.04.07 1.58 1.07 1.58 1.07.92 1.58 2.42 1.13 3.01.86.1-.67.36-1.13.65-1.39-2.28-.26-4.68-1.14-4.68-5.08 0-1.12.4-2.04 1.06-2.76-.11-.26-.46-1.3.1-2.72 0 0 .86-.28 2.83 1.05a9.8 9.8 0 0 1 5.16 0c1.97-1.33 2.83-1.05 2.83-1.05.56 1.42.21 2.46.1 2.72.66.72 1.06 1.64 1.06 2.76 0 3.95-2.4 4.82-4.7 5.07.37.32.7.94.7 1.9v2.82c0 .28.18.6.71.5A10.3 10.3 0 0 0 12 1.7Z"/></svg>
+          <span>Source on GitHub</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="section" aria-labelledby="idea">
+      <h2 id="idea" class="section-title">The idea</h2>
+      <figure>
+        <div class="demo">
+          <div class="demo-subs">
+            <p class="demo-sub target">Ich hätte es dir sagen sollen.</p>
+            <p class="demo-sub">I should have told you.</p>
+          </div>
+        </div>
+        <figcaption>
+          An illustration, not a screenshot — the target-language line sits above your
+          own, so you read one and check yourself against the other.
+        </figcaption>
+      </figure>
+      <p class="note">
+        One line is the language you're learning, the other is the one you already
+        know. You stop pausing to translate, and you stop guessing whether you got it
+        right.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="features">
+      <h2 id="features" class="section-title">What it does</h2>
+      <ul class="feature-grid">
+        <li>
+          <span class="feature-icon" aria-hidden="true">📺</span>
+          <h3>Two subtitle tracks at once</h3>
+          <p>Both languages render together over the player, instead of you switching tracks back and forth.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🎨</span>
+          <h3>Styling you control</h3>
+          <p>Subtitle appearance and position are adjustable, so the second line doesn't fight with the player's own controls.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🗂️</span>
+          <h3>Words go to Anki and Quizlet</h3>
+          <p>Save a word or a whole sentence while you watch and build a deck out of what you actually met on screen.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🔒</span>
+          <h3>Nothing is collected</h3>
+          <p>No accounts, no analytics. What you watch stays between you and the streaming service.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="where">
+      <h2 id="where" class="section-title">Where it works</h2>
+      <ul class="chips">
+        <li>Netflix</li>
+        <li>Amazon Prime Video</li>
+        <li>Disney+</li>
+      </ul>
+      <p class="note">Learning platforms it saves to: Anki and Quizlet.</p>
+    </section>
+
+    <section class="section" aria-labelledby="install">
+      <h2 id="install" class="section-title">Installing it</h2>
+      <div class="platforms">
+        <div class="platform">
+          <h3>From the store</h3>
+          <p>Install it from the <a href="https://chromewebstore.google.com/detail/cpnlpffdpcpoabpahdgfnecgngapjibn" target="_blank" rel="noopener">Chrome Web Store</a> — this is the easy path.</p>
+        </div>
+        <div class="platform">
+          <h3>From source</h3>
+          <p>Clone the repository, open your browser's extensions page, turn on Developer mode and use <b>Load unpacked</b>.</p>
+        </div>
+      </div>
+      <p class="note">
+        Then open a video on a supported site, click the extension icon and pick your
+        two languages in the popup.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="next">
+      <h2 id="next" class="section-title">What's planned</h2>
+      <p class="prose">
+        Apple TV support; Firefox, Opera and Safari builds; showing the base form of
+        verbs and nouns alongside the subtitle; binding subtitles to the video
+        timeline for tighter sync; and exporting the whole history, split by title.
+      </p>
+      <p class="note">Ideas and votes welcome in the issues.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><a href="../">← All products</a> · Found a bug or want another service supported? <a href="https://github.com/mrWD/double-subtitles/issues" target="_blank" rel="noopener">Open an issue</a>.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem('products-page:theme');
+      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      document.documentElement.dataset.theme = saved || (prefersLight ? 'light' : 'dark');
+      document.getElementById('theme-toggle').addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem('products-page:theme', next);
+      });
+    })();
+  </script>
+</body>
+</html>

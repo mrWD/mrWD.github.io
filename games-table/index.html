@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GamesTable — track the games you play, or would rather watch</title>
+  <meta name="description" content="A local-first tracker for games you're playing, want to play, or would rather watch as a longplay. PWA, no backend for your data, no account." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="GamesTable" />
+  <meta property="og:description" content="Two status tracks — play and watch — a searchable library, and recommendations computed on your device." />
+  <meta property="og:image" content="assets/game.png" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../product.css" />
+  <style>
+    :root { --accent: #7c9cff; --accent-2: #67e8c3; }
+    html[data-theme='light'] { --accent: #3b5ce0; --accent-2: #0e9c7c; }
+  </style>
+</head>
+<body>
+  <div class="glow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <div class="header-top">
+        <a class="brand" href="../">
+          <span class="brand-mark">VL</span>
+          <span class="brand-text">Viktor Lavrov</span>
+        </a>
+        <nav class="header-links">
+          <a href="../">All products</a>
+          <a href="https://github.com/mrWD/games-table" target="_blank" rel="noopener">GitHub</a>
+          <button id="theme-toggle" class="icon-btn" type="button" aria-label="Toggle colour theme">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path class="icon-moon" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/><g class="icon-sun"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></g></svg>
+          </button>
+        </nav>
+      </div>
+
+      <p class="eyebrow">Web app · Android, iPhone, desktop</p>
+      <h1 class="title">GamesTable</h1>
+      <p class="subtitle lead">
+        A tracker for the games you're playing, the ones still in the backlog — and
+        the ones you'd rather watch as a longplay than play yourself. Your library
+        stays on your device and no account is involved.
+      </p>
+
+      <ul class="badges">
+        <li>Free</li>
+        <li>Open source (MIT)</li>
+        <li>No account</li>
+        <li>Installable PWA</li>
+      </ul>
+
+      <div class="cta">
+        <a class="btn primary" href="https://games-table-bay.vercel.app" target="_blank" rel="noopener">
+          <span>Open the app</span>
+          <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn" href="https://github.com/mrWD/games-table" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="solid" d="M12 1.7a10.3 10.3 0 0 0-3.26 20.07c.52.1.7-.22.7-.5v-1.9c-2.86.62-3.47-1.2-3.47-1.2-.47-1.2-1.15-1.52-1.15-1.52-.94-.64.07-.63.07-.63 1.04.07 1.58 1.07 1.58 1.07.92 1.58 2.42 1.13 3.01.86.1-.67.36-1.13.65-1.39-2.28-.26-4.68-1.14-4.68-5.08 0-1.12.4-2.04 1.06-2.76-.11-.26-.46-1.3.1-2.72 0 0 .86-.28 2.83 1.05a9.8 9.8 0 0 1 5.16 0c1.97-1.33 2.83-1.05 2.83-1.05.56 1.42.21 2.46.1 2.72.66.72 1.06 1.64 1.06 2.76 0 3.95-2.4 4.82-4.7 5.07.37.32.7.94.7 1.9v2.82c0 .28.18.6.71.5A10.3 10.3 0 0 0 12 1.7Z"/></svg>
+          <span>Source on GitHub</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="section" aria-labelledby="look">
+      <h2 id="look" class="section-title">What it looks like</h2>
+      <div class="shots-row">
+        <figure>
+          <a class="shot" href="assets/game.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/game.png" width="414" height="896" alt="A game page for Portal 2 showing platforms, Metacritic score, the play and watch status rows, and Longplay, Game movie, Walkthrough, Review and Twitch links." loading="lazy" decoding="async" /></a>
+          <figcaption>A game page — both status tracks and where to watch it</figcaption>
+        </figure>
+        <figure>
+          <a class="shot" href="assets/explore.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/explore.png" width="414" height="896" alt="The Explore tab listing popular games with cover art, year, platforms and Metacritic scores." loading="lazy" decoding="async" /></a>
+          <figcaption>Explore — search, covers, platforms, Metacritic</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="features">
+      <h2 id="features" class="section-title">What it does</h2>
+      <ul class="feature-grid">
+        <li>
+          <span class="feature-icon" aria-hidden="true">🎮</span>
+          <h3>Two tracks, not one</h3>
+          <p>Play — want to play → playing → played. Watch — want to watch → watching → watched. Plus “dropped”, because that's a real outcome.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">📚</span>
+          <h3>A library with tabs</h3>
+          <p>PLAYING / BACKLOG / PLAYED / WATCH, and the watch tab splits into watching, want to watch and watched so you can filter by each.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">📝</span>
+          <h3>A page per game</h3>
+          <p>Cover, year, platforms, genres, Metacritic — plus your own 1–10 score, hours, a note, and which platform you played or watched it on.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">▶️</span>
+          <h3>Watch instead</h3>
+          <p>One tap to a YouTube longplay, game movie, walkthrough or review, or to Twitch. It opens a search — no embedded players and no third-party tracking.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">✨</span>
+          <h3>Recommendations that explain themselves</h3>
+          <p>“For you” is computed on your device from your own library, and every card says why it's there.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">📦</span>
+          <h3>Your data is a file you own</h3>
+          <p>Profile has stats by status, platform and genre, plus backup export and import. Themes are system, light or dark, pinned independently of the device.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="data">
+      <h2 id="data" class="section-title">Where the data lives</h2>
+      <p class="prose">
+        Your library is stored on the device and never uploaded. Game metadata comes
+        from <a href="https://rawg.io" target="_blank" rel="noopener">RAWG</a>, with Steam as a
+        fallback for PC titles.
+      </p>
+      <p class="note">
+        Both go through a thin serverless proxy, for two boring reasons: a RAWG key
+        can't be shipped in a browser, and Steam sends no CORS headers at all. The
+        proxy passes metadata through — it never sees your library.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="install">
+      <h2 id="install" class="section-title">Installing it</h2>
+      <div class="platforms">
+        <div class="platform">
+          <h3>iPhone</h3>
+          <p>Open it in Safari, then Share → <b>Add to Home Screen</b>.</p>
+        </div>
+        <div class="platform">
+          <h3>Android</h3>
+          <p>Open it in Chrome and accept the <b>Install</b> prompt, or use the menu → Install app.</p>
+        </div>
+        <div class="platform">
+          <h3>Desktop</h3>
+          <p>It just runs in the browser — no install needed.</p>
+        </div>
+      </div>
+      <div class="cta">
+        <a class="btn primary" href="https://games-table-bay.vercel.app" target="_blank" rel="noopener">
+          <span>Open GamesTable</span>
+          <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="honest">
+      <h2 id="honest" class="section-title">What it isn't</h2>
+      <p class="prose">
+        A free, fan-made project, not affiliated with RAWG, Valve, YouTube or Twitch.
+        There's no social layer and no sync between devices — moving your library
+        means exporting a backup and importing it on the other device.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><a href="../">← All products</a> · Found a bug or missing a feature? <a href="https://github.com/mrWD/games-table/issues" target="_blank" rel="noopener">Open an issue</a>.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem('products-page:theme');
+      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      document.documentElement.dataset.theme = saved || (prefersLight ? 'light' : 'dark');
+      document.getElementById('theme-toggle').addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem('products-page:theme', next);
+      });
+    })();
+  </script>
+</body>
+</html>

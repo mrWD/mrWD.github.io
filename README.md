@@ -7,10 +7,14 @@ Static HTML/CSS/JS. No build step, no dependencies, no backend.
 
 ```
 index.html               the product list
-styles.css               shared styling (dark + light) for every page
-app.js                   the project data + rendering
-ai-screen-translator/    product page — index.html, product.css, assets/
+styles.css               shared tokens, header, footer, buttons — every page
+product.css              shared layout for the per-product pages
+app.js                   the project data + rendering for the list
+<product>/index.html     one page per product, with its own assets/
 ```
+
+Product pages: `film-table/`, `games-table/`, `ai-screen-translator/`,
+`ai-prompt-suggester/`, `double-subtitles/`.
 
 Live at https://mrwd.github.io/ — GitHub Pages serves the `master` branch root,
 so a push is the deploy.
@@ -47,14 +51,28 @@ Data used to come from a published Google Sheet. That's gone — the list lives 
 
 ## Product pages
 
-[`ai-screen-translator/`](ai-screen-translator/) is the pattern: its own
-`index.html` and `product.css`, linking `../styles.css` for the shared tokens,
-header, footer and buttons. `product.css` overrides `--accent` so the page
-matches the product's card, and the page carries its own screenshots in
-`assets/`.
+Each product folder holds one `index.html` plus its own `assets/`. The page
+links `../styles.css` and `../product.css` and sets only its accent inline:
 
-To add another, copy that folder, and point the project's first link at it
-(a relative URL like `ai-screen-translator/` is fine).
+```html
+<style>
+  :root { --accent: #67e8c3; --accent-2: #7c9cff; }
+  html[data-theme='light'] { --accent: #0e9c7c; --accent-2: #3b5ce0; }
+</style>
+```
+
+Keep the accent the same as the product's card on the index page. Building
+blocks available in `product.css`: `.section` + `.section-title`, `.feature-grid`,
+`.platforms`, `.steps`, `.compare` (before/after images), `.shots-row` (phone
+screenshots), `.chips`, `.badges`, `.demo` (a drawn illustration), `.note`,
+`.prose`.
+
+To add another, copy the closest folder and point that project's first link at
+it — a relative URL like `film-table/` is what makes the card's highlighted
+button open the page.
+
+Screenshots of the two web apps were captured from the live deployments at
+414×896. The extensions have no screenshots yet.
 
 ## Running locally
 

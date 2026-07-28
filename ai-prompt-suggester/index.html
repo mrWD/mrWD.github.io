@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Prompt Suggester — better prompts, right where you already chat</title>
+  <meta name="description" content="A browser extension that suggests and fills in prompts inside ChatGPT, Claude, Gemini, Perplexity and more. Free, open source, Chrome and Firefox." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="AI Prompt Suggester" />
+  <meta property="og:description" content="Searchable prompt suggestions with inline placeholders, inside 11 AI chats. Free and open source." />
+  <meta property="og:image" content="assets/icon.png" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💡</text></svg>" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../product.css" />
+  <style>
+    :root { --accent: #ffc46b; --accent-2: #7c9cff; }
+    html[data-theme='light'] { --accent: #b06a00; --accent-2: #3b5ce0; }
+  </style>
+</head>
+<body>
+  <div class="glow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <div class="header-top">
+        <a class="brand" href="../">
+          <span class="brand-mark">VL</span>
+          <span class="brand-text">Viktor Lavrov</span>
+        </a>
+        <nav class="header-links">
+          <a href="../">All products</a>
+          <a href="https://github.com/mrWD/ai-prompt-suggester-extension" target="_blank" rel="noopener">GitHub</a>
+          <button id="theme-toggle" class="icon-btn" type="button" aria-label="Toggle colour theme">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path class="icon-moon" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/><g class="icon-sun"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></g></svg>
+          </button>
+        </nav>
+      </div>
+
+      <img class="logo-hero" src="assets/icon.png" width="96" height="96" alt="" />
+      <p class="eyebrow">Browser extension · Chrome &amp; Firefox</p>
+      <h1 class="title">AI Prompt Suggester</h1>
+      <p class="subtitle lead">
+        A 💡 button inside the AI chats you already use. Open it, search a prompt,
+        fill in the blanks where they sit in the text, and send — without keeping a
+        prompt library in a notes app somewhere else.
+      </p>
+
+      <ul class="badges">
+        <li>Free</li>
+        <li>Open source</li>
+        <li>11 chat platforms</li>
+        <li>7 interface languages</li>
+      </ul>
+
+      <div class="cta">
+        <a class="btn primary" href="https://chromewebstore.google.com/detail/ai-prompt-suggester/ffacabgddhepblahneohlpgmepogoohl" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.4"/><path d="M21 8.2H12M8.6 13.7 4.1 6M15.4 13.7l-4.5 7.8"/></svg>
+          <span>Add to Chrome</span>
+        </a>
+        <a class="btn" href="https://addons.mozilla.org/en-US/firefox/addon/ai-prompt-suggester/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3c3 2 4.5 4.4 4.5 7.2 0 2.6-2 4.5-4.5 4.5S7.5 12.8 7.5 10"/></svg>
+          <span>Add to Firefox</span>
+        </a>
+        <a class="btn" href="https://github.com/mrWD/ai-prompt-suggester-extension" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="solid" d="M12 1.7a10.3 10.3 0 0 0-3.26 20.07c.52.1.7-.22.7-.5v-1.9c-2.86.62-3.47-1.2-3.47-1.2-.47-1.2-1.15-1.52-1.15-1.52-.94-.64.07-.63.07-.63 1.04.07 1.58 1.07 1.58 1.07.92 1.58 2.42 1.13 3.01.86.1-.67.36-1.13.65-1.39-2.28-.26-4.68-1.14-4.68-5.08 0-1.12.4-2.04 1.06-2.76-.11-.26-.46-1.3.1-2.72 0 0 .86-.28 2.83 1.05a9.8 9.8 0 0 1 5.16 0c1.97-1.33 2.83-1.05 2.83-1.05.56 1.42.21 2.46.1 2.72.66.72 1.06 1.64 1.06 2.76 0 3.95-2.4 4.82-4.7 5.07.37.32.7.94.7 1.9v2.82c0 .28.18.6.71.5A10.3 10.3 0 0 0 12 1.7Z"/></svg>
+          <span>Source</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="section" aria-labelledby="features">
+      <h2 id="features" class="section-title">What it does</h2>
+      <ul class="feature-grid">
+        <li>
+          <span class="feature-icon" aria-hidden="true">🔍</span>
+          <h3>Search as you type</h3>
+          <p>Filter the whole prompt library instantly, across prompt text and categories, with matches highlighted. <kbd>Ctrl</kbd>/<kbd>Cmd</kbd>+<kbd>F</kbd> jumps to the search box.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🎯</span>
+          <h3>Blanks where they belong</h3>
+          <p>Placeholders like <code>{1}</code> and <code>{2}</code> become input fields inline, right in the prompt text — so you see the finished prompt as you fill it in.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">⌨️</span>
+          <h3>Keyboard all the way</h3>
+          <p>Arrows move between results and between inputs, <kbd>Enter</kbd> applies the prompt to the chat, <kbd>Esc</kbd> backs out.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">📋</span>
+          <h3>Copy instead of send</h3>
+          <p><kbd>Ctrl</kbd>/<kbd>Cmd</kbd>+<kbd>C</kbd> copies the prompt in its current state, with your values already substituted.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🌍</span>
+          <h3>Seven interface languages</h3>
+          <p>English, German, Russian, Italian, French, Spanish and Chinese.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🎨</span>
+          <h3>Stays out of the way</h3>
+          <p>It follows your system theme and lives behind one button, rather than taking over the chat you're using.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="where">
+      <h2 id="where" class="section-title">Where it works</h2>
+      <ul class="chips">
+        <li>ChatGPT</li>
+        <li>Claude</li>
+        <li>Google Gemini</li>
+        <li>Perplexity</li>
+        <li>Grok</li>
+        <li>Mistral</li>
+        <li>DeepSeek</li>
+        <li>Microsoft Copilot</li>
+        <li>Qwen</li>
+        <li>Le Chat</li>
+        <li>LM Arena</li>
+      </ul>
+      <p class="note">
+        Browsers: Chrome and Chromium 88+, Firefox 109+, Safari 15+, Edge 88+, Opera 75+.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="install">
+      <h2 id="install" class="section-title">Installing it</h2>
+      <div class="platforms">
+        <div class="platform">
+          <h3>Chrome, Edge, Opera</h3>
+          <p>Install from the <a href="https://chromewebstore.google.com/detail/ai-prompt-suggester/ffacabgddhepblahneohlpgmepogoohl" target="_blank" rel="noopener">Chrome Web Store</a>.</p>
+          <p class="platform-note">Or clone the repo, open <code>chrome://extensions/</code>, turn on Developer mode and use <b>Load unpacked</b>.</p>
+        </div>
+        <div class="platform">
+          <h3>Firefox</h3>
+          <p>Install from <a href="https://addons.mozilla.org/en-US/firefox/addon/ai-prompt-suggester/" target="_blank" rel="noopener">Firefox Add-ons</a>.</p>
+          <p class="platform-note">Or load it temporarily from <code>about:debugging</code> during development.</p>
+        </div>
+      </div>
+      <p class="note">
+        Then open any supported chat and look for the 💡 button next to the input.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><a href="../">← All products</a> · Missing a platform or a prompt? <a href="https://github.com/mrWD/ai-prompt-suggester-extension/issues" target="_blank" rel="noopener">Open an issue</a>.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem('products-page:theme');
+      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      document.documentElement.dataset.theme = saved || (prefersLight ? 'light' : 'dark');
+      document.getElementById('theme-toggle').addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem('products-page:theme', next);
+      });
+    })();
+  </script>
+</body>
+</html>

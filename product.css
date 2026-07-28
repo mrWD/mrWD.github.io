@@ -1,14 +1,6 @@
-/* Product page — builds on ../styles.css (tokens, header, footer, .btn).
-   The accent matches this product's card on the index page. */
-:root {
-  --accent: #67e8c3;
-  --accent-2: #7c9cff;
-}
-
-html[data-theme='light'] {
-  --accent: #0e9c7c;
-  --accent-2: #3b5ce0;
-}
+/* Shared layout for the per-product pages. Builds on styles.css (tokens,
+   header, footer, .btn); each page sets its own --accent / --accent-2 inline
+   so it matches that product's card on the index page. */
 
 /* The shared .btn styles read --card-accent, which only cards set. */
 body { --card-accent: var(--accent); }
@@ -129,8 +121,7 @@ figure {
   cursor: zoom-in;
 }
 
-.compare img,
-.shots img {
+figure img {
   display: block;
   width: 100%;
   height: auto;
@@ -240,6 +231,79 @@ figcaption {
 .shots {
   display: grid;
   gap: 1rem;
+}
+
+/* ------------------------------------------------------------------ chips */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chips li {
+  padding: 0.35rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface);
+  font-size: 0.88rem;
+}
+
+/* Phone-shaped screenshots sit better with a cap on their width. */
+.shots-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 300px));
+  gap: 1.25rem;
+}
+
+.shots-row img { border-radius: 14px; }
+
+/* A drawn illustration, not a screenshot — captions say so. */
+.demo {
+  position: relative;
+  display: grid;
+  place-items: end center;
+  max-width: 680px;
+  aspect-ratio: 16 / 9;
+  padding: 1.5rem 1.5rem 2.4rem;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background:
+    radial-gradient(120% 120% at 50% 0%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 60%),
+    linear-gradient(160deg, #10131b, #05070c);
+  overflow: hidden;
+}
+
+.demo-subs {
+  display: grid;
+  gap: 0.4rem;
+  justify-items: center;
+  text-align: center;
+  max-width: 90%;
+}
+
+.demo-sub {
+  padding: 0.3rem 0.85rem;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.62);
+  color: #fff;
+  font-size: clamp(0.85rem, 2vw, 1.05rem);
+  line-height: 1.35;
+}
+
+.demo-sub.target {
+  color: color-mix(in srgb, var(--accent) 70%, #fff);
+  font-weight: 600;
+}
+
+.logo-hero {
+  width: 96px;
+  height: 96px;
+  margin-bottom: 1.1rem;
+  border-radius: 22px;
+  border: 1px solid var(--border);
 }
 
 /* -------------------------------------------------------------- platforms */

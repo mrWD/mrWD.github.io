@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FilmTable — a TV Time replacement that lives in your browser</title>
+  <meta name="description" content="Track the shows and movies you watch. No account, no backend for your data — the library stays on your device. Installs as a PWA on Android and iPhone." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="FilmTable" />
+  <meta property="og:description" content="A local-first TV show and movie tracker, written after TV Time shut down. No accounts, works offline." />
+  <meta property="og:image" content="assets/show.png" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../product.css" />
+  <style>
+    :root { --accent: #f2789f; --accent-2: #a78bfa; }
+    html[data-theme='light'] { --accent: #c9376b; --accent-2: #6d3bd4; }
+  </style>
+</head>
+<body>
+  <div class="glow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <div class="header-top">
+        <a class="brand" href="../">
+          <span class="brand-mark">VL</span>
+          <span class="brand-text">Viktor Lavrov</span>
+        </a>
+        <nav class="header-links">
+          <a href="../">All products</a>
+          <a href="https://github.com/mrWD/film-table" target="_blank" rel="noopener">GitHub</a>
+          <button id="theme-toggle" class="icon-btn" type="button" aria-label="Toggle colour theme">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path class="icon-moon" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/><g class="icon-sun"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></g></svg>
+          </button>
+        </nav>
+      </div>
+
+      <p class="eyebrow">Web app · Android, iPhone, desktop</p>
+      <h1 class="title">FilmTable</h1>
+      <p class="subtitle lead">
+        A tracker for the shows and movies you watch, written after TV Time shut
+        down. One codebase for phone and web, and no backend holding your data —
+        the library lives on your device.
+      </p>
+
+      <ul class="badges">
+        <li>Free</li>
+        <li>Open source (MIT)</li>
+        <li>No account</li>
+        <li>Installable PWA</li>
+        <li>Works offline</li>
+      </ul>
+
+      <div class="cta">
+        <a class="btn primary" href="https://film-table.vercel.app" target="_blank" rel="noopener">
+          <span>Open the app</span>
+          <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn" href="https://github.com/mrWD/film-table" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="solid" d="M12 1.7a10.3 10.3 0 0 0-3.26 20.07c.52.1.7-.22.7-.5v-1.9c-2.86.62-3.47-1.2-3.47-1.2-.47-1.2-1.15-1.52-1.15-1.52-.94-.64.07-.63.07-.63 1.04.07 1.58 1.07 1.58 1.07.92 1.58 2.42 1.13 3.01.86.1-.67.36-1.13.65-1.39-2.28-.26-4.68-1.14-4.68-5.08 0-1.12.4-2.04 1.06-2.76-.11-.26-.46-1.3.1-2.72 0 0 .86-.28 2.83 1.05a9.8 9.8 0 0 1 5.16 0c1.97-1.33 2.83-1.05 2.83-1.05.56 1.42.21 2.46.1 2.72.66.72 1.06 1.64 1.06 2.76 0 3.95-2.4 4.82-4.7 5.07.37.32.7.94.7 1.9v2.82c0 .28.18.6.71.5A10.3 10.3 0 0 0 12 1.7Z"/></svg>
+          <span>Source on GitHub</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="section" aria-labelledby="look">
+      <h2 id="look" class="section-title">What it looks like</h2>
+      <div class="shots-row">
+        <figure>
+          <a class="shot" href="assets/show.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/show.png" width="414" height="896" alt="A show page with the poster, genres, an Add to my shows button, where-to-watch options and the season list." loading="lazy" decoding="async" /></a>
+          <figcaption>A show page — progress, check-in, seasons, where to watch</figcaption>
+        </figure>
+        <figure>
+          <a class="shot" href="assets/explore.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/explore.png" width="414" height="896" alt="The Explore tab showing a grid of show posters under Popular this week." loading="lazy" decoding="async" /></a>
+          <figcaption>Explore — search, Airing tonight, Popular this week</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="features">
+      <h2 id="features" class="section-title">What it does</h2>
+      <ul class="feature-grid">
+        <li>
+          <span class="feature-icon" aria-hidden="true">📺</span>
+          <h3>A watchlist that knows what's next</h3>
+          <p>Up Next, Not Started and Been a While. Each card shows the episode you're on (<code>3×01 +3</code>), and checking in takes one tap — with Undo.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">📅</span>
+          <h3>Upcoming episodes</h3>
+          <p>Today, by weekday, then Later — with air time, channel, a “7 DAYS” countdown and PREMIERE / NEW / AIRED badges.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🎞️</span>
+          <h3>Movies too</h3>
+          <p>A watch list and a watched list, and unreleased films show a countdown to their release date.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">✨</span>
+          <h3>Recommendations that explain themselves</h3>
+          <p>“For you” is computed on your device from your own library: genres weighted by episodes watched and recency, with dropped shows as a negative signal. Every card says why it's there.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🔎</span>
+          <h3>Explore</h3>
+          <p>Search across ALL / SHOWS / MOVIES with exact matches first, plus Airing tonight and Popular this week.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">📦</span>
+          <h3>Your data is a file you own</h3>
+          <p>Profile has time and episode stats, shelves by status, a full reset — and JSON export/import for moving your library between devices.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="data">
+      <h2 id="data" class="section-title">Where the data lives</h2>
+      <p class="prose">
+        Your library never leaves the device — it's stored in the browser's own
+        <code>localStorage</code>. There's no sync and no account, so moving to a new
+        phone means Profile → Export on the old one and Import on the new one.
+      </p>
+      <p class="note">
+        Metadata comes from free APIs that need no key of yours: TV data from
+        <a href="https://www.tvmaze.com" target="_blank" rel="noopener">TVmaze</a> (CC&nbsp;BY-SA),
+        movie data from TMDB, Cinemeta and iTunes. They complement each other rather
+        than replace each other — episodes and air times always come from TVmaze,
+        where they're most accurate.
+      </p>
+      <p class="note">
+        This product uses the TMDB API but is not endorsed or certified by TMDB.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="install">
+      <h2 id="install" class="section-title">Installing it</h2>
+      <div class="platforms">
+        <div class="platform">
+          <h3>iPhone</h3>
+          <p>Open it in Safari, then Share → <b>Add to Home Screen</b>.</p>
+        </div>
+        <div class="platform">
+          <h3>Android</h3>
+          <p>Open it in Chrome and accept the <b>Install</b> prompt, or use the menu → Install app.</p>
+        </div>
+        <div class="platform">
+          <h3>Desktop</h3>
+          <p>It just runs in the browser — no install needed.</p>
+        </div>
+      </div>
+      <p class="note">
+        Installed, it opens like an app, works offline through a service worker, and
+        your library is safer from being wiped along with your browsing data.
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="https://film-table.vercel.app" target="_blank" rel="noopener">
+          <span>Open FilmTable</span>
+          <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <p class="note">
+        The old address, <a href="https://mrwd.github.io/film-table/" target="_blank" rel="noopener">mrwd.github.io/film-table</a>,
+        still works and stays up for the libraries built on it — <code>localStorage</code>
+        is tied to a domain and doesn't move on its own.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="honest">
+      <h2 id="honest" class="section-title">What it isn't</h2>
+      <p class="prose">
+        A free, fan-made project, not affiliated with TV Time or Whip Media. Being
+        local-first also means no comments, no friends and no push notifications for
+        airings — those need a server and accounts, which is exactly what this
+        doesn't have.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><a href="../">← All products</a> · Found a bug or missing a feature? <a href="https://github.com/mrWD/film-table/issues" target="_blank" rel="noopener">Open an issue</a>.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem('products-page:theme');
+      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      document.documentElement.dataset.theme = saved || (prefersLight ? 'light' : 'dark');
+      document.getElementById('theme-toggle').addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem('products-page:theme', next);
+      });
+    })();
+  </script>
+</body>
+</html>

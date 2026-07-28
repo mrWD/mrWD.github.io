@@ -23,6 +23,7 @@ const PROJECTS = [
     status: 'Live',
     featured: true,
     links: [
+      { label: 'Learn more', url: 'film-table/' },
       { label: 'Open app', url: 'https://film-table.vercel.app' },
       { label: 'GitHub', url: 'https://github.com/mrWD/film-table', icon: 'github' },
     ],
@@ -38,6 +39,7 @@ const PROJECTS = [
     accent: '#7c9cff',
     status: 'Live',
     links: [
+      { label: 'Learn more', url: 'games-table/' },
       { label: 'Open app', url: 'https://games-table-bay.vercel.app' },
       { label: 'GitHub', url: 'https://github.com/mrWD/games-table', icon: 'github' },
     ],
@@ -68,6 +70,7 @@ const PROJECTS = [
     accent: '#ffc46b',
     status: 'Live',
     links: [
+      { label: 'Learn more', url: 'ai-prompt-suggester/' },
       {
         label: 'Chrome',
         url: 'https://chromewebstore.google.com/detail/ai-prompt-suggester/ffacabgddhepblahneohlpgmepogoohl',
@@ -92,6 +95,7 @@ const PROJECTS = [
     accent: '#a78bfa',
     status: 'Live',
     links: [
+      { label: 'Learn more', url: 'double-subtitles/' },
       {
         label: 'Chrome',
         url: 'https://chromewebstore.google.com/detail/cpnlpffdpcpoabpahdgfnecgngapjibn',
