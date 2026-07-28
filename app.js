@@ -348,17 +348,11 @@ function renderGrid() {
   $('#empty').hidden = visible.length > 0;
 }
 
-function setStatus(message, isNotice = false) {
-  const el = $('#status');
-  el.textContent = message;
-  el.style.color = isNotice ? 'var(--accent)' : '';
-}
-
-function render(projects, note) {
+function render(projects) {
   state.projects = projects;
   renderFilters();
   renderGrid();
-  setStatus(note || `${projects.length} project${projects.length === 1 ? '' : 's'}`);
+  $('#status').textContent = `${projects.length} project${projects.length === 1 ? '' : 's'}`;
 }
 
 /* ---------------------------------------------------------------- startup */
@@ -413,13 +407,11 @@ async function load() {
     writeCache(projects);
     render(projects);
   } catch (err) {
+    // Falling back is invisible on purpose — a visitor has no use for the
+    // reason, so it goes to the console and the page just renders the list.
+    console.warn(`[products] sheet unavailable (${err.message}), using built-in list`);
     if (cached) return; // stale cache still beats nothing
-
-    const reason = err.message === 'no-sheet-id'
-      ? 'Showing the built-in list — add your Google Sheet id in app.js to manage projects from the sheet.'
-      : 'Could not reach the Google Sheet, showing the built-in list.';
-    render(normalizeProjects(FALLBACK), reason);
-    $('#footer-note').textContent = `Data source: fallback (${err.message}).`;
+    render(normalizeProjects(FALLBACK));
   }
 }
 

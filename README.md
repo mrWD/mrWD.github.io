@@ -83,6 +83,10 @@ It's three static files — any host works.
 ## If the sheet is unreachable
 
 `app.js` carries a `FALLBACK` array with the current projects. If Google is down,
-the sheet id is missing, or the tab is empty, the page renders that list instead
-and says so in the status line. The last successful fetch is also cached in
-`localStorage`, so a returning visitor never sees an empty page.
+the sheet id is missing, or the tab is empty, the page quietly renders that list
+instead — a visitor sees a normal page, and the reason is only logged to the
+browser console (`[products] sheet unavailable …`). Keep that array roughly in
+sync with the sheet, since it's what visitors get when Sheets misbehaves.
+
+The last successful fetch is also cached in `localStorage`, so a returning
+visitor never sees an empty page.
