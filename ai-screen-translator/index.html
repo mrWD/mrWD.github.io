@@ -197,8 +197,8 @@
   </footer>
 
   <script>
-    // Same theme switch as the index page, kept inline so this page has no
-    // dependency on app.js (which is all about the Google Sheet).
+    // Same theme switch as the index page, kept inline so this page doesn't
+    // pull in app.js and its project list.
     (function () {
       const saved = localStorage.getItem('products-page:theme');
       const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;

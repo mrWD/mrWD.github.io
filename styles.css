@@ -391,18 +391,6 @@ html[data-theme='light'] .btn.primary { color: #fff; }
 .btn svg { fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
 .btn svg.solid { fill: currentColor; stroke: none; }
 
-/* Loading + empty states */
-.skeleton {
-  height: 210px;
-  border-style: dashed;
-  background:
-    linear-gradient(90deg, transparent, var(--surface-hover), transparent) 0 0 / 200% 100%,
-    var(--surface);
-  animation: shimmer 1.4s linear infinite;
-}
-
-@keyframes shimmer { to { background-position: -200% 0, 0 0; } }
-
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .card:hover, .btn:hover { transform: none; }

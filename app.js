@@ -1,35 +1,31 @@
 /* ------------------------------------------------------------------------
- * Products page — data comes from a published Google Sheet.
+ * Products page.
  *
- * 1. Create a sheet, first row = column headers (see README for the list).
- * 2. Share → "Anyone with the link" → Viewer.
- * 3. Paste the spreadsheet id below (the long chunk between /d/ and /edit).
+ * To add a project, add an entry to PROJECTS below — the array order is the
+ * order on the page. Every field except `name` and `links` is optional.
  *
- * Nothing else to do: adding a row in the sheet adds a card here.
+ *   accent   hex colour for the icon tile, tagline, badge and buttons
+ *   status   small pill in the card's top-right corner
+ *   featured tints the whole card with the accent colour
+ *   links    buttons, in order; the first one is the highlighted button
+ *            icon: 'github' | 'chrome' | 'firefox' | 'download' (optional)
  * ---------------------------------------------------------------------- */
-const CONFIG = {
-  sheetId: '',          // e.g. '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms'
-  sheetName: 'Projects', // tab name inside the spreadsheet
-  cacheMinutes: 10,      // serve the cached copy first, refresh in background
-};
-
-/* Fallback data — used until the sheet id is filled in, and as a safety net
- * if Google is unreachable. Keep it roughly in sync with the sheet. */
-const FALLBACK = [
+const PROJECTS = [
   {
     name: 'FilmTable',
     tagline: 'A TV Time replacement that lives in your browser',
     description:
       'Track the shows and movies you watch, without an account. Your library stays in local storage, backups are plain JSON files you own, and it installs as a PWA on Android and iPhone.',
     category: 'Web app',
-    tags: 'PWA, Local-first, React, TypeScript, MIT',
+    tags: ['PWA', 'Local-first', 'React', 'TypeScript', 'MIT'],
     icon: '🎬',
     accent: '#f2789f',
     status: 'Live',
-    featured: 'TRUE',
-    order: '1',
-    live: 'https://film-table.vercel.app',
-    github: 'https://github.com/mrWD/film-table',
+    featured: true,
+    links: [
+      { label: 'Open app', url: 'https://film-table.vercel.app' },
+      { label: 'GitHub', url: 'https://github.com/mrWD/film-table', icon: 'github' },
+    ],
   },
   {
     name: 'GamesTable',
@@ -37,13 +33,14 @@ const FALLBACK = [
     description:
       'Seven statuses across play and watch tracks, a searchable library backed by RAWG and Steam data, and recommendations scored on your platforms, genres and Metacritic. No accounts, works offline.',
     category: 'Web app',
-    tags: 'PWA, Local-first, React, TypeScript, MIT',
+    tags: ['PWA', 'Local-first', 'React', 'TypeScript', 'MIT'],
     icon: '🎮',
     accent: '#7c9cff',
     status: 'Live',
-    order: '2',
-    live: 'https://games-table-bay.vercel.app',
-    github: 'https://github.com/mrWD/games-table',
+    links: [
+      { label: 'Open app', url: 'https://games-table-bay.vercel.app' },
+      { label: 'GitHub', url: 'https://github.com/mrWD/games-table', icon: 'github' },
+    ],
   },
   {
     name: 'AI Screen Translator',
@@ -51,13 +48,14 @@ const FALLBACK = [
     description:
       'A menu-bar app for macOS, Windows and Linux. Hold the hotkey to overlay a translation on top of whatever is on screen, release to go back. 25 languages, offline and private by default — built for gamers learning a language.',
     category: 'Desktop app',
-    tags: 'macOS, Windows, Linux, Python, OCR, MIT',
+    tags: ['macOS', 'Windows', 'Linux', 'Python', 'OCR', 'MIT'],
     icon: '🔤',
     accent: '#67e8c3',
     status: 'Open source',
-    order: '3',
-    site: 'https://mrwd.github.io/ai-screen-translator/',
-    github: 'https://github.com/mrWD/ai-screen-translator',
+    links: [
+      { label: 'Learn more', url: 'ai-screen-translator/' },
+      { label: 'GitHub', url: 'https://github.com/mrWD/ai-screen-translator', icon: 'github' },
+    ],
   },
   {
     name: 'AI Prompt Suggester',
@@ -65,14 +63,23 @@ const FALLBACK = [
     description:
       'A lightbulb button inside 10+ AI chats — Claude, ChatGPT, Gemini, Perplexity, Copilot, Le Chat, Grok, DeepSeek, Qwen and LMArena — that rewrites what you typed into a sharper prompt, with examples.',
     category: 'Extension',
-    tags: 'Chrome, Firefox, Open source',
+    tags: ['Chrome', 'Firefox', 'Open source'],
     icon: '💡',
     accent: '#ffc46b',
     status: 'Live',
-    order: '4',
-    chrome: 'https://chromewebstore.google.com/detail/ai-prompt-suggester/ffacabgddhepblahneohlpgmepogoohl',
-    firefox: 'https://addons.mozilla.org/en-US/firefox/addon/ai-prompt-suggester/',
-    github: 'https://github.com/mrWD/ai-prompt-suggester-extension',
+    links: [
+      {
+        label: 'Chrome',
+        url: 'https://chromewebstore.google.com/detail/ai-prompt-suggester/ffacabgddhepblahneohlpgmepogoohl',
+        icon: 'chrome',
+      },
+      {
+        label: 'Firefox',
+        url: 'https://addons.mozilla.org/en-US/firefox/addon/ai-prompt-suggester/',
+        icon: 'firefox',
+      },
+      { label: 'GitHub', url: 'https://github.com/mrWD/ai-prompt-suggester-extension', icon: 'github' },
+    ],
   },
   {
     name: 'Double Subtitles',
@@ -80,26 +87,19 @@ const FALLBACK = [
     description:
       'Shows your native and target language subtitles side by side on Netflix, Prime Video and Disney+. Styling and position are adjustable, and words you save go straight to Anki or Quizlet. No data collected.',
     category: 'Extension',
-    tags: 'Chrome, Netflix, Prime Video, Disney+, Anki',
+    tags: ['Chrome', 'Netflix', 'Prime Video', 'Disney+', 'Anki'],
     icon: '📺',
     accent: '#a78bfa',
     status: 'Live',
-    order: '5',
-    chrome: 'https://chromewebstore.google.com/detail/cpnlpffdpcpoabpahdgfnecgngapjibn',
-    github: 'https://github.com/mrWD/double-subtitles',
+    links: [
+      {
+        label: 'Chrome',
+        url: 'https://chromewebstore.google.com/detail/cpnlpffdpcpoabpahdgfnecgngapjibn',
+        icon: 'chrome',
+      },
+      { label: 'GitHub', url: 'https://github.com/mrWD/double-subtitles', icon: 'github' },
+    ],
   },
-];
-
-/* Known link columns, in the order the buttons should appear. */
-const LINK_FIELDS = [
-  { key: 'site', label: 'Learn more' },
-  { key: 'live', label: 'Open app' },
-  { key: 'chrome', label: 'Chrome', icon: 'chrome' },
-  { key: 'firefox', label: 'Firefox', icon: 'firefox' },
-  { key: 'appstore', label: 'App Store' },
-  { key: 'download', label: 'Download', icon: 'download' },
-  { key: 'github', label: 'GitHub', icon: 'github' },
-  { key: 'article', label: 'Read more' },
 ];
 
 const ICONS = {
@@ -112,155 +112,29 @@ const ICONS = {
   download: '<path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M4.5 19.5h15"/>',
 };
 
-/* ------------------------------------------------------------------ utils */
-
 const $ = (sel) => document.querySelector(sel);
 
-/** RFC-4180-ish CSV parser: handles quotes, escaped quotes and newlines. */
-function parseCSV(text) {
-  const rows = [];
-  let row = [];
-  let field = '';
-  let quoted = false;
-
-  for (let i = 0; i < text.length; i++) {
-    const c = text[i];
-
-    if (quoted) {
-      if (c === '"') {
-        if (text[i + 1] === '"') { field += '"'; i++; }
-        else quoted = false;
-      } else field += c;
-      continue;
-    }
-
-    if (c === '"') quoted = true;
-    else if (c === ',') { row.push(field); field = ''; }
-    else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; }
-    else if (c !== '\r') field += c;
-  }
-
-  if (field !== '' || row.length) { row.push(field); rows.push(row); }
-  return rows;
-}
-
-/** "Link — Live" → "link_live", so headers can be written however reads best. */
-const normalizeKey = (h) =>
-  h.trim().toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
-
-function csvToObjects(text) {
-  const rows = parseCSV(text).filter((r) => r.some((c) => c.trim() !== ''));
-  if (rows.length < 2) return [];
-
-  const headers = rows[0].map(normalizeKey);
-  return rows.slice(1).map((cells) => {
-    const obj = {};
-    headers.forEach((h, i) => {
-      if (h) obj[h] = (cells[i] ?? '').trim();
-    });
-    return obj;
-  });
-}
-
-const isTrue = (v) => ['true', 'yes', '1', 'y', 'x', '✓', 'да'].includes(String(v || '').trim().toLowerCase());
-
-const splitList = (v) => String(v || '').split(',').map((s) => s.trim()).filter(Boolean);
-
-/** Only allow links we are willing to render as an anchor. */
-function safeUrl(raw) {
-  const value = String(raw || '').trim();
-  if (!value) return '';
-  try {
-    const url = new URL(value);
-    return url.protocol === 'https:' || url.protocol === 'http:' ? url.href : '';
-  } catch {
-    return '';
-  }
-}
-
-/** Deterministic accent when the sheet leaves the column empty. */
+/** Deterministic accent for a project that doesn't name one. */
 function accentFor(project) {
-  const explicit = String(project.accent || '').trim();
-  if (/^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(explicit)) return explicit;
+  if (project.accent) return project.accent;
 
   let hash = 0;
-  for (const ch of project.name || '') hash = (hash * 31 + ch.charCodeAt(0)) % 360;
+  for (const ch of project.name) hash = (hash * 31 + ch.charCodeAt(0)) % 360;
   return `hsl(${hash} 72% 68%)`;
-}
-
-/** Extra links column: "Docs|https://…; Demo|https://…" */
-function extraLinks(project) {
-  return String(project.links || '')
-    .split(';')
-    .map((chunk) => {
-      const [label, url] = chunk.split('|');
-      return { label: (label || '').trim(), url: safeUrl(url) };
-    })
-    .filter((l) => l.label && l.url);
-}
-
-function normalizeProjects(rows) {
-  return rows
-    .filter((p) => p.name && !isTrue(p.hidden))
-    .sort((a, b) => {
-      const oa = Number(a.order) || 999;
-      const ob = Number(b.order) || 999;
-      return oa - ob || String(a.name).localeCompare(String(b.name));
-    });
-}
-
-/* ------------------------------------------------------------------- data */
-
-const CACHE_KEY = 'products-page:cache:v1';
-
-function sheetUrl() {
-  const override = new URLSearchParams(location.search).get('sheet');
-  const id = (override || CONFIG.sheetId).trim();
-  if (!id) return '';
-  return `https://docs.google.com/spreadsheets/d/${encodeURIComponent(id)}/gviz/tq` +
-         `?tqx=out:csv&sheet=${encodeURIComponent(CONFIG.sheetName)}`;
-}
-
-function readCache() {
-  try {
-    const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
-    if (!cached || !Array.isArray(cached.projects) || !cached.projects.length) return null;
-    return cached;
-  } catch {
-    return null;
-  }
-}
-
-function writeCache(projects) {
-  try {
-    localStorage.setItem(CACHE_KEY, JSON.stringify({ projects, at: Date.now() }));
-  } catch { /* private mode / quota — caching is optional */ }
-}
-
-async function fetchSheet() {
-  const url = sheetUrl();
-  if (!url) throw new Error('no-sheet-id');
-
-  const res = await fetch(url, { cache: 'no-store' });
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-
-  const projects = normalizeProjects(csvToObjects(await res.text()));
-  if (!projects.length) throw new Error('empty-sheet');
-  return projects;
 }
 
 /* -------------------------------------------------------------- rendering */
 
-const state = { projects: [], category: 'All', query: '' };
+const state = { category: 'All', query: '' };
 
-function icon(name, cls = '') {
-  return `<svg class="${cls}" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">${ICONS[name] || ''}</svg>`;
+function icon(name) {
+  return `<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">${ICONS[name] || ''}</svg>`;
 }
 
 function buildCard(project) {
   const node = $('#card-template').content.firstElementChild.cloneNode(true);
   node.style.setProperty('--card-accent', accentFor(project));
-  if (isTrue(project.featured)) node.classList.add('featured');
+  if (project.featured) node.classList.add('featured');
 
   node.querySelector('.card-icon').textContent = project.icon || '◆';
   node.querySelector('.card-title').textContent = project.name;
@@ -280,29 +154,22 @@ function buildCard(project) {
   desc.hidden = !project.description;
 
   const tags = node.querySelector('.tags');
-  for (const tag of splitList(project.tags)) {
+  for (const tag of project.tags || []) {
     const li = document.createElement('li');
     li.textContent = tag;
     tags.append(li);
   }
 
   const links = node.querySelector('.card-links');
-  const buttons = [
-    ...LINK_FIELDS
-      .map((f) => ({ ...f, url: safeUrl(project[f.key]) }))
-      .filter((f) => f.url),
-    ...extraLinks(project),
-  ];
-
-  // LINK_FIELDS is ordered by importance, so whichever link a project happens
-  // to have first is the one worth highlighting.
-  buttons.forEach((link, index) => {
-    const primary = index === 0;
+  (project.links || []).forEach((link, index) => {
+    const primary = index === 0; // links are listed in priority order
     const a = document.createElement('a');
     a.className = `btn${primary ? ' primary' : ''}`;
     a.href = link.url;
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
+    if (/^https?:/.test(link.url)) {
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+    }
     a.innerHTML = `${link.icon ? icon(link.icon) : ''}<span></span>${primary ? icon('arrow') : ''}`;
     a.querySelector('span').textContent = link.label;
     a.setAttribute('aria-label', `${link.label} — ${project.name}`);
@@ -316,14 +183,14 @@ function matchesFilter(project) {
   if (state.category !== 'All' && (project.category || 'Other') !== state.category) return false;
   if (!state.query) return true;
 
-  const haystack = [project.name, project.tagline, project.description, project.category, project.tags]
+  const haystack = [project.name, project.tagline, project.description, project.category, ...(project.tags || [])]
     .join(' ')
     .toLowerCase();
   return state.query.split(/\s+/).every((word) => haystack.includes(word));
 }
 
 function renderFilters() {
-  const categories = ['All', ...new Set(state.projects.map((p) => p.category || 'Other'))];
+  const categories = ['All', ...new Set(PROJECTS.map((p) => p.category || 'Other'))];
   const box = $('#filters');
   box.replaceChildren();
 
@@ -344,18 +211,10 @@ function renderFilters() {
 
 function renderGrid() {
   const grid = $('#grid');
-  const visible = state.projects.filter(matchesFilter);
+  const visible = PROJECTS.filter(matchesFilter);
 
   grid.replaceChildren(...visible.map(buildCard));
-  grid.setAttribute('aria-busy', 'false');
   $('#empty').hidden = visible.length > 0;
-}
-
-function render(projects) {
-  state.projects = projects;
-  renderFilters();
-  renderGrid();
-  $('#status').textContent = `${projects.length} project${projects.length === 1 ? '' : 's'}`;
 }
 
 /* ---------------------------------------------------------------- startup */
@@ -398,26 +257,8 @@ function initSearch() {
   });
 }
 
-async function load() {
-  const cached = readCache();
-  if (cached) render(cached.projects); // paint instantly, then revalidate
-
-  const fresh = Date.now() - (cached?.at || 0) < CONFIG.cacheMinutes * 60_000;
-  if (cached && fresh) return;
-
-  try {
-    const projects = await fetchSheet();
-    writeCache(projects);
-    render(projects);
-  } catch (err) {
-    // Falling back is invisible on purpose — a visitor has no use for the
-    // reason, so it goes to the console and the page just renders the list.
-    console.warn(`[products] sheet unavailable (${err.message}), using built-in list`);
-    if (cached) return; // stale cache still beats nothing
-    render(normalizeProjects(FALLBACK));
-  }
-}
-
 initTheme();
 initSearch();
-load();
+renderFilters();
+renderGrid();
+$('#status').textContent = `${PROJECTS.length} project${PROJECTS.length === 1 ? '' : 's'}`;
