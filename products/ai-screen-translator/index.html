@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Screen Translator — hold a key, read your screen in your language</title>
+  <meta name="description" content="Hold F6 and the whole screen is translated in place, over the original. Free, open source, offline by default. macOS, Windows and Linux." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="AI Screen Translator" />
+  <meta property="og:description" content="Hold a key and the whole screen is translated in place. Offline, private, 25 languages, works over fullscreen games." />
+  <meta property="og:image" content="assets/translated.jpg" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔤</text></svg>" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="stylesheet" href="../../product.css" />
+  <style>
+    :root { --accent: #67e8c3; --accent-2: #7c9cff; }
+    html[data-theme='light'] { --accent: #0e9c7c; --accent-2: #3b5ce0; }
+  </style>
+</head>
+<body>
+  <div class="glow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <div class="header-top">
+        <a class="brand" href="../../">
+          <span class="brand-mark">VL</span>
+          <span class="brand-text">Viktor Lavrov</span>
+        </a>
+
+        <nav class="header-links">
+          <a href="../../">All products</a>
+          <a href="https://github.com/mrWD/ai-screen-translator" target="_blank" rel="noopener">GitHub</a>
+          <button id="theme-toggle" class="icon-btn" type="button" aria-label="Toggle colour theme">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path class="icon-moon" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/><g class="icon-sun"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></g></svg>
+          </button>
+        </nav>
+      </div>
+
+      <p class="eyebrow">Desktop app · macOS, Windows, Linux</p>
+      <h1 class="title">AI Screen Translator</h1>
+      <p class="subtitle lead">
+        Hold a key while playing a game — or reading anything on screen — and a
+        translation of the whole screen appears over the original, only while you
+        hold it. Like Google Lens, for your entire screen.
+      </p>
+
+      <ul class="badges">
+        <li>Free</li>
+        <li>Open source (MIT)</li>
+        <li>Offline by default</li>
+        <li>25 languages</li>
+      </ul>
+
+      <div class="cta">
+        <a class="btn primary" href="https://github.com/mrWD/ai-screen-translator" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="solid" d="M12 1.7a10.3 10.3 0 0 0-3.26 20.07c.52.1.7-.22.7-.5v-1.9c-2.86.62-3.47-1.2-3.47-1.2-.47-1.2-1.15-1.52-1.15-1.52-.94-.64.07-.63.07-.63 1.04.07 1.58 1.07 1.58 1.07.92 1.58 2.42 1.13 3.01.86.1-.67.36-1.13.65-1.39-2.28-.26-4.68-1.14-4.68-5.08 0-1.12.4-2.04 1.06-2.76-.11-.26-.46-1.3.1-2.72 0 0 .86-.28 2.83 1.05a9.8 9.8 0 0 1 5.16 0c1.97-1.33 2.83-1.05 2.83-1.05.56 1.42.21 2.46.1 2.72.66.72 1.06 1.64 1.06 2.76 0 3.95-2.4 4.82-4.7 5.07.37.32.7.94.7 1.9v2.82c0 .28.18.6.71.5A10.3 10.3 0 0 0 12 1.7Z"/></svg>
+          <span>Get it on GitHub</span>
+        </a>
+        <a class="btn" href="#run">How to run it</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="section" aria-labelledby="see">
+      <h2 id="see" class="section-title">Hold <kbd>F6</kbd> — that's the whole interaction</h2>
+      <div class="compare">
+        <figure>
+          <a class="shot" href="assets/not-translated.jpg" target="_blank" rel="noopener" title="Open full size"><img src="assets/not-translated.jpg" width="1280" height="803" alt="A strategy game's interface in German, with untranslated menus and unit labels." loading="lazy" decoding="async" /></a>
+          <figcaption>Before — the game's own language</figcaption>
+        </figure>
+        <figure>
+          <a class="shot" href="assets/translated.jpg" target="_blank" rel="noopener" title="Open full size"><img src="assets/translated.jpg" width="1280" height="803" alt="The same game screen with English translations drawn in boxes underneath each piece of German text." loading="lazy" decoding="async" /></a>
+          <figcaption>Holding <kbd>F6</kbd> — every text block translated in place</figcaption>
+        </figure>
+      </div>
+      <p class="note">
+        Release the key and the overlay disappears. Nothing is pasted into the game,
+        nothing is modified — the translation is drawn on top.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="features">
+      <h2 id="features" class="section-title">What it does</h2>
+      <ul class="feature-grid">
+        <li>
+          <span class="feature-icon" aria-hidden="true">🎮</span>
+          <h3>Hold-to-translate the whole screen</h3>
+          <p>It reads every block of text on screen and draws the translation in a box over the original. Release to go back.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🔒</span>
+          <h3>Offline and private by default</h3>
+          <p>Translation runs on-device via Argos Translate, so nothing leaves your machine. A free Google online mode is there if you want it.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🌍</span>
+          <h3>25 languages</h3>
+          <p>Japanese, Chinese, Korean, Russian, German, French and more — picked as a source/target pair from the tray menu.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🕹️</span>
+          <h3>Works over fullscreen games</h3>
+          <p>Including GeForce Now and other cloud gaming, where copying text out simply isn't an option.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">💾</span>
+          <h3>Every translation is saved</h3>
+          <p>A local, searchable log of every original/translation pair, readable long after you've closed the game.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="use">
+      <h2 id="use" class="section-title">How to use it</h2>
+      <div class="steps">
+        <ol>
+          <li>
+            <h3>Pick your languages</h3>
+            <p>Open the menu-bar <span class="kbd-ish">文</span> icon and choose a <b>Source</b> and <b>Target</b> language — or open <b>Settings…</b> for the full list.</p>
+          </li>
+          <li>
+            <h3>Hold the hotkey</h3>
+            <p>Hold <kbd>F6</kbd> and the screen is translated in place while you hold it. <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>H</kbd> hides the overlay. Both hotkeys are reassignable.</p>
+          </li>
+          <li>
+            <h3>Read the log later</h3>
+            <p><b>Translator → Open translation log</b> opens a browsable, copyable page of every pair — it still works with the app closed.</p>
+          </li>
+        </ol>
+        <div class="shots">
+          <figure>
+            <a class="shot" href="assets/menu.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/menu.png" width="464" height="610" alt="The macOS menu-bar drop-down showing source and target language pickers and the translation log entry." loading="lazy" decoding="async" /></a>
+            <figcaption>The tray menu</figcaption>
+          </figure>
+          <figure>
+            <a class="shot" href="assets/settings.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/settings.png" width="1200" height="742" alt="The settings window with language, translation engine, hotkey and overlay options." loading="lazy" decoding="async" /></a>
+            <figcaption>Settings — languages, engine, hotkeys, overlay</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="run" aria-labelledby="run-title">
+      <h2 id="run-title" class="section-title">Running it</h2>
+      <p class="note">
+        There's no installer yet — you clone the repository and launch it with the
+        script for your platform.
+      </p>
+
+      <div class="platforms">
+        <div class="platform">
+          <h3>macOS</h3>
+          <p>Double-click <code>run.command</code>, or run <code>./run.sh</code>.</p>
+          <p class="platform-note">Grant <b>Screen Recording</b> and <b>Accessibility</b> in System Settings → Privacy &amp; Security when prompted, then relaunch. This is the most-tested platform.</p>
+        </div>
+        <div class="platform">
+          <h3>Windows</h3>
+          <p>Double-click <code>run.bat</code>.</p>
+          <p class="platform-note">Python is installed for you via winget if it's missing.</p>
+        </div>
+        <div class="platform">
+          <h3>Linux (X11)</h3>
+          <p>Run <code>./run.sh</code>.</p>
+          <p class="platform-note">On Debian/Ubuntu you may also need <code>libxcb-xinerama0</code> and <code>libxcb-cursor0</code>.</p>
+        </div>
+      </div>
+
+      <p class="note">
+        The first run sets everything up on its own — a one-time download of about
+        1&nbsp;GB for the offline engine and language pack. Later launches start in
+        seconds. Needs Python 3.9 or newer.
+      </p>
+
+      <div class="cta">
+        <a class="btn primary" href="https://github.com/mrWD/ai-screen-translator" target="_blank" rel="noopener">
+          <span>Clone it on GitHub</span>
+          <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="privacy">
+      <h2 id="privacy" class="section-title">Privacy</h2>
+      <p class="prose">
+        By default nothing leaves your machine — translation happens on-device. The
+        optional Google engine sends on-screen text to Google over the internet, and
+        asks you to confirm before you switch to it. History, both text and
+        screenshots, is stored locally and owner-only.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><a href="../../">← All products</a> · Found a bug or want a language added? <a href="https://github.com/mrWD/ai-screen-translator/issues" target="_blank" rel="noopener">Open an issue</a>.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Same theme switch as the index page, kept inline so this page doesn't
+    // pull in app.js and its project list.
+    (function () {
+      const saved = localStorage.getItem('products-page:theme');
+      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      document.documentElement.dataset.theme = saved || (prefersLight ? 'light' : 'dark');
+
+      document.getElementById('theme-toggle').addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem('products-page:theme', next);
+      });
+    })();
+  </script>
+</body>
+</html>

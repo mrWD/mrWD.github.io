@@ -10,11 +10,14 @@ index.html               the product list
 styles.css               shared tokens, header, footer, buttons — every page
 product.css              shared layout for the per-product pages
 app.js                   the project data + rendering for the list
-<product>/index.html     one page per product, with its own assets/
+products/<slug>/         one page per product, with its own assets/
 ```
 
-Product pages: `film-table/`, `games-table/`, `ai-screen-translator/`,
-`ai-prompt-suggester/`, `double-subtitles/`.
+Product pages live under `products/` — `film-table`, `games-table`,
+`ai-screen-translator`, `ai-prompt-suggester`, `double-subtitles` — and **not**
+at the site root. A repo with its own GitHub Pages site claims that path first:
+`mrWD/film-table` publishes to `mrwd.github.io/film-table/`, which silently
+shadowed a root-level folder of the same name.
 
 Live at https://mrwd.github.io/ — GitHub Pages serves the `master` branch root,
 so a push is the deploy.
@@ -68,7 +71,7 @@ screenshots), `.chips`, `.badges`, `.demo` (a drawn illustration), `.note`,
 `.prose`.
 
 To add another, copy the closest folder and point that project's first link at
-it — a relative URL like `film-table/` is what makes the card's highlighted
+it — a relative URL like `products/film-table/` is what makes the card's highlighted
 button open the page.
 
 Screenshots of the two web apps were captured from the live deployments at
