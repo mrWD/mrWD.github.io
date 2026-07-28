@@ -282,9 +282,10 @@ figcaption {
 }
 
 /* Phone-shaped screenshots sit better with a cap on their width. */
+/* Capped at 270px so four phones still fit on one row at full width. */
 .shots-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 300px));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 270px));
   gap: 1.25rem;
 }
 
