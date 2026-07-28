@@ -6,6 +6,36 @@
 body { --card-accent: var(--accent); }
 
 /* ------------------------------------------------------------------- hero */
+
+/* Two columns once there's room — a single left-aligned column of text on a
+   wide screen reads as a broken layout rather than as a hero. */
+.hero {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .hero {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: 3rem;
+  }
+}
+
+.hero-visual { justify-self: center; width: 100%; }
+
+.hero-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+}
+
+/* A phone screenshot blown up to half the page looks absurd. */
+.hero-visual.phone { max-width: 280px; }
+.hero-visual.plain img { border: 0; box-shadow: none; }
 .eyebrow {
   margin: 0 0 0.6rem;
   font-size: 0.82rem;
