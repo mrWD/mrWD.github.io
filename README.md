@@ -48,7 +48,7 @@ ignored, so you can keep private notes in extra columns.
 | `icon` | One emoji for the tile. Defaults to `◆`. |
 | `accent` | Hex colour, e.g. `#7c9cff`. Empty = a stable colour derived from the name. |
 | `status` | Small badge: `Live`, `Beta`, `WIP`, `Open source`… |
-| `featured` | `TRUE` makes the card double-width on desktop. |
+| `featured` | `TRUE` tints the card with its accent colour to make it stand out. |
 | `order` | Sort order, low first. Empty rows go last, alphabetically. |
 | `hidden` | `TRUE` keeps the row in the sheet but off the page. |
 

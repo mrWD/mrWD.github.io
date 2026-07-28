@@ -35,12 +35,20 @@ html { -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
+  /* Column layout + flexible <main> keeps the footer on the bottom edge
+     when there are too few cards to fill a tall screen. */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
   background: var(--bg);
   color: var(--text);
   font: 400 16px/1.6 ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Inter, Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
+
+main { flex: 1 0 auto; }
 
 .wrap {
   width: min(100% - 2.5rem, var(--maxw));
@@ -245,7 +253,7 @@ html[data-theme='light'] .icon-sun { display: inline; }
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
   gap: 1.1rem;
-  padding-bottom: 4rem;
+  padding-bottom: 3rem;
 }
 
 .card {
@@ -267,15 +275,13 @@ html[data-theme='light'] .icon-sun { display: inline; }
   box-shadow: var(--shadow);
 }
 
+/* Highlighted, but the same width as everything else — a double-width card
+   ends up shorter than its neighbours and leaves a hole in the row. */
 .card.featured {
   background:
     linear-gradient(160deg, color-mix(in srgb, var(--card-accent) 11%, transparent), transparent 55%),
     var(--surface);
   border-color: color-mix(in srgb, var(--card-accent) 30%, var(--border));
-}
-
-@media (min-width: 800px) {
-  .card.featured { grid-column: span 2; }
 }
 
 .card-head {
