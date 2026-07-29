@@ -12,6 +12,23 @@
  * ---------------------------------------------------------------------- */
 const PROJECTS = [
   {
+    name: 'Languages of the World',
+    tagline: '7,992 languages and 13,706 dialects, on one map',
+    description:
+      'An interactive atlas built on Glottolog, Wikidata, WALS and ASJP: families, speaker counts, endangerment status, and four separate measures of how any two languages relate — family tree, grammar, vocabulary and distance. Search works across 84,000 alternative names in 15 interface languages.',
+    category: 'Web app',
+    tags: ['Open data', 'Leaflet', 'Vanilla JS', 'Glottolog', 'WALS'],
+    icon: '🌍',
+    accent: '#5ec8d8',
+    status: 'Live',
+    featured: true,
+    links: [
+      { label: 'Learn more', url: 'products/langs-db/' },
+      { label: 'Open the atlas', url: 'https://mrwd.github.io/langs-db/' },
+      { label: 'GitHub', url: 'https://github.com/mrWD/langs-db', icon: 'github' },
+    ],
+  },
+  {
     name: 'FilmTable',
     tagline: 'A TV Time replacement that lives in your browser',
     description:
@@ -21,7 +38,6 @@ const PROJECTS = [
     icon: '🎬',
     accent: '#f2789f',
     status: 'Live',
-    featured: true,
     links: [
       { label: 'Learn more', url: 'products/film-table/' },
       { label: 'Open app', url: 'https://film-table.vercel.app' },

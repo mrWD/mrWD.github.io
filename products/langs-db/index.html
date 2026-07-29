@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Languages of the World — an interactive atlas of 7,992 languages</title>
+  <meta name="description" content="An interactive atlas of 7,992 languages and 13,706 dialects: families, speakers, endangerment status, a map, and four kinds of connection between languages. Free and open data." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Languages of the World" />
+  <meta property="og:description" content="7,992 languages and 13,706 dialects on one map, with families, speakers, endangerment status and language-to-language connections." />
+  <meta property="og:image" content="assets/home-light.png" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌍</text></svg>" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="stylesheet" href="../../product.css" />
+  <style>
+    :root { --accent: #5ec8d8; --accent-2: #ffc46b; }
+    html[data-theme='light'] { --accent: #0d7f92; --accent-2: #b06a00; }
+  </style>
+</head>
+<body>
+  <div class="glow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <div class="header-top">
+        <a class="brand" href="../../">
+          <span class="brand-mark">VL</span>
+          <span class="brand-text">Viktor Lavrov</span>
+        </a>
+        <nav class="header-links">
+          <a href="../../">All products</a>
+          <a href="https://github.com/mrWD/langs-db" target="_blank" rel="noopener">GitHub</a>
+          <button id="theme-toggle" class="icon-btn" type="button" aria-label="Toggle colour theme">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path class="icon-moon" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/><g class="icon-sun"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></g></svg>
+          </button>
+        </nav>
+      </div>
+
+      <div class="hero">
+        <div class="hero-text">
+          <p class="eyebrow">Web app · open data</p>
+          <h1 class="title">Languages of the World</h1>
+          <p class="subtitle lead">
+            An interactive atlas of <b>7,992 languages</b> and <b>13,706 dialects</b>:
+            who speaks them, where, how endangered they are — and how they relate to
+            each other, in four different senses.
+          </p>
+
+          <ul class="badges">
+            <li>Free</li>
+            <li>Open source</li>
+            <li>No account</li>
+            <li>15 interface languages</li>
+          </ul>
+
+          <div class="cta">
+            <a class="btn primary" href="https://mrwd.github.io/langs-db/" target="_blank" rel="noopener">
+              <span>Open the atlas</span>
+              <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn" href="https://github.com/mrWD/langs-db" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="solid" d="M12 1.7a10.3 10.3 0 0 0-3.26 20.07c.52.1.7-.22.7-.5v-1.9c-2.86.62-3.47-1.2-3.47-1.2-.47-1.2-1.15-1.52-1.15-1.52-.94-.64.07-.63.07-.63 1.04.07 1.58 1.07 1.58 1.07.92 1.58 2.42 1.13 3.01.86.1-.67.36-1.13.65-1.39-2.28-.26-4.68-1.14-4.68-5.08 0-1.12.4-2.04 1.06-2.76-.11-.26-.46-1.3.1-2.72 0 0 .86-.28 2.83 1.05a9.8 9.8 0 0 1 5.16 0c1.97-1.33 2.83-1.05 2.83-1.05.56 1.42.21 2.46.1 2.72.66.72 1.06 1.64 1.06 2.76 0 3.95-2.4 4.82-4.7 5.07.37.32.7.94.7 1.9v2.82c0 .28.18.6.71.5A10.3 10.3 0 0 0 12 1.7Z"/></svg>
+              <span>Source on GitHub</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <img class="shot-light" src="assets/home-light.png" width="1200" height="909" alt="The atlas: a sortable table of languages beside a world map where every language is a dot coloured by endangerment status." />
+          <img class="shot-dark" src="assets/home-dark.png" width="1200" height="909" alt="The atlas: a sortable table of languages beside a world map where every language is a dot coloured by endangerment status. Shown in the app's dark theme." />
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="section" aria-labelledby="look">
+      <h2 id="look" class="section-title">What it looks like</h2>
+      <div class="compare">
+        <figure>
+          <a class="shot shot-light" href="assets/card-light.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/card-light.png" width="1200" height="909" alt="A language card for Russian with family, macroarea, countries, speaker count, alternative names and a list of dialects." loading="lazy" decoding="async" /></a>
+          <a class="shot shot-dark" href="assets/card-dark.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/card-dark.png" width="1200" height="909" alt="A language card for Russian with family, macroarea, countries, speaker count, alternative names and a list of dialects. Shown in the app's dark theme." loading="lazy" decoding="async" /></a>
+          <figcaption>A card per language — family, countries, speakers, dialects, links</figcaption>
+        </figure>
+        <figure>
+          <a class="shot shot-light" href="assets/connections-light.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/connections-light.png" width="1200" height="909" alt="The Language connections panel listing the Glottolog branch, closest relatives, languages with similar grammar and vocabulary as percentages, and neighbours on the map with distances." loading="lazy" decoding="async" /></a>
+          <a class="shot shot-dark" href="assets/connections-dark.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/connections-dark.png" width="1200" height="909" alt="The Language connections panel listing the Glottolog branch, closest relatives, languages with similar grammar and vocabulary as percentages, and neighbours on the map with distances. Shown in the app's dark theme." loading="lazy" decoding="async" /></a>
+          <figcaption>Four kinds of connection, each measured separately</figcaption>
+        </figure>
+        <figure>
+          <a class="shot shot-light" href="assets/compare-light.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/compare-light.png" width="1200" height="909" alt="A side-by-side comparison of Russian and Ukrainian: basic parameters, then WALS grammar features with matching rows highlighted, reading 53 of 56 shared features match." loading="lazy" decoding="async" /></a>
+          <a class="shot shot-dark" href="assets/compare-dark.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/compare-dark.png" width="1200" height="909" alt="A side-by-side comparison of Russian and Ukrainian: basic parameters, then WALS grammar features with matching rows highlighted, reading 53 of 56 shared features match. Shown in the app's dark theme." loading="lazy" decoding="async" /></a>
+          <figcaption>Compare any two languages, feature by feature</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="features">
+      <h2 id="features" class="section-title">What it does</h2>
+      <ul class="feature-grid">
+        <li>
+          <span class="feature-icon" aria-hidden="true">🗺️</span>
+          <h3>Every language is a dot</h3>
+          <p>The map colours each one by endangerment status on the AES scale, and flies to your results when the filters narrow things down.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🔍</span>
+          <h3>Search by whatever you remember</h3>
+          <p>Name, ISO 639-3 code, glottocode or family — across 84,000 alternative names, so “wenecki”, “Idioma veneciano” and “Altaï méridional” all land on the same language.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🧭</span>
+          <h3>It guesses from place names</h3>
+          <p>Type something that isn't a language and it checks whether it's a place, then shows what's spoken within 200&nbsp;km. “Sandonatese” gets you to Venetian, which no catalogue lists under that name.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🔗</span>
+          <h3>Related in four different ways</h3>
+          <p>The family tree, shared WALS grammar features, lexical closeness from ASJP Swadesh lists (870,000 pairs), and simple geographic neighbours — kept separate, because they disagree.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">⚖️</span>
+          <h3>Two languages, side by side</h3>
+          <p>192 WALS features with matches highlighted, so “how close are Russian and Ukrainian really?” gets a number instead of an opinion.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🌐</span>
+          <h3>Fifteen interface languages</h3>
+          <p>Including Arabic with full RTL. Language names come from Wikidata labels, and numbers and countries are localised too.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="data">
+      <h2 id="data" class="section-title">Where the data comes from</h2>
+      <p class="prose">
+        Four open datasets, all credited in the footer of the atlas itself:
+        <a href="https://glottolog.org" target="_blank" rel="noopener">Glottolog</a> for
+        languages, dialects, families, coordinates and endangerment status;
+        <a href="https://www.wikidata.org" target="_blank" rel="noopener">Wikidata</a> for
+        speaker counts and localised names;
+        <a href="https://wals.info" target="_blank" rel="noopener">WALS</a> for the 192
+        grammar features; and <a href="https://asjp.clld.org" target="_blank" rel="noopener">ASJP</a>
+        for the Swadesh lists behind lexical similarity.
+      </p>
+      <p class="note">
+        It's a static site — the data ships as JSON and everything runs in your browser.
+        No account, no tracking, and the heavier files (alternative names, WALS) load
+        only when something needs them.
+      </p>
+      <p class="note">
+        Worth knowing: the numbers are aggregated automatically. Speaker counts exist for
+        roughly 1,800 languages and can be out of date for small ones, and similarity
+        scores are a measurement, not a verdict — similar words can come from borrowing
+        rather than kinship. Check the primary sources before citing anything.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="run">
+      <h2 id="run" class="section-title">Running it yourself</h2>
+      <p class="prose">
+        The whole site is the <code>web/</code> folder of the repository — any static
+        host will do. Locally it needs a server only so the page can fetch its JSON:
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="https://github.com/mrWD/langs-db" target="_blank" rel="noopener">
+          <span>Clone it on GitHub</span>
+          <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <p class="note">
+        The <code>data/</code> folder holds the Python scripts that rebuild everything
+        from the upstream sources, so the atlas can be refreshed as they publish new
+        releases.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><a href="../../">← All products</a> · Spotted an error or a missing language? <a href="https://github.com/mrWD/langs-db/issues" target="_blank" rel="noopener">Open an issue</a>.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem('products-page:theme');
+      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      document.documentElement.dataset.theme = saved || (prefersLight ? 'light' : 'dark');
+      document.getElementById('theme-toggle').addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem('products-page:theme', next);
+      });
+    })();
+  </script>
+</body>
+</html>
