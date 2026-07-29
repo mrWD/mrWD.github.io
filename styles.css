@@ -31,7 +31,14 @@ html[data-theme='light'] {
 
 * { box-sizing: border-box; }
 
-html { -webkit-text-size-adjust: 100%; }
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
 
 body {
   margin: 0;
@@ -404,6 +411,7 @@ html[data-theme='light'] .btn.primary { color: #fff; }
 
 /* --------------------------------------------------------------- support */
 .support {
+  scroll-margin-top: 1.5rem; /* the header anchor shouldn't land it flush at the top */
   display: flex;
   flex-wrap: wrap;
   align-items: center;
