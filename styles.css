@@ -460,20 +460,12 @@ html[data-theme='light'] .btn.primary { color: #fff; }
 .site-footer p { margin: 0; }
 .site-footer a { color: var(--accent); }
 
-/* Boilerplate nobody reads until they need it — present, but quiet. */
-.legal {
-  display: grid;
-  gap: 0.6rem;
-  max-width: 88ch;
-  margin-top: 1.5rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--border);
-  font-size: 0.78rem;
-  line-height: 1.55;
-  opacity: 0.75;
+/* The boilerplate itself lives at /legal/; the footer just points at it. */
+.footer-legal {
+  margin-top: 0.5rem !important;
+  font-size: 0.8rem;
+  opacity: 0.7;
 }
-
-.legal b { font-weight: 600; }
 
 :focus-visible {
   outline: 2px solid var(--accent);

@@ -98,6 +98,8 @@ body { --card-accent: var(--accent); }
   color: var(--text-muted);
 }
 
+.prose + .prose { margin-top: 0.9rem; }
+
 .note {
   max-width: 68ch;
   margin: 1.1rem 0 0;
