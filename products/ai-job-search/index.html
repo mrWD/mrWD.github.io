@@ -16,10 +16,16 @@
   <style>
     :root { --accent: #6aa9ff; --accent-2: #67e8c3; }
     html[data-theme='light'] { --accent: #1f6feb; --accent-2: #0e9c7c; }
-    /* Скриншота приложения пока нет: без него вторая колонка героя пустует,
-       поэтому здесь он в одну колонку. Появится картинка — правило убрать. */
+    /* Окно приложения широкое: в колонке героя оно читается хуже, чем во всю
+       ширину под текстом. Поэтому герой в одну колонку, а снимок под ним. */
     @media (min-width: 900px) { .hero { grid-template-columns: 1fr; } }
     .hero-text { max-width: 68ch; }
+    .hero-shot { margin-top: 2rem; }
+    .hero-shot img { border-radius: 14px; box-shadow: var(--shadow); }
+    /* product.css обнуляет отступы у figure, чтобы блоки складывались свободно;
+       под списком или шагами снимок иначе прилипает к ним вплотную. */
+    .feature-grid + figure,
+    .steps + figure { margin-top: 1.5rem; }
   </style>
 </head>
 <body>
@@ -66,6 +72,16 @@
           </div>
           <p class="note">Not released yet — builds for the three systems are being prepared.</p>
         </div>
+
+        <figure class="hero-shot">
+          <a class="shot" href="assets/results-light.png" target="_blank" rel="noopener" title="Open full size">
+            <img class="shot-light" src="assets/results-light.png" width="1180" height="860"
+                 alt="The Results page: filters for sort order, viewed state, source and posting date, then job cards. The first card scores 88%, is marked new, verified and straight from the company, and carries a paragraph explaining the fit and a block of salary and company facts." />
+            <img class="shot-dark" src="assets/results-dark.png" width="1180" height="860"
+                 alt="The Results page with filters and job cards, shown in the app's dark theme." />
+          </a>
+          <figcaption>Every posting scored against your CV, with the reason written out. Screens here use a made-up profile — the people, companies and jobs in them do not exist.</figcaption>
+        </figure>
       </div>
     </div>
   </header>
@@ -130,6 +146,16 @@
           </p>
         </li>
       </ul>
+
+      <figure>
+        <a class="shot" href="assets/advice-light.png" target="_blank" rel="noopener" title="Open full size">
+          <img class="shot-light" src="assets/advice-light.png" width="1180" height="860" loading="lazy" decoding="async"
+               alt="One job card opened up: a salary range and three facts about the company with links, then a list of edits — three lines to change in the CV, two for the LinkedIn profile, and one sentence on what to lead with in the application. At the bottom, a button that generates a CV tailored to this job." />
+          <img class="shot-dark" src="assets/advice-dark.png" width="1180" height="860" loading="lazy" decoding="async"
+               alt="One job card opened up, showing salary, company facts and the list of CV and LinkedIn edits, in the app's dark theme." />
+        </a>
+        <figcaption>For every job that clears the bar: what to change, and a CV written for that role in one click.</figcaption>
+      </figure>
     </section>
 
     <section class="section" id="how" aria-labelledby="how-title">
@@ -162,6 +188,16 @@
         </li>
         </ol>
       </div>
+
+      <figure>
+        <a class="shot" href="assets/start-light.png" target="_blank" rel="noopener" title="Open full size">
+          <img class="shot-light" src="assets/start-light.png" width="1180" height="860" loading="lazy" decoding="async"
+               alt="The Quick search page: a field for who the search is for, one for countries and cities, a file picker for the CV, an optional LinkedIn address, and a Start searching button." />
+          <img class="shot-dark" src="assets/start-dark.png" width="1180" height="860" loading="lazy" decoding="async"
+               alt="The Quick search page with its three fields and the Start searching button, in the app's dark theme." />
+        </a>
+        <figcaption>Everything needed to start. The rest of the settings are there when you want them, on their own page.</figcaption>
+      </figure>
     </section>
 
     <section class="section" id="model" aria-labelledby="model-title">
@@ -190,6 +226,16 @@
           </p>
         </li>
       </ul>
+
+      <figure>
+        <a class="shot" href="assets/model-light.png" target="_blank" rel="noopener" title="Open full size">
+          <img class="shot-light" src="assets/model-light.png" width="1180" height="860" loading="lazy" decoding="async"
+               alt="The Model page: three cards for Claude Code, Cursor and a local model through Ollama, each marked installed or not and whether it can search the web, with Download and Select buttons. Below them, a line stating the machine's processor and how much memory a model may use." />
+          <img class="shot-dark" src="assets/model-dark.png" width="1180" height="860" loading="lazy" decoding="async"
+               alt="The Model page with the three provider cards and the device's memory, in the app's dark theme." />
+        </a>
+        <figcaption>The app says which of the three it can already see, and how much memory your machine has to spare.</figcaption>
+      </figure>
     </section>
 
     <section class="section" aria-labelledby="honest">
