@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Science Timeline — the history of science on one scrollable line</title>
+  <meta name="description" content="Discoveries, inventions and Nobel prizes on a single timeline you can zoom from millennia down to a single day — with this week's papers from Nature, Science and Cell already on it. Free and open data." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Science Timeline" />
+  <meta property="og:description" content="Twenty-five thousand discoveries, inventions and papers on one line you can zoom from millennia to days." />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔭</text></svg>" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="stylesheet" href="../../product.css" />
+  <style>
+    :root { --accent: #4c8dff; --accent-2: #f0a020; }
+    html[data-theme='light'] { --accent: #1f5fd0; --accent-2: #a86a00; }
+  </style>
+</head>
+<body>
+  <div class="glow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <div class="header-top">
+        <a class="brand" href="../../">
+          <span class="brand-mark">VL</span>
+          <span class="brand-text">Viktor Lavrov</span>
+        </a>
+        <nav class="header-links">
+          <a href="../../">All products</a>
+          <a href="https://github.com/mrWD/science-timeline" target="_blank" rel="noopener">GitHub</a>
+          <button id="theme-toggle" class="icon-btn" type="button" aria-label="Toggle colour theme">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path class="icon-moon" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/><g class="icon-sun"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></g></svg>
+          </button>
+        </nav>
+      </div>
+
+      <div class="hero">
+        <div class="hero-text">
+          <p class="eyebrow">Web app · open data</p>
+          <h1 class="title">Science Timeline</h1>
+          <p class="subtitle lead">
+            <b>25,000 discoveries, inventions and papers</b> on a single line you can zoom
+            from millennia down to one day — with <b>this week's research</b> already on it,
+            not the usual gap that ends somewhere around 2019.
+          </p>
+
+          <ul class="badges">
+            <li>Free</li>
+            <li>Open source</li>
+            <li>No account</li>
+            <li>10 interface languages</li>
+          </ul>
+
+          <div class="cta">
+            <a class="btn primary" href="https://mrwd.github.io/science-timeline/" target="_blank" rel="noopener">
+              <span>Open the timeline</span>
+              <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn" href="https://github.com/mrWD/science-timeline" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="solid" d="M12 1.7a10.3 10.3 0 0 0-3.26 20.07c.52.1.7-.22.7-.5v-1.9c-2.86.62-3.47-1.2-3.47-1.2-.47-1.2-1.15-1.52-1.15-1.52-.94-.64.07-.63.07-.63 1.04.07 1.58 1.07 1.58 1.07.92 1.58 2.42 1.13 3.01.86.1-.67.36-1.13.65-1.39-2.28-.26-4.68-1.14-4.68-5.08 0-1.12.4-2.04 1.06-2.76-.11-.26-.46-1.3.1-2.72 0 0 .86-.28 2.83 1.05a9.8 9.8 0 0 1 5.16 0c1.97-1.33 2.83-1.05 2.83-1.05.56 1.42.21 2.46.1 2.72.66.72 1.06 1.64 1.06 2.76 0 3.95-2.4 4.82-4.7 5.07.37.32.7.94.7 1.9v2.82c0 .28.18.6.71.5A10.3 10.3 0 0 0 12 1.7Z"/></svg>
+              <span>Source on GitHub</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="section" aria-labelledby="features">
+      <h2 id="features" class="section-title">What it does</h2>
+      <ul class="feature-grid">
+        <li>
+          <span class="feature-icon" aria-hidden="true">🔎</span>
+          <h3>One continuous zoom</h3>
+          <p>Millennia, centuries, decades, years, months, days — the same gesture all the way down. It opens on the current week, because that's where you already are.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">⬆️</span>
+          <h3>Two sides of the line</h3>
+          <p>New knowledge above, change and application below. The split is a default, not a rule — any event type can be moved to the other side.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🕰️</span>
+          <h3>Vague dates stay vague</h3>
+          <p>“Around 300&nbsp;BC” is stored as a century-wide interval, never as an invented 1 January. Zoom past what a date actually knows and it drops to its own row as a bar.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">📰</span>
+          <h3>This week, not last decade</h3>
+          <p>Wikidata had twelve events for all of 2025 — it learns about a discovery years late. Crossref fills the gap from twenty leading journals, so the line reaches today.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">⭕</span>
+          <h3>Clusters that admit defeat</h3>
+          <p>Zoomed out, events merge into a circle with a count. When 295 papers share one publication date, no amount of zooming separates them — so the circle opens a list instead.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🌐</span>
+          <h3>Ten interface languages</h3>
+          <p>Including Arabic with full RTL. Dates are assembled in the browser, so “3rd millennium BC” reads correctly whether the language puts the era before the number or after.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="data">
+      <h2 id="data" class="section-title">Where the data comes from</h2>
+      <p class="prose">
+        Two sources with opposite strengths.
+        <a href="https://www.wikidata.org" target="_blank" rel="noopener">Wikidata</a>
+        (CC0) knows the history — discoveries, inventions, chemical elements, Nobel
+        prizes, all the way back to copper in the seventh millennium BC.
+        <a href="https://www.crossref.org" target="_blank" rel="noopener">Crossref</a>
+        knows the present: papers from Nature, Science, Cell, PNAS, The Lancet, NEJM,
+        Physical Review Letters and a dozen more, filtered by journal because there is
+        no free signal for how important a paper published yesterday will turn out to be.
+      </p>
+      <p class="note">
+        It's a static site — the whole dataset ships as JSON and everything, including
+        search and clustering, runs in your browser. No account, no tracking, no backend.
+        A weekly job rebuilds the data from both sources.
+      </p>
+      <p class="note">
+        Worth knowing: astronomical objects pass a much higher significance bar than
+        everything else. Wikidata holds 34,000 asteroids with exact discovery dates
+        against a couple of thousand genuine science events, and without that filter
+        the history of science becomes a minor-planet catalogue. Pluto, Halley's Comet
+        and Ceres stay; “1998 QE2” does not.
+      </p>
+      <p class="note">
+        Recent papers carry an assigned weight rather than a measured one — citations
+        take years to appear. Treat the ranking of the last few months as a guess, and
+        check the primary source before citing anything.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="run">
+      <h2 id="run" class="section-title">Running it yourself</h2>
+      <p class="prose">
+        The site is the <code>web/</code> folder of the repository and needs nothing but
+        a static host. Rebuilding the data needs .NET&nbsp;10 and PostgreSQL: the importer
+        pulls from Wikidata and Crossref, and a second command exports the database into
+        the JSON the site reads.
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="https://github.com/mrWD/science-timeline" target="_blank" rel="noopener">
+          <span>Clone it on GitHub</span>
+          <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <p class="note">
+        The interesting part is <code>src/ScienceTimeline.Core</code> — the time axis and
+        the Wikidata date parser, both covered by tests. Wikidata writes 44&nbsp;BC as
+        “-0044” with no year zero, dates before 1582 usually arrive in the Julian
+        calendar, and coarse dates come through with a month and day of 00. Each of those
+        quietly corrupts the data if you miss it.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><a href="../../">← All products</a> · Spotted a wrong date or a missing discovery? <a href="https://github.com/mrWD/science-timeline/issues" target="_blank" rel="noopener">Open an issue</a> · <a href="../../legal/">Legal &amp; privacy</a>.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem('products-page:theme');
+      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      document.documentElement.dataset.theme = saved || (prefersLight ? 'light' : 'dark');
+      document.getElementById('theme-toggle').addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem('products-page:theme', next);
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -12,6 +12,23 @@
  * ---------------------------------------------------------------------- */
 const PROJECTS = [
   {
+    name: 'Science Timeline',
+    tagline: 'The history of science on one line you can zoom to a single day',
+    description:
+      'Discoveries, inventions and Nobel prizes from the seventh millennium BC to this week, on a timeline that zooms continuously from millennia down to days. Vague dates stay vague — "around 300 BC" is a century-wide interval, not an invented 1 January. Wikidata supplies the history, Crossref the current week from twenty leading journals.',
+    category: 'Web app',
+    tags: ['Open data', 'Canvas', 'TypeScript', 'Wikidata', 'Crossref'],
+    icon: '🔭',
+    accent: '#4c8dff',
+    status: 'Live',
+    featured: true,
+    links: [
+      { label: 'Learn more', url: 'products/science-timeline/' },
+      { label: 'Open the timeline', url: 'https://mrwd.github.io/science-timeline/' },
+      { label: 'GitHub', url: 'https://github.com/mrWD/science-timeline', icon: 'github' },
+    ],
+  },
+  {
     name: 'Lingary',
     tagline: 'An AI language tutor you talk to, out loud',
     description:
