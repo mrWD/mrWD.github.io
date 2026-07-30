@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Job Search — a job hunt that runs itself, on your own computer</title>
+  <meta name="description" content="A desktop app that reads your CV, goes through company career pages, ATS platforms and job boards, scores every posting against you and says what to change in the CV for a particular role. Runs locally; nothing leaves the machine except the model call." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="AI Job Search" />
+  <meta property="og:description" content="Reads your CV, searches company sites and job boards, scores each posting and drafts the CV edits for it. Local, free, 14 languages." />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="stylesheet" href="../../product.css" />
+  <style>
+    :root { --accent: #6aa9ff; --accent-2: #67e8c3; }
+    html[data-theme='light'] { --accent: #1f6feb; --accent-2: #0e9c7c; }
+    /* Скриншота приложения пока нет: без него вторая колонка героя пустует,
+       поэтому здесь он в одну колонку. Появится картинка — правило убрать. */
+    @media (min-width: 900px) { .hero { grid-template-columns: 1fr; } }
+    .hero-text { max-width: 68ch; }
+  </style>
+</head>
+<body>
+  <div class="glow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <div class="header-top">
+        <a class="brand" href="../../">
+          <span class="brand-mark">VL</span>
+          <span class="brand-text">Viktor Lavrov</span>
+        </a>
+        <nav class="header-links">
+          <a href="../../">All products</a>
+          <button id="theme-toggle" class="icon-btn" type="button" aria-label="Toggle colour theme">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path class="icon-moon" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/><g class="icon-sun"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></g></svg>
+          </button>
+        </nav>
+      </div>
+
+      <div class="hero">
+        <div class="hero-text">
+          <p class="eyebrow">Desktop app · macOS, Windows, Linux</p>
+          <h1 class="title">AI Job Search</h1>
+          <p class="subtitle lead">
+            A job hunt that keeps going while you do something else. It reads your CV,
+            walks company career pages, ATS platforms and job boards, scores every
+            posting against you with a reason, and tells you what to change in the CV
+            for that particular role.
+          </p>
+
+          <ul class="badges">
+            <li>Free</li>
+            <li>Runs on your computer</li>
+            <li>14 languages</li>
+          </ul>
+
+          <div class="cta">
+            <a class="btn primary" href="#how">
+              <span>How it works</span>
+              <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn" href="#model">What powers it</a>
+          </div>
+          <p class="note">Not released yet — builds for the three systems are being prepared.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section class="section" aria-labelledby="does">
+      <h2 id="does" class="section-title">What it does</h2>
+      <ul class="feature-grid">
+        <li>
+          <span class="feature-icon" aria-hidden="true">🧭</span>
+          <h3>Looks where the jobs actually are</h3>
+          <p>
+            ATS platforms read directly through their APIs — Greenhouse, Lever, Ashby,
+            Workable, SmartRecruiters, Recruitee, Personio — plus aggregators and the
+            career pages of companies you name. Every run also goes looking for
+            companies you have not heard of.
+          </p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🎯</span>
+          <h3>Scores each posting, and says why</h3>
+          <p>
+            Not keyword matching: the model compares the posting against your CV and
+            profile and writes a sentence about the fit — what lines up, and what will
+            get in the way. Quick scoring first, then a careful pass over the best ones.
+          </p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">📝</span>
+          <h3>Tells you what to change in the CV</h3>
+          <p>
+            For every job that clears the bar: concrete edits to the CV and the LinkedIn
+            profile, what to lead with in the application, and a tailored CV generated
+            for that role in one click, printable to PDF.
+          </p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🤖</span>
+          <h3>Checks the CV against the robots</h3>
+          <p>
+            Two readers stand between you and a human: the ATS parser and a person with
+            six seconds. The app checks what a plain parser actually extracts from your
+            file, what slows a human down, and which keywords from your target jobs are
+            missing.
+          </p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">📬</span>
+          <h3>Sends the results to you</h3>
+          <p>
+            Telegram, email, or neither — results wait in the window. The search can keep
+            running with the window closed, and start again by itself on a schedule.
+          </p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">👥</span>
+          <h3>Several people, one app</h3>
+          <p>
+            Each person gets their own CV, settings, company list, results and schedule.
+            Useful when you are also helping a friend look.
+          </p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" id="how" aria-labelledby="how-title">
+      <h2 id="how-title" class="section-title">How it works</h2>
+      <div class="steps">
+        <ol>
+          <li>
+          <h3>Choose what does the thinking</h3>
+          <p>
+            The app has no model of its own. On first launch it asks which one to use:
+            Claude Code, Cursor CLI, or a local model through Ollama. It says which are
+            installed and opens the right download page for the one you pick.
+          </p>
+          </li>
+          <li>
+            <h3>Give it your CV and where to look</h3>
+          <p>
+            Three fields: who it is for, which countries or cities, and the CV file.
+            Roles, skills and seniority are read from the CV — the rest starts on
+            sensible defaults you can change later.
+          </p>
+          </li>
+          <li>
+            <h3>Leave it running</h3>
+          <p>
+            The first run takes 20–40 minutes. Jobs appear on the Results page as they
+            are scored, with the current stage and an estimate of what is left. Close the
+            window and it carries on.
+          </p>
+        </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="model" aria-labelledby="model-title">
+      <h2 id="model-title" class="section-title">What powers it</h2>
+      <p class="lead">
+        Either a cloud model through a command line you already pay for, or a model
+        running on your own machine.
+      </p>
+      <ul class="feature-grid">
+        <li>
+          <span class="feature-icon" aria-hidden="true">☁️</span>
+          <h3>Claude Code or Cursor</h3>
+          <p>
+            Uses the subscription you already have. Claude Code can also search the web,
+            which is how the app finds companies nobody told it about.
+          </p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">💻</span>
+          <h3>A local model with Ollama</h3>
+          <p>
+            Seventeen models to choose from, sorted by capability, each marked with
+            whether your machine can actually run it — worked out from your memory. They
+            download from inside the app. Nothing leaves the computer, and there is
+            nothing to pay.
+          </p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="honest">
+      <h2 id="honest" class="section-title">Honest about coverage</h2>
+      <p>
+        The app does not scan every company in the world. There are millions, and no
+        service does — LinkedIn and Indeed see a fraction too. Coverage comes from three
+        streams: aggregators, the companies on your list read in full, and the ones
+        auto-discovery turns up each run. There is a page that shows exactly what was
+        scanned, and a box where you can type a company name and find out whether the app
+        can see it at all.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="privacy">
+      <h2 id="privacy" class="section-title">Where your data sits</h2>
+      <p>
+        On your computer, in the standard application-data folder: the CV, the settings,
+        the jobs found and the history of runs. Nothing is uploaded anywhere. The text of
+        your CV goes to the model you chose and to nothing else — and with a local model,
+        not even there.
+      </p>
+      <p class="note">Free and open source, MIT.</p>
+    </section>
+
+    <section class="section" aria-labelledby="langs">
+      <h2 id="langs" class="section-title">Fourteen languages</h2>
+      <p>
+        Arabic, Chinese, English, French, German, Hindi, Italian, Japanese, Polish,
+        Portuguese, Russian, Spanish, Turkish and Ukrainian — right to left where that is
+        how the language reads. The language the
+        AI writes in is chosen separately: you can read the interface in one language and
+        get the CV edits in another, which is the normal case when applying abroad.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="next">
+      <h2 id="next" class="section-title">What's next</h2>
+      <p>
+        Signed and notarised builds, so the app opens without the "unidentified
+        developer" warning. A public release with downloads for the three systems.
+      </p>
+      <p class="note">Ideas welcome.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><a href="../../">← All products</a> · <a href="../../legal/">Legal &amp; privacy</a>.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem('products-page:theme');
+      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      document.documentElement.dataset.theme = saved || (prefersLight ? 'light' : 'dark');
+      document.getElementById('theme-toggle').addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem('products-page:theme', next);
+      });
+    })();
+  </script>
+</body>
+</html>

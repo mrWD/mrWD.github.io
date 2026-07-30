@@ -92,6 +92,20 @@ const PROJECTS = [
     ],
   },
   {
+    name: 'AI Job Search',
+    tagline: 'A job hunt that runs while you do something else',
+    description:
+      'Reads your CV, walks company career pages, ATS platforms and job boards, and scores every posting against you with a reason — then says what to change in the CV for that particular role and generates a tailored one. Runs on your own computer; the thinking is done by Claude Code, Cursor, or a local model through Ollama, so with a local model nothing leaves the machine.',
+    category: 'Desktop app',
+    tags: ['macOS', 'Windows', 'Linux', 'Python', 'Local-first', 'MIT'],
+    icon: '🎯',
+    accent: '#6aa9ff',
+    status: 'In development',
+    links: [
+      { label: 'Learn more', url: 'products/ai-job-search/' },
+    ],
+  },
+  {
     name: 'AI Screen Translator',
     tagline: 'Hold a key, read your screen in your language',
     description:
