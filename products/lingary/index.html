@@ -1,0 +1,896 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lingary — an AI language tutor you talk to, on your iPhone</title>
+  <meta name="description" content="Live voice and text conversations with an AI language tutor. Bring your own API key, or run the whole thing on-device with no key and no connection. 61 languages, nothing stored on a server." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Lingary" />
+  <meta property="og:description" content="An iOS language tutor you actually talk to. Bring your own API key — or run it fully offline on the device. 61 languages, no account, no server." />
+  <meta property="og:image" content="assets/voice-light.png" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗣️</text></svg>" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="stylesheet" href="../../product.css" />
+  <style>
+    :root { --accent: #ff8f6b; --accent-2: #7c9cff; }
+    html[data-theme='light'] { --accent: #c2410c; --accent-2: #3b5ce0; }
+
+    /* Page-scoped: the loop, drawn as a ring.
+       Five steps placed on an ellipse (rx 400, ry 190 inside a 1000×640 box) with
+       the level ladder in the middle. Positions are percentages of that box, so
+       the SVG track and the cards scale together. The screenshots have to drop to
+       ~110px wide for the ring to close without the cards colliding with the
+       centre. The full-size versions live in "What it looks like" above. */
+    .ring {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      aspect-ratio: 1000 / 640;
+    }
+
+    .ring-track {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .ring-track ellipse {
+      fill: none;
+      stroke: color-mix(in srgb, var(--accent) 40%, transparent);
+      stroke-width: 2;
+      stroke-dasharray: 7 9;
+    }
+
+    .ring-track polygon {
+      fill: color-mix(in srgb, var(--accent) 70%, var(--text-muted));
+    }
+
+    .ring-step {
+      position: absolute;
+      width: 110px;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      text-align: center;
+    }
+
+    .ring-shot { display: block; }
+
+    .ring-step img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      box-shadow: var(--shadow);
+    }
+
+    .ring-step h3 {
+      margin: 0;
+      font-size: 0.78rem;
+      font-weight: 620;
+      line-height: 1.25;
+    }
+
+    .ring-step h3 b {
+      display: inline-grid;
+      place-items: center;
+      width: 18px;
+      height: 18px;
+      margin-right: 0.15rem;
+      border-radius: 50%;
+      background: color-mix(in srgb, var(--accent) 18%, transparent);
+      color: color-mix(in srgb, var(--accent) 85%, var(--text));
+      font-size: 0.68rem;
+      vertical-align: middle;
+    }
+
+    .ring-step--1 { left: 50%;   top: 20.3%; }
+    .ring-step--2 { left: 88%;   top: 40.8%; }
+    .ring-step--3 { left: 73.5%; top: 74%; }
+    .ring-step--4 { left: 26.5%; top: 74%; }
+    .ring-step--5 { left: 12%;   top: 40.8%; }
+
+    /* Sits low enough to clear the top card and narrow enough to pass between
+       the two bottom ones — the free band in the middle of the ellipse is only
+       ~80px tall, so it clears card 1 vertically and cards 3–4 horizontally.
+       The cards are a fixed 110px wide while the ellipse scales with the
+       container, so the band is tightest at the smallest rendered width; 50.5%
+       keeps the gap positive down to a ~900px ring. */
+    .ring-center {
+      position: absolute;
+      left: 50%;
+      top: 50.5%;
+      transform: translate(-50%, -50%);
+      width: min(34%, 340px);
+      text-align: center;
+    }
+
+    .ring-center-label {
+      margin: 0;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .ring-center-levels {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem;
+      margin: 0.45rem 0 0;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: color-mix(in srgb, var(--accent) 85%, var(--text));
+    }
+
+    .ring-center-levels span { opacity: 0.45; }
+    .ring-center-levels span:last-child { opacity: 1; }
+
+    .ring-center-levels i {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 0.8rem;
+      opacity: 0.4;
+    }
+
+    .ring-center-note {
+      margin: 0.5rem 0 0;
+      font-size: 0.8rem;
+      line-height: 1.4;
+      color: var(--text-muted);
+    }
+
+    /* Too small to read below this, so the ring becomes the same column the
+       row variant falls back to. */
+    @media (max-width: 900px) {
+      .ring { aspect-ratio: auto; display: flex; flex-direction: column; align-items: center; gap: 1.1rem; }
+      .ring-track { display: none; }
+      .ring-step,
+      .ring-center {
+        position: static;
+        transform: none;
+        width: 100%;
+        max-width: 240px;
+      }
+      .ring-center { order: 99; }
+    }
+
+    /* --------------------------------------------------- teaching-style row */
+    .moods {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1.25rem 1rem;
+      margin: 1.5rem 0 0;
+      padding: 0;
+      list-style: none;
+      text-align: center;
+    }
+
+    /* Circular badges: the avatar's glow radiates from the centre, so a disc
+       reads as intentional where the raw rectangle looked pasted on. The
+       source crop leaves enough margin that the ring never clips the tail,
+       whiskers, ears or feet. */
+    .moods img {
+      display: block;
+      width: 100%;
+      max-width: 124px;
+      aspect-ratio: 1;
+      height: auto;
+      margin: 0 auto 0.55rem;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      box-shadow: 0 6px 18px -10px rgba(0, 0, 0, 0.55);
+    }
+
+    .moods li:hover img {
+      border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+    }
+
+    .moods h3 {
+      margin: 0 0 0.2rem;
+      font-size: 0.92rem;
+      font-weight: 620;
+    }
+
+    .moods p {
+      margin: 0;
+      font-size: 0.82rem;
+      line-height: 1.4;
+      color: var(--text-muted);
+    }
+
+    /* --------------------------------------------------------------- spacing
+       product.css zeroes the margins on these so they can be composed freely;
+       stacked directly under a sibling they end up touching it. */
+    .prose + .platforms,
+    .prose + .feature-grid,
+    .prose + .shots-row,
+    .prose + .ring,
+    .platforms + .chips,
+    .feature-grid + .moods,
+    .feature-grid + .chips,
+    .prose + .chips { margin-top: 1.5rem; }
+
+    .section-title + .prose { margin-bottom: 0.2rem; }
+
+    /* ------------------------------------------------- in-page contents rail */
+    .doc { display: block; }
+
+    .toc { display: none; }
+
+    @media (min-width: 1100px) {
+      .doc {
+        display: grid;
+        grid-template-columns: 172px minmax(0, 1fr);
+        gap: 3rem;
+        align-items: start;
+      }
+
+      /* The sticky element has to be the grid child: a sticky <ul> can only
+         travel inside its <nav>, which is exactly as tall as the list. */
+      .toc-nav {
+        position: sticky;
+        top: 1.75rem;
+        max-height: calc(100vh - 3.5rem);
+        overflow-y: auto;
+        margin-top: 2.75rem;
+      }
+
+      .toc {
+        display: block;
+        margin: 0;
+        padding: 0 0 0 0.75rem;
+        border-left: 1px solid var(--border);
+        list-style: none;
+      }
+
+      .toc li { margin: 0; }
+
+      .toc a {
+        display: block;
+        padding: 0.3rem 0;
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        line-height: 1.35;
+        text-decoration: none;
+        border-left: 2px solid transparent;
+        margin-left: -0.8rem;
+        padding-left: 0.8rem;
+        transition: color 0.15s ease;
+      }
+
+      .toc a:hover { color: var(--text); }
+
+      .toc a[aria-current='true'] {
+        color: color-mix(in srgb, var(--accent) 85%, var(--text));
+        border-left-color: var(--accent);
+        font-weight: 600;
+      }
+    }
+
+    /* Anchored jumps shouldn't hide the heading under the viewport edge. */
+    .section { scroll-margin-top: 1.5rem; }
+  </style>
+</head>
+<body>
+  <div class="glow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <div class="header-top">
+        <a class="brand" href="../../">
+          <span class="brand-mark">VL</span>
+          <span class="brand-text">Viktor Lavrov</span>
+        </a>
+        <nav class="header-links">
+          <a href="../../">All products</a>
+          <a href="https://github.com/mrWD" target="_blank" rel="noopener">GitHub</a>
+          <button id="theme-toggle" class="icon-btn" type="button" aria-label="Toggle colour theme">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path class="icon-moon" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/><g class="icon-sun"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></g></svg>
+          </button>
+        </nav>
+      </div>
+
+      <div class="hero">
+        <div class="hero-text">
+          <p class="eyebrow">iOS app · TestFlight beta</p>
+          <h1 class="title">Lingary</h1>
+          <p class="subtitle lead">
+            A language tutor you hold a conversation with, out loud, on your phone.
+            It works out your level by talking to you, then builds practice out of
+            the mistakes you actually made — in <b>61 languages</b>.
+          </p>
+
+          <ul class="badges">
+            <li>Bring your own key</li>
+            <li>Runs fully offline</li>
+            <li>No account</li>
+            <li>No subscription</li>
+            <li>Nothing leaves the device</li>
+          </ul>
+
+          <div class="cta">
+            <a class="btn primary" href="mailto:lvigtor@gmail.com?subject=Lingary%20TestFlight">
+              <span>Ask for a TestFlight invite</span>
+              <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn" href="#offline">
+              <span>How it works offline</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual phone">
+          <img class="shot-light" src="assets/voice-light.png" width="414" height="900" alt="A live voice session: the tutor's cat avatar centred on screen, a listening indicator beneath it, and a bar along the bottom with microphone, subtitle and text-input controls." />
+          <img class="shot-dark" src="assets/voice-dark.png" width="414" height="900" alt="A live voice session: the tutor's cat avatar centred on screen, a listening indicator beneath it, and a bar along the bottom with microphone, subtitle and text-input controls. Shown in the app's dark theme." />
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="doc">
+      <nav class="toc-nav" aria-label="On this page">
+        <ul class="toc">
+        <li><a href="#how">What it looks like</a></li>
+        <li><a href="#talking">Talking to it</a></li>
+        <li><a href="#practice">What you practise</a></li>
+        <li><a href="#report">The report</a></li>
+        <li><a href="#vocab">Vocabulary</a></li>
+        <li><a href="#drills">Drill modes</a></li>
+        <li><a href="#keys">Your own keys</a></li>
+        <li><a href="#offline">Offline</a></li>
+        <li><a href="#rest">Everything else</a></li>
+        <li><a href="#data">Your data</a></li>
+        <li><a href="#status">Where it's at</a></li>
+        </ul>
+      </nav>
+
+      <div class="doc-body">
+      <section class="section" aria-labelledby="how">
+        <h2 id="how" class="section-title">What it looks like</h2>
+        <p class="prose">
+          Nothing here is a generic lesson. Every mission, every word and the
+          difficulty itself come out of what you personally said in the last
+          conversation — which is what makes it a loop rather than a course, and
+          what moves your level.
+        </p>
+
+        <div class="ring">
+          <svg class="ring-track" viewBox="0 0 1000 640" aria-hidden="true">
+            <ellipse cx="500" cy="320" rx="400" ry="190" />
+            <polygon points="0,-9 18,0 0,9" transform="translate(735,166) rotate(19)" />
+          </svg>
+
+          <div class="ring-center">
+            <p class="ring-center-label">Your level</p>
+            <p class="ring-center-levels">
+              <span>A1</span><i aria-hidden="true">→</i><span>A2</span><i aria-hidden="true">→</i><span>B1</span><i aria-hidden="true">→</i><span>B2</span><i aria-hidden="true">→</i><span>C1</span>
+            </p>
+            <p class="ring-center-note">Every lap round moves it up, and the next conversation is pitched there.</p>
+          </div>
+
+          <div class="ring-step ring-step--1">
+            <a class="ring-shot" href="assets/voice-light.png" target="_blank" rel="noopener" title="Open full size">
+              <img class="shot-light" src="assets/voice-light.png" width="414" height="900" loading="lazy" decoding="async" alt="A live voice session with the tutor's avatar." />
+              <img class="shot-dark" src="assets/voice-dark.png" width="414" height="900" loading="lazy" decoding="async" alt="A live voice session with the tutor's avatar, dark theme." />
+            </a>
+            <h3><b>1</b> You talk to it</h3>
+          </div>
+
+          <div class="ring-step ring-step--2">
+            <a class="ring-shot" href="assets/analysis-light.png" target="_blank" rel="noopener" title="Open full size">
+              <img class="shot-light" src="assets/analysis-light.png" width="414" height="900" loading="lazy" decoding="async" alt="The session report with scores and detected words." />
+              <img class="shot-dark" src="assets/analysis-dark.png" width="414" height="900" loading="lazy" decoding="async" alt="The session report with scores and detected words, dark theme." />
+            </a>
+            <h3><b>2</b> It finds the gaps</h3>
+          </div>
+
+          <div class="ring-step ring-step--3">
+            <a class="ring-shot" href="assets/wordbank-light.png" target="_blank" rel="noopener" title="Open full size">
+              <img class="shot-light" src="assets/wordbank-light.png" width="414" height="900" loading="lazy" decoding="async" alt="The word bank listing German words." />
+              <img class="shot-dark" src="assets/wordbank-dark.png" width="414" height="900" loading="lazy" decoding="async" alt="The word bank listing German words, dark theme." />
+            </a>
+            <h3><b>3</b> You add your own</h3>
+          </div>
+
+          <div class="ring-step ring-step--4">
+            <a class="ring-shot" href="assets/study-light.png" target="_blank" rel="noopener" title="Open full size">
+              <img class="shot-light" src="assets/study-light.png" width="414" height="900" loading="lazy" decoding="async" alt="The Study sheet with five practice modes." />
+              <img class="shot-dark" src="assets/study-dark.png" width="414" height="900" loading="lazy" decoding="async" alt="The Study sheet with five practice modes, dark theme." />
+            </a>
+            <h3><b>4</b> You learn them</h3>
+          </div>
+
+          <div class="ring-step ring-step--5">
+            <a class="ring-shot" href="assets/missions-light.png" target="_blank" rel="noopener" title="Open full size">
+              <img class="shot-light" src="assets/missions-light.png" width="414" height="900" loading="lazy" decoding="async" alt="The Missions tab listing four generated practice missions with their type tags, and a locked Big Talk that unlocks at four of four." />
+              <img class="shot-dark" src="assets/missions-dark.png" width="414" height="900" loading="lazy" decoding="async" alt="The Missions tab listing four generated practice missions with their type tags, and a locked Big Talk that unlocks at four of four. Shown in the app's dark theme." />
+            </a>
+            <h3><b>5</b> You clear the missions</h3>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="talking">
+        <h2 id="talking" class="section-title">Talking to it</h2>
+        <ul class="feature-grid">
+          <li>
+            <span class="feature-icon" aria-hidden="true">🎙️</span>
+            <h3>Real-time voice</h3>
+            <p>A spoken conversation over OpenAI Realtime or Gemini Live, not a recording you submit. Cut in mid-sentence and it stops talking, the way a person would.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">⌨️</span>
+            <h3>Or type instead</h3>
+            <p>The same tutor in text mode, switchable inside a session. Handy on a train, or when you'd rather not talk out loud.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">🐱</span>
+            <h3>An avatar that reacts</h3>
+            <p>It lip-syncs to whatever is being said and shifts expression with the mood of the conversation — listening, thinking, pleased, unimpressed.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">💬</span>
+            <h3>Subtitles, if you want them</h3>
+            <p>Live captions of what the tutor just said, toggled per session. Off by default so you have to listen first.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">👆</span>
+            <h3>Tap any word for seven things</h3>
+            <p>Translate, hear it spoken, see examples, break down the sentence structure, get the grammar rule, ask a follow-up question, or save it to your deck.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">⏱️</span>
+            <h3>It waits, then nudges</h3>
+            <p>Go quiet and a countdown appears rather than the tutor talking over you — extend it if you're still thinking. A small strip shows how many exchanges are left before the report has enough to work with.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">🔖</span>
+            <h3>Every lookup is kept</h3>
+            <p>Everything you asked about mid-conversation lands in a list you can reopen later, answers and all — so a word you looked up last week isn't lost.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">🔀</span>
+            <h3>Switch language mid-session</h3>
+            <p>Learning two things at once? Change which one you're practising from the toolbar without ending the conversation.</p>
+          </li>
+        </ul>
+        <p class="note">
+          Six session types: free conversation, level assessment, word recall,
+          grammar focus, mission practice and mission refresh.
+        </p>
+      </section>
+
+      <section class="section" aria-labelledby="practice">
+        <h2 id="practice" class="section-title">How it decides what you practise</h2>
+        <ul class="feature-grid">
+          <li>
+            <span class="feature-icon" aria-hidden="true">🧭</span>
+            <h3>Your level, from a conversation</h3>
+            <p>The first session is a chat, not a multiple-choice test. It settles on a CEFR level from A0 to C2 — with sub-levels — and adapts how it speaks to you from then on.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">🎯</span>
+            <h3>Missions from your own mistakes</h3>
+            <p>Ten kinds — grammar, vocabulary, synonyms, pronunciation, conversation, cross-language parallels, verb matrix, story, inflection and word-family drills — generated from what you actually got wrong.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">🔓</span>
+            <h3>Stages, and a Big Talk</h3>
+            <p>Four practice missions unlock a longer open conversation that revisits everything from that stage. Fail it and the stage re-locks until you've redone the retry missions.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">🎲</span>
+            <h3>Two ways to progress</h3>
+            <p><b>Adaptive</b> follows your weak spots. <b>Structural</b> works through a 30-verb grid across three tenses and six persons, filling in cells as you master them.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">📖</span>
+            <h3>Reading, not just talking</h3>
+            <p>Story missions give you an AI-written passage at your level with the same tap-to-look-up actions as live chat, then a few comprehension questions.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">🎚️</span>
+            <h3>Your own tutor prompt</h3>
+            <p>Not happy with how it teaches? Replace the system prompt with your own text and the tutor follows that instead.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">🎭</span>
+            <h3>Pick the tutor's manner</h3>
+            <p>It changes the wording, the patience, how bluntly mistakes get called out — and even the tone of your practice reminders, which come in fifteen variants per style.</p>
+          </li>
+        </ul>
+
+        <ul class="moods" aria-label="The five teaching styles you can choose between">
+          <li>
+            <img class="shot-light" src="assets/mood-happy-light.png" width="320" height="320" loading="lazy" decoding="async" alt="The cat avatar smiling, eyes bright." />
+            <img class="shot-dark" src="assets/mood-happy-dark.png" width="320" height="320" loading="lazy" decoding="async" alt="The cat avatar smiling, eyes bright. Shown in the app's dark theme." />
+            <h3>Friendly</h3>
+            <p>Encouraging, lets small slips go.</p>
+          </li>
+          <li>
+            <img class="shot-light" src="assets/mood-listening-light.png" width="320" height="320" loading="lazy" decoding="async" alt="The cat avatar attentive and unsmiling." />
+            <img class="shot-dark" src="assets/mood-listening-dark.png" width="320" height="320" loading="lazy" decoding="async" alt="The cat avatar attentive and unsmiling. Shown in the app's dark theme." />
+            <h3>Strict</h3>
+            <p>All business — corrects everything, praises little.</p>
+          </li>
+          <li>
+            <img class="shot-light" src="assets/mood-skeptical-light.png" width="320" height="320" loading="lazy" decoding="async" alt="The cat avatar with heavy lids and a flat mouth, unimpressed." />
+            <img class="shot-dark" src="assets/mood-skeptical-dark.png" width="320" height="320" loading="lazy" decoding="async" alt="The cat avatar with heavy lids and a flat mouth, unimpressed. Shown in the app's dark theme." />
+            <h3>Sarcastic</h3>
+            <p>Half-lidded, and enjoys your mistakes a little.</p>
+          </li>
+          <li>
+            <img class="shot-light" src="assets/mood-sad-light.png" width="320" height="320" loading="lazy" decoding="async" alt="The cat avatar with downturned eyes and a tear, crestfallen." />
+            <img class="shot-dark" src="assets/mood-sad-dark.png" width="320" height="320" loading="lazy" decoding="async" alt="The cat avatar with downturned eyes and a tear, crestfallen. Shown in the app's dark theme." />
+            <h3>Drama queen</h3>
+            <p>Personally wounded by a wrong article.</p>
+          </li>
+          <li>
+            <img class="shot-light" src="assets/mood-angry-light.png" width="320" height="320" loading="lazy" decoding="async" alt="The cat avatar scowling, with an anger mark on its forehead." />
+            <img class="shot-dark" src="assets/mood-angry-dark.png" width="320" height="320" loading="lazy" decoding="async" alt="The cat avatar scowling, with an anger mark on its forehead. Shown in the app's dark theme." />
+            <h3>Drill sergeant</h3>
+            <p>No sympathy, only repetitions.</p>
+          </li>
+        </ul>
+        <p class="note">
+          Those are the avatar's own expressions, not stickers — it reacts in
+          character while you talk. Switchable at any time in Settings → Learning;
+          the livelier three ask for a confirmation first, because they are exactly
+          as pointed as they sound.
+        </p>
+      </section>
+
+      <section class="section" aria-labelledby="report">
+        <h2 id="report" class="section-title">The report after each session</h2>
+        <ul class="feature-grid">
+          <li>
+            <span class="feature-icon" aria-hidden="true">📊</span>
+            <h3>Scored four ways</h3>
+            <p>An overall mark plus grammar, vocabulary, pronunciation and listening — with what you did well and the specific things to fix next.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">🔍</span>
+            <h3>Words you didn't know</h3>
+            <p>Pulled out of your own sentences with translations and part of speech, and added straight to the deck. It also estimates your vocabulary size.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">📈</span>
+            <h3>Trends over time</h3>
+            <p>Speaking pace and sentence complexity tracked across sessions, computed locally from stored metrics rather than asked of a model.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">🎬</span>
+            <h3>Things to watch and read</h3>
+            <p>Two to four real YouTube channels, series, podcasts, books or songs per session, aimed at that session's weak spots. It never invents a URL — it hands you a search.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">🎛️</span>
+            <h3>Switch off what you don't read</h3>
+            <p>Every optional block of the report has a toggle, and turning one off drops it from the prompt — so it isn't generated, and isn't paid for.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">⚖️</span>
+            <h3>Grade with a different brain</h3>
+            <p>Chat offline but have the report graded in the cloud, or the reverse — and pin individual sections to either. Split runs fire concurrently, so you wait for the slower one, not both.</p>
+          </li>
+        </ul>
+        <p class="note">
+          The report streams in: scores appear first, missions keep generating in
+          the background, and a Continue button lets you leave without waiting.
+        </p>
+      </section>
+
+      <section class="section" aria-labelledby="vocab">
+        <h2 id="vocab" class="section-title">Vocabulary</h2>
+        <ul class="feature-grid">
+          <li>
+            <span class="feature-icon" aria-hidden="true">🗂️</span>
+            <h3>A deck that schedules itself</h3>
+            <p>FSRS spaced repetition with the four familiar grades. Cards arrive from conversations automatically, or you add them by hand.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">📥</span>
+            <h3>Bring decks you already have</h3>
+            <p>Anki <code>.apkg</code>, CSV, TSV, Excel and JSON, with column mapping and a live preview. Quizlet exports come in through the TSV preset.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">🍿</span>
+            <h3>Prep for something specific</h3>
+            <p>About to watch a film, read an article or play a game? Name it and you get the words and phrases you'll need, saved as their own group.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">✅</span>
+            <h3>Answers graded by meaning</h3>
+            <p>Review checks whether your guess means the right thing, not whether it matches character for character.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">🔔</span>
+            <h3>A word a day, and reminders</h3>
+            <p>Notifications from your own deck, worded in the voice of the tutor style you picked — fifteen variants each, so they don't get stale.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">🕗</span>
+            <h3>A language per time of day</h3>
+            <p>Learning more than one? Set windows — German on weekday mornings, Italian in the evenings — and the app switches for you. Reminders can be turned on per language, not just globally.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">✨</span>
+            <h3>Generate a set on a topic</h3>
+            <p>Ask for vocabulary on anything and it writes the cards: word, translation, an example sentence, the same sentence with a gap, and every inflected form that should count as correct.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">🙅</span>
+            <h3>Words you already know</h3>
+            <p>Mark them once and they're excluded from generated lists for good, so you stop being taught things you learned years ago.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">🧩</span>
+            <h3>Phrases and groups, not just words</h3>
+            <p>Multi-word expressions are their own kind of entry, and everything can be filed into groups — a deck per film, per trip, per topic.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section" aria-labelledby="drills">
+        <h2 id="drills" class="section-title">Five ways to drill a deck</h2>
+        <p class="prose">
+          Vocabulary practice isn't only flashcards. The same words feed five
+          different exercises, and three of them are written for you on the spot.
+        </p>
+        <ul class="feature-grid">
+          <li>
+            <span class="feature-icon" aria-hidden="true">💬</span>
+            <h3>Practice with AI</h3>
+            <p>A conversation steered deliberately at the words you're behind on, so you have to actually use them.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">🃏</span>
+            <h3>Flashcards</h3>
+            <p>Fill the word into a sentence rather than flipping a card, then grade yourself — Again, Hard, Good or Easy, with the next interval shown on each button.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">📖</span>
+            <h3>Story</h3>
+            <p>A short passage written around your words at your level, with tap-to-look-up on every line and comprehension questions at the end. Pick how long it should be.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">🔤</span>
+            <h3>Inflection</h3>
+            <p>Conjugation and declension tables with the cells blanked out. Fill them in and each one turns green or red — graded on the device, not by a model.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">🌳</span>
+            <h3>Word Family</h3>
+            <p>One root, all its derivations, each with a gloss and examples you can save individually — then fill-in-the-blank sentences that use them.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section" aria-labelledby="keys">
+        <h2 id="keys" class="section-title">Bring your own key — three of them, if you like</h2>
+        <p class="prose">
+          There's no subscription and no middleman. You point the app at the providers
+          you want, with your own keys, and you pay them directly at their prices —
+          the app takes no cut and runs no server of its own. And it isn't one choice
+          but three: the brain, the voice and the ear are configured separately, so you
+          can spend where it matters and save where it doesn't.
+        </p>
+        <div class="platforms">
+          <div class="platform">
+            <h3>🧠 Brain — the tutor</h3>
+            <p>OpenAI or Gemini for live speech-to-speech. Or any OpenAI-compatible endpoint — OpenRouter, Groq, DeepSeek, Mistral — with your own base URL and model name. Or nothing at all, on-device.</p>
+          </div>
+          <div class="platform">
+            <h3>🔊 Voice — what you hear</h3>
+            <p>The free iOS system voice, OpenAI TTS, Gemini TTS or Fish Audio S2. Preview any of them before committing, and decide whether it's used in live dialogue.</p>
+          </div>
+          <div class="platform">
+            <h3>👂 Speech — hearing you</h3>
+            <p>WhisperKit or Apple's recogniser on the device, or OpenAI Whisper, Gemini Audio or Groq Whisper in the cloud when you want the accuracy.</p>
+          </div>
+        </div>
+        <p class="note">
+          A settings screen shows which combination is actually live right now, since a
+          pick that can't run — no key, no network, nothing downloaded — quietly falls
+          back rather than failing. Keys live in the iOS Keychain, encrypted and tied to
+          that one device, and are only ever sent to the provider you chose.
+        </p>
+      </section>
+
+      <section class="section" aria-labelledby="offline">
+        <h2 id="offline" class="section-title">Or no key at all</h2>
+        <p class="prose">
+          Offline mode replaces every cloud piece with one that runs on the phone,
+          and there are two ways to get there. Either downloads once and then costs
+          nothing, forever, with aeroplane mode on.
+        </p>
+        <div class="platforms">
+          <div class="platform">
+            <h3>Downloaded models</h3>
+            <p>Gemma 4 E2B as the tutor, WhisperKit for hearing you, Supertonic 3 for a natural neural voice in 31 languages. About 3&nbsp;GB, works on any supported iPhone.</p>
+          </div>
+          <div class="platform">
+            <h3>Apple Intelligence</h3>
+            <p>Uses the model already on the phone — nothing to download. Newer hardware and iOS only, and Apple's own language list is shorter, so it isn't offered where it wouldn't work.</p>
+          </div>
+        </div>
+        <ul class="chips">
+          <li>Text conversation</li>
+          <li>The session report</li>
+          <li>Mission generation</li>
+          <li>Spaced-repetition review</li>
+          <li>Word bank &amp; imports</li>
+          <li>Reminders</li>
+          <li>Every settings screen</li>
+        </ul>
+        <p class="note">
+          What's weaker: voice becomes turn-based, so you can't cut the tutor off
+          mid-sentence, and a small on-device model is coarser than a cloud one at
+          grading and at drills. The CEFR verdict is deliberately distrusted
+          offline — it records what it observed but won't move your level. Watch and
+          read recommendations are cloud-only, because a 2B model cheerfully invents
+          books that don't exist.
+        </p>
+      </section>
+
+      <section class="section" aria-labelledby="rest">
+        <h2 id="rest" class="section-title">And the rest of it</h2>
+        <ul class="feature-grid">
+          <li>
+            <span class="feature-icon" aria-hidden="true">📜</span>
+            <h3>Every session kept</h3>
+            <p>Full transcripts you can reread, with the same tap-to-look-up actions on any line you didn't understand at the time.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">📐</span>
+            <h3>Goals in your own words</h3>
+            <p>Why you're learning comes up in conversation rather than a form, and what you said gets saved and fed back into later sessions. Editable whenever.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">📏</span>
+            <h3>Grammar focus</h3>
+            <p>The rules you're working on, tracked as their own list and passed to the tutor so it keeps steering you into them.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">📶</span>
+            <h3>Progress worth looking at</h3>
+            <p>Sessions, minutes spoken, words collected and words actually learned, plus what's due for review today.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">🌍</span>
+            <h3>Several languages at once</h3>
+            <p>Each one keeps its own level, deck, missions and history. Add and remove them without disturbing the others.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">🧹</span>
+            <h3>Deletion that means it</h3>
+            <p>Start one language over, remove it entirely, or erase everything — optionally including your API keys and the downloaded models. Each spelled out before you confirm.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">📊</span>
+            <h3>Skills broken out</h3>
+            <p>The dashboard tracks pronunciation, grammar and listening comprehension separately, next to your goals, current missions and grammar focus.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">🎯</span>
+            <h3>Retake the level test</h3>
+            <p>Think it pitched you wrong, or come back after months away? Reopen the assessment from settings and let it re-judge.</p>
+          </li>
+        </ul>
+        <p class="note">
+          There's also a diagnostics export for when something misbehaves, a feedback
+          form that files the report for me directly, and a live log viewer if you
+          like watching the machinery.
+        </p>
+      </section>
+
+      <section class="section" aria-labelledby="data">
+        <h2 id="data" class="section-title">Where your data lives</h2>
+        <p class="prose">
+          On your phone. There is no account to create, no backend holding your
+          transcripts, and no analytics — your conversations, vocabulary and progress
+          are a local database, and deleting the app deletes them.
+        </p>
+        <p class="note">
+          In cloud mode your side of the conversation is sent to the provider you picked,
+          because that's how it answers you — subject to their terms, not mine. In offline
+          mode nothing leaves the device at all.
+        </p>
+      </section>
+
+      <section class="section" aria-labelledby="status">
+        <h2 id="status" class="section-title">Where it's at</h2>
+        <p class="prose">
+          Still in development and not on the App Store yet. It's usable day to day —
+          that's what it's being built against — but expect rough edges, and expect
+          things to move.
+        </p>
+        <div class="cta">
+          <a class="btn primary" href="mailto:lvigtor@gmail.com?subject=Lingary%20TestFlight">
+            <span>Ask for a TestFlight invite</span>
+            <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+        <p class="note">
+          Needs an iPhone on iOS 17 or newer. Offline mode wants a recent one — the
+          models are large and it holds several in memory at once.
+        </p>
+      </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><a href="../../">← All products</a> · Questions or ideas? <a href="mailto:lvigtor@gmail.com">Email me</a> · <a href="../../legal/">Legal &amp; privacy</a>.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mark the contents entry for whichever section the reader is in. Driven by
+    // scroll position rather than IntersectionObserver: sections here are taller
+    // than the viewport, so "is it visible" matches several at once and the
+    // answer depends on callback ordering. "Last heading above the fold line"
+    // is unambiguous.
+    (function () {
+      const links = [...document.querySelectorAll('.toc a')];
+      if (!links.length) return;
+      const targets = links
+        .map(a => ({ link: a, el: document.getElementById(a.hash.slice(1)) }))
+        .filter(t => t.el);
+      if (!targets.length) return;
+
+      let queued = false;
+      const update = () => {
+        queued = false;
+        const line = innerHeight * 0.25;
+        let active = targets[0];
+        for (const t of targets) {
+          if (t.el.getBoundingClientRect().top <= line) active = t; else break;
+        }
+        // The last section or two are shorter than the fold line is deep, so
+        // the page runs out of scroll before their headings reach it. At the
+        // bottom, the last entry is the honest answer.
+        const atBottom = scrollY + innerHeight >= document.documentElement.scrollHeight - 4;
+        if (atBottom) active = targets[targets.length - 1];
+        for (const t of targets) {
+          if (t === active) t.link.setAttribute('aria-current', 'true');
+          else t.link.removeAttribute('aria-current');
+        }
+      };
+      const schedule = () => {
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(update);
+      };
+      addEventListener('scroll', schedule, { passive: true });
+      addEventListener('resize', schedule);
+      update();
+    })();
+
+    (function () {
+      const saved = localStorage.getItem('products-page:theme');
+      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      document.documentElement.dataset.theme = saved || (prefersLight ? 'light' : 'dark');
+      document.getElementById('theme-toggle').addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem('products-page:theme', next);
+      });
+    })();
+  </script>
+</body>
+</html>
