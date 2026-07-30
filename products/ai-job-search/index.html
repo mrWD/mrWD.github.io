@@ -88,8 +88,12 @@
             </a>
           </div>
           <p class="note">
-            Version 1.0.0 · free, MIT. The macOS build is not signed by Apple yet,
-            so the first launch needs right-click → Open.
+            Version 1.0.0 · free, MIT. The macOS build is not signed with Apple yet:
+            the first launch is refused, and the way past it is
+            <strong>System Settings → Privacy &amp; Security → Open Anyway</strong>,
+            not the right-click → Open that older instructions describe — Apple
+            removed that in macOS 15. Windows shows a SmartScreen notice for the
+            same reason: More info → Run anyway.
           </p>
         </div>
 
@@ -295,9 +299,10 @@
     <section class="section" aria-labelledby="next">
       <h2 id="next" class="section-title">What's next</h2>
       <p>
-        Signed and notarised builds, so the app opens without the "unidentified
-        developer" warning on macOS. Until then the first launch needs right-click →
-        Open, and Windows shows a SmartScreen notice for the same reason.
+        Signed and notarised builds. Until then macOS refuses the first launch
+        outright — the only visible button in that dialog moves the app to the Bin —
+        and it takes a trip to System Settings to let it through. That is a lot to
+        ask of someone who just wanted to try it.
       </p>
       <p class="note">Ideas welcome.</p>
     </section>
