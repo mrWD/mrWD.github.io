@@ -13,9 +13,9 @@ app.js                   the project data + rendering for the list
 products/<slug>/         one page per product, with its own assets/
 ```
 
-Product pages live under `products/` — `langs-db`, `film-table`, `games-table`,
-`ai-screen-translator`, `ai-prompt-suggester`, `double-subtitles` — and **not**
-at the site root. A repo with its own GitHub Pages site claims that path first:
+Product pages live under `products/` — `lingary`, `langs-db`, `film-table`,
+`games-table`, `ai-screen-translator`, `ai-prompt-suggester`, `double-subtitles`
+— and **not** at the site root. A repo with its own GitHub Pages site claims that path first:
 `mrWD/film-table` publishes to `mrwd.github.io/film-table/`, which silently
 shadowed a root-level folder of the same name.
 
@@ -76,6 +76,16 @@ button open the page.
 
 Screenshots of the two web apps were captured from the live deployments at
 414×896. The extensions have no screenshots yet.
+
+Lingary's come out of a UI test in the app repo
+(`Tests/UITests/MarketingShots.swift`), run once per simulator appearance
+because the light and dark shots have to be separate files — `product.css`
+swaps them with `.shot-light` / `.shot-dark`. Its page also carries two
+page-scoped CSS blocks that no other product needs: the loop diagram (five
+screenshots placed on an ellipse) and the sticky contents rail. The folder is
+`lingary`, not `lang-tutor`, because that is the name it ships under; the repo
+behind it is still `mrWD/lang-tutor` and is private, so the page's header links
+to the GitHub profile instead.
 
 ## Running locally
 
