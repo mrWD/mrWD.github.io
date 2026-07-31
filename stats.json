@@ -1,18 +1,41 @@
 {
-  "generated": "2026-07-31T16:53:17Z",
-  "note": "Active users reported by the stores, not lifetime downloads.",
+  "generated": "2026-07-31T16:56:32Z",
+  "note": "Metrics differ per product — see the metric field. Not comparable.",
   "products": {
     "double-subtitles": {
-      "users": 112,
+      "count": 112,
+      "metric": "users",
       "sources": {
         "chrome": 112
       }
     },
     "ai-prompt-suggester": {
-      "users": 10,
+      "count": 10,
+      "metric": "users",
       "sources": {
         "chrome": 9,
         "firefox": 1
+      }
+    },
+    "ai-job-search": {
+      "count": 23,
+      "metric": "downloads",
+      "sources": {
+        "github_releases": 23
+      }
+    },
+    "ai-screen-translator": {
+      "count": 0,
+      "metric": "downloads",
+      "sources": {
+        "github_releases": 0
+      }
+    },
+    "langs-db": {
+      "count": 26,
+      "metric": "visits",
+      "sources": {
+        "self_reported": 26
       }
     }
   }

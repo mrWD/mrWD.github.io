@@ -52,6 +52,32 @@ accepts `github`, `chrome`, `firefox` or `download`.
 Data used to come from a published Google Sheet. That's gone — the list lives in
 `app.js` for now.
 
+## Usage counters
+
+[`.github/workflows/stats.yml`](.github/workflows/stats.yml) runs
+[`scripts/collect_stats.py`](scripts/collect_stats.py) once a day, which writes
+`stats.json` and commits it only when a number moves. The page reads that file
+and adds a badge to the card — **but only above 1000**
+(`USERS_THRESHOLD` in `app.js`). Below that the badge stays hidden, because
+"9 users" says less than saying nothing.
+
+To track a project, give it a `statsKey` matching a key in `PRODUCTS` in the
+collector. Three metrics, and they are *not* comparable:
+
+| Metric | Source | Means |
+| --- | --- | --- |
+| `users` | Chrome Web Store, Firefox Add-ons | active installs; uninstalling drops out |
+| `downloads` | GitHub release assets | lifetime downloads; never goes down |
+| `visits` | the project's own `stats.json` | page visits the project counts itself |
+
+Chrome has no API, so its listing page is scraped — that will break whenever
+Google changes the markup. The collector fails soft: a broken source keeps its
+previous value and the run still succeeds, so a hiccup never blanks the site.
+
+Not every project can have one. Web apps with no counter of their own
+(FilmTable, GamesTable, Science Timeline) and an unreleased iOS app (Lingary)
+have no public number to read.
+
 ## Product pages
 
 Each product folder holds one `index.html` plus its own `assets/`. The page

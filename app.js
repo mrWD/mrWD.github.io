@@ -44,6 +44,7 @@ const PROJECTS = [
   },
   {
     name: 'Languages of the World',
+    statsKey: 'langs-db', // matches a key in stats.json
     tagline: '7,992 languages and 13,706 dialects, on one map',
     description:
       'An interactive atlas built on Glottolog, Wikidata, WALS and ASJP: families, speaker counts, endangerment status, and four separate measures of how any two languages relate — family tree, grammar, vocabulary and distance. Search works across 84,000 alternative names in 15 interface languages.',
@@ -93,6 +94,7 @@ const PROJECTS = [
   },
   {
     name: 'AI Job Search',
+    statsKey: 'ai-job-search', // matches a key in stats.json
     tagline: 'A job hunt that runs while you do something else',
     description:
       'Reads your CV, walks company career pages, ATS platforms and job boards, and scores every posting against you with a reason — then says what to change in the CV for that particular role and generates a tailored one. Runs on your own computer; the thinking is done by Claude Code, Cursor, or a local model through Ollama, so with a local model nothing leaves the machine.',
@@ -109,6 +111,7 @@ const PROJECTS = [
   },
   {
     name: 'AI Screen Translator',
+    statsKey: 'ai-screen-translator', // matches a key in stats.json
     tagline: 'Hold a key, read your screen in your language',
     description:
       'A menu-bar app for macOS, Windows and Linux. Hold the hotkey to overlay a translation on top of whatever is on screen, release to go back. 25 languages, offline and private by default — built for gamers learning a language.',
@@ -190,6 +193,14 @@ const $ = (sel) => document.querySelector(sel);
  * "9 users" says less than saying nothing. */
 const USERS_THRESHOLD = 1000;
 
+/* The three metrics measure different things and must not be compared, so the
+ * tooltip spells out what the number on the badge actually is. */
+const METRIC_TITLES = {
+  users: 'active installs reported by the stores',
+  downloads: 'downloads of the released files',
+  visits: 'visits counted by the app itself',
+};
+
 let STATS = {};
 
 function formatUsers(n) {
@@ -199,10 +210,11 @@ function formatUsers(n) {
   return n >= 1_000_000 ? scale(n / 1_000_000, 'M') : scale(n / 1000, 'k');
 }
 
-/** The store number for a project, or null if it's absent or too small. */
+/** A project's number and what it measures, or null if absent or too small. */
 function usersFor(project) {
-  const count = project.statsKey && STATS[project.statsKey]?.users;
-  return typeof count === 'number' && count >= USERS_THRESHOLD ? count : null;
+  const entry = project.statsKey && STATS[project.statsKey];
+  if (!entry || typeof entry.count !== 'number' || entry.count < USERS_THRESHOLD) return null;
+  return { count: entry.count, metric: entry.metric || 'users' };
 }
 
 async function loadStats() {
@@ -247,12 +259,12 @@ function buildCard(project) {
     badge.hidden = false;
   }
 
-  const users = usersFor(project);
-  if (users) {
+  const usage = usersFor(project);
+  if (usage) {
     const pill = document.createElement('span');
     pill.className = 'badge users';
-    pill.textContent = `${formatUsers(users)} users`;
-    pill.title = `${users.toLocaleString('en-US')} active users across the stores`;
+    pill.textContent = `${formatUsers(usage.count)} ${usage.metric}`;
+    pill.title = `${usage.count.toLocaleString('en-US')} ${METRIC_TITLES[usage.metric] || usage.metric}`;
     badge.after(pill);
   }
 
