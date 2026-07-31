@@ -151,9 +151,12 @@ html[data-theme='light'] .icon-moon { display: none; }
 html[data-theme='light'] .icon-sun { display: inline; }
 
 .title {
-  margin: 0 0 0.75rem;
+  /* background-clip: text clips the gradient to the line box, so a tight
+     line-height cuts the tails off g, y and p. The padding gives them room. */
+  margin: 0 0 0.6rem;
+  padding-bottom: 0.12em;
   font-size: clamp(2.4rem, 6vw, 3.9rem);
-  line-height: 1.05;
+  line-height: 1.08;
   letter-spacing: -0.035em;
   font-weight: 700;
   background: linear-gradient(120deg, var(--text) 30%, color-mix(in srgb, var(--accent) 85%, var(--text)));
