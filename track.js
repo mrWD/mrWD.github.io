@@ -17,9 +17,16 @@
   const NAMESPACE = 'mrwd-products';
   const ENDPOINT = 'https://abacus.jasoncameron.dev/hit';
 
-  /** Which button was this — by destination, falling back to its label. */
+  /** Which button was this — by destination, falling back to its label.
+   *  Returns null for links that aren't a product action. */
   function actionFor(url, label) {
     const text = label.toLowerCase();
+
+    // Asking for a TestFlight invite is a mailto: link, so it needs its own
+    // branch — an ordinary "email me" link is not a product action.
+    if (url.startsWith('mailto:')) {
+      return /invite|testflight|beta|access/.test(`${text} ${url.toLowerCase()}`) ? 'invite' : null;
+    }
 
     if (/chromewebstore\.google\.com/.test(url)) return 'chrome';
     if (/addons\.mozilla\.org/.test(url)) return 'firefox';
@@ -50,12 +57,17 @@
     if (!link) return;
 
     const url = link.href;
-    if (!/^https?:/.test(url)) return; // mailto:, anchors
+    if (!/^(https?|mailto):/.test(url)) return; // in-page anchors
+
+    // The header and footer are site chrome — the GitHub profile link and the
+    // contact address aren't anyone using a product.
+    if (link.closest('.site-header .header-links, .site-footer')) return;
 
     // Some products live on this very host (mrwd.github.io/langs-db/), so
     // "same host" can't mean "not a product". Only this site's own pages —
     // the index, the product pages, the legal page — are navigation.
-    if (link.host === location.host && /^\/(products\/|legal\/|$|index\.html$)/.test(link.pathname)) {
+    if (link.protocol !== 'mailto:' && link.host === location.host &&
+        /^\/(products\/|legal\/|$|index\.html$)/.test(link.pathname)) {
       return;
     }
 
@@ -63,6 +75,8 @@
     if (!slug) return;
 
     const action = actionFor(url, link.textContent.trim());
+    if (!action) return;
+
     const key = `${slug}--${action}`;
 
     try {

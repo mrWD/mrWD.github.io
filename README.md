@@ -61,14 +61,26 @@ and adds a badge to the card — **but only above 1000**
 (`USERS_THRESHOLD` in `app.js`). Below that the badge stays hidden, because
 "9 users" says less than saying nothing.
 
-To track a project, give it a `statsKey` matching a key in `PRODUCTS` in the
-collector. Three metrics, and they are *not* comparable:
+To track a project, give it a `statsKey` matching a key in `SLUGS` in the
+collector. Four metrics, and they are *not* comparable:
 
 | Metric | Source | Means |
 | --- | --- | --- |
+| `clicks` | [`track.js`](track.js) → Abacus | presses of this site's own action buttons |
 | `users` | Chrome Web Store, Firefox Add-ons | active installs; uninstalling drops out |
 | `downloads` | GitHub release assets | lifetime downloads; never goes down |
 | `visits` | the project's own `stats.json` | page visits the project counts itself |
+
+`clicks` is the one every product can have, so the badge prefers it and falls
+back to the store number until someone has clicked. [`track.js`](track.js) runs
+on the index and on every product page: it classifies each outbound button
+(`open`, `download`, `invite`, `chrome`, `firefox`, `appstore`, `source`) and
+increments `<slug>--<action>` on Abacus — no cookies, no identifiers, no reply
+read. `source` is recorded but kept out of the headline number; navigation
+inside this site, the header links and the footer are not counted at all.
+
+Adding a counter means the site is no longer script-free, so
+[`legal/`](legal/index.html) says exactly what is recorded. Keep those in sync.
 
 Chrome has no API, so its listing page is scraped — that will break whenever
 Google changes the markup. The collector fails soft: a broken source keeps its
