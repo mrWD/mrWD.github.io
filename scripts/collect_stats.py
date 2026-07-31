@@ -28,6 +28,7 @@ import os
 import pathlib
 import re
 import sys
+import time
 import urllib.error
 import urllib.request
 from datetime import datetime, timezone
@@ -39,6 +40,27 @@ UA = (
     "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
     "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
 )
+
+# Every product on the site, by folder name under products/. Click counters
+# exist for all of them; the store/release numbers below only for some.
+SLUGS = [
+    "science-timeline",
+    "lingary",
+    "langs-db",
+    "film-table",
+    "games-table",
+    "ai-job-search",
+    "ai-screen-translator",
+    "ai-prompt-suggester",
+    "double-subtitles",
+]
+
+ABACUS_NS = "mrwd-products"
+
+# Buttons that mean "went to use the product". GitHub ("source") is counted
+# too but kept out of the headline number — reading the code isn't using it.
+USE_ACTIONS = ("open", "download", "invite", "chrome", "firefox", "appstore")
+ALL_ACTIONS = USE_ACTIONS + ("source",)
 
 # product key -> (metric, {source: identifier})
 PRODUCTS = {
@@ -106,6 +128,38 @@ COLLECTORS = {
 }
 
 
+def abacus_value(key, attempts=4):
+    """Read a counter without incrementing it. Never clicked = 0, not an error.
+
+    Abacus rate-limits bursts, and one run asks for dozens of keys, so this
+    paces itself and backs off when told to.
+    """
+    for attempt in range(attempts):
+        time.sleep(0.25)
+        try:
+            body = fetch(f"https://abacus.jasoncameron.dev/get/{ABACUS_NS}/{key}")
+            return int(json.loads(body)["value"])
+        except urllib.error.HTTPError as err:
+            if err.code == 404:
+                return 0  # nobody has clicked this button yet
+            if err.code == 429 and attempt < attempts - 1:
+                time.sleep(3 * (attempt + 1))
+                continue
+            raise
+    return 0
+
+
+def collect_clicks(slug):
+    """Clicks per button for one product, plus the total that counts as usage."""
+    per_action = {}
+    for action in ALL_ACTIONS:
+        value = abacus_value(f"{slug}--{action}")
+        if value:
+            per_action[action] = value
+    total = sum(per_action.get(a, 0) for a in USE_ACTIONS)
+    return total, per_action
+
+
 def main():
     previous = {}
     if OUT.exists():
@@ -116,26 +170,49 @@ def main():
 
     products, failures = {}, 0
 
-    for key, (metric, sources) in PRODUCTS.items():
-        counts = dict((previous.get(key) or {}).get("sources") or {})
+    for slug in SLUGS:
+        was = previous.get(slug) or {}
+        entry = {}
 
+        # 1. Clicks on this site's own buttons — every product has these.
+        try:
+            clicks, per_action = collect_clicks(slug)
+            entry["clicks"] = clicks
+            if per_action:
+                entry["buttons"] = per_action
+            print(f"{slug}/clicks: {clicks} {per_action or ''}")
+        except (urllib.error.URLError, ValueError, KeyError, TimeoutError, OSError) as err:
+            failures += 1
+            entry["clicks"] = was.get("clicks", 0)
+            if was.get("buttons"):
+                entry["buttons"] = was["buttons"]
+            print(f"{slug}/clicks: FAILED ({err}) — keeping {entry['clicks']}", file=sys.stderr)
+
+        # 2. Whatever the stores or GitHub can tell us, where that exists.
+        metric, sources = PRODUCTS.get(slug, (None, {}))
+        counts = dict(was.get("sources") or {})
         for source, ident in sources.items():
             try:
                 counts[source] = COLLECTORS[source](ident)
-                print(f"{key}/{source}: {counts[source]}")
+                print(f"{slug}/{source}: {counts[source]}")
             except (urllib.error.URLError, ValueError, KeyError, TimeoutError, OSError) as err:
                 failures += 1
-                print(
-                    f"{key}/{source}: FAILED ({err}) — keeping {counts.get(source)}",
-                    file=sys.stderr,
-                )
+                print(f"{slug}/{source}: FAILED ({err}) — keeping {counts.get(source)}", file=sys.stderr)
 
         if counts:
-            products[key] = {
-                "count": sum(counts.values()),
-                "metric": metric,
-                "sources": counts,
-            }
+            entry["sources"] = counts
+            entry["store"] = {"count": sum(counts.values()), "metric": metric}
+
+        # The badge shows clicks — that's the one number every product has.
+        # Until anyone has clicked, fall back to the store figure.
+        if entry.get("clicks"):
+            entry["count"], entry["metric"] = entry["clicks"], "clicks"
+        elif "store" in entry:
+            entry["count"], entry["metric"] = entry["store"]["count"], entry["store"]["metric"]
+        else:
+            entry["count"], entry["metric"] = 0, "clicks"
+
+        products[slug] = entry
 
     OUT.write_text(
         json.dumps(

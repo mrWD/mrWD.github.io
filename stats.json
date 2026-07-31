@@ -1,42 +1,87 @@
 {
-  "generated": "2026-07-31T16:59:21Z",
+  "generated": "2026-07-31T17:23:13Z",
   "note": "Metrics differ per product — see the metric field. Not comparable.",
   "products": {
-    "double-subtitles": {
-      "count": 112,
-      "metric": "users",
+    "science-timeline": {
+      "clicks": 0,
+      "count": 0,
+      "metric": "clicks"
+    },
+    "lingary": {
+      "clicks": 0,
+      "count": 0,
+      "metric": "clicks"
+    },
+    "langs-db": {
+      "clicks": 0,
       "sources": {
-        "chrome": 112
-      }
+        "self_reported": 26
+      },
+      "store": {
+        "count": 26,
+        "metric": "visits"
+      },
+      "count": 26,
+      "metric": "visits"
+    },
+    "film-table": {
+      "clicks": 0,
+      "count": 0,
+      "metric": "clicks"
+    },
+    "games-table": {
+      "clicks": 0,
+      "count": 0,
+      "metric": "clicks"
+    },
+    "ai-job-search": {
+      "clicks": 0,
+      "sources": {
+        "github_releases": 25
+      },
+      "store": {
+        "count": 25,
+        "metric": "downloads"
+      },
+      "count": 25,
+      "metric": "downloads"
+    },
+    "ai-screen-translator": {
+      "clicks": 0,
+      "sources": {
+        "github_releases": 0
+      },
+      "store": {
+        "count": 0,
+        "metric": "downloads"
+      },
+      "count": 0,
+      "metric": "downloads"
     },
     "ai-prompt-suggester": {
-      "count": 10,
-      "metric": "users",
+      "clicks": 0,
       "sources": {
         "chrome": 9,
         "firefox": 1
-      }
+      },
+      "store": {
+        "count": 10,
+        "metric": "users"
+      },
+      "count": 10,
+      "metric": "users"
     },
-    "ai-job-search": {
-      "count": 23,
-      "metric": "downloads",
+    "double-subtitles": {
+      "clicks": 0,
       "sources": {
-        "github_releases": 23
-      }
-    },
-    "ai-screen-translator": {
-      "count": 0,
-      "metric": "downloads",
-      "sources": {
-        "github_releases": 0
-      }
-    },
-    "langs-db": {
-      "count": 26,
-      "metric": "visits",
-      "sources": {
-        "self_reported": 26
-      }
+        "chrome": 112
+      },
+      "store": {
+        "count": 112,
+        "metric": "users"
+      },
+      "count": 112,
+      "metric": "users"
     }
   }
 }
