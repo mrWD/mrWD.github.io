@@ -100,9 +100,11 @@ const PROJECTS = [
     tags: ['macOS', 'Windows', 'Linux', 'Python', 'Local-first', 'MIT'],
     icon: '🎯',
     accent: '#6aa9ff',
-    status: 'In development',
+    status: 'Open source',
     links: [
       { label: 'Learn more', url: 'products/ai-job-search/' },
+      { label: 'Download', url: 'https://github.com/mrWD/ai-job-search/releases/latest' },
+      { label: 'GitHub', url: 'https://github.com/mrWD/ai-job-search', icon: 'github' },
     ],
   },
   {
