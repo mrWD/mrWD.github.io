@@ -124,6 +124,7 @@ const PROJECTS = [
   },
   {
     name: 'AI Prompt Suggester',
+    statsKey: 'ai-prompt-suggester', // matches a key in stats.json
     tagline: 'Better prompts, suggested where you already chat',
     description:
       'A lightbulb button inside 10+ AI chats — Claude, ChatGPT, Gemini, Perplexity, Copilot, Le Chat, Grok, DeepSeek, Qwen and LMArena — that rewrites what you typed into a sharper prompt, with examples.',
@@ -149,6 +150,7 @@ const PROJECTS = [
   },
   {
     name: 'Double Subtitles',
+    statsKey: 'double-subtitles', // matches a key in stats.json
     tagline: 'Two subtitle tracks at once, for language learners',
     description:
       'Shows your native and target language subtitles side by side on Netflix, Prime Video and Disney+. Styling and position are adjustable, and words you save go straight to Anki or Quizlet. No data collected.',
@@ -181,6 +183,39 @@ const ICONS = {
 
 const $ = (sel) => document.querySelector(sel);
 
+/* ------------------------------------------------------------------ stats */
+
+/* stats.json is refreshed once a day by .github/workflows/stats.yml. A count
+ * only earns a place on the card once it's big enough to mean something —
+ * "9 users" says less than saying nothing. */
+const USERS_THRESHOLD = 1000;
+
+let STATS = {};
+
+function formatUsers(n) {
+  // One decimal below 10, none above: 1.2k, 10k, 1.5M. 9999 lands on 10k.
+  const scale = (value, suffix) =>
+    `${value >= 10 ? Math.round(value) : Math.round(value * 10) / 10}${suffix}`;
+  return n >= 1_000_000 ? scale(n / 1_000_000, 'M') : scale(n / 1000, 'k');
+}
+
+/** The store number for a project, or null if it's absent or too small. */
+function usersFor(project) {
+  const count = project.statsKey && STATS[project.statsKey]?.users;
+  return typeof count === 'number' && count >= USERS_THRESHOLD ? count : null;
+}
+
+async function loadStats() {
+  try {
+    const res = await fetch('stats.json', { cache: 'no-cache' });
+    if (!res.ok) return;
+    STATS = (await res.json()).products || {};
+    if (Object.keys(STATS).length) renderGrid(); // repaint with the badges
+  } catch {
+    /* No stats, no badges. The page is complete without them. */
+  }
+}
+
 /** Deterministic accent for a project that doesn't name one. */
 function accentFor(project) {
   if (project.accent) return project.accent;
@@ -210,6 +245,15 @@ function buildCard(project) {
   if (project.status) {
     badge.textContent = project.status;
     badge.hidden = false;
+  }
+
+  const users = usersFor(project);
+  if (users) {
+    const pill = document.createElement('span');
+    pill.className = 'badge users';
+    pill.textContent = `${formatUsers(users)} users`;
+    pill.title = `${users.toLocaleString('en-US')} active users across the stores`;
+    badge.after(pill);
   }
 
   const tagline = node.querySelector('.card-tagline');
@@ -329,3 +373,4 @@ initSearch();
 renderFilters();
 renderGrid();
 $('#status').textContent = `${PROJECTS.length} project${PROJECTS.length === 1 ? '' : 's'}`;
+loadStats(); // fills in the user badges once the numbers arrive

@@ -1,0 +1,19 @@
+{
+  "generated": "2026-07-31T16:47:04Z",
+  "note": "Active users reported by the stores, not lifetime downloads.",
+  "products": {
+    "double-subtitles": {
+      "users": 112,
+      "sources": {
+        "chrome": 112
+      }
+    },
+    "ai-prompt-suggester": {
+      "users": 10,
+      "sources": {
+        "chrome": 9,
+        "firefox": 1
+      }
+    }
+  }
+}
