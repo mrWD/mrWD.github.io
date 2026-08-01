@@ -104,7 +104,7 @@ const PROJECTS = [
     status: 'Live',
     links: [
       { label: 'Learn more', url: 'products/books-table/' },
-      { label: 'Open app', url: 'https://mrwd.github.io/books-table/' },
+      { label: 'Open app', url: 'https://books-table-six.vercel.app' },
       { label: 'GitHub', url: 'https://github.com/mrWD/books-table', icon: 'github' },
     ],
   },
