@@ -93,6 +93,22 @@ const PROJECTS = [
     ],
   },
   {
+    name: 'BooksTable',
+    tagline: 'The books you’re reading, tracked page by page',
+    description:
+      'One tap logs a sitting, and the app tells you how many pages and hours are left. Progress, a wish list and a finished shelf, with recommendations built on the device from the authors and subjects you actually read. Open Library needs no key, so there is no server at all.',
+    category: 'Web app',
+    tags: ['PWA', 'Local-first', 'React', 'TypeScript', 'MIT'],
+    icon: '📚',
+    accent: '#e2a13c',
+    status: 'Live',
+    links: [
+      { label: 'Learn more', url: 'products/books-table/' },
+      { label: 'Open app', url: 'https://mrwd.github.io/books-table/' },
+      { label: 'GitHub', url: 'https://github.com/mrWD/books-table', icon: 'github' },
+    ],
+  },
+  {
     name: 'AI Job Search',
     statsKey: 'ai-job-search', // matches a key in stats.json
     tagline: 'A job hunt that runs while you do something else',

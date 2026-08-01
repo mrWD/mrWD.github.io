@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BooksTable — a reading tracker that lives in your browser</title>
+  <meta name="description" content="Track the books you read, page by page. No account, no backend for your data — the library stays on your device. Installs as a PWA on Android and iPhone." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="BooksTable" />
+  <meta property="og:description" content="A local-first reading tracker. One tap to log a sitting, your library stays on your device, works offline." />
+  <meta property="og:image" content="assets/book-light.png" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="stylesheet" href="../../product.css" />
+  <style>
+    :root { --accent: #e2a13c; --accent-2: #a78bfa; }
+    html[data-theme='light'] { --accent: #9a6408; --accent-2: #6a5ae0; }
+  </style>
+</head>
+<body>
+  <div class="glow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <div class="header-top">
+        <a class="brand" href="../../">
+          <span class="brand-mark">VL</span>
+          <span class="brand-text">Viktor Lavrov</span>
+        </a>
+        <nav class="header-links">
+          <a href="../../">All products</a>
+          <a href="https://github.com/mrWD/books-table" target="_blank" rel="noopener">GitHub</a>
+          <button id="theme-toggle" class="icon-btn" type="button" aria-label="Toggle colour theme">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path class="icon-moon" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/><g class="icon-sun"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></g></svg>
+          </button>
+        </nav>
+      </div>
+
+      <div class="hero">
+        <div class="hero-text">
+          <p class="eyebrow">Web app · Android, iPhone, desktop</p>
+        <h1 class="title">BooksTable</h1>
+        <p class="subtitle lead">
+          A tracker for the books you're reading, built to be opened for four seconds
+          when you put one down. One tap logs a sitting. Nothing is uploaded — the
+          library lives on your device.
+        </p>
+
+        <ul class="badges">
+          <li>Free</li>
+          <li>Open source (MIT)</li>
+          <li>No account</li>
+          <li>Installable PWA</li>
+          <li>Works offline</li>
+        </ul>
+
+        <div class="cta">
+          <a class="btn primary" href="https://mrwd.github.io/books-table/" target="_blank" rel="noopener">
+            <span>Open the app</span>
+            <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn" href="https://github.com/mrWD/books-table" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="solid" d="M12 1.7a10.3 10.3 0 0 0-3.26 20.07c.52.1.7-.22.7-.5v-1.9c-2.86.62-3.47-1.2-3.47-1.2-.47-1.2-1.15-1.52-1.15-1.52-.94-.64.07-.63.07-.63 1.04.07 1.58 1.07 1.58 1.07.92 1.58 2.42 1.13 3.01.86.1-.67.36-1.13.65-1.39-2.28-.26-4.68-1.14-4.68-5.08 0-1.12.4-2.04 1.06-2.76-.11-.26-.46-1.3.1-2.72 0 0 .86-.28 2.83 1.05a9.8 9.8 0 0 1 5.16 0c1.97-1.33 2.83-1.05 2.83-1.05.56 1.42.21 2.46.1 2.72.66.72 1.06 1.64 1.06 2.76 0 3.95-2.4 4.82-4.7 5.07.37.32.7.94.7 1.9v2.82c0 .28.18.6.71.5A10.3 10.3 0 0 0 12 1.7Z"/></svg>
+            <span>Source on GitHub</span>
+          </a>
+        </div>
+        </div>
+
+        <div class="hero-visual phone">
+          <img class="shot-light" src="assets/book-light.png" width="414" height="896" alt="A book page in BooksTable showing 312 of 496 pages read, a progress bar at 63 per cent, quick +10, +25 and +50 buttons, a field for an exact page, and a Mark as finished button." />
+          <img class="shot-dark" src="assets/book-dark.png" width="414" height="896" alt="A book page in BooksTable showing 312 of 496 pages read, a progress bar at 63 per cent, quick +10, +25 and +50 buttons, a field for an exact page, and a Mark as finished button. Shown in the app's dark theme." />
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="section" aria-labelledby="look">
+      <h2 id="look" class="section-title">What it looks like</h2>
+      <div class="shots-row">
+        <figure>
+          <a class="shot shot-light" href="assets/reading-light.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/reading-light.png" width="414" height="896" alt="The Reading tab with Continue, Not Started and Been a While sections. Each card shows the position, such as p. 312 / 496 at 63 per cent, and a +10 button." loading="lazy" decoding="async" /></a>
+          <a class="shot shot-dark" href="assets/reading-dark.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/reading-dark.png" width="414" height="896" alt="The Reading tab with Continue, Not Started and Been a While sections. Each card shows the position, such as p. 312 / 496 at 63 per cent, and a +10 button. Shown in the app's dark theme." loading="lazy" decoding="async" /></a>
+          <figcaption>Reading — where you are in each book, and one tap to move</figcaption>
+        </figure>
+        <figure>
+          <a class="shot shot-light" href="assets/shelf-light.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/shelf-light.png" width="414" height="896" alt="The Want to read shelf listing Piranesi, Sapiens and Six of Crows, each with a START button." loading="lazy" decoding="async" /></a>
+          <a class="shot shot-dark" href="assets/shelf-dark.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/shelf-dark.png" width="414" height="896" alt="The Want to read shelf listing Piranesi, Sapiens and Six of Crows, each with a START button. Shown in the app's dark theme." loading="lazy" decoding="async" /></a>
+          <figcaption>Shelf — what's waiting, one tap from being started</figcaption>
+        </figure>
+        <figure>
+          <a class="shot shot-light" href="assets/explore-light.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/explore-light.png" width="414" height="896" alt="A For you list where each suggestion carries a line explaining it, such as “More by Andy Weir” or “More in Science Fiction”." loading="lazy" decoding="async" /></a>
+          <a class="shot shot-dark" href="assets/explore-dark.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/explore-dark.png" width="414" height="896" alt="A For you list where each suggestion carries a line explaining it, such as “More by Andy Weir” or “More in Science Fiction”. Shown in the app's dark theme." loading="lazy" decoding="async" /></a>
+          <figcaption>For you — built from your shelves, and it says why</figcaption>
+        </figure>
+        <figure>
+          <a class="shot shot-light" href="assets/search-light.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/search-light.png" width="414" height="896" alt="Search results for “ursula k. le guin” with the AUTHOR scope selected, listing The Dispossessed, The Left Hand of Darkness and A Wizard of Earthsea with covers, years, page counts and ratings." loading="lazy" decoding="async" /></a>
+          <a class="shot shot-dark" href="assets/search-dark.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/search-dark.png" width="414" height="896" alt="Search results for “ursula k. le guin” with the AUTHOR scope selected, listing The Dispossessed, The Left Hand of Darkness and A Wizard of Earthsea with covers, years, page counts and ratings. Shown in the app's dark theme." loading="lazy" decoding="async" /></a>
+          <figcaption>Search — scoped to all, title or author</figcaption>
+        </figure>
+        <figure>
+          <a class="shot shot-light" href="assets/profile-light.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/profile-light.png" width="414" height="896" alt="The Profile tab showing 1793 pages, 44 hours 50 minutes of reading time, 3 finished and 4 in progress, above shelves of covers grouped by status." loading="lazy" decoding="async" /></a>
+          <a class="shot shot-dark" href="assets/profile-dark.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/profile-dark.png" width="414" height="896" alt="The Profile tab showing 1793 pages, 44 hours 50 minutes of reading time, 3 finished and 4 in progress, above shelves of covers grouped by status. Shown in the app's dark theme." loading="lazy" decoding="async" /></a>
+          <figcaption>Profile — pages, hours, and the year added up</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="features">
+      <h2 id="features" class="section-title">What it does</h2>
+      <ul class="feature-grid">
+        <li>
+          <span class="feature-icon" aria-hidden="true">📖</span>
+          <h3>A list that knows where you stopped</h3>
+          <p>Continue, Not Started and Been a While. Each card shows the page you're on (<code>p. 312 / 496</code>) and moves forward with one tap — with Undo.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🔖</span>
+          <h3>Pages, not vague percentages</h3>
+          <p>Quick <code>+10 / +25 / +50</code> steps or the exact page you closed on. The page count comes from the catalogue and you can correct it for the edition actually in your hands.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">⏳</span>
+          <h3>How much is left, in hours</h3>
+          <p>“184 pages left — about 4h 36m at an average pace.” An estimate, and the app says so rather than pretending to know how fast you read.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">✨</span>
+          <h3>Recommendations that explain themselves</h3>
+          <p>“For you” is computed on your device from your own shelves — the authors you finished and the subjects those books share. Anything already in your library is left out, and every card says why it's there.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🔎</span>
+          <h3>Search that stays on the book</h3>
+          <p>Scoped to ALL, TITLE or AUTHOR, with unofficial “summaries” and workbooks pushed below the book they were written about. Trending this week and a genre strip when you have nothing to type.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">📊</span>
+          <h3>Your year, added up</h3>
+          <p>Pages read, hours, books finished and the months you actually read in — computed from your own reading log, which never leaves the browser. JSON export/import moves the lot to another device.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="data">
+      <h2 id="data" class="section-title">Where the data lives</h2>
+      <p class="prose">
+        Your library never leaves the device — it's stored in the browser's own
+        <code>localStorage</code>. There's no sync and no account, so moving to a new
+        phone means Profile → Export on the old one and Import on the new one.
+      </p>
+      <p class="note">
+        Book data and covers come from
+        <a href="https://openlibrary.org" target="_blank" rel="noopener">Open Library</a>,
+        a project of the Internet Archive. It needs no key and allows browser requests
+        directly, which is why this app has no server component at all — not even a proxy.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="install">
+      <h2 id="install" class="section-title">Installing it</h2>
+      <div class="platforms">
+        <div class="platform">
+          <h3>iPhone</h3>
+          <p>Open it in Safari, then Share → <b>Add to Home Screen</b>.</p>
+        </div>
+        <div class="platform">
+          <h3>Android</h3>
+          <p>Open it in Chrome and accept the <b>Install</b> prompt, or use the menu → Install app.</p>
+        </div>
+        <div class="platform">
+          <h3>Desktop</h3>
+          <p>It just runs in the browser — no install needed.</p>
+        </div>
+      </div>
+      <p class="note">
+        Installing is worth it for a reason beyond convenience: Safari clears
+        script-writable storage for sites you haven't opened in a while, so a reading
+        log kept in a browser tab can quietly disappear. Installed to the home screen,
+        it's exempt — and it opens like an app and works offline.
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="https://mrwd.github.io/books-table/" target="_blank" rel="noopener">
+          <span>Open BooksTable</span>
+          <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="honest">
+      <h2 id="honest" class="section-title">What it isn't</h2>
+      <p class="prose">
+        A free project, not affiliated with the Internet Archive, Goodreads or any
+        bookseller. There are no affiliate links and nothing to buy. Being local-first
+        also means no friends, no reviews and no sync between devices — those need a
+        server and accounts, which is exactly what this doesn't have.
+      </p>
+      <p class="note">
+        Book series aren't modelled yet: Open Library's series data is inconsistent
+        enough that a cycle currently shows up as separate books. Coverage of
+        non-English editions is thinner than English, though searching in Cyrillic
+        does work.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><a href="../../">← All products</a> · Found a bug or missing a feature? <a href="https://github.com/mrWD/books-table/issues" target="_blank" rel="noopener">Open an issue</a> · <a href="../../legal/">Legal &amp; privacy</a>.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem('products-page:theme');
+      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      document.documentElement.dataset.theme = saved || (prefersLight ? 'light' : 'dark');
+      document.getElementById('theme-toggle').addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem('products-page:theme', next);
+      });
+    })();
+  </script>
+  <script src="../../track.js"></script>
+</body>
+</html>
