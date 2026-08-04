@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-03T07:51:30Z",
+  "generated": "2026-08-04T06:44:30Z",
   "note": "Metrics differ per product — see the metric field. Not comparable.",
   "products": {
     "science-timeline": {
@@ -42,19 +42,19 @@
       "metric": "clicks"
     },
     "ai-job-search": {
-      "clicks": 29,
+      "clicks": 40,
       "buttons": {
-        "download": 29,
-        "source": 3
+        "download": 40,
+        "source": 4
       },
       "sources": {
-        "github_releases": 49
+        "github_releases": 63
       },
       "store": {
-        "count": 49,
+        "count": 63,
         "metric": "downloads"
       },
-      "count": 29,
+      "count": 40,
       "metric": "clicks"
     },
     "ai-screen-translator": {
@@ -85,13 +85,13 @@
     "double-subtitles": {
       "clicks": 0,
       "sources": {
-        "chrome": 107
+        "chrome": 104
       },
       "store": {
-        "count": 107,
+        "count": 104,
         "metric": "users"
       },
-      "count": 107,
+      "count": 104,
       "metric": "users"
     }
   }
