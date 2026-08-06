@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lingary — privacy policy</title>
+  <meta name="description" content="What Lingary stores, what leaves your device and where it goes. No servers, no accounts, no tracking — your speech goes straight to the AI provider whose key you entered." />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗣️</text></svg>" />
+  <link rel="stylesheet" href="../../../styles.css" />
+  <link rel="stylesheet" href="../../../product.css" />
+  <style>
+    :root { --accent: #ff8f6b; --accent-2: #7c9cff; }
+    html[data-theme='light'] { --accent: #c2410c; --accent-2: #3b5ce0; }
+
+    /* Page-scoped: the provider table. There's no table style in the shared
+       sheets — this is the only page that needs one. */
+    .table-scroll { overflow-x: auto; margin: 0 0 1.1rem; }
+
+    .providers {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 32rem;
+      font-size: 0.95rem;
+    }
+
+    .providers th,
+    .providers td {
+      text-align: left;
+      padding: 0.6rem 0.7rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .providers th { font-weight: 600; color: var(--text); }
+    .providers td { color: var(--text-muted); }
+    .providers td:first-child { color: var(--text); white-space: nowrap; }
+
+    /* Language switch, same pill shape as .chips elsewhere on the site. */
+    .langbar { display: flex; gap: 0.5rem; margin: 1.25rem 0 0; }
+
+    .langbar button {
+      font: inherit;
+      font-size: 0.875rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .langbar button:hover { background: var(--surface-hover); }
+
+    .langbar button[aria-pressed='true'] {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--bg);
+    }
+
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <div class="glow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <div class="header-top">
+        <a class="brand" href="../../../">
+          <span class="brand-mark">VL</span>
+          <span class="brand-text">Viktor Lavrov</span>
+        </a>
+        <!-- Three items, same as every other page. A fourth ("Lingary") pushed
+             the nav past 375px and gave the page a horizontal scrollbar on
+             phones; the footer link back to the product covers that need, which
+             is how legal/ does it too. -->
+        <nav class="header-links">
+          <a href="../../../">All products</a>
+          <a href="https://github.com/mrWD" target="_blank" rel="noopener">GitHub</a>
+          <button id="theme-toggle" class="icon-btn" type="button" aria-label="Toggle colour theme">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path class="icon-moon" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/><g class="icon-sun"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></g></svg>
+          </button>
+        </nav>
+      </div>
+
+      <p class="eyebrow" id="hdr-eyebrow">Last updated 6 August 2026</p>
+      <h1 class="title" id="hdr-title">Lingary — privacy policy</h1>
+      <p class="subtitle lead" id="hdr-lead">
+        Lingary has no servers and no accounts. Your learning stays on your phone,
+        and when you talk to an AI provider you talk to it directly, with your own key.
+      </p>
+
+      <div class="langbar">
+        <button type="button" data-lang="en" aria-pressed="true">English</button>
+        <button type="button" data-lang="ru" aria-pressed="false">Русский</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ───────────────────────────────  ENGLISH  ─────────────────────────────── -->
+  <main class="wrap" id="lang-en">
+
+    <section class="section" aria-labelledby="en-scope">
+      <h2 id="en-scope" class="section-title">What this covers</h2>
+      <p class="prose">
+        This policy is about the <b>Lingary iOS app</b>. The site you're reading it on is
+        covered separately by <a href="../../../legal/">Legal &amp; privacy</a>.
+      </p>
+      <p class="prose">
+        Lingary is an independent project. There is no company backend, no sign-up and no
+        user account. "We" below means the developer of the app.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="en-device">
+      <h2 id="en-device" class="section-title">What stays on your device</h2>
+      <p class="prose">
+        Everything the app knows about your learning is kept locally: your language profile
+        and level, your word bank and spaced-repetition schedule, the full text of your
+        conversations with the tutor, and your session analyses, missions, grammar notes and
+        statistics.
+      </p>
+      <p class="prose">
+        That database is stored with iOS file protection enabled, so it is encrypted at rest
+        and unreadable while the device is locked. API keys are kept separately in the iOS
+        Keychain, marked device-only and excluded from backups. <b>None of it is transmitted
+        to us at any point.</b>
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="en-providers">
+      <h2 id="en-providers" class="section-title">AI providers (online mode)</h2>
+      <p class="prose">
+        Lingary is bring-your-own-key. You pick a provider and enter an API key you obtained
+        yourself; from then on the app talks to that provider <b>directly from your device</b>,
+        authenticating as you.
+      </p>
+      <p class="prose">Depending on which features you use, it may send:</p>
+      <ul class="prose">
+        <li><b>Audio</b> from your microphone — during a voice conversation, or for speech-to-text.</li>
+        <li><b>Text</b> — your messages, the tutor's replies, and a session transcript when it's analysed.</li>
+        <li><b>Words and phrases</b> from your word bank, when you ask for examples or exercises.</li>
+      </ul>
+
+      <div class="table-scroll">
+        <table class="providers">
+          <thead>
+            <tr><th>Provider</th><th>Used for</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>OpenAI</td><td>Conversation, analysis, speech-to-text, text-to-speech, live voice</td></tr>
+            <tr><td>Google (Gemini)</td><td>Conversation, analysis, speech-to-text, text-to-speech, live voice</td></tr>
+            <tr><td>Groq</td><td>Speech-to-text; conversation via the OpenAI-compatible option</td></tr>
+            <tr><td>Fish Audio</td><td>Text-to-speech</td></tr>
+            <tr><td>OpenRouter, DeepSeek, Mistral</td><td>Conversation and analysis, via the OpenAI-compatible option</td></tr>
+            <tr><td>Any custom endpoint</td><td>Whatever you configure it for</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="prose">
+        <b>We are not a party to these requests.</b> We don't proxy them, log them or hold
+        credentials for them. What a provider does with the data — how long it keeps it,
+        whether it trains on it — is governed by <em>their</em> terms and privacy policy, under
+        the account your key belongs to. Read the policy of whichever provider you choose.
+      </p>
+      <p class="note">
+        If you enter a custom endpoint, all of the above goes to whatever address you typed.
+        Only point it at a server you run or trust.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="en-offline">
+      <h2 id="en-offline" class="section-title">Offline mode</h2>
+      <p class="prose">
+        Lingary can run entirely on your phone, using a downloaded language model together
+        with on-device speech recognition and speech synthesis. Apple's on-device
+        transcription and Apple Intelligence, where your device supports them, also run
+        locally and are handled by iOS.
+      </p>
+      <p class="prose">
+        In offline mode <b>nothing leaves your device</b> — no audio, no text, no network
+        request at all.
+      </p>
+      <p class="note">
+        Turning offline mode on downloads model files from
+        <a href="https://huggingface.co" target="_blank" rel="noopener">Hugging Face</a>.
+        Those are ordinary file downloads, pinned to fixed versions and checksum-verified;
+        they carry no personal data.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="en-permissions">
+      <h2 id="en-permissions" class="section-title">Permissions the app asks for</h2>
+      <ul class="prose">
+        <li><b>Microphone</b> — needed for voice conversations. Audio is either processed on
+          your device or sent to the provider you chose, as above. It is never recorded for us.</li>
+        <li><b>Speech recognition</b> — used by the on-device transcription built into iOS.</li>
+        <li><b>Notifications</b> — optional. Practice reminders and word-of-the-day
+          notifications are scheduled locally. There is no push server.</li>
+        <li><b>Camera</b> — iOS may show a camera permission string because the real-time voice
+          library the app links against references camera APIs. <b>Lingary never opens the
+          camera</b> and captures no photo or video.</li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="en-feedback">
+      <h2 id="en-feedback" class="section-title">Feedback form</h2>
+      <p class="prose">
+        The app has an optional feedback form. This is the one place data reaches us, and only
+        when you tap Send. A submission creates a ticket in
+        <a href="https://linear.app" target="_blank" rel="noopener">Linear</a>, a third-party
+        issue tracker.
+      </p>
+      <p class="prose">
+        It contains the text you wrote and — <em>only if you leave that switch on</em> — your app
+        version, iOS version, device model, language settings and which AI provider you've
+        selected. No account identifier, no device identifier, and none of your conversations
+        or vocabulary.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="en-files">
+      <h2 id="en-files" class="section-title">Backups and diagnostic exports</h2>
+      <p class="prose">
+        You can export a backup to move to a new phone. It is unencrypted JSON containing your
+        learning data and conversation history. <b>API keys are never written into it.</b> Once
+        you've shared that file nothing protects it — treat it as a private document.
+      </p>
+      <p class="prose">
+        You can also generate a diagnostic export when something goes wrong. You choose what
+        goes in, it's created only when you ask, it's deleted once you close the share sheet,
+        and it is never sent anywhere automatically.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="en-links">
+      <h2 id="en-links" class="section-title">Links out of the app</h2>
+      <p class="prose">
+        Tapping a media recommendation opens a search on YouTube, Goodreads or Google. The app
+        passes the search text and nothing else — never who you are or what you've been
+        studying. Settings also has ordinary links to this site and, on some storefronts, to
+        donation pages. Following any of them is subject to the privacy policy of wherever you
+        land.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="en-never">
+      <h2 id="en-never" class="section-title">What Lingary doesn't do</h2>
+      <ul class="prose">
+        <li>No analytics or telemetry SDKs</li>
+        <li>No advertising and no advertising identifiers</li>
+        <li>No third-party trackers</li>
+        <li>No accounts, no registration, no email collection</li>
+        <li>No selling or sharing of personal data — none is collected in the first place</li>
+        <li>No cross-app or cross-site tracking</li>
+      </ul>
+      <p class="note">
+        Lingary does not collect personal information from anyone, including children. There is
+        no account, no profile visible to us and no communication with other users.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="en-control">
+      <h2 id="en-control" class="section-title">Your control over your data</h2>
+      <ul class="prose">
+        <li><b>Settings → Backup &amp; Data</b> erases your history, word bank and API keys at any time.</li>
+        <li>Deleting the app removes the local database with it.</li>
+        <li>Anything already sent to an AI provider sits under <em>your</em> account with them —
+          use their dashboard or support to review or delete it.</li>
+      </ul>
+      <p class="prose">
+        If you have statutory data rights (GDPR, CCPA and similar): we hold no personal data
+        about you, so there is nothing for us to disclose, correct or delete. For data held by
+        an AI provider, that provider is the controller and you are their customer.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="en-changes">
+      <h2 id="en-changes" class="section-title">Changes and contact</h2>
+      <p class="prose">
+        This page is updated when the app's data handling changes; the date at the top says when
+        it last was, and the
+        <a href="https://github.com/mrWD/mrWD.github.io/commits/master/products/lingary/privacy/index.html" target="_blank" rel="noopener">commit history</a>
+        shows exactly what changed.
+      </p>
+      <p class="prose">
+        Questions: use the in-app feedback form (Settings → Feedback), or email
+        <a href="mailto:lvigtor@gmail.com">lvigtor@gmail.com</a>.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- ───────────────────────────────  РУССКИЙ  ─────────────────────────────── -->
+  <main class="wrap" id="lang-ru" hidden>
+
+    <section class="section" aria-labelledby="ru-scope">
+      <h2 id="ru-scope" class="section-title">К чему это относится</h2>
+      <p class="prose">
+        Политика описывает <b>приложение Lingary для iOS</b>. Сайт, на котором вы её читаете,
+        покрыт отдельно — страницей <a href="../../../legal/">Legal &amp; privacy</a>.
+      </p>
+      <p class="prose">
+        Lingary — независимый проект. У него нет серверной части, регистрации и учётных
+        записей. «Мы» ниже означает разработчика приложения.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="ru-device">
+      <h2 id="ru-device" class="section-title">Что остаётся на устройстве</h2>
+      <p class="prose">
+        Всё, что приложение знает о вашей учёбе, хранится локально: языковой профиль и уровень,
+        словарь и расписание повторений, полный текст разговоров с тьютором, разборы занятий,
+        задания, заметки по грамматике и статистика.
+      </p>
+      <p class="prose">
+        База данных хранится с включённой защитой файлов iOS: зашифрована на диске и недоступна
+        для чтения, пока устройство заблокировано. API-ключи лежат отдельно, в Keychain,
+        помечены как привязанные к устройству и исключены из резервных копий. <b>Ничего из этого
+        нам не передаётся.</b>
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="ru-providers">
+      <h2 id="ru-providers" class="section-title">AI-провайдеры (онлайн-режим)</h2>
+      <p class="prose">
+        Lingary работает по принципу «свой ключ». Вы выбираете провайдера и вводите API-ключ,
+        который получили сами; дальше приложение обращается к нему <b>напрямую с вашего
+        устройства</b>, от вашего имени.
+      </p>
+      <p class="prose">В зависимости от используемых функций может отправляться:</p>
+      <ul class="prose">
+        <li><b>Аудио</b> с микрофона — во время голосового разговора или для распознавания речи.</li>
+        <li><b>Текст</b> — ваши сообщения, ответы тьютора и транскрипт занятия при его разборе.</li>
+        <li><b>Слова и фразы</b> из словаря — когда вы просите примеры или упражнения.</li>
+      </ul>
+
+      <div class="table-scroll">
+        <table class="providers">
+          <thead>
+            <tr><th>Провайдер</th><th>Для чего</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>OpenAI</td><td>Разговор, разбор, распознавание и синтез речи, живой голос</td></tr>
+            <tr><td>Google (Gemini)</td><td>Разговор, разбор, распознавание и синтез речи, живой голос</td></tr>
+            <tr><td>Groq</td><td>Распознавание речи; разговор — через OpenAI-совместимый режим</td></tr>
+            <tr><td>Fish Audio</td><td>Синтез речи</td></tr>
+            <tr><td>OpenRouter, DeepSeek, Mistral</td><td>Разговор и разбор, через OpenAI-совместимый режим</td></tr>
+            <tr><td>Любой свой эндпоинт</td><td>То, для чего вы его настроите</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="prose">
+        <b>Мы не участвуем в этих запросах.</b> Не проксируем, не логируем и не храним для них
+        учётных данных. Что провайдер делает с данными — сколько хранит, обучается ли на них —
+        определяют <em>его</em> условия и политика, в рамках учётной записи, которой принадлежит
+        ваш ключ. Прочитайте политику того провайдера, которого выбрали.
+      </p>
+      <p class="note">
+        Если вы указали свой эндпоинт, всё перечисленное уходит по тому адресу, который вы
+        вписали. Указывайте только сервер, который держите сами или которому доверяете.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="ru-offline">
+      <h2 id="ru-offline" class="section-title">Офлайн-режим</h2>
+      <p class="prose">
+        Lingary умеет работать полностью на телефоне: со скачанной языковой моделью, локальным
+        распознаванием и синтезом речи. Системное распознавание Apple и Apple Intelligence, если
+        устройство их поддерживает, тоже выполняются локально силами iOS.
+      </p>
+      <p class="prose">
+        В офлайн-режиме <b>с устройства не уходит ничего</b> — ни аудио, ни текст, ни один
+        сетевой запрос.
+      </p>
+      <p class="note">
+        Включение офлайн-режима скачивает файлы моделей с
+        <a href="https://huggingface.co" target="_blank" rel="noopener">Hugging Face</a>. Это
+        обычная загрузка файлов, закреплённая за фиксированными версиями и проверяемая по
+        контрольной сумме; персональных данных она не несёт.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="ru-permissions">
+      <h2 id="ru-permissions" class="section-title">Запрашиваемые разрешения</h2>
+      <ul class="prose">
+        <li><b>Микрофон</b> — нужен для голосовых разговоров. Аудио либо обрабатывается на
+          устройстве, либо уходит выбранному провайдеру, как описано выше. Для нас оно не
+          записывается никогда.</li>
+        <li><b>Распознавание речи</b> — используется встроенным в iOS распознаванием на устройстве.</li>
+        <li><b>Уведомления</b> — по желанию. Напоминания и «слово дня» планируются локально.
+          Push-сервера нет.</li>
+        <li><b>Камера</b> — iOS может показать строку о доступе к камере, потому что библиотека
+          живого голоса, с которой собрано приложение, ссылается на API камеры. <b>Lingary камеру
+          никогда не открывает</b> и не снимает ни фото, ни видео.</li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="ru-feedback">
+      <h2 id="ru-feedback" class="section-title">Форма обратной связи</h2>
+      <p class="prose">
+        В приложении есть необязательная форма обратной связи. Это единственное место, где данные
+        попадают к нам, и только когда вы нажимаете «Отправить». Отправка создаёт задачу в
+        <a href="https://linear.app" target="_blank" rel="noopener">Linear</a> — стороннем трекере
+        задач.
+      </p>
+      <p class="prose">
+        В неё попадает написанный вами текст и — <em>только если оставлен включённым
+        соответствующий переключатель</em> — версия приложения, версия iOS, модель устройства,
+        языковые настройки и выбранный AI-провайдер. Ни идентификатора учётной записи, ни
+        идентификатора устройства, ни ваших разговоров и словаря.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="ru-files">
+      <h2 id="ru-files" class="section-title">Резервные копии и диагностика</h2>
+      <p class="prose">
+        Вы можете выгрузить резервную копию для переезда на новый телефон. Это незашифрованный
+        JSON с учебными данными и историей разговоров. <b>API-ключи в него не попадают никогда.</b>
+        После того как вы поделились файлом, его ничто не защищает — обращайтесь с ним как с
+        личным документом.
+      </p>
+      <p class="prose">
+        Ещё можно собрать диагностический экспорт, когда что-то пошло не так. Состав выбираете вы,
+        файл создаётся только по запросу, удаляется после закрытия окна «Поделиться» и никуда не
+        отправляется автоматически.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="ru-links">
+      <h2 id="ru-links" class="section-title">Переходы наружу</h2>
+      <p class="prose">
+        Нажатие на рекомендацию открывает поиск на YouTube, Goodreads или Google. Приложение
+        передаёт текст запроса и больше ничего — никогда не сообщает, кто вы и что изучаете. В
+        настройках также есть обычные ссылки на этот сайт и, в некоторых регионах, на страницы
+        поддержки проекта. Переход по любой из них подчиняется политике того сайта, куда вы
+        попали.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="ru-never">
+      <h2 id="ru-never" class="section-title">Чего Lingary не делает</h2>
+      <ul class="prose">
+        <li>Никаких SDK аналитики и телеметрии</li>
+        <li>Никакой рекламы и рекламных идентификаторов</li>
+        <li>Никаких сторонних трекеров</li>
+        <li>Никаких учётных записей, регистрации и сбора адресов почты</li>
+        <li>Никакой продажи и передачи персональных данных — их попросту не собирают</li>
+        <li>Никакого межприложенческого и межсайтового отслеживания</li>
+      </ul>
+      <p class="note">
+        Lingary не собирает персональные данные ни у кого, включая детей. Нет учётных записей,
+        нет видимого нам профиля, нет общения с другими пользователями.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="ru-control">
+      <h2 id="ru-control" class="section-title">Контроль над своими данными</h2>
+      <ul class="prose">
+        <li><b>Настройки → Резервная копия и данные</b> — в любой момент стирает историю, словарь
+          и API-ключи.</li>
+        <li>Удаление приложения уносит локальную базу вместе с собой.</li>
+        <li>То, что уже отправлено AI-провайдеру, находится в <em>вашей</em> учётной записи у
+          него — смотреть и удалять через его панель или поддержку.</li>
+      </ul>
+      <p class="prose">
+        Если на вас распространяются законные права на данные (GDPR, CCPA и подобные):
+        персональных данных о вас у нас нет, поэтому раскрывать, исправлять или удалять нам
+        нечего. За данные на стороне AI-провайдера отвечает сам провайдер, а вы — его клиент.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="ru-changes">
+      <h2 id="ru-changes" class="section-title">Изменения и контакты</h2>
+      <p class="prose">
+        Страница обновляется, когда меняется обращение приложения с данными; дата наверху говорит,
+        когда это было в последний раз, а
+        <a href="https://github.com/mrWD/mrWD.github.io/commits/master/products/lingary/privacy/index.html" target="_blank" rel="noopener">история коммитов</a>
+        показывает, что именно изменилось.
+      </p>
+      <p class="prose">
+        Вопросы: форма обратной связи в приложении (Настройки → Обратная связь) или почта
+        <a href="mailto:lvigtor@gmail.com">lvigtor@gmail.com</a>.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><a href="../">← Lingary</a> · <a href="../../../">All products</a> · <a href="../../../legal/">Legal &amp; privacy</a></p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem('products-page:theme');
+      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      document.documentElement.dataset.theme = saved || (prefersLight ? 'light' : 'dark');
+      document.getElementById('theme-toggle').addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem('products-page:theme', next);
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      const panes = { en: document.getElementById('lang-en'), ru: document.getElementById('lang-ru') };
+      const buttons = document.querySelectorAll('.langbar button');
+      const header = {
+        eyebrow: document.getElementById('hdr-eyebrow'),
+        title: document.getElementById('hdr-title'),
+        lead: document.getElementById('hdr-lead')
+      };
+      const copy = {
+        en: {
+          eyebrow: 'Last updated 6 August 2026',
+          title: 'Lingary — privacy policy',
+          lead: 'Lingary has no servers and no accounts. Your learning stays on your phone, and when you talk to an AI provider you talk to it directly, with your own key.'
+        },
+        ru: {
+          eyebrow: 'Обновлено 6 августа 2026',
+          title: 'Lingary — политика конфиденциальности',
+          lead: 'У Lingary нет серверов и учётных записей. Учёба остаётся на вашем телефоне, а с AI-провайдером вы общаетесь напрямую, со своим ключом.'
+        }
+      };
+
+      function show(lang) {
+        Object.keys(panes).forEach((key) => { panes[key].hidden = key !== lang; });
+        buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+        header.eyebrow.textContent = copy[lang].eyebrow;
+        header.title.textContent = copy[lang].title;
+        header.lead.textContent = copy[lang].lead;
+        document.documentElement.lang = lang;
+        try { localStorage.setItem('lingary-privacy:lang', lang); } catch (e) {}
+      }
+
+      buttons.forEach((b) => b.addEventListener('click', () => show(b.dataset.lang)));
+
+      let saved = null;
+      try { saved = localStorage.getItem('lingary-privacy:lang'); } catch (e) {}
+      // Parenthesised deliberately: `||` binds tighter than `?:`, so without this
+      // a saved 'en' is truthy and the ternary hands back 'ru'.
+      show(saved || ((navigator.language || '').slice(0, 2) === 'ru' ? 'ru' : 'en'));
+    })();
+  </script>
+
+  <script src="../../../track.js"></script>
+</body>
+</html>
