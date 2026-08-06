@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lingary — terms of use</title>
+  <meta name="description" content="Terms for the Lingary iOS app: bring-your-own-key, no account, and the use restrictions that come with the on-device voice model." />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗣️</text></svg>" />
+  <link rel="stylesheet" href="../../../styles.css" />
+  <link rel="stylesheet" href="../../../product.css" />
+  <style>
+    :root { --accent: #ff8f6b; --accent-2: #7c9cff; }
+    html[data-theme='light'] { --accent: #c2410c; --accent-2: #3b5ce0; }
+
+    /* Language switch, same pill shape as .chips elsewhere on the site. */
+    .langbar { display: flex; gap: 0.5rem; margin: 1.25rem 0 0; }
+
+    .langbar button {
+      font: inherit;
+      font-size: 0.875rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .langbar button:hover { background: var(--surface-hover); }
+
+    .langbar button[aria-pressed='true'] {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--bg);
+    }
+
+    /* Page-scoped: the verbatim OpenRAIL-M restriction list. It is quoted
+       rather than paraphrased because the license requires it to travel intact,
+       so it gets a visual boundary that says "this text is not mine". */
+    .quoted {
+      border-left: 3px solid var(--border-strong);
+      padding: 0.15rem 0 0.15rem 1rem;
+      margin: 0 0 1.1rem;
+    }
+
+    .quoted li { margin-bottom: 0.35rem; }
+
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <div class="glow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <div class="header-top">
+        <a class="brand" href="../../../">
+          <span class="brand-mark">VL</span>
+          <span class="brand-text">Viktor Lavrov</span>
+        </a>
+        <nav class="header-links">
+          <a href="../../../">All products</a>
+          <a href="https://github.com/mrWD" target="_blank" rel="noopener">GitHub</a>
+          <button id="theme-toggle" class="icon-btn" type="button" aria-label="Toggle colour theme">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path class="icon-moon" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/><g class="icon-sun"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></g></svg>
+          </button>
+        </nav>
+      </div>
+
+      <p class="eyebrow" id="hdr-eyebrow">Last updated 6 August 2026</p>
+      <h1 class="title" id="hdr-title">Lingary — terms of use</h1>
+      <p class="subtitle lead" id="hdr-lead">
+        Lingary is a one-person project with no account and no subscription. These terms say
+        what you can expect from it, and the one set of restrictions that travels with the
+        on-device voice.
+      </p>
+
+      <div class="langbar">
+        <button type="button" data-lang="en" aria-pressed="true">English</button>
+        <button type="button" data-lang="ru" aria-pressed="false">Русский</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ───────────────────────────────  ENGLISH  ─────────────────────────────── -->
+  <main class="wrap" id="lang-en">
+
+    <section class="section" aria-labelledby="en-scope">
+      <h2 id="en-scope" class="section-title">1. What this covers</h2>
+      <p class="prose">
+        These terms govern your use of the <b>Lingary iOS app</b>. By installing or using the
+        app you accept them. If you don't, don't use the app — deleting it removes its local
+        database with it.
+      </p>
+      <p class="prose">
+        Lingary is an independent project by an individual developer, referred to below as
+        "we". There is no company, no backend and no user account. How your data is handled is
+        described separately in the <a href="../privacy/">privacy policy</a>.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="en-keys">
+      <h2 id="en-keys" class="section-title">2. Bring your own key</h2>
+      <p class="prose">
+        In online mode Lingary talks to an AI provider you choose — OpenAI, Google, Groq, Fish
+        Audio or your own endpoint — using an API key you obtained yourself. We do not resell,
+        proxy or subsidise access to any provider.
+      </p>
+      <p class="prose">
+        That means: you are responsible for keeping your key confidential, for whatever the
+        provider charges you, and for complying with <b>that provider's own terms</b>. If a
+        provider suspends your account or changes its pricing, that is between you and them.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="en-models">
+      <h2 id="en-models" class="section-title">3. On-device models and their licenses</h2>
+      <p class="prose">
+        Offline mode downloads models published by other teams. They remain under their own
+        licenses, which are listed in the app under <b>Settings → About → Licenses</b>. Most
+        are permissive — Apache 2.0 or MIT — and ask only for attribution.
+      </p>
+      <p class="prose">
+        The offline neural voice (<b>Supertonic 3</b>, by Supertone Inc.) is different. Its
+        weights are licensed under <b>OpenRAIL-M</b>, which permits commercial use but attaches
+        a list of prohibited uses that must be passed on to everyone who runs the model — which
+        is you. <b>By downloading or using the offline voice you agree to the restrictions
+        below.</b> They are reproduced verbatim from the license:
+      </p>
+      <div class="quoted">
+        <p class="prose">You agree not to use the Model or Derivatives of the Model:</p>
+        <ul class="prose">
+          <li>(a) In any way that violates any applicable national, federal, state, local or international law or regulation;</li>
+          <li>(b) For the purpose of exploiting, harming or attempting to exploit or harm minors in any way;</li>
+          <li>(c) To generate or disseminate verifiably false information and/or content with the purpose of harming others;</li>
+          <li>(d) To generate or disseminate personal identifiable information that can be used to harm an individual;</li>
+          <li>(e) To generate or disseminate information and/or content (e.g. images, code, posts, articles), and place the information and/or content in any context (e.g. bot generating tweets) without expressly and intelligibly disclaiming that the information and/or content is machine generated;</li>
+          <li>(f) To defame, disparage or otherwise harass others;</li>
+          <li>(g) To impersonate or attempt to impersonate (e.g. deepfakes) others without their consent;</li>
+          <li>(h) For fully automated decision making that adversely impacts an individual's legal rights or otherwise creates or modifies a binding, enforceable obligation;</li>
+          <li>(i) For any use intended to or which has the effect of discriminating against or harming individuals or groups based on online or offline social behavior or known or predicted personal or personality characteristics;</li>
+          <li>(j) To exploit any of the vulnerabilities of a specific group of persons based on their age, social, physical or mental characteristics, in order to materially distort the behavior of a person pertaining to that group in a manner that causes or is likely to cause that person or another person physical or psychological harm;</li>
+          <li>(k) For any use intended to or which has the effect of discriminating against individuals or groups based on legally protected characteristics or categories;</li>
+          <li>(l) To provide medical advice and medical results interpretation;</li>
+          <li>(m) To generate or disseminate information for the purpose to be used for administration of justice, law enforcement, immigration or asylum processes, such as predicting an individual will commit fraud/crime commitment (e.g. by text profiling, drawing causal relationships between assertions made in documents, indiscriminate and arbitrarily-targeted use).</li>
+        </ul>
+      </div>
+      <p class="prose">
+        The full license text ships with the voice: once it is installed you can read it in the
+        app under <b>Settings → About → Licenses → Full license text</b>, with no network
+        connection. It is also on
+        <a href="https://huggingface.co/Supertone/supertonic-3" target="_blank" rel="noopener">Hugging Face</a>.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="en-use">
+      <h2 id="en-use" class="section-title">4. Acceptable use</h2>
+      <p class="prose">
+        Beyond the restrictions above, don't use Lingary to break the law, to harass anyone, or
+        to attack the app or the services it talks to. Don't try to pass synthesised speech off
+        as a real person's voice.
+      </p>
+      <p class="prose">
+        The app runs on your device and its source is not public, but you are welcome to
+        inspect its behaviour. Reverse engineering is limited only to the extent your local law
+        permits it.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="en-output">
+      <h2 id="en-output" class="section-title">5. What the AI says is not advice</h2>
+      <p class="prose">
+        Lingary is a practice partner, not a teacher, examiner or certifying body. Language
+        models get things wrong: grammar explanations can be incorrect, corrections can be
+        wrong, a CEFR level the app estimates is an estimate and nothing more. Nothing the app
+        produces is medical, legal, financial or professional advice.
+      </p>
+      <p class="prose">
+        Check anything that matters against a real source before relying on it.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="en-content">
+      <h2 id="en-content" class="section-title">6. Your content</h2>
+      <p class="prose">
+        What you type and say stays yours. It lives on your device; we never receive it. We
+        claim no rights over it and cannot access, moderate or restore it — if you erase the
+        app's data or delete the app, it is gone.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="en-warranty">
+      <h2 id="en-warranty" class="section-title">7. No warranty, and the limits of our liability</h2>
+      <p class="prose">
+        Lingary is provided "as is", without warranty of any kind. We do not promise it will be
+        available, accurate, uninterrupted or free of defects, and offline models in particular
+        depend on hardware we cannot test on every device.
+      </p>
+      <p class="prose">
+        To the maximum extent permitted by law, we are not liable for indirect or consequential
+        damages, for lost data, or for charges you incur with an AI provider. Nothing here
+        limits liability that cannot be limited under your local law — including the statutory
+        rights of consumers in the EU and UK.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="en-age">
+      <h2 id="en-age" class="section-title">8. Age</h2>
+      <p class="prose">
+        Lingary is not intended for children under 13, and conversations are generated by an AI
+        model whose output is not filtered by us. If you are a minor in your jurisdiction, use
+        the app only with the involvement of a parent or guardian.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="en-changes">
+      <h2 id="en-changes" class="section-title">9. Changes and contact</h2>
+      <p class="prose">
+        These terms may change when the app does — a new model with a different license is the
+        likeliest reason. The date at the top of this page always reflects the current version,
+        and continuing to use the app after a change means you accept it.
+      </p>
+      <p class="prose">
+        Questions: <a href="mailto:lvigtor@gmail.com">lvigtor@gmail.com</a>, or the feedback
+        form inside the app.
+      </p>
+    </section>
+  </main>
+
+  <!-- ───────────────────────────────  РУССКИЙ  ─────────────────────────────── -->
+  <main class="wrap" id="lang-ru" hidden>
+
+    <section class="section" aria-labelledby="ru-scope">
+      <h2 id="ru-scope" class="section-title">1. О чём этот документ</h2>
+      <p class="prose">
+        Эти условия регулируют использование <b>приложения Lingary для iOS</b>. Устанавливая
+        или используя приложение, вы их принимаете. Если не согласны — не пользуйтесь
+        приложением; при удалении оно уносит свою локальную базу с собой.
+      </p>
+      <p class="prose">
+        Lingary — независимый проект одного разработчика, далее «мы». Нет компании, нет
+        сервера, нет учётных записей. Как обрабатываются данные, описано отдельно в
+        <a href="../privacy/">политике конфиденциальности</a>.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="ru-keys">
+      <h2 id="ru-keys" class="section-title">2. Свой ключ</h2>
+      <p class="prose">
+        В онлайн-режиме Lingary обращается к выбранному вами AI-провайдеру — OpenAI, Google,
+        Groq, Fish Audio или вашему собственному эндпоинту — с API-ключом, который вы получили
+        сами. Мы не перепродаём доступ к провайдерам, не проксируем и не оплачиваем его.
+      </p>
+      <p class="prose">
+        Это значит: вы отвечаете за сохранность своего ключа, за то, что провайдер вам
+        выставит, и за соблюдение <b>его собственных условий</b>. Если провайдер заблокировал
+        вашу учётную запись или изменил тарифы — это вопрос между вами и им.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="ru-models">
+      <h2 id="ru-models" class="section-title">3. Модели на устройстве и их лицензии</h2>
+      <p class="prose">
+        Офлайн-режим скачивает модели, опубликованные другими командами. Они остаются под
+        своими лицензиями; список — в приложении, в разделе
+        <b>Настройки → О приложении → Лицензии</b>. Большинство лицензий разрешительные
+        (Apache 2.0 или MIT) и требуют только указания авторства.
+      </p>
+      <p class="prose">
+        Офлайн-голос (<b>Supertonic 3</b> от Supertone Inc.) — исключение. Его веса
+        распространяются по лицензии <b>OpenRAIL-M</b>: коммерческое использование разрешено,
+        но к нему приложен список запрещённых применений, который обязан быть передан каждому,
+        кто запускает модель, — то есть вам. <b>Скачивая или используя офлайн-голос, вы
+        принимаете перечисленные ниже ограничения.</b> Они приведены дословно по тексту
+        лицензии:
+      </p>
+      <div class="quoted">
+        <p class="prose">Вы обязуетесь не использовать Модель или её производные:</p>
+        <ul class="prose">
+          <li>(a) любым способом, нарушающим применимое национальное, федеральное, региональное, местное или международное право;</li>
+          <li>(b) в целях эксплуатации несовершеннолетних, причинения им вреда или попыток такой эксплуатации и вреда;</li>
+          <li>(c) для создания или распространения заведомо ложной информации либо контента с целью причинения вреда другим;</li>
+          <li>(d) для создания или распространения персональных данных, которые могут быть использованы во вред человеку;</li>
+          <li>(e) для создания или распространения информации либо контента (изображений, кода, публикаций, статей) и размещения их в каком-либо контексте (например, бот, генерирующий посты) без явного и понятного указания на то, что они созданы машиной;</li>
+          <li>(f) для клеветы, унижения или иного преследования других лиц;</li>
+          <li>(g) для выдачи себя за другое лицо или попыток этого (например, дипфейков) без его согласия;</li>
+          <li>(h) для полностью автоматизированного принятия решений, ущемляющих законные права человека либо создающих или изменяющих обязывающее обязательство;</li>
+          <li>(i) для любого использования, направленного на дискриминацию или причинение вреда людям и группам по признаку их поведения в сети или вне её либо известных или предполагаемых личностных характеристик, или имеющего такой эффект;</li>
+          <li>(j) для эксплуатации уязвимостей определённой группы лиц, связанных с возрастом, социальными, физическими или психическими особенностями, с целью существенно исказить поведение человека из этой группы так, что это причиняет или может причинить физический или психологический вред ему либо другому лицу;</li>
+          <li>(k) для любого использования, направленного на дискриминацию людей или групп по защищённым законом признакам, или имеющего такой эффект;</li>
+          <li>(l) для медицинских консультаций и интерпретации результатов медицинских исследований;</li>
+          <li>(m) для создания или распространения информации, предназначенной для отправления правосудия, работы правоохранительных органов, миграционных или убежищных процедур, — например, для предсказания того, что человек совершит мошенничество или преступление (в том числе через текстовое профилирование, установление причинных связей между утверждениями в документах, неизбирательное и произвольно направленное применение).</li>
+        </ul>
+      </div>
+      <p class="prose">
+        Полный текст лицензии скачивается вместе с голосом: после установки его можно прочитать
+        в приложении — <b>Настройки → О приложении → Лицензии → Полный текст лицензии</b>, без
+        подключения к сети. Он также опубликован на
+        <a href="https://huggingface.co/Supertone/supertonic-3" target="_blank" rel="noopener">Hugging Face</a>.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="ru-use">
+      <h2 id="ru-use" class="section-title">4. Допустимое использование</h2>
+      <p class="prose">
+        Помимо ограничений выше: не используйте Lingary для нарушения закона, для преследования
+        людей и для атак на само приложение или на сервисы, с которыми оно работает. Не
+        выдавайте синтезированную речь за голос реального человека.
+      </p>
+      <p class="prose">
+        Приложение работает на вашем устройстве, его исходный код закрыт, но изучать его
+        поведение вы вправе. Обратная разработка ограничена лишь в той мере, в какой это
+        допускает ваше местное законодательство.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="ru-output">
+      <h2 id="ru-output" class="section-title">5. Слова ИИ — не консультация</h2>
+      <p class="prose">
+        Lingary — партнёр для практики, а не преподаватель, экзаменатор или сертифицирующая
+        организация. Языковые модели ошибаются: объяснение грамматики может оказаться неверным,
+        исправление — ошибочным, а уровень CEFR, который оценивает приложение, — всего лишь
+        оценка. Ничто из выдаваемого приложением не является медицинской, юридической,
+        финансовой или иной профессиональной консультацией.
+      </p>
+      <p class="prose">
+        Всё, что для вас существенно, проверяйте по надёжному источнику.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="ru-content">
+      <h2 id="ru-content" class="section-title">6. Ваш контент</h2>
+      <p class="prose">
+        То, что вы пишете и говорите, остаётся вашим. Оно хранится на устройстве, к нам не
+        попадает. Мы не претендуем на права на него и не можем его прочитать, модерировать или
+        восстановить: если вы стёрли данные приложения или удалили само приложение — их больше
+        нет.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="ru-warranty">
+      <h2 id="ru-warranty" class="section-title">7. Без гарантий и пределы ответственности</h2>
+      <p class="prose">
+        Lingary предоставляется «как есть», без каких-либо гарантий. Мы не обещаем
+        доступности, точности, бесперебойной работы или отсутствия дефектов; офлайн-модели к
+        тому же зависят от железа, проверить которое на всех устройствах мы не можем.
+      </p>
+      <p class="prose">
+        В максимально допустимой законом мере мы не отвечаем за косвенные убытки, за потерю
+        данных и за расходы, которые вы понесли у AI-провайдера. Ничто здесь не ограничивает
+        ответственность, которую нельзя ограничить по вашему местному праву, включая права
+        потребителей в ЕС и Великобритании.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="ru-age">
+      <h2 id="ru-age" class="section-title">8. Возраст</h2>
+      <p class="prose">
+        Lingary не предназначен для детей младше 13 лет, а диалоги генерирует модель, вывод
+        которой мы не фильтруем. Если по законам вашей страны вы несовершеннолетний,
+        пользуйтесь приложением при участии родителя или опекуна.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="ru-changes">
+      <h2 id="ru-changes" class="section-title">9. Изменения и контакты</h2>
+      <p class="prose">
+        Условия могут меняться вместе с приложением — вероятнее всего, из-за новой модели с
+        другой лицензией. Дата вверху страницы всегда соответствует текущей редакции;
+        продолжая пользоваться приложением после изменения, вы его принимаете.
+      </p>
+      <p class="prose">
+        Вопросы: <a href="mailto:lvigtor@gmail.com">lvigtor@gmail.com</a> или форма обратной
+        связи в приложении.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><a href="../">← Lingary</a> · <a href="../../../">All products</a> · <a href="../privacy/">App privacy policy</a> · <a href="../../../legal/">Legal &amp; privacy</a></p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem('products-page:theme');
+      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      document.documentElement.dataset.theme = saved || (prefersLight ? 'light' : 'dark');
+      document.getElementById('theme-toggle').addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem('products-page:theme', next);
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      const panes = { en: document.getElementById('lang-en'), ru: document.getElementById('lang-ru') };
+      const buttons = document.querySelectorAll('.langbar button');
+      const header = {
+        eyebrow: document.getElementById('hdr-eyebrow'),
+        title: document.getElementById('hdr-title'),
+        lead: document.getElementById('hdr-lead')
+      };
+      const copy = {
+        en: {
+          eyebrow: 'Last updated 6 August 2026',
+          title: 'Lingary — terms of use',
+          lead: 'Lingary is a one-person project with no account and no subscription. These terms say what you can expect from it, and the one set of restrictions that travels with the on-device voice.'
+        },
+        ru: {
+          eyebrow: 'Обновлено 6 августа 2026',
+          title: 'Lingary — условия использования',
+          lead: 'Lingary — проект одного человека, без учётных записей и подписок. Здесь сказано, чего от него ждать, и приведён единственный набор ограничений, который идёт вместе с голосом на устройстве.'
+        }
+      };
+
+      function show(lang) {
+        Object.keys(panes).forEach((key) => { panes[key].hidden = key !== lang; });
+        buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+        header.eyebrow.textContent = copy[lang].eyebrow;
+        header.title.textContent = copy[lang].title;
+        header.lead.textContent = copy[lang].lead;
+        document.documentElement.lang = lang;
+        try { localStorage.setItem('lingary-terms:lang', lang); } catch (e) {}
+      }
+
+      buttons.forEach((b) => b.addEventListener('click', () => show(b.dataset.lang)));
+
+      let saved = null;
+      try { saved = localStorage.getItem('lingary-terms:lang'); } catch (e) {}
+      // Parenthesised deliberately: `||` binds tighter than `?:`, so without this
+      // a saved 'en' is truthy and the ternary hands back 'ru'.
+      show(saved || ((navigator.language || '').slice(0, 2) === 'ru' ? 'ru' : 'en'));
+    })();
+  </script>
+
+  <script src="../../../track.js"></script>
+</body>
+</html>
