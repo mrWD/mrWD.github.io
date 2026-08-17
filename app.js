@@ -207,19 +207,23 @@ const $ = (sel) => document.querySelector(sel);
 /* stats.json is refreshed once a day by .github/workflows/stats.yml. A count
  * only earns a place on the card once it's big enough to mean something —
  * "9 users" says less than saying nothing. */
-const USERS_THRESHOLD = 1000;
+const USERS_THRESHOLD = 50;
 
-/* The three metrics measure different things and must not be compared, so the
+/* The metrics measure different things and must not be compared, so the
  * tooltip spells out what the number on the badge actually is. */
 const METRIC_TITLES = {
   users: 'active installs reported by the stores',
   downloads: 'downloads of the released files',
   visits: 'visits counted by the app itself',
+  clicks: "clicks on this site's own buttons",
 };
 
 let STATS = {};
 
 function formatUsers(n) {
+  // Below a thousand there is nothing to shorten, and abbreviating anyway would
+  // render every number these products actually have as 0.1k.
+  if (n < 1000) return String(n);
   // One decimal below 10, none above: 1.2k, 10k, 1.5M. 9999 lands on 10k.
   const scale = (value, suffix) =>
     `${value >= 10 ? Math.round(value) : Math.round(value * 10) / 10}${suffix}`;
