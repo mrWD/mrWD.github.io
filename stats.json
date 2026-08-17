@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-17T05:01:51Z",
+  "generated": "2026-08-17T08:18:25Z",
   "note": "Metrics differ per product — see the metric field. Not comparable.",
   "products": {
     "science-timeline": {
@@ -41,6 +41,15 @@
       "count": 0,
       "metric": "clicks"
     },
+    "books-table": {
+      "clicks": 3,
+      "buttons": {
+        "open": 3,
+        "source": 1
+      },
+      "count": 3,
+      "metric": "clicks"
+    },
     "ai-job-search": {
       "clicks": 55,
       "buttons": {
@@ -60,7 +69,7 @@
     "ai-screen-translator": {
       "clicks": 0,
       "buttons": {
-        "source": 1
+        "source": 2
       },
       "sources": {
         "github_releases": 0

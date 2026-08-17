@@ -49,6 +49,7 @@ SLUGS = [
     "langs-db",
     "film-table",
     "games-table",
+    "books-table",
     "ai-job-search",
     "ai-screen-translator",
     "ai-prompt-suggester",
