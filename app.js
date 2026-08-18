@@ -32,7 +32,7 @@ const PROJECTS = [
     name: 'Lingary',
     tagline: 'An AI language tutor you talk to, out loud',
     description:
-      'Live voice or text conversations with a tutor that works out your CEFR level by talking to you, then builds practice out of the mistakes you actually made — missions, a spaced-repetition deck and five drill modes, in 61 languages. Bring your own OpenAI or Gemini key and pay the provider directly, or download the models and run the whole loop on the phone with no key and no connection.',
+      'Live voice or text conversations with a tutor that works out your CEFR level by talking to you, then builds practice out of the mistakes you actually made — missions, a spaced-repetition deck and five drill modes, in 61 languages. Bring your own key from OpenAI, Google, Groq or Fish Audio and pay the provider directly, or download the models and run the whole loop on the phone with no key and no connection.',
     category: 'iOS app',
     tags: ['SwiftUI', 'SwiftData', 'BYOK', 'On-device AI', 'Offline'],
     icon: '🗣️',
@@ -40,6 +40,7 @@ const PROJECTS = [
     status: 'Beta',
     links: [
       { label: 'Learn more', url: 'products/lingary/' },
+      { label: 'TestFlight', url: 'https://testflight.apple.com/join/Bz4qMzPQ' },
     ],
   },
   {
