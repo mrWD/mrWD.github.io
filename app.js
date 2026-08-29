@@ -110,6 +110,36 @@ const PROJECTS = [
     ],
   },
   {
+    name: 'InvestTable',
+    tagline: 'What monthly deposits actually grow into',
+    description:
+      'A compound-growth table ported from the spreadsheet it replaces: what you pay in every month, what it earns, and the balance for every month of up to thirty years. The return can be quoted per month, quarter or year and converts by compounding, not division. Nothing leaves the device, and it reads in twenty languages.',
+    category: 'Web app',
+    tags: ['PWA', 'Local-first', 'React', 'TypeScript', '20 languages', 'MIT'],
+    icon: '📈',
+    accent: '#22c55e',
+    status: 'Beta',
+    links: [
+      { label: 'Learn more', url: 'products/invest-table/' },
+      { label: 'Join the TestFlight beta', url: 'https://testflight.apple.com/join/ThAa955N' },
+    ],
+  },
+  {
+    name: 'GoalsTable',
+    tagline: 'A year of goals, and the hour a day you spend on them',
+    description:
+      'A yearly goals tracker ported from the spreadsheet it replaces: twelve months of focus, a ring showing how much of the year is behind you, and the three daily hours — professional, languages, everything else — that move it. Seven years of the original sheet ship as sample data, searchable across every year at once. Nothing leaves the device; the app makes no network requests at all.',
+    category: 'iOS app',
+    tags: ['Capacitor', 'Local-first', 'React', 'TypeScript', '20 languages', 'Offline'],
+    icon: '🎯',
+    accent: '#3d70f7',
+    status: 'Beta',
+    links: [
+      { label: 'Learn more', url: 'products/goals-table/' },
+      { label: 'Join the TestFlight beta', url: 'https://testflight.apple.com/join/EbV3NMrK' },
+    ],
+  },
+  {
     name: 'AI Job Search',
     statsKey: 'ai-job-search', // matches a key in stats.json
     tagline: 'A job hunt that runs while you do something else',

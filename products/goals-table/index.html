@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GoalsTable — a year of goals, and the hour a day you spend on them</title>
+  <meta name="description" content="A yearly goals tracker built from a spreadsheet kept since 2020: what each month is for, what you have ticked off, and the three hours a day it takes. Local-first, no account, works offline." />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="stylesheet" href="../../product.css" />
+  <style>
+    :root { --accent: #3d70f7; --accent-2: #67e8c3; }
+    html[data-theme='light'] { --accent: #2f5fe0; --accent-2: #0e9c7c; }
+  </style>
+</head>
+<body>
+  <div class="glow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <div class="header-top">
+        <a class="brand" href="../../">
+          <span class="brand-mark">VL</span>
+          <span class="brand-text">Viktor Lavrov</span>
+        </a>
+        <nav class="header-links">
+          <a href="../../">All products</a>
+          <a href="https://testflight.apple.com/join/EbV3NMrK" target="_blank" rel="noopener">TestFlight</a>
+          <button id="theme-toggle" class="icon-btn" type="button" aria-label="Toggle colour theme">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path class="icon-moon" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/><g class="icon-sun"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></g></svg>
+          </button>
+        </nav>
+      </div>
+
+      <div class="hero">
+        <div class="hero-text">
+          <p class="eyebrow">iOS app · beta</p>
+          <h1 class="title">GoalsTable</h1>
+          <p class="subtitle lead">
+            A year of goals, a month of focus, and the hour a day you sit down to do it.
+            Built out of a spreadsheet kept since 2020 — seven years of it ship with the
+            app as sample data. Nothing is uploaded; it all lives on your device.
+          </p>
+
+          <ul class="badges">
+            <li>Free</li>
+            <li>No account</li>
+            <li>No servers at all</li>
+            <li>Works offline</li>
+            <li>20 languages</li>
+          </ul>
+
+          <div class="cta">
+            <a class="btn primary" href="https://testflight.apple.com/join/EbV3NMrK" target="_blank" rel="noopener">
+              <span>Join the beta on TestFlight</span>
+              <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn" href="#data">
+              <span>Where the data lives</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual phone">
+          <img class="shot-light" src="assets/year-light.png" width="414" height="896" alt="The Year screen for 2026: a ring reading 61 per cent with 45 of 74 underneath, then a bar per category — Tech 23 of 43, Languages 1 of 3, Money 0 of 1, Health 1 of 7, Life 2 of 2, Projects 18 of 18 — above a list of goals with checkboxes." />
+          <img class="shot-dark" src="assets/year-dark.png" width="414" height="896" alt="The Year screen for 2026: a ring reading 61 per cent with 45 of 74 underneath, then a bar per category — Tech 23 of 43, Languages 1 of 3, Money 0 of 1, Health 1 of 7, Life 2 of 2, Projects 18 of 18 — above a list of goals with checkboxes. Shown in the app's dark theme." />
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section class="section" aria-labelledby="look">
+      <h2 id="look" class="section-title">What it looks like</h2>
+      <div class="shots-row">
+        <div>
+          <a class="shot shot-light" href="assets/today-light.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/today-light.png" width="414" height="896" alt="The Today screen: a streak counter reading 0 days in a row with 0 of 3 done today, three one-hour blocks named Prof, Langs and Others, the August focus with its language and money targets, and the goals still open from this month." loading="lazy" decoding="async" /></a>
+          <a class="shot shot-dark" href="assets/today-dark.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/today-dark.png" width="414" height="896" alt="The Today screen: a streak counter reading 0 days in a row with 0 of 3 done today, three one-hour blocks named Prof, Langs and Others, the August focus with its language and money targets, and the goals still open from this month. Shown in the app's dark theme." loading="lazy" decoding="async" /></a>
+        </div>
+        <div>
+          <a class="shot shot-light" href="assets/plan-light.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/plan-light.png" width="414" height="896" alt="The Plan screen for 2026, showing 21,000 dollars planned for the year and a card per month — January with Data Scientist Course, Python and DB Pro, plus German B1, Italian B1 and a 1000 dollar target." loading="lazy" decoding="async" /></a>
+          <a class="shot shot-dark" href="assets/plan-dark.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/plan-dark.png" width="414" height="896" alt="The Plan screen for 2026, showing 21,000 dollars planned for the year and a card per month — January with Data Scientist Course, Python and DB Pro, plus German B1, Italian B1 and a 1000 dollar target. Shown in the app's dark theme." loading="lazy" decoding="async" /></a>
+        </div>
+        <div>
+          <a class="shot shot-light" href="assets/years-light.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/years-light.png" width="414" height="896" alt="The Years archive: 243 done across 7 years, then a card per year — 2026 at 61 per cent, and 2025 back to 2020 each at 100 per cent — with the three biggest categories listed under each." loading="lazy" decoding="async" /></a>
+          <a class="shot shot-dark" href="assets/years-dark.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/years-dark.png" width="414" height="896" alt="The Years archive: 243 done across 7 years, then a card per year — 2026 at 61 per cent, and 2025 back to 2020 each at 100 per cent — with the three biggest categories listed under each. Shown in the app's dark theme." loading="lazy" decoding="async" /></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="features">
+      <h2 id="features" class="section-title">What it does</h2>
+      <ul class="feature-grid">
+        <li>
+          <span class="feature-icon" aria-hidden="true">✅</span>
+          <h3>A year, one tick at a time</h3>
+          <p>Every goal is a checkbox. Open ones sit at the top and ticked ones drop to the bottom, so what is left is always the part you are looking at.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🎯</span>
+          <h3>Progress you can see</h3>
+          <p>A ring for the year and a bar per category — Tech, Languages, Money, Health, Life, Projects — so the shape of the year reads before any single row does.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">📅</span>
+          <h3>Twelve months of focus</h3>
+          <p>Each month says what to study, what to earn and which language level to reach. Its focus list is picked from the year's goals, not retyped.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🔥</span>
+          <h3>The day, in three hours</h3>
+          <p>One hour professional, one for languages, one for everything else. Close all three and the streak grows; the last fortnight sits under it as a row of dots.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🗂️</span>
+          <h3>Every year you have kept</h3>
+          <p>Past years stay whole and searchable. "When did I do Docker?" is one search across all of them — the question a spreadsheet was worst at.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">📥</span>
+          <h3>A backlog to pull from</h3>
+          <p>Someday items live apart from the years. When one stops being someday, move it into today — it joins the year and this month's list.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🌍</span>
+          <h3>Twenty languages</h3>
+          <p>Interface in twenty, Arabic included — which flips the whole layout right to left. Dates, month names and amounts come from the system, correctly declined.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="data">
+      <h2 id="data" class="section-title">Where the data lives</h2>
+      <p class="prose">
+        On your device, in the app's own private storage — not in the web view's site data,
+        which iOS may reclaim under storage pressure and which "Offload App" discards. There
+        is no account and no sync, so moving to a new phone means Profile → Export on the old
+        one and Import on the new one, as JSON or as a CSV you can paste back into a sheet.
+      </p>
+      <p class="note">
+        The app makes no network requests at all. It has no backend, queries no catalogue and
+        reports nothing: everything it shows, it already holds. That is also why it behaves
+        the same with the network off — see the
+        <a href="privacy/">privacy policy</a>.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="beta">
+      <h2 id="beta" class="section-title">Getting it</h2>
+      <p class="prose">
+        It is in open beta on TestFlight. Install Apple's TestFlight app, open the link, and
+        GoalsTable installs alongside your other apps.
+      </p>
+      <p class="note">
+        Android and a browser version run from the same code and are not published yet.
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="https://testflight.apple.com/join/EbV3NMrK" target="_blank" rel="noopener">
+          <span>Join the beta on TestFlight</span>
+          <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="honest">
+      <h2 id="honest" class="section-title">What it isn't</h2>
+      <p class="prose">
+        Not a habit tracker and not a to-do list: the unit here is a year, not a day, and a
+        goal is something you finish once. Being local-first also means no sharing, no
+        friends and no sync between devices — those need a server and accounts, which is
+        exactly what this does not have.
+      </p>
+      <p class="note">
+        The sample data is one person's real spreadsheet, typos and all, and it seeds only on
+        first launch — delete a goal and it stays deleted. There is no per-day planning yet:
+        what you add "to today" joins the current month, which is what the Today screen reads.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><a href="../../">← All products</a> · Found a bug or missing a feature? <a href="mailto:lvigtor@gmail.com?subject=GoalsTable%20feedback">Email me</a> · <a href="../../legal/">Legal &amp; privacy</a>.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem('products-page:theme');
+      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      document.documentElement.dataset.theme = saved || (prefersLight ? 'light' : 'dark');
+      document.getElementById('theme-toggle').addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem('products-page:theme', next);
+      });
+    })();
+  </script>
+</body>
+</html>
