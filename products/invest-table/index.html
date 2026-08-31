@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>InvestTable — what monthly deposits actually grow into</title>
+  <meta name="description" content="A compound-growth table: monthly deposits, reinvested returns and dividends, month by month for up to thirty years. No account, works offline, twenty languages." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="InvestTable" />
+  <meta property="og:description" content="Monthly deposits, reinvested returns and dividends, projected month by month. Local-first, offline, twenty languages." />
+  <meta property="og:image" content="assets/summary-light.png" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="stylesheet" href="../../product.css" />
+  <style>
+    :root { --accent: #22c55e; --accent-2: #3987e5; }
+    html[data-theme='light'] { --accent: #15803d; --accent-2: #2a78d6; }
+  </style>
+</head>
+<body>
+  <div class="glow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <div class="header-top">
+        <a class="brand" href="../../">
+          <span class="brand-mark">VL</span>
+          <span class="brand-text">Viktor Lavrov</span>
+        </a>
+        <nav class="header-links">
+          <a href="../../">All products</a>
+          <a href="https://testflight.apple.com/join/ThAa955N" target="_blank" rel="noopener">TestFlight</a>
+          <button id="theme-toggle" class="icon-btn" type="button" aria-label="Toggle colour theme">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path class="icon-moon" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/><g class="icon-sun"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></g></svg>
+          </button>
+        </nav>
+      </div>
+
+      <div class="hero">
+        <div class="hero-text">
+          <p class="eyebrow">Web app · iPhone, Android, desktop</p>
+          <h1 class="title">InvestTable</h1>
+          <p class="subtitle lead">
+            A compound-growth table, ported from the spreadsheet it replaces. You
+            type what you pay in every month and what it earns; it gives you the
+            balance for every month, for up to thirty years.
+          </p>
+
+          <ul class="badges">
+            <li>Free</li>
+            <li>Open source (MIT)</li>
+            <li>No account</li>
+            <li>Works offline</li>
+            <li>20 languages</li>
+          </ul>
+
+          <div class="cta">
+            <a class="btn primary" href="https://testflight.apple.com/join/ThAa955N" target="_blank" rel="noopener">
+              <span>Join the TestFlight beta</span>
+              <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+          <p class="note">
+            iPhone only for now, through TestFlight. The Android build and the web
+            version exist and run, but are not published yet.
+          </p>
+        </div>
+
+        <div class="hero-visual phone">
+          <img class="shot-light" src="assets/summary-light.png" width="414" height="896" alt="InvestTable showing a balance of 18,012.43 euros after ten years, tiles for paid in and earned, and a sentence explaining the two-month position." />
+          <img class="shot-dark" src="assets/summary-dark.png" width="414" height="896" alt="InvestTable showing a balance of 18,012.43 euros after ten years, tiles for paid in and earned, and a sentence explaining the two-month position. Shown in the app's dark theme." />
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="section" aria-labelledby="look">
+      <h2 id="look" class="section-title">What it looks like</h2>
+      <div class="shots-row">
+        <figure>
+          <a class="shot shot-light" href="assets/summary-light.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/summary-light.png" width="414" height="896" alt="The summary card: the balance after ten years, tiles for paid in, earned and dividends per month, and the plan controls below." loading="lazy" decoding="async" /></a>
+          <a class="shot shot-dark" href="assets/summary-dark.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/summary-dark.png" width="414" height="896" alt="The summary card: the balance after ten years, tiles for paid in, earned and dividends per month, and the plan controls below. Shown in the app's dark theme." loading="lazy" decoding="async" /></a>
+          <figcaption>The headline figure, and the sentence that explains it</figcaption>
+        </figure>
+        <figure>
+          <a class="shot shot-light" href="assets/chart-light.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/chart-light.png" width="414" height="896" alt="A growth chart with two lines, Balance and Paid in, above the month-by-month table for year one." loading="lazy" decoding="async" /></a>
+          <a class="shot shot-dark" href="assets/chart-dark.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/chart-dark.png" width="414" height="896" alt="A growth chart with two lines, Balance and Paid in, above the month-by-month table for year one. Shown in the app's dark theme." loading="lazy" decoding="async" /></a>
+          <figcaption>Two lines, not one — the gap is what you earned</figcaption>
+        </figure>
+        <figure>
+          <a class="shot shot-light" href="assets/table-light.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/table-light.png" width="414" height="896" alt="The month-by-month table, one block per year, each row showing the balance and that month's income." loading="lazy" decoding="async" /></a>
+          <a class="shot shot-dark" href="assets/table-dark.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/table-dark.png" width="414" height="896" alt="The month-by-month table, one block per year, each row showing the balance and that month's income. Shown in the app's dark theme." loading="lazy" decoding="async" /></a>
+          <figcaption>Every month, grouped by year, collapsible</figcaption>
+        </figure>
+        <figure>
+          <a class="shot shot-light" href="assets/converter-light.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/converter-light.png" width="414" height="896" alt="The currency block converting the final balance into rubles, dollars and euros, with the three exchange rates editable below." loading="lazy" decoding="async" /></a>
+          <a class="shot shot-dark" href="assets/converter-dark.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/converter-dark.png" width="414" height="896" alt="The currency block converting the final balance into rubles, dollars and euros, with the three exchange rates editable below. Shown in the app's dark theme." loading="lazy" decoding="async" /></a>
+          <figcaption>The final balance in three currencies, rates editable</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="features">
+      <h2 id="features" class="section-title">What it does</h2>
+      <ul class="feature-grid">
+        <li>
+          <span class="feature-icon" aria-hidden="true">📅</span>
+          <h3>Every month, not just the total</h3>
+          <p>One row per month for up to thirty years: what the balance is after that month's deposit, and what it earned. Grouped into years you can collapse, so year nine is a tap away rather than a scroll.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🔁</span>
+          <h3>A rate in whatever unit you have it</h3>
+          <p>Per month, per quarter or per year — a fund's annual figure, a bond's quarterly coupon. Switching the unit only relabels the rate; the projection does not move. The conversion compounds: 20% a year is 1.531% a month, not 1.667%.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">💵</span>
+          <h3>Dividends on what you hold</h3>
+          <p>An annual dividend rate on the previous year's closing balance, spread across twelve months — the figure the position would pay you monthly without selling any of it.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">📈</span>
+          <h3>A chart with a log scale</h3>
+          <p>Balance against money paid in. Compounding spends most of the horizon looking flat and then leaves the frame; on a log scale a constant rate is a straight line, so the early years become readable.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🌍</span>
+          <h3>Twenty languages, properly</h3>
+          <p>Not just translated strings: numbers, percentages and plurals follow the language. German reads “25 Mio.”, Japanese “2500万”, Hindi groups by lakh, and Arabic mirrors the whole layout — while the chart stays left to right, as it should.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🔒</span>
+          <h3>Nothing leaves the device</h3>
+          <p>No account, no server, no analytics. Your figures live in the browser's own storage. The one network request is a daily exchange-rate table, and the app is fully usable when it fails.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="model">
+      <h2 id="model" class="section-title">Where the numbers come from</h2>
+      <p class="prose">
+        It began as a Google Sheet called “Revenue Chart”, and the model is a port
+        rather than a rewrite. Each month the balance earns the rate and takes another
+        deposit; the sheet rounds every cell to cents and compounds the rounded figure,
+        so its column drifts a cent above exact arithmetic — and so does this one, on
+        purpose. A table that is “more correct” than the one it replaces is a table
+        nobody can check.
+      </p>
+      <p class="note">
+        That fidelity is tested rather than asserted: a script asserts 107 values,
+        72 of them read straight off the original spreadsheet, and it runs on every
+        change to the model.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="honest">
+      <h2 id="honest" class="section-title">What it isn't</h2>
+      <p class="prose">
+        A projection, not a forecast. It assumes the return you type in arrives every
+        month without fail and is reinvested in full, and it counts no fees, taxes,
+        spreads or inflation. Real returns vary and can be negative. Nothing here is
+        investment advice, and the app says so on its own front page.
+      </p>
+      <p class="note">
+        It also connects to nothing: no broker, no portfolio, no prices. You type the
+        numbers; it does the arithmetic and shows its work.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><a href="../../">← All products</a> · <a href="../../legal/">Legal &amp; privacy</a>.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem('products-page:theme');
+      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      document.documentElement.dataset.theme = saved || (prefersLight ? 'light' : 'dark');
+      document.getElementById('theme-toggle').addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem('products-page:theme', next);
+      });
+    })();
+  </script>
+  <script src="../../track.js"></script>
+</body>
+</html>
