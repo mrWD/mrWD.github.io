@@ -67,13 +67,14 @@ const PROJECTS = [
     description:
       'Track the shows and movies you watch, without an account. Your library stays in local storage, backups are plain JSON files you own, and it installs as a PWA on Android and iPhone.',
     category: 'Web app',
-    tags: ['PWA', 'Local-first', 'React', 'TypeScript', 'MIT'],
+    tags: ['PWA', 'iOS', 'Local-first', 'React', 'TypeScript', 'MIT'],
     icon: '🎬',
     accent: '#f2789f',
     status: 'Live',
     links: [
       { label: 'Learn more', url: 'products/film-table/' },
       { label: 'Open app', url: 'https://film-table.vercel.app' },
+      { label: 'iOS beta', url: 'https://testflight.apple.com/join/QvqtTn6U', icon: 'apple' },
       { label: 'GitHub', url: 'https://github.com/mrWD/film-table', icon: 'github' },
     ],
   },
@@ -83,13 +84,14 @@ const PROJECTS = [
     description:
       'Seven statuses across play and watch tracks, a searchable library backed by RAWG and Steam data, and recommendations scored on your platforms, genres and Metacritic. No accounts, works offline.',
     category: 'Web app',
-    tags: ['PWA', 'Local-first', 'React', 'TypeScript', 'MIT'],
+    tags: ['PWA', 'iOS', 'Local-first', 'React', 'TypeScript', 'MIT'],
     icon: '🎮',
     accent: '#7c9cff',
     status: 'Live',
     links: [
       { label: 'Learn more', url: 'products/games-table/' },
       { label: 'Open app', url: 'https://games-table-bay.vercel.app' },
+      { label: 'iOS beta', url: 'https://testflight.apple.com/join/7XYcknae', icon: 'apple' },
       { label: 'GitHub', url: 'https://github.com/mrWD/games-table', icon: 'github' },
     ],
   },
@@ -99,13 +101,14 @@ const PROJECTS = [
     description:
       'One tap logs a sitting, and the app tells you how many pages and hours are left. Progress, a wish list and a finished shelf, with recommendations built on the device from the authors and subjects you actually read. Open Library needs no key, so there is no server at all.',
     category: 'Web app',
-    tags: ['PWA', 'Local-first', 'React', 'TypeScript', 'MIT'],
+    tags: ['PWA', 'iOS', 'Local-first', 'React', 'TypeScript', 'MIT'],
     icon: '📚',
     accent: '#e2a13c',
     status: 'Live',
     links: [
       { label: 'Learn more', url: 'products/books-table/' },
       { label: 'Open app', url: 'https://books-table-six.vercel.app' },
+      { label: 'iOS beta', url: 'https://testflight.apple.com/join/554r8QcA', icon: 'apple' },
       { label: 'GitHub', url: 'https://github.com/mrWD/books-table', icon: 'github' },
     ],
   },
@@ -229,6 +232,8 @@ const ICONS = {
     '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.4"/><path d="M21 8.2H12M8.6 13.7 4.1 6M15.4 13.7l-4.5 7.8"/>',
   firefox: '<circle cx="12" cy="12" r="9"/><path d="M12 3c3 2 4.5 4.4 4.5 7.2 0 2.6-2 4.5-4.5 4.5S7.5 12.8 7.5 10"/>',
   download: '<path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M4.5 19.5h15"/>',
+  apple:
+    '<path class="solid" d="M16.4 12.7c0-2.2 1.8-3.3 1.9-3.3-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.7.8-3.3.8-.7 0-1.7-.8-2.8-.8-1.5 0-2.8.8-3.6 2.1-1.5 2.6-.4 6.5 1.1 8.6.7 1 1.6 2.2 2.7 2.2 1.1 0 1.5-.7 2.8-.7 1.3 0 1.6.7 2.8.7 1.2 0 1.9-1 2.6-2 .8-1.2 1.2-2.3 1.2-2.4 0 0-2.2-.9-2.2-3.5ZM14.2 6.3c.6-.7 1-1.7.9-2.7-.9 0-2 .6-2.6 1.3-.6.6-1.1 1.7-.9 2.6 1 .1 2-.5 2.6-1.2Z"/>',
 };
 
 const $ = (sel) => document.querySelector(sel);
