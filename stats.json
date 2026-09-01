@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-31T10:56:09Z",
+  "generated": "2026-09-01T09:27:23Z",
   "note": "Metrics differ per product — see the metric field. Not comparable.",
   "products": {
     "science-timeline": {
@@ -87,14 +87,14 @@
     "ai-prompt-suggester": {
       "clicks": 0,
       "sources": {
-        "chrome": 14,
+        "chrome": 13,
         "firefox": 0
       },
       "store": {
-        "count": 14,
+        "count": 13,
         "metric": "users"
       },
-      "count": 14,
+      "count": 13,
       "metric": "users"
     },
     "double-subtitles": {
