@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-07T09:26:21Z",
+  "generated": "2026-09-08T08:55:13Z",
   "note": "Metrics differ per product — see the metric field. Not comparable.",
   "products": {
     "science-timeline": {
@@ -60,10 +60,10 @@
         "source": 6
       },
       "sources": {
-        "github_releases": 94
+        "github_releases": 95
       },
       "store": {
-        "count": 94,
+        "count": 95,
         "metric": "downloads"
       },
       "count": 57,
@@ -100,13 +100,13 @@
     "double-subtitles": {
       "clicks": 0,
       "sources": {
-        "chrome": 105
+        "chrome": 104
       },
       "store": {
-        "count": 105,
+        "count": 104,
         "metric": "users"
       },
-      "count": 105,
+      "count": 104,
       "metric": "users"
     }
   }
