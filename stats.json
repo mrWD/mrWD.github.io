@@ -1,14 +1,14 @@
 {
-  "generated": "2026-09-20T09:20:09Z",
+  "generated": "2026-09-21T10:01:03Z",
   "note": "Metrics differ per product — see the metric field. Not comparable.",
   "products": {
     "science-timeline": {
-      "clicks": 1,
+      "clicks": 2,
       "buttons": {
-        "open": 1,
+        "open": 2,
         "source": 1
       },
-      "count": 1,
+      "count": 2,
       "metric": "clicks"
     },
     "lingary": {
@@ -87,26 +87,26 @@
     "ai-prompt-suggester": {
       "clicks": 0,
       "sources": {
-        "chrome": 15,
+        "chrome": 17,
         "firefox": 0
       },
       "store": {
-        "count": 15,
+        "count": 17,
         "metric": "users"
       },
-      "count": 15,
+      "count": 17,
       "metric": "users"
     },
     "double-subtitles": {
       "clicks": 0,
       "sources": {
-        "chrome": 113
+        "chrome": 109
       },
       "store": {
-        "count": 113,
+        "count": 109,
         "metric": "users"
       },
-      "count": 113,
+      "count": 109,
       "metric": "users"
     }
   }
