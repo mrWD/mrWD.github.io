@@ -487,3 +487,8 @@ html[data-theme='light'] .btn.primary { color: #fff; }
   outline-offset: 3px;
   border-radius: 6px;
 }
+
+/* Opened from inside an app: no donation buttons (see from-app.js). */
+.from-app [data-donation] {
+  display: none !important;
+}

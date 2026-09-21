@@ -10,6 +10,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚖️</text></svg>" />
   <link rel="stylesheet" href="../styles.css" />
   <link rel="stylesheet" href="../product.css" />
+  <script src="../from-app.js"></script>
   <style>
     :root { --accent: #7c9cff; --accent-2: #67e8c3; }
     html[data-theme='light'] { --accent: #3b5ce0; --accent-2: #0e9c7c; }
@@ -79,10 +80,13 @@
       <h2 id="privacy" class="section-title">Privacy</h2>
       <p class="prose">
         <b>No cookies, no analytics, no personal data.</b> Nothing here identifies you,
-        follows you between sites or builds a profile. The only thing stored on your
-        device is your light/dark theme preference, kept in local storage so the page
-        doesn't flash the wrong colour on your next visit — it never leaves your
-        browser, and clearing your browsing data removes it.
+        follows you between sites or builds a profile. At most two things are stored on
+        your device, both in local storage: your light/dark theme preference, so the page
+        doesn't flash the wrong colour on your next visit, and — only if you arrived
+        through a link inside one of my apps — a note to hide donation buttons for the
+        next twelve hours, because App Store rules don't let an app lead to a payment
+        page. Neither ever leaves your browser, and clearing your browsing data removes
+        both.
       </p>
       <p class="prose">
         One thing <em>is</em> counted. When you click a button that goes to a product —
@@ -126,7 +130,7 @@
       </p>
     </section>
 
-    <section class="section" aria-labelledby="support">
+    <section class="section" aria-labelledby="support" data-donation>
       <h2 id="support" class="section-title">Donations</h2>
       <p class="prose">
         Support through Buy Me a Coffee, Ko-fi or PayPal is a <b>voluntary gift</b>, not
