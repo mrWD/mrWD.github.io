@@ -10,6 +10,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗣️</text></svg>" />
   <link rel="stylesheet" href="../../../styles.css" />
   <link rel="stylesheet" href="../../../product.css" />
+  <script src="../../../from-app.js"></script>
   <style>
     :root { --accent: #ff8f6b; --accent-2: #7c9cff; }
     html[data-theme='light'] { --accent: #c2410c; --accent-2: #3b5ce0; }
@@ -287,9 +288,11 @@
       <p class="prose">
         Tapping a media recommendation opens a search on YouTube, Goodreads or Google. The app
         passes the search text and nothing else — never who you are or what you've been
-        studying. Settings also links to this policy, the terms of use and the feedback section
-        of this site. Following any of them is subject to the privacy policy of wherever you
-        land.
+        studying. Settings also links to this policy, the terms of use, the feedback section
+        of this site and the list of my other projects. Those links carry a marker,
+        <code>?from=app</code>, that tells the site not to show donation buttons; it says
+        nothing about you and disappears from the address as soon as the page opens.
+        Following any of them is subject to the privacy policy of wherever you land.
       </p>
     </section>
 
@@ -535,9 +538,11 @@
       <p class="prose">
         Нажатие на рекомендацию открывает поиск на YouTube, Goodreads или Google. Приложение
         передаёт текст запроса и больше ничего — никогда не сообщает, кто вы и что изучаете. В
-        настройках также есть ссылки на эту политику, на условия использования и на раздел
-        обратной связи этого сайта. Переход по любой из них подчиняется политике того сайта, куда
-        вы попали.
+        настройках также есть ссылки на эту политику, на условия использования, на раздел
+        обратной связи этого сайта и на список других моих проектов. У этих ссылок есть метка
+        <code>?from=app</code>: она просит сайт не показывать кнопки пожертвований, ничего не
+        сообщает о вас и исчезает из адреса, как только страница открылась. Переход по любой
+        из них подчиняется политике того сайта, куда вы попали.
       </p>
     </section>
 
