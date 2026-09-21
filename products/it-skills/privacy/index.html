@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IT Skills — privacy policy</title>
+  <meta name="description" content="What IT Skills stores and what leaves your device. No accounts, no servers, no analytics. The only network request is the one you make yourself: publishing a project to your own GitHub." />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>" />
+  <link rel="stylesheet" href="../../../styles.css" />
+  <link rel="stylesheet" href="../../../product.css" />
+  <style>
+    :root { --accent: #7f8fff; --accent-2: #ffc857; }
+    html[data-theme='light'] { --accent: #4557e8; --accent-2: #b7791f; }
+  </style>
+</head>
+<body>
+  <div class="glow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <div class="header-top">
+        <a class="brand" href="../../../">
+          <span class="brand-mark">VL</span>
+          <span class="brand-text">Viktor Lavrov</span>
+        </a>
+        <!-- Three items, as on every other page: a fourth one wraps the nav below 375px.
+             The footer link back to the product covers that need, as legal/ does. -->
+        <nav class="header-links">
+          <a href="../../../">All products</a>
+          <a href="https://github.com/mrWD" target="_blank" rel="noopener">GitHub</a>
+          <button id="theme-toggle" class="icon-btn" type="button" aria-label="Toggle colour theme">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path class="icon-moon" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/><g class="icon-sun"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></g></svg>
+          </button>
+        </nav>
+      </div>
+
+      <p class="eyebrow">Last updated 21 September 2026</p>
+      <h1 class="title">IT Skills — privacy policy</h1>
+      <p class="subtitle lead">
+        IT Skills has no servers and no accounts. Your progress stays on your device. The app
+        sends something over the network only when you ask it to publish a project to your own
+        GitHub account.
+      </p>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section class="section" aria-labelledby="scope">
+      <h2 id="scope" class="section-title">What this covers</h2>
+      <p class="prose">
+        This policy is about the <b>IT Skills app</b>, listed on the App Store as
+        &ldquo;IT Skills: Senior Path&rdquo; — the iOS build distributed through TestFlight,
+        the Android build, and the web version. The site you are reading it on is covered
+        separately by <a href="../../../legal/">Legal &amp; privacy</a>.
+      </p>
+      <p class="prose">
+        IT Skills is an independent project. There is no company backend, no sign-up and no
+        user account. &ldquo;We&rdquo; below means the developer of the app.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="stored">
+      <h2 id="stored" class="section-title">What we store</h2>
+      <p class="prose">
+        Nothing. Everything the app keeps lives on your device: the name you typed in, your
+        self-assessment, your skill levels, lesson and test results, the files of your course
+        projects, certificates and interview scores. In the installed app that is the
+        app&rsquo;s own private storage; on the web it is your browser&rsquo;s storage.
+        Deleting the app or your browsing data deletes it.
+      </p>
+      <p class="prose">
+        If you give the app a GitHub personal access token, it is kept apart from everything
+        else: in the iOS Keychain or the Android Keystore, and on the web only in the memory of
+        the open tab, gone when you close it. It is never written to plain storage and never
+        included in a backup.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="leaves">
+      <h2 id="leaves" class="section-title">What leaves your device</h2>
+      <p class="prose">
+        Only what you publish. When you press <b>Publish to GitHub</b> on a finished course
+        project and have saved a token, the app sends that project&rsquo;s files and the
+        repository name to <code>api.github.com</code>, authenticated with your token, to create
+        the repository in your account. That request goes from your device straight to GitHub
+        — never through us — and GitHub&rsquo;s own privacy policy applies to what it receives.
+        Without a token, publishing is simulated on the device and nothing is sent.
+      </p>
+      <p class="prose">
+        Nothing else goes out. Lessons, exercises and the course catalogue ship inside the app;
+        your code runs on the device; interview answers are scored on the device by matching
+        key terms, not by an online AI service. Links you tap open in your browser, and sharing
+        a certificate or copying a backup happen only when you choose to.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="analytics">
+      <h2 id="analytics" class="section-title">Analytics</h2>
+      <p class="prose">
+        None, in the installed app and on the web alike. No page views, no events, no
+        identifiers, and no crash reporting of our own.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="backups">
+      <h2 id="backups" class="section-title">Backups and deleting your data</h2>
+      <p class="prose">
+        Профиль (Profile) → <b>Скопировать копию</b> puts your progress on the clipboard as text, at your
+        request, so you can keep it wherever you like and restore it on another device. It goes
+        wherever you paste it. Never to us. The GitHub token is not part of it.
+      </p>
+      <p class="prose">
+        Профиль → <b>Сбросить прогресс</b> (reset progress) deletes everything the app stores, the saved token
+        included. Deleting the app does the same.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="testflight">
+      <h2 id="testflight" class="section-title">Beta testing</h2>
+      <p class="prose">
+        While the app is distributed through TestFlight, Apple collects the installation and
+        crash data described in
+        <a href="https://www.apple.com/legal/privacy/data/en/testflight/" target="_blank" rel="noopener">Apple&rsquo;s TestFlight privacy notice</a>.
+        That is Apple&rsquo;s collection under Apple&rsquo;s terms. It reaches us only as
+        anonymous crash reports and the feedback you choose to send, and never includes your
+        progress or anything you typed into the app.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="children">
+      <h2 id="children" class="section-title">Children</h2>
+      <p class="prose">
+        The app is not directed at children and collects no data from anyone, of any age.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="changes">
+      <h2 id="changes" class="section-title">Changes</h2>
+      <p class="prose">
+        If this policy changes, the date at the top of the page changes with it. Since the app
+        collects nothing, any change would be about something newly added — and it would be
+        described here before it shipped.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="contact">
+      <h2 id="contact" class="section-title">Contact</h2>
+      <p class="prose">
+        Questions: <a href="mailto:lvigtor@gmail.com">lvigtor@gmail.com</a>
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><a href="../">← IT Skills</a> · <a href="../../../">All products</a> · <a href="../../../legal/">Legal &amp; privacy</a></p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem('products-page:theme');
+      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      document.documentElement.dataset.theme = saved || (prefersLight ? 'light' : 'dark');
+      document.getElementById('theme-toggle').addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem('products-page:theme', next);
+      });
+    })();
+  </script>
+  <script src="../../../track.js"></script>
+</body>
+</html>

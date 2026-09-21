@@ -15,7 +15,7 @@ products/<slug>/         one page per product, with its own assets/
 
 Product pages live under `products/` — `science-timeline`, `lingary`, `langs-db`,
 `film-table`, `games-table`, `ai-screen-translator`, `ai-prompt-suggester`,
-`double-subtitles` — and **not** at the site root. A repo with its own GitHub Pages site claims that path first:
+`double-subtitles`, `it-skills` — and **not** at the site root. A repo with its own GitHub Pages site claims that path first:
 `mrWD/film-table` publishes to `mrwd.github.io/film-table/`, which silently
 shadowed a root-level folder of the same name.
 
@@ -124,6 +124,12 @@ screenshots placed on an ellipse) and the sticky contents rail. The folder is
 `lingary`, not `lang-tutor`, because that is the name it ships under; the repo
 behind it is still `mrWD/lang-tutor` and is private, so the page's header links
 to the GitHub profile instead.
+
+IT Skills' screenshots come from a Release build on an iPhone 17 Pro Max simulator,
+seeded with demo progress and a 9:41 status bar, shot once per appearance and scaled
+to 414×900 as opaque PNGs. Its repo, `mrWD/it-skills`, is private too, so the page's
+header links to the GitHub profile. The App Store lists it as "IT Skills: Senior Path";
+the folder keeps the short name the app shows under its icon.
 
 ## Running locally
 

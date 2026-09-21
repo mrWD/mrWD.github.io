@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IT Skills — a study plan that starts from what you already know</title>
+  <meta name="description" content="A learning app for engineers built on a graph of 246 skills: 27 courses from Python, PostgreSQL and FastAPI to System Design, mobile and desktop. What you already know is credited, not re-taught, and JavaScript and SQL exercises really run. Russian interface; no account, no servers." />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="stylesheet" href="../../product.css" />
+  <style>
+    :root { --accent: #7f8fff; --accent-2: #ffc857; }
+    html[data-theme='light'] { --accent: #4557e8; --accent-2: #b7791f; }
+  </style>
+</head>
+<body>
+  <div class="glow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <div class="header-top">
+        <a class="brand" href="../../">
+          <span class="brand-mark">VL</span>
+          <span class="brand-text">Viktor Lavrov</span>
+        </a>
+        <nav class="header-links">
+          <a href="../../">All products</a>
+          <a href="https://github.com/mrWD" target="_blank" rel="noopener">GitHub</a>
+          <button id="theme-toggle" class="icon-btn" type="button" aria-label="Toggle colour theme">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path class="icon-moon" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/><g class="icon-sun"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></g></svg>
+          </button>
+        </nav>
+      </div>
+
+      <div class="hero">
+        <div class="hero-text">
+          <p class="eyebrow">iOS app · TestFlight soon</p>
+          <h1 class="title">IT Skills</h1>
+          <p class="subtitle lead">
+            A study plan that starts from what you already know. Pick a goal — Senior Software
+            Engineer, backend, mobile — say where you are, and the app credits the skills you
+            have, orders the courses by what depends on what, and leaves only the gap. The
+            interface and every lesson are in Russian; code and terms stay in English.
+          </p>
+
+          <ul class="badges">
+            <li>Free</li>
+            <li>No account</li>
+            <li>No servers at all</li>
+            <li>Works offline</li>
+            <li>1,476 exercises</li>
+          </ul>
+
+          <div class="cta">
+            <a class="btn primary" href="#how">
+              <span>How it works</span>
+              <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn" href="#data">
+              <span>Where the data lives</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual phone">
+          <img class="shot-light" src="assets/roadmap-light.png" width="414" height="900" alt="The Roadmap screen for the Senior Software Engineer goal: about 555 hours left, 15 skills already mastered and 133 to go, nine to thirteen months at ten hours a week. Below it the courses in order — Git and GitHub finished, HTTP and REST API in progress with two lessons already known in each of its modules, and Python in progress with one weak skill flagged." />
+          <img class="shot-dark" src="assets/roadmap-dark.png" width="414" height="900" alt="The Roadmap screen for the Senior Software Engineer goal: about 555 hours left, 15 skills already mastered and 133 to go, nine to thirteen months at ten hours a week. Below it the courses in order — Git and GitHub finished, HTTP and REST API in progress with two lessons already known in each of its modules, and Python in progress with one weak skill flagged. Shown in the app's dark theme." />
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section class="section" aria-labelledby="look">
+      <h2 id="look" class="section-title">What it looks like</h2>
+      <div class="shots-row">
+        <figure>
+          <a class="shot shot-light" href="assets/home-light.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/home-light.png" width="414" height="900" alt="The home screen: a greeting, the Senior Software Engineer goal, 730 XP, a 12-day streak, 84 skills at L3 or above and one certificate; a card to continue with Python — Advanced Python, type annotations and mypy, 18 minutes; the goal at 10 per cent with 555 hours left; and the two weak spots from the last mock interview, window functions and asyncio." loading="lazy" decoding="async" /></a>
+          <a class="shot shot-dark" href="assets/home-dark.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/home-dark.png" width="414" height="900" alt="The home screen: a greeting, the Senior Software Engineer goal, 730 XP, a 12-day streak, 84 skills at L3 or above and one certificate; a card to continue with Python — Advanced Python, type annotations and mypy, 18 minutes; the goal at 10 per cent with 555 hours left; and the two weak spots from the last mock interview, window functions and asyncio. Shown in the app's dark theme." loading="lazy" decoding="async" /></a>
+          <figcaption>Home — where you left off, how far the goal is, and what the interview caught</figcaption>
+        </figure>
+        <figure>
+          <a class="shot shot-light" href="assets/lesson-light.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/lesson-light.png" width="414" height="900" alt="A Python lesson on type annotations and mypy that opens with a green card: static typing is already mastered in TypeScript at L5, so the concept carries over and only the Python syntax needs checking, with Quick check and Take it in full buttons. Below it, a note on how Python differs from TypeScript: annotations are not checked at run time." loading="lazy" decoding="async" /></a>
+          <a class="shot shot-dark" href="assets/lesson-dark.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/lesson-dark.png" width="414" height="900" alt="A Python lesson on type annotations and mypy that opens with a green card: static typing is already mastered in TypeScript at L5, so the concept carries over and only the Python syntax needs checking, with Quick check and Take it in full buttons. Below it, a note on how Python differs from TypeScript: annotations are not checked at run time. Shown in the app's dark theme." loading="lazy" decoding="async" /></a>
+          <figcaption>Transfer — typing learned in TypeScript turns a Python lesson into a quick check</figcaption>
+        </figure>
+        <figure>
+          <a class="shot shot-light" href="assets/practice-light.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/practice-light.png" width="414" height="900" alt="A level-3 prediction exercise from the quick check: what add(&quot;1&quot;, &quot;2&quot;) prints when both arguments are annotated as int. The chosen answer, 12 &lt;class 'int'&gt;, is marked correct, with the explanation that annotations are not enforced at run time — mypy would catch the call, the interpreter does not." loading="lazy" decoding="async" /></a>
+          <a class="shot shot-dark" href="assets/practice-dark.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/practice-dark.png" width="414" height="900" alt="A level-3 prediction exercise from the quick check: what add(&quot;1&quot;, &quot;2&quot;) prints when both arguments are annotated as int. The chosen answer, 12 &lt;class 'int'&gt;, is marked correct, with the explanation that annotations are not enforced at run time — mypy would catch the call, the interpreter does not. Shown in the app's dark theme." loading="lazy" decoding="async" /></a>
+          <figcaption>Practice — predict the output, then see why it is that</figcaption>
+        </figure>
+        <figure>
+          <a class="shot shot-light" href="assets/skills-light.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/skills-light.png" width="414" height="900" alt="The Skill Graph: the scale from L0, not familiar, to L5, interview-ready; 84 skills at L3 or above, 24 interview-ready and 17 concepts carried over between languages; then the Python section at 58 per cent, every skill from syntax and loops to classes, magic methods and exceptions at L4." loading="lazy" decoding="async" /></a>
+          <a class="shot shot-dark" href="assets/skills-dark.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/skills-dark.png" width="414" height="900" alt="The Skill Graph: the scale from L0, not familiar, to L5, interview-ready; 84 skills at L3 or above, 24 interview-ready and 17 concepts carried over between languages; then the Python section at 58 per cent, every skill from syntax and loops to classes, magic methods and exceptions at L4. Shown in the app's dark theme." loading="lazy" decoding="async" /></a>
+          <figcaption>Skill Graph — every skill you have, by technology, from L0 to L5</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="features">
+      <h2 id="features" class="section-title">What it does</h2>
+      <ul class="feature-grid">
+        <li>
+          <span class="feature-icon" aria-hidden="true">🕸️</span>
+          <h3>A skill graph, not a course list</h3>
+          <p>246 skills across 28 technologies, each from L0 to L5, with prerequisites between them. Courses exist to close gaps in the graph, so finishing one is a side effect, not the point.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🔁</span>
+          <h3>What you know carries over</h3>
+          <p>23 universal concepts link the languages. Learn classes and inheritance in JavaScript and the Python lesson only checks the syntax; declarative UI from React counts towards SwiftUI and Compose.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🧭</span>
+          <h3>A roadmap you can argue with</h3>
+          <p>Nine goals, courses ordered by their prerequisites. Move them, drop them, and choose how deep each one goes, from Beginner to Senior. The time estimate comes from the courses' hours at ten hours a week.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🧩</span>
+          <h3>Five levels of practice</h3>
+          <p>Recognise the missing piece, assemble code from blocks, predict the output, fix working code, then build something in a workspace with files and a terminal.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">▶️</span>
+          <h3>Code that actually runs</h3>
+          <p>JavaScript executes on the device against real tests; SQL runs on a built-in engine. The terminal understands node, npm, git, pytest and docker well enough to practise the everyday commands.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">📦</span>
+          <h3>A project per course</h3>
+          <p>Each course ends with a project you can publish to your own GitHub with your own token. Without a token, publishing is simulated and the app says so.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🎤</span>
+          <h3>Interview practice</h3>
+          <p>Questions for every goal, answers scored by how many of the key ideas they cover — by keyword, not by an AI. The skills you miss go back into the roadmap as weak spots.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="courses">
+      <h2 id="courses" class="section-title">What's in it</h2>
+      <p class="prose">
+        27 courses, 84 modules, 234 lessons and 1,476 exercises — about 744 hours if you did every
+        one of them, which is exactly what the app is built to spare you.
+      </p>
+      <ul class="chips">
+        <li>Python</li>
+        <li>SQL &amp; PostgreSQL</li>
+        <li>FastAPI</li>
+        <li>Docker &amp; CI/CD</li>
+        <li>Cloud, Kubernetes &amp; Terraform</li>
+        <li>Redis, Kafka &amp; events</li>
+        <li>Architecture &amp; System Design</li>
+        <li>Application security</li>
+        <li>Performance &amp; SRE</li>
+        <li>AI &amp; LLMs in production</li>
+        <li>Algorithms</li>
+        <li>Operating systems &amp; networks</li>
+        <li>Product analytics &amp; A/B tests</li>
+        <li>JavaScript</li>
+        <li>TypeScript</li>
+        <li>React</li>
+        <li>Vue</li>
+        <li>React Native</li>
+        <li>Swift, iOS &amp; macOS</li>
+        <li>Kotlin &amp; Android</li>
+        <li>Electron</li>
+        <li>Rust &amp; Tauri</li>
+        <li>C#, .NET &amp; Windows</li>
+        <li>Java &amp; the JVM</li>
+        <li>Git &amp; GitHub</li>
+        <li>HTTP &amp; REST</li>
+        <li>Testing</li>
+      </ul>
+    </section>
+
+    <section class="section" id="how" aria-labelledby="how-title">
+      <h2 id="how-title" class="section-title">How it works</h2>
+      <div class="steps">
+        <ol>
+          <li>
+            <h3>Say where you are</h3>
+            <p>
+              Pick a role and a level, then adjust technology by technology. A frontend
+              developer with ten years behind them starts with JavaScript, TypeScript, React,
+              Vue, Git, HTTP and testing already credited — none of it is taught again.
+            </p>
+          </li>
+          <li>
+            <h3>Pick a goal</h3>
+            <p>
+              The goal sets the target level for every skill it needs. Senior Software Engineer
+              asks for 148 of them, across 26 courses; the Skill Gap screen shows which you have
+              and which you don't.
+            </p>
+          </li>
+          <li>
+            <h3>Study only the gap</h3>
+            <p>
+              Lessons you already know are marked as known, ones whose idea you learned in
+              another language only check the syntax, and every module can be skipped by passing
+              its test. What is left is what you actually need.
+            </p>
+          </li>
+          <li>
+            <h3>Show it</h3>
+            <p>
+              Finish the project, publish it, collect the course certificate, then run the
+              interview simulator for your goal. Whatever it catches becomes the next thing on
+              the roadmap.
+            </p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="data">
+      <h2 id="data" class="section-title">Where the data lives</h2>
+      <p class="prose">
+        On your device, in the app's own private storage. There is no account and no sync; to
+        move to another phone, Профиль → <b>Скопировать копию</b> on the old one puts your
+        progress on the clipboard as text, and <b>Восстановить из копии</b> on the new one takes it
+        back. A GitHub token, if you give one, is kept separately in the iOS Keychain and never
+        goes into a backup.
+      </p>
+      <p class="note">
+        The app has no backend and reports nothing. The one network request it can make is the
+        one you ask for: publishing a finished project, straight from your device to
+        <code>api.github.com</code> with your own token — see the
+        <a href="privacy/">privacy policy</a>.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="beta">
+      <h2 id="beta" class="section-title">Getting it</h2>
+      <p class="prose">
+        It is on its way to an open beta on TestFlight. The public link will appear here once
+        Apple's beta review has passed.
+      </p>
+      <p class="note">
+        Android and a browser version run from the same code and are not published yet.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="honest">
+      <h2 id="honest" class="section-title">What it isn't</h2>
+      <p class="prose">
+        Not a compiler for every language. Only JavaScript and SQL actually run. Python, Swift,
+        Kotlin, Java, C#, Rust and the rest are checked by the structure of your code, and the
+        output you see is the one written into the lesson — which is why those exercises have no
+        Run button: the app does not pretend to execute what it cannot.
+      </p>
+      <p class="note">
+        Certificates are issued by the app on your device: a record of what you finished, not a
+        qualification anyone can verify. The lessons were written with AI assistance. Every
+        exercise's reference solution is checked automatically on each change, but not every
+        page of theory has been read by a person yet — if you spot a mistake,
+        <a href="mailto:lvigtor@gmail.com?subject=IT%20Skills%20feedback">tell me</a>.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><a href="../../">← All products</a> · Found a bug or a wrong answer? <a href="mailto:lvigtor@gmail.com?subject=IT%20Skills%20feedback">Email me</a> · <a href="privacy/">Privacy policy</a> · <a href="../../legal/">Legal &amp; privacy</a>.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem('products-page:theme');
+      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      document.documentElement.dataset.theme = saved || (prefersLight ? 'light' : 'dark');
+      document.getElementById('theme-toggle').addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem('products-page:theme', next);
+      });
+    })();
+  </script>
+  <script src="../../track.js"></script>
+</body>
+</html>
