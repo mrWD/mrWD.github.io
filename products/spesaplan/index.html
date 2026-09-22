@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SpesaPlan — a week of food, planned to your budget</title>
+  <meta name="description" content="A grocery planner for Italy: set a weekly budget and the shops you can reach, and it plans the meals, splits the shopping between those shops and keeps an eye on the pantry. Prices come from the official monthly survey and from your own till receipts, read on the phone." />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛒</text></svg>" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="stylesheet" href="../../product.css" />
+  <style>
+    :root { --accent: #4cc38a; --accent-2: #f0955a; }
+    html[data-theme='light'] { --accent: #1f7a4d; --accent-2: #a4561d; }
+  </style>
+</head>
+<body>
+  <div class="glow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <div class="header-top">
+        <a class="brand" href="../../">
+          <span class="brand-mark">VL</span>
+          <span class="brand-text">Viktor Lavrov</span>
+        </a>
+        <nav class="header-links">
+          <a href="../../">All products</a>
+          <a href="https://testflight.apple.com/join/84BExTNK" target="_blank" rel="noopener">TestFlight</a>
+          <button id="theme-toggle" class="icon-btn" type="button" aria-label="Toggle colour theme">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path class="icon-moon" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/><g class="icon-sun"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></g></svg>
+          </button>
+        </nav>
+      </div>
+
+      <div class="hero">
+        <div class="hero-text">
+          <p class="eyebrow">iOS app · beta</p>
+          <h1 class="title">SpesaPlan</h1>
+          <p class="subtitle lead">
+            Tell it the budget, who is eating and the shops you can reach. It plans the week's
+            meals, splits the shopping between those shops so the basket costs least, and keeps
+            an eye on what in the fridge has to go first. Made for Italy, starting with Bologna.
+          </p>
+
+          <ul class="badges">
+            <li>Free</li>
+            <li>No sign-up</li>
+            <li>Italian shops</li>
+            <li>Receipts read on the phone</li>
+            <li>4 languages</li>
+          </ul>
+
+          <div class="cta">
+            <a class="btn primary" href="https://testflight.apple.com/join/84BExTNK" target="_blank" rel="noopener">
+              <span>Join the beta on TestFlight</span>
+              <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn" href="#prices">
+              <span>Where the prices come from</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual phone">
+          <img class="shot-light" src="assets/plan-light.png" width="414" height="900" alt="The This week screen: a planned spend of €68.63 against a budget of €100.00, €31.37 under budget, with five products priced from the official survey for Bologna. Below, two stores — Lidl and Coop — 21 meals, the calories and protein per day, a note that two stores save €0.31 over buying everything at Lidl, and a Use soon card: chicken thighs expire in a day, move the chicken curry to today?" />
+          <img class="shot-dark" src="assets/plan-dark.png" width="414" height="900" alt="The This week screen: a planned spend of €68.63 against a budget of €100.00, €31.37 under budget, with five products priced from the official survey for Bologna. Below, two stores — Lidl and Coop — 21 meals, the calories and protein per day, a note that two stores save €0.31 over buying everything at Lidl, and a Use soon card: chicken thighs expire in a day, move the chicken curry to today? Shown in the app's dark theme." />
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section class="section" aria-labelledby="look">
+      <h2 id="look" class="section-title">What it looks like</h2>
+      <div class="shots-row">
+        <figure>
+          <a class="shot shot-light" href="assets/shopping-light.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/shopping-light.png" width="414" height="900" alt="The shopping list: €68.63 of a €100.00 budget, one store instead would be Lidl for €68.94, and what is already at home. The Lidl on Via Larga 35/2 has 16 items, marked as partly survey prices and partly demo prices — canned sardines, bread, tofu on promotion, eggs, feta, onions — each with its pack count and a price tag to correct it." loading="lazy" decoding="async" /></a>
+          <a class="shot shot-dark" href="assets/shopping-dark.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/shopping-dark.png" width="414" height="900" alt="The shopping list: €68.63 of a €100.00 budget, one store instead would be Lidl for €68.94, and what is already at home. The Lidl on Via Larga 35/2 has 16 items, marked as partly survey prices and partly demo prices — canned sardines, bread, tofu on promotion, eggs, feta, onions — each with its pack count and a price tag to correct it. Shown in the app's dark theme." loading="lazy" decoding="async" /></a>
+          <figcaption>Shopping — the basket split between shops, with the source of every price</figcaption>
+        </figure>
+        <figure>
+          <a class="shot shot-light" href="assets/pantry-light.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/pantry-light.png" width="414" height="900" alt="The pantry: two items to use in the next three days. In the fridge, chicken thighs and mozzarella marked Use now, tomatoes Use soon and milk Fresh; frozen peas in the freezer and pasta in the cupboard, both Fresh." loading="lazy" decoding="async" /></a>
+          <a class="shot shot-dark" href="assets/pantry-dark.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/pantry-dark.png" width="414" height="900" alt="The pantry: two items to use in the next three days. In the fridge, chicken thighs and mozzarella marked Use now, tomatoes Use soon and milk Fresh; frozen peas in the freezer and pasta in the cupboard, both Fresh. Shown in the app's dark theme." loading="lazy" decoding="async" /></a>
+          <figcaption>Pantry — what is at home, and what has to go first</figcaption>
+        </figure>
+        <figure>
+          <a class="shot shot-light" href="assets/receipt-light.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/receipt-light.png" width="414" height="900" alt="A Conad receipt read line by line: the shop recognised as Conad City on Via Sant'Isaia, the receipt's total of €23.31, then chicken breast at €6.49 for 500 g, milk at €1.19 a litre with a note that the line held two packs, zucchini at €1.39 for 500 g and Parmigiano Reggiano at €8.90 for 300 g." loading="lazy" decoding="async" /></a>
+          <a class="shot shot-dark" href="assets/receipt-dark.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/receipt-dark.png" width="414" height="900" alt="A Conad receipt read line by line: the shop recognised as Conad City on Via Sant'Isaia, the receipt's total of €23.31, then chicken breast at €6.49 for 500 g, milk at €1.19 a litre with a note that the line held two packs, zucchini at €1.39 for 500 g and Parmigiano Reggiano at €8.90 for 300 g. Shown in the app's dark theme." loading="lazy" decoding="async" /></a>
+          <figcaption>Receipt — a till receipt turned into that shop's prices, one pack at a time</figcaption>
+        </figure>
+        <figure>
+          <a class="shot shot-light" href="assets/shops-light.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/shops-light.png" width="414" height="900" alt="Choosing a shop: the nine Conad branches OpenStreetMap knows in Bologna, from Via Angelo Finelli 8 to Viale Antonio Silvani, with the one on Via Sant'Isaia ticked and a credit to OpenStreetMap contributors underneath." loading="lazy" decoding="async" /></a>
+          <a class="shot shot-dark" href="assets/shops-dark.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/shops-dark.png" width="414" height="900" alt="Choosing a shop: the nine Conad branches OpenStreetMap knows in Bologna, from Via Angelo Finelli 8 to Viale Antonio Silvani, with the one on Via Sant'Isaia ticked and a credit to OpenStreetMap contributors underneath. Shown in the app's dark theme." loading="lazy" decoding="async" /></a>
+          <figcaption>Shops — the real branches of each chain in your city, from OpenStreetMap</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="features">
+      <h2 id="features" class="section-title">What it does</h2>
+      <ul class="feature-grid">
+        <li>
+          <span class="feature-icon" aria-hidden="true">💶</span>
+          <h3>Planned to a budget</h3>
+          <p>The week starts from an amount and the number of people eating. Recipes, portions and shops are chosen to fit it, and the plan says how far under it lands — or by how much it would not.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🛒</span>
+          <h3>The cheapest split</h3>
+          <p>Say how many shops you are willing to visit. It works out what to buy where, rounds to whole packs, and tells you what the same week would cost in one shop alone.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🧊</span>
+          <h3>A pantry that nudges</h3>
+          <p>What you bought lands in the pantry with a use-by date, and the plan buys around it. When the chicken has a day left, it offers to move the curry to today.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🧾</span>
+          <h3>Receipts, read on the phone</h3>
+          <p>Photograph a till receipt and its lines become that shop's prices. A multi-pack is split into the price of one, a weighed line keeps what you paid, and nothing is saved until you tick it.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">📍</span>
+          <h3>Your actual shops</h3>
+          <p>Branches come from OpenStreetMap, so it is the Lidl on your street, not a made-up address — in any Italian city on the map.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">⚖️</span>
+          <h3>Safe calorie targets</h3>
+          <p>Optional: height, weight and a goal set the day's calories and protein. The pace is capped at a safe rate however far the slider is pushed, and the app says when it capped it.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🌍</span>
+          <h3>Four languages</h3>
+          <p>Italian, English, German and Russian — the interface and every product and recipe in it, with each language's own decimals and plurals.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="prices">
+      <h2 id="prices" class="section-title">Where the prices come from</h2>
+      <p class="prose">
+        No Italian supermarket publishes its shelf prices openly, so SpesaPlan takes them from
+        wherever they are real, in this order, and every shop in the shopping list says which
+        kind it is using:
+      </p>
+      <div class="steps">
+        <ol>
+          <li>
+            <h3>Your receipts</h3>
+            <p>
+              What you paid, in that shop. A price you scanned or typed beats every other source
+              for that shop and product.
+            </p>
+          </li>
+          <li>
+            <h3>The official survey</h3>
+            <p>
+              Osservaprezzi, the Italian Ministry of Enterprise's monthly price survey, per
+              province. Bologna's covers 19 of the 65 products in the catalogue; each chain is
+              placed between the lowest and highest price the survey saw there. No promotion is
+              ever attached to a surveyed price.
+            </p>
+          </li>
+          <li>
+            <h3>Estimates</h3>
+            <p>
+              Everything else, labelled "demo prices" on the shop it applies to. They can be
+              switched off, at the cost of a thinner plan.
+            </p>
+          </li>
+        </ol>
+      </div>
+      <p class="note">
+        Esselunga and Conad online-shop prices are available through Pepesto, a paid API. The
+        app can use it through a server of your own; the beta does not.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="data">
+      <h2 id="data" class="section-title">Where the data lives</h2>
+      <p class="prose">
+        On your phone. There is no sign-up: the budget, the household, the plans, the pantry and
+        the prices you scanned stay in the app's own storage. Sync between devices exists, but
+        only through a SpesaPlan server you run yourself, and it knows you by a random code, not
+        by an email address.
+      </p>
+      <p class="note">
+        The app talks to outside services only for the feature that needs them: OpenStreetMap
+        gets the city name when you pick shops, Open Food Facts gets a barcode when you scan one.
+        Receipt photos never leave the phone — see the
+        <a href="privacy/">privacy policy</a>.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="beta">
+      <h2 id="beta" class="section-title">Getting it</h2>
+      <p class="prose">
+        It is in open beta on TestFlight. Install Apple's TestFlight app, open the link, and
+        SpesaPlan installs alongside your other apps.
+      </p>
+      <p class="note">
+        Android and a browser version run from the same code and are not published yet.
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="https://testflight.apple.com/join/84BExTNK" target="_blank" rel="noopener">
+          <span>Join the beta on TestFlight</span>
+          <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="honest">
+      <h2 id="honest" class="section-title">What it isn't</h2>
+      <p class="prose">
+        Not a price comparison site. With no open prices to read, most of the catalogue stays an
+        estimate until you scan a receipt, and the official survey is monthly and runs a couple
+        of months behind. It plans best for Bologna, whose survey ships with the app, though
+        shops can be picked in any city.
+      </p>
+      <p class="note">
+        Receipt reading is tested on printed receipts rather than crumpled thermal paper; when
+        the lines do not add up to the receipt's total, the app says so before anything is
+        saved. The recipes are a fixed set of 48.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><a href="../../">← All products</a> · Found a bug or missing a feature? <a href="mailto:lvigtor@gmail.com?subject=SpesaPlan%20feedback">Email me</a> · <a href="../../legal/">Legal &amp; privacy</a>.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem('products-page:theme');
+      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      document.documentElement.dataset.theme = saved || (prefersLight ? 'light' : 'dark');
+      document.getElementById('theme-toggle').addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem('products-page:theme', next);
+      });
+    })();
+  </script>
+</body>
+</html>

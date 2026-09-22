@@ -15,7 +15,7 @@ products/<slug>/         one page per product, with its own assets/
 
 Product pages live under `products/` — `science-timeline`, `lingary`, `langs-db`,
 `film-table`, `games-table`, `ai-screen-translator`, `ai-prompt-suggester`,
-`double-subtitles`, `it-skills` — and **not** at the site root. A repo with its own GitHub Pages site claims that path first:
+`double-subtitles`, `it-skills`, `spesaplan` — and **not** at the site root. A repo with its own GitHub Pages site claims that path first:
 `mrWD/film-table` publishes to `mrwd.github.io/film-table/`, which silently
 shadowed a root-level folder of the same name.
 

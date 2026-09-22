@@ -157,6 +157,21 @@ const PROJECTS = [
     ],
   },
   {
+    name: 'SpesaPlan',
+    tagline: 'A week of food, planned to your budget',
+    description:
+      "A grocery planner for Italy: set the weekly budget, who is eating and the shops you can reach, and it plans the meals, splits the shopping between those shops so the basket costs least, and keeps the pantry. Prices come from wherever they are real — your own till receipts, read on the phone, and the Ministry's monthly survey — and the rest is labelled an estimate.",
+    category: 'iOS app',
+    tags: ['React Native', 'Expo', 'TypeScript', 'Local-first', '4 languages', 'Italy'],
+    icon: '🛒',
+    accent: '#4cc38a',
+    status: 'Beta',
+    links: [
+      { label: 'Learn more', url: 'products/spesaplan/' },
+      { label: 'Join the TestFlight beta', url: 'https://testflight.apple.com/join/84BExTNK' },
+    ],
+  },
+  {
     name: 'AI Job Search',
     statsKey: 'ai-job-search', // matches a key in stats.json
     tagline: 'A job hunt that runs while you do something else',
