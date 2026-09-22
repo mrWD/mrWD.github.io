@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SpesaPlan — privacy policy</title>
+  <meta name="description" content="What SpesaPlan stores and what leaves your device. No accounts of its own, no analytics; receipt photos are read on the phone. The only requests go to OpenStreetMap, Open Food Facts and, if you set one up, your own SpesaPlan server." />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛒</text></svg>" />
+  <link rel="stylesheet" href="../../../styles.css" />
+  <link rel="stylesheet" href="../../../product.css" />
+  <style>
+    :root { --accent: #4cc38a; --accent-2: #f0955a; }
+    html[data-theme='light'] { --accent: #1f7a4d; --accent-2: #a4561d; }
+  </style>
+</head>
+<body>
+  <div class="glow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <div class="header-top">
+        <a class="brand" href="../../../">
+          <span class="brand-mark">VL</span>
+          <span class="brand-text">Viktor Lavrov</span>
+        </a>
+        <!-- Three items, as on every other page: a fourth one wraps the nav below 375px.
+             The footer link back to the product covers that need, as legal/ does. -->
+        <nav class="header-links">
+          <a href="../../../">All products</a>
+          <a href="https://github.com/mrWD" target="_blank" rel="noopener">GitHub</a>
+          <button id="theme-toggle" class="icon-btn" type="button" aria-label="Toggle colour theme">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path class="icon-moon" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/><g class="icon-sun"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></g></svg>
+          </button>
+        </nav>
+      </div>
+
+      <p class="eyebrow">Last updated 22 September 2026</p>
+      <h1 class="title">SpesaPlan — privacy policy</h1>
+      <p class="subtitle lead">
+        SpesaPlan has no accounts of its own and no analytics. Your plans, pantry and prices stay
+        on your phone, and receipt photos are read there too. The few requests it makes go to
+        open public services, and only when you use the feature that needs them.
+      </p>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section class="section" aria-labelledby="scope">
+      <h2 id="scope" class="section-title">What this covers</h2>
+      <p class="prose">
+        This policy is about the <b>SpesaPlan app</b> — the iOS build distributed through
+        TestFlight, the Android build, and the web version. The site you are reading it on is
+        covered separately by <a href="../../../legal/">Legal &amp; privacy</a>.
+      </p>
+      <p class="prose">
+        SpesaPlan is an independent project. There is no company backend and no sign-up.
+        &ldquo;We&rdquo; below means the developer of the app.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="stored">
+      <h2 id="stored" class="section-title">What stays on your device</h2>
+      <p class="prose">
+        Everything you enter: the budget, the number of people, diet and allergies, the shops you
+        picked, the weekly plan, the pantry and its use-by dates, and the prices you typed or
+        scanned. If you set a goal, also your height, weight, age and activity level, which are
+        used only to work out calorie and protein targets on the phone. All of it lives in the
+        app&rsquo;s own storage; deleting the app deletes it. We do not have a copy.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="leaves">
+      <h2 id="leaves" class="section-title">What leaves your device</h2>
+      <p class="prose">
+        Only this, and only when you use the feature:
+      </p>
+      <ul class="feature-grid">
+        <li>
+          <span class="feature-icon" aria-hidden="true">📍</span>
+          <h3>OpenStreetMap</h3>
+          <p>When you choose a shop, the name of the city in your profile goes to the public Overpass API (overpass-api.de, overpass.private.coffee or overpass.kumi.systems) to list the supermarkets there. The answer is kept on the phone for a month.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🏷️</span>
+          <h3>Open Food Facts</h3>
+          <p>When you scan or type a barcode, that number goes to world.openfoodfacts.org to look the product up, and its photo is loaded from there. Nothing else is sent with it.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🔄</span>
+          <h3>Your own server, if any</h3>
+          <p>Sync between devices and live shop prices need a SpesaPlan server whose address you enter yourself. Sync sends your profile, plan, pantry and prices to that server under a random code, and the server keeps only a hash of the code. The beta has no server set, so by default none of this happens.</p>
+        </li>
+      </ul>
+      <p class="note">
+        Receipt photos and pantry photos are never uploaded: the text on a receipt is recognised
+        on the phone itself, by Apple&rsquo;s Vision framework on iOS and Google&rsquo;s ML Kit
+        on Android. The official price survey the app uses ships inside the app, so reading it
+        sends nothing.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="permissions">
+      <h2 id="permissions" class="section-title">Permissions</h2>
+      <p class="prose">
+        The camera is used to scan barcodes and photograph receipts; photo library access, to
+        pick a receipt or a pantry photo you already took. Local network access is asked for only
+        to reach a SpesaPlan server on your own Wi-Fi. Each is asked for when you first use the
+        feature, and the app works without any of them.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="analytics">
+      <h2 id="analytics" class="section-title">Analytics</h2>
+      <p class="prose">
+        None. No page views, no events, no identifiers, no advertising and no crash reporting of
+        our own.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="testflight">
+      <h2 id="testflight" class="section-title">Beta testing</h2>
+      <p class="prose">
+        While the app is distributed through TestFlight, Apple collects the installation and
+        crash data described in
+        <a href="https://www.apple.com/legal/privacy/data/en/testflight/" target="_blank" rel="noopener">Apple&rsquo;s TestFlight privacy notice</a>.
+        That is Apple&rsquo;s collection under Apple&rsquo;s terms. It reaches us only as
+        anonymous crash reports and the feedback you choose to send, and never includes your
+        plans, pantry or prices.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="children">
+      <h2 id="children" class="section-title">Children</h2>
+      <p class="prose">
+        The app is not directed at children and collects no personal data from anyone, of any
+        age.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="changes">
+      <h2 id="changes" class="section-title">Changes</h2>
+      <p class="prose">
+        If this policy changes, the date at the top of the page changes with it, and anything
+        new the app sends anywhere is described here before it ships.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="contact">
+      <h2 id="contact" class="section-title">Contact</h2>
+      <p class="prose">
+        Questions: <a href="mailto:lvigtor@gmail.com">lvigtor@gmail.com</a>
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><a href="../">← SpesaPlan</a> · <a href="../../../">All products</a> · <a href="../../../legal/">Legal &amp; privacy</a></p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem('products-page:theme');
+      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      document.documentElement.dataset.theme = saved || (prefersLight ? 'light' : 'dark');
+      document.getElementById('theme-toggle').addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem('products-page:theme', next);
+      });
+    })();
+  </script>
+</body>
+</html>
