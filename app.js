@@ -151,9 +151,10 @@ const PROJECTS = [
     tags: ['React Native', 'Expo', 'TypeScript', 'Local-first', 'Offline', 'Russian'],
     icon: '🧭',
     accent: '#7f8fff',
-    status: 'Soon',
+    status: 'Beta',
     links: [
       { label: 'Learn more', url: 'products/it-skills/' },
+      { label: 'Join the TestFlight beta', url: 'https://testflight.apple.com/join/bm55aegA' },
     ],
   },
   {
