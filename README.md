@@ -1,9 +1,13 @@
 # mrwd.github.io
 
-One page that lists everything I've built, plus a page per product where a
-GitHub link isn't enough.
+My portfolio site: one page that lists everything I've built, plus a page per
+product where a GitHub link isn't enough.
 
-Static HTML/CSS/JS. No build step, no dependencies, no backend.
+Live at https://mrwd.github.io/
+
+Static HTML/CSS/JS. No build step, no dependencies, no backend. A GitHub
+Actions job collects public usage numbers once a day and commits them to
+`stats.json`.
 
 ```
 index.html               the product list
@@ -14,13 +18,15 @@ products/<slug>/         one page per product, with its own assets/
 ```
 
 Product pages live under `products/` — `science-timeline`, `lingary`, `langs-db`,
-`film-table`, `games-table`, `ai-screen-translator`, `ai-prompt-suggester`,
-`double-subtitles`, `it-skills`, `spesaplan` — and **not** at the site root. A repo with its own GitHub Pages site claims that path first:
-`mrWD/film-table` publishes to `mrwd.github.io/film-table/`, which silently
-shadowed a root-level folder of the same name.
+`film-table`, `games-table`, `books-table`, `invest-table`, `goals-table`,
+`it-skills`, `spesaplan`, `ai-job-search`, `ai-screen-translator`,
+`ai-prompt-suggester`, `double-subtitles` — and **not** at the site root. A repo
+with its own GitHub Pages site claims that path first: `mrWD/film-table`
+publishes to `mrwd.github.io/film-table/`, which silently shadowed a root-level
+folder of the same name. The one root folder left, `ai-screen-translator/`, is
+a redirect to the new path because the old URL had already been published.
 
-Live at https://mrwd.github.io/ — GitHub Pages serves the `master` branch root,
-so a push is the deploy.
+GitHub Pages serves the `master` branch root, so a push is the deploy.
 
 ## Adding a project
 
@@ -57,7 +63,7 @@ Data used to come from a published Google Sheet. That's gone — the list lives 
 [`.github/workflows/stats.yml`](.github/workflows/stats.yml) runs
 [`scripts/collect_stats.py`](scripts/collect_stats.py) once a day, which writes
 `stats.json` and commits it only when a number moves. The page reads that file
-and adds a badge to the card — **but only above 1000**
+and adds a badge to the card — **but only from 50 up**
 (`USERS_THRESHOLD` in `app.js`). Below that the badge stays hidden, because
 "9 users" says less than saying nothing.
 
@@ -86,9 +92,11 @@ Chrome has no API, so its listing page is scraped — that will break whenever
 Google changes the markup. The collector fails soft: a broken source keeps its
 previous value and the run still succeeds, so a hiccup never blanks the site.
 
-Not every project can have one. Web apps with no counter of their own
-(FilmTable, GamesTable, Science Timeline) and an unreleased iOS app (Lingary)
-have no public number to read.
+Only a few projects have a store number to read: the two extensions (`users`),
+the two downloadable apps (`downloads`) and Languages of the World (`visits`,
+from its own counter). The other web apps and Lingary are in `SLUGS` for clicks
+only. The TestFlight betas that are not in `SLUGS` (InvestTable, GoalsTable,
+IT Skills, SpesaPlan) have no counter at all yet.
 
 ## Product pages
 
@@ -112,8 +120,9 @@ To add another, copy the closest folder and point that project's first link at
 it — a relative URL like `products/film-table/` is what makes the card's highlighted
 button open the page.
 
-Screenshots of the two web apps were captured from the live deployments at
-414×896. The extensions have no screenshots yet.
+Screenshots of the web apps were captured from the live deployments at
+414×896, in light and dark. The extensions have a few shots of the in-page UI
+instead, since there is no phone frame to show.
 
 Lingary's come out of a UI test in the app repo
 (`Tests/UITests/MarketingShots.swift`), run once per simulator appearance
@@ -134,7 +143,12 @@ the folder keeps the short name the app shows under its icon.
 ## Running locally
 
 ```bash
-python3 -m http.server -d /Users/viktor/Projects/products-page 8080
+python3 -m http.server 8080
 ```
 
 Then open http://localhost:8080.
+
+## License
+
+The site code is MIT, see [`LICENSE`](LICENSE). Product names, icons and
+screenshots belong to the products they show and are not covered by it.
