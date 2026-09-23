@@ -136,10 +136,11 @@ code {
 
 /* ------------------------------------------------------- before / after */
 /* Two up only when each half is wide enough to read the overlaid text;
-   below that the pair stacks. */
+   below that the pair stacks. min() is what makes it stack rather than overflow —
+   a bare 440px floor stayed 440 wide on a phone, 85px past a 375px screen. */
 .compare {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(440px, 100%), 1fr));
   gap: 1rem;
 }
 
