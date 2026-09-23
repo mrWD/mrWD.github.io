@@ -146,7 +146,7 @@ const PROJECTS = [
     name: 'IT Skills',
     tagline: 'A study plan that starts from what you already know',
     description:
-      'Twenty-seven courses for engineers — from Python, PostgreSQL and FastAPI to System Design, mobile and desktop — hung on a graph of 246 skills. Say what you know and pick a goal: it credits the rest, orders the courses by what depends on what, and leaves only the gap. JavaScript and SQL exercises run for real on the device. Russian interface, no account, no servers.',
+      'Twenty-seven courses for engineers — from Python, PostgreSQL and FastAPI to System Design, mobile and desktop — hung on a graph of 273 skills. Say what you know and pick a goal: it credits the rest, orders the courses by what depends on what, and leaves only the gap. JavaScript and SQL exercises run for real on the device. Russian interface, no account, no servers.',
     category: 'iOS app',
     tags: ['React Native', 'Expo', 'TypeScript', 'Local-first', 'Offline', 'Russian'],
     icon: '🧭',
