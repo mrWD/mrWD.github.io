@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SpesaPlan — privacy policy</title>
-  <meta name="description" content="What SpesaPlan stores and what leaves your device. No accounts of its own, no analytics; receipt photos are read on the phone. The only requests go to OpenStreetMap, Open Food Facts and, if you set one up, your own SpesaPlan server." />
+  <meta name="description" content="What SpesaPlan keeps and where. Without an account everything stays on your phone; with one, the household's shared list is kept on SpesaPlan's server in Frankfurt. Receipt photos never leave the phone. No analytics, no advertising." />
   <meta name="robots" content="index, follow" />
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛒</text></svg>" />
@@ -13,6 +13,30 @@
   <style>
     :root { --accent: #4cc38a; --accent-2: #f0955a; }
     html[data-theme='light'] { --accent: #1f7a4d; --accent-2: #a4561d; }
+
+    /* Language switch, the same pill as on Lingary's privacy page. */
+    .langbar { display: flex; gap: 0.5rem; margin: 1.25rem 0 0; }
+
+    .langbar button {
+      font: inherit;
+      font-size: 0.875rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .langbar button:hover { background: var(--surface-hover); }
+
+    .langbar button[aria-pressed='true'] {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--bg);
+    }
+
+    [hidden] { display: none !important; }
   </style>
 </head>
 <body>
@@ -36,122 +60,457 @@
         </nav>
       </div>
 
-      <p class="eyebrow">Last updated 22 September 2026</p>
-      <h1 class="title">SpesaPlan — privacy policy</h1>
-      <p class="subtitle lead">
-        SpesaPlan has no accounts of its own and no analytics. Your plans, pantry and prices stay
-        on your phone, and receipt photos are read there too. The few requests it makes go to
-        open public services, and only when you use the feature that needs them.
+      <p class="eyebrow" id="hdr-eyebrow">Last updated 23 September 2026</p>
+      <h1 class="title" id="hdr-title">SpesaPlan — privacy policy</h1>
+      <p class="subtitle lead" id="hdr-lead">
+        SpesaPlan works without an account, and then everything you enter stays on your phone.
+        An account is optional — it lets the people you live with share one plan, one list and
+        one pantry — and it is the only reason SpesaPlan keeps anything about you on its server.
+        No analytics, no advertising.
       </p>
+      <div class="langbar">
+        <button type="button" data-lang="en" aria-pressed="true">English</button>
+        <button type="button" data-lang="it" aria-pressed="false">Italiano</button>
+      </div>
     </div>
   </header>
 
-  <main class="wrap">
+  <!-- ───────────────────────────────  ENGLISH  ─────────────────────────────── -->
+  <main class="wrap" id="lang-en">
 
-    <section class="section" aria-labelledby="scope">
-      <h2 id="scope" class="section-title">What this covers</h2>
+    <section class="section" aria-labelledby="en-scope">
+      <h2 id="en-scope" class="section-title">What this covers</h2>
       <p class="prose">
         This policy is about the <b>SpesaPlan app</b> — the iOS build distributed through
-        TestFlight, the Android build, and the web version. The site you are reading it on is
-        covered separately by <a href="../../../legal/">Legal &amp; privacy</a>.
+        TestFlight, the Android build and the web version — and the SpesaPlan server behind its
+        accounts. The site you are reading it on is covered separately by
+        <a href="../../../legal/">Legal &amp; privacy</a>.
       </p>
       <p class="prose">
-        SpesaPlan is an independent project. There is no company backend and no sign-up.
-        &ldquo;We&rdquo; below means the developer of the app.
-      </p>
-    </section>
-
-    <section class="section" aria-labelledby="stored">
-      <h2 id="stored" class="section-title">What stays on your device</h2>
-      <p class="prose">
-        Everything you enter: the budget, the number of people, diet and allergies, the shops you
-        picked, the weekly plan, the pantry and its use-by dates, and the prices you typed or
-        scanned. If you set a goal, also your height, weight, age and activity level, which are
-        used only to work out calorie and protein targets on the phone. All of it lives in the
-        app&rsquo;s own storage; deleting the app deletes it. We do not have a copy.
+        SpesaPlan is an independent project by Viktor Lavrov, who decides what happens to the
+        data described here — the controller, in the words of the GDPR. &ldquo;We&rdquo; below
+        means him. Contact: <a href="mailto:lvigtor@gmail.com">lvigtor@gmail.com</a>.
       </p>
     </section>
 
-    <section class="section" aria-labelledby="leaves">
-      <h2 id="leaves" class="section-title">What leaves your device</h2>
+    <section class="section" aria-labelledby="en-device">
+      <h2 id="en-device" class="section-title">Without an account</h2>
       <p class="prose">
-        Only this, and only when you use the feature:
+        Everything you enter stays in the app&rsquo;s own storage on your phone: the budget, the
+        number of people, diet and allergies, the shops you picked, the weekly plan, the shopping
+        list, the pantry and its use-by dates, and the prices you typed or scanned. If you set a
+        goal, also your sex, age, height, weight and activity level, which are used only to work
+        out calorie and protein targets on the phone. Deleting the app deletes all of it; without
+        an account we have no copy.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="en-account">
+      <h2 id="en-account" class="section-title">With an account</h2>
+      <p class="prose">
+        An account is needed only to share with your household. It lives on our server,
+        <code>spesaplan-api.fly.dev</code>, hosted by Fly.io in Frankfurt, Germany, which keeps:
+      </p>
+      <ul class="prose">
+        <li><b>Your account</b> — your e-mail address, the name you give, and your password,
+          stored only as a scrypt hash, never as the password itself. A sign-in is a random
+          token of which the server keeps only a hash; one unused for 180 days stops working.</li>
+        <li><b>Your household</b> — who is in it, and the addresses someone invited, until the
+          invite is accepted, declined or withdrawn. The server sends no e-mail: whoever invites
+          you tells you themselves.</li>
+        <li><b>The shared list</b> — the household&rsquo;s plan, shopping list and what is ticked
+          off, the pantry with its dates, the prices typed in, and the household&rsquo;s
+          settings: budget, number of people, city, shops, which chains&rsquo; loyalty cards you
+          have (never a card number), diet, allergies and meats you avoid. Everyone in the
+          household can see and change it.</li>
+        <li><b>Your own settings</b> — the app&rsquo;s language and, if you set a goal, sex, age,
+          height, weight, activity level and pace. They are yours, not the household&rsquo;s, and
+          only your devices read them.</li>
+        <li><b>Your shops</b> — the supermarkets you picked on OpenStreetMap, which is public map
+          data, so the server can collect their prices.</li>
+      </ul>
+      <p class="note">
+        Diet, allergies and body measurements can say something about your health. They reach
+        the server only while you are signed in, and are used for nothing but your
+        household&rsquo;s plan and your own targets. If you would rather not keep them there,
+        leave them empty or use the app without an account.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="en-receipts">
+      <h2 id="en-receipts" class="section-title">Receipts</h2>
+      <p class="prose">
+        Receipt photos never leave the phone: the text is recognised on the phone itself, by
+        Apple&rsquo;s Vision framework on iOS and Google&rsquo;s ML Kit on Android. Without an
+        account, what it reads stays there too.
+      </p>
+      <p class="prose">
+        When you are signed in and the receipt comes from a shop you picked on the map, the app
+        sends what it read: the shop&rsquo;s name, address and VAT number, the date, the total,
+        and the shopping lines — each product&rsquo;s name as printed, the quantity and the
+        price. The payment part (card, cash, change), the tax lines and loyalty points are left
+        out on the phone. The lines the server can match to a product become that shop&rsquo;s
+        prices, and everyone who shops there sees them — without your name or anything else
+        about you. The receipt itself stays linked to your account and household, so that a
+        mistake or misuse can be traced and removed.
+      </p>
+      <p class="note">
+        Once a week the server also reads the prices some chains publish on their own websites.
+        That involves nothing about you.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="en-feedback">
+      <h2 id="en-feedback" class="section-title">Feedback and requests</h2>
+      <p class="prose">
+        The feedback form sends what you write, what kind of message it is, the app&rsquo;s
+        version, the platform and the language; for a request, the country, city or shop you
+        name; and your e-mail address only if you want an answer. If you are signed in, the
+        message is linked to your account. Messages are kept until they have been dealt with;
+        ask, and we delete one sooner.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="en-leaves">
+      <h2 id="en-leaves" class="section-title">Other services</h2>
+      <p class="prose">
+        Apart from our server, the app talks only to these, and only when you use the feature:
       </p>
       <ul class="feature-grid">
         <li>
           <span class="feature-icon" aria-hidden="true">📍</span>
           <h3>OpenStreetMap</h3>
-          <p>When you choose a shop, the name of the city in your profile goes to the public Overpass API (overpass-api.de, overpass.private.coffee or overpass.kumi.systems) to list the supermarkets there. The answer is kept on the phone for a month.</p>
+          <p>The shops of a few cities are built into the app. For any other city, or when you update the list, the city&rsquo;s name goes to the public Overpass API (overpass-api.de, overpass.private.coffee or overpass.kumi.systems) to list its supermarkets. The answer is kept on the phone for a month.</p>
         </li>
         <li>
           <span class="feature-icon" aria-hidden="true">🏷️</span>
           <h3>Open Food Facts</h3>
-          <p>When you scan or type a barcode, that number goes to world.openfoodfacts.org to look the product up, and its photo is loaded from there. Nothing else is sent with it.</p>
+          <p>When you look up a barcode, that number goes to world.openfoodfacts.org to find the product, and its photo is loaded from there. Nothing else is sent with it. A code that carries a use-by date (GS1) is read on the phone and sent nowhere.</p>
         </li>
         <li>
           <span class="feature-icon" aria-hidden="true">🔄</span>
           <h3>Your own server, if any</h3>
-          <p>Sync between devices and live shop prices need a SpesaPlan server whose address you enter yourself. Sync sends your profile, plan, pantry and prices to that server under a random code, and the server keeps only a hash of the code. The beta has no server set, so by default none of this happens.</p>
+          <p>Builds without accounts can sync through a SpesaPlan server whose address you enter yourself. It gets your profile, plan, pantry and prices under a random code, and keeps only a hash of the code.</p>
         </li>
       </ul>
-      <p class="note">
-        Receipt photos and pantry photos are never uploaded: the text on a receipt is recognised
-        on the phone itself, by Apple&rsquo;s Vision framework on iOS and Google&rsquo;s ML Kit
-        on Android. The official price survey the app uses ships inside the app, so reading it
-        sends nothing.
-      </p>
     </section>
 
-    <section class="section" aria-labelledby="permissions">
-      <h2 id="permissions" class="section-title">Permissions</h2>
+    <section class="section" aria-labelledby="en-processors">
+      <h2 id="en-processors" class="section-title">Who else handles it</h2>
       <p class="prose">
-        The camera is used to scan barcodes and photograph receipts; photo library access, to
-        pick a receipt or a pantry photo you already took. Local network access is asked for only
-        to reach a SpesaPlan server on your own Wi-Fi. Each is asked for when you first use the
-        feature, and the app works without any of them.
+        Fly.io, Inc. hosts the server and its database in Frankfurt, as our processor. Like any
+        server, ours sees the IP address each request comes from. It uses it only to limit how
+        often one address can try to sign in, sign up or send feedback: the address is held in
+        memory, forgotten within two hours and never written anywhere. Connections are encrypted
+        (HTTPS), and the database can be reached only from Fly.io&rsquo;s private network.
       </p>
-    </section>
-
-    <section class="section" aria-labelledby="analytics">
-      <h2 id="analytics" class="section-title">Analytics</h2>
       <p class="prose">
-        None. No page views, no events, no identifiers, no advertising and no crash reporting of
-        our own.
+        Nobody else gets your data. We do not sell it, share it or use it for advertising.
       </p>
     </section>
 
-    <section class="section" aria-labelledby="testflight">
-      <h2 id="testflight" class="section-title">Beta testing</h2>
+    <section class="section" aria-labelledby="en-retention">
+      <h2 id="en-retention" class="section-title">How long it is kept</h2>
+      <ul class="prose">
+        <li><b>Account, household, shared list and your settings</b> — until you delete the
+          account (or leave the household, for the household&rsquo;s part).</li>
+        <li><b>Invites</b> — until accepted, declined or withdrawn.</li>
+        <li><b>Sign-ins</b> — until 180 days after their last use.</li>
+        <li><b>Receipts and the prices they gave</b> — kept as price history. When you delete
+          your account they stay, no longer linked to you; once nobody is left in your household,
+          no longer linked to it either.</li>
+        <li><b>Feedback</b> — until it has been dealt with.</li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="en-rights">
+      <h2 id="en-rights" class="section-title">Your control and your rights</h2>
+      <p class="prose">
+        In the app, <b>Profile → Account and household → Delete account</b> deletes your account
+        at once: e-mail, name, password hash, sign-ins and your own settings. The household
+        carries on without you, or is deleted with its shared list if you were the last one in
+        it. The copy on your phone stays until you reset the app (<b>Profile → Data</b>) or
+        delete it.
+      </p>
+      <p class="prose">
+        Under the GDPR you can also ask us for a copy of your data, to correct it, to delete it,
+        to take it elsewhere, or to restrict or object to how we use it — write to
+        <a href="mailto:lvigtor@gmail.com">lvigtor@gmail.com</a>. We use account data to give
+        you what you signed up for (the contract, GDPR art. 6(1)(b)), and receipt prices for
+        everyone because keeping prices real is what the service is for (legitimate interest,
+        art. 6(1)(f)); you can object to that, or simply scan receipts without being signed in.
+        You can also complain to a data protection authority — in Italy, the
+        <a href="https://www.garanteprivacy.it/" target="_blank" rel="noopener">Garante per la protezione dei dati personali</a>.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="en-permissions">
+      <h2 id="en-permissions" class="section-title">Permissions</h2>
+      <p class="prose">
+        The camera is used to scan barcodes and to photograph receipts and labels; photo library
+        access, to pick a photo you already took. Local network access is asked for only to reach
+        a SpesaPlan server on your own Wi-Fi. Each is asked for when you first use the feature,
+        and the app works without any of them.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="en-analytics">
+      <h2 id="en-analytics" class="section-title">Analytics</h2>
+      <p class="prose">
+        None. No page views, no events, no advertising identifiers and no crash reporting of our
+        own.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="en-testflight">
+      <h2 id="en-testflight" class="section-title">Beta testing</h2>
       <p class="prose">
         While the app is distributed through TestFlight, Apple collects the installation and
         crash data described in
-        <a href="https://www.apple.com/legal/privacy/data/en/testflight/" target="_blank" rel="noopener">Apple&rsquo;s TestFlight privacy notice</a>.
+        <a href="https://www.apple.com/legal/privacy/data/en/test-flight/" target="_blank" rel="noopener">Apple&rsquo;s TestFlight privacy notice</a>.
         That is Apple&rsquo;s collection under Apple&rsquo;s terms. It reaches us only as
         anonymous crash reports and the feedback you choose to send, and never includes your
         plans, pantry or prices.
       </p>
     </section>
 
-    <section class="section" aria-labelledby="children">
-      <h2 id="children" class="section-title">Children</h2>
+    <section class="section" aria-labelledby="en-children">
+      <h2 id="en-children" class="section-title">Children</h2>
       <p class="prose">
-        The app is not directed at children and collects no personal data from anyone, of any
-        age.
+        SpesaPlan is meant for adults who run a household. Please don&rsquo;t create an account
+        if you are under 14, the age from which you can agree to this yourself in Italy.
       </p>
     </section>
 
-    <section class="section" aria-labelledby="changes">
-      <h2 id="changes" class="section-title">Changes</h2>
+    <section class="section" aria-labelledby="en-changes">
+      <h2 id="en-changes" class="section-title">Changes and contact</h2>
       <p class="prose">
         If this policy changes, the date at the top of the page changes with it, and anything
-        new the app sends anywhere is described here before it ships.
+        new the app sends anywhere is described here before it ships. Questions and requests:
+        Viktor Lavrov, <a href="mailto:lvigtor@gmail.com">lvigtor@gmail.com</a>.
       </p>
     </section>
 
-    <section class="section" aria-labelledby="contact">
-      <h2 id="contact" class="section-title">Contact</h2>
+  </main>
+
+  <!-- ───────────────────────────────  ITALIANO  ─────────────────────────────── -->
+  <main class="wrap" id="lang-it" lang="it" hidden>
+
+    <section class="section" aria-labelledby="it-scope">
+      <h2 id="it-scope" class="section-title">A cosa si riferisce</h2>
       <p class="prose">
-        Questions: <a href="mailto:lvigtor@gmail.com">lvigtor@gmail.com</a>
+        Questa informativa riguarda l&rsquo;<b>app SpesaPlan</b> — la versione iOS distribuita
+        tramite TestFlight, quella Android e quella web — e il server di SpesaPlan su cui si
+        appoggiano gli account. Il sito su cui la stai leggendo è coperto a parte da
+        <a href="../../../legal/">Legal &amp; privacy</a> (in inglese).
+      </p>
+      <p class="prose">
+        SpesaPlan è un progetto indipendente di Viktor Lavrov, che decide cosa succede ai dati
+        descritti qui: il titolare del trattamento, nelle parole del GDPR. &laquo;Noi&raquo;, qui
+        sotto, significa lui. Contatto: <a href="mailto:lvigtor@gmail.com">lvigtor@gmail.com</a>.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="it-device">
+      <h2 id="it-device" class="section-title">Senza account</h2>
+      <p class="prose">
+        Tutto ciò che inserisci resta nella memoria dell&rsquo;app sul telefono: il budget, il
+        numero di persone, dieta e allergie, i negozi scelti, il piano della settimana, la lista
+        della spesa, la dispensa con le scadenze e i prezzi digitati o scansionati. Se imposti un
+        obiettivo, anche sesso, età, altezza, peso e livello di attività, usati solo per calcolare
+        sul telefono calorie e proteine. Eliminare l&rsquo;app elimina tutto; senza account non
+        ne abbiamo una copia.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="it-account">
+      <h2 id="it-account" class="section-title">Con un account</h2>
+      <p class="prose">
+        L&rsquo;account serve solo per condividere con la famiglia. Si trova sul nostro server,
+        <code>spesaplan-api.fly.dev</code>, ospitato da Fly.io a Francoforte, in Germania, che
+        conserva:
+      </p>
+      <ul class="prose">
+        <li><b>Il tuo account</b> — l&rsquo;indirizzo e-mail, il nome che indichi e la password,
+          salvata solo come hash scrypt, mai in chiaro. Un accesso è un codice casuale di cui il
+          server tiene solo l&rsquo;hash; se non viene usato per 180 giorni smette di
+          funzionare.</li>
+        <li><b>La tua famiglia</b> — chi ne fa parte e gli indirizzi invitati, finché
+          l&rsquo;invito non viene accettato, rifiutato o ritirato. Il server non invia e-mail:
+          chi ti invita te lo dice di persona.</li>
+        <li><b>La lista condivisa</b> — il piano della famiglia, la lista della spesa con ciò che
+          è stato spuntato, la dispensa con le scadenze, i prezzi inseriti a mano e le
+          impostazioni della famiglia: budget, numero di persone, città, negozi, di quali catene
+          avete la carta fedeltà (mai il numero della carta), dieta, allergie e carni escluse.
+          Tutti in famiglia possono vederla e modificarla.</li>
+        <li><b>Le tue impostazioni</b> — la lingua dell&rsquo;app e, se imposti un obiettivo,
+          sesso, età, altezza, peso, livello di attività e ritmo. Sono tue, non della famiglia,
+          e le leggono solo i tuoi dispositivi.</li>
+        <li><b>I tuoi negozi</b> — i supermercati scelti su OpenStreetMap, che sono dati pubblici
+          della mappa, così il server può raccoglierne i prezzi.</li>
+      </ul>
+      <p class="note">
+        Dieta, allergie e misure del corpo possono dire qualcosa sulla tua salute. Arrivano al
+        server solo mentre hai fatto l&rsquo;accesso e servono soltanto al piano della famiglia e
+        ai tuoi obiettivi. Se preferisci non conservarle lì, lasciale vuote o usa l&rsquo;app
+        senza account.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="it-receipts">
+      <h2 id="it-receipts" class="section-title">Scontrini</h2>
+      <p class="prose">
+        Le foto degli scontrini non lasciano mai il telefono: il testo viene riconosciuto sul
+        telefono stesso, dal framework Vision di Apple su iOS e da ML Kit di Google su Android.
+        Senza account, anche ciò che legge resta lì.
+      </p>
+      <p class="prose">
+        Se hai fatto l&rsquo;accesso e lo scontrino viene da un negozio scelto sulla mappa,
+        l&rsquo;app invia ciò che ha letto: nome, indirizzo e partita IVA del negozio, la data, il
+        totale e le righe della spesa — il nome di ogni prodotto come è stampato, la quantità e il
+        prezzo. La parte del pagamento (carta, contanti, resto), le righe dell&rsquo;IVA e i punti
+        fedeltà vengono scartati già sul telefono. Le righe che il server riesce ad abbinare a un
+        prodotto diventano i prezzi di quel negozio, e li vede chiunque faccia la spesa lì —
+        senza il tuo nome né altro su di te. Lo scontrino resta collegato al tuo account e alla
+        famiglia, così un errore o un abuso si può rintracciare ed eliminare.
+      </p>
+      <p class="note">
+        Una volta alla settimana il server legge anche i prezzi che alcune catene pubblicano sui
+        propri siti. Questo non riguarda nulla di te.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="it-feedback">
+      <h2 id="it-feedback" class="section-title">Messaggi e richieste</h2>
+      <p class="prose">
+        Il modulo per i messaggi invia ciò che scrivi, il tipo di messaggio, la versione
+        dell&rsquo;app, la piattaforma e la lingua; per una richiesta, il paese, la città o il
+        negozio che indichi; e il tuo indirizzo e-mail solo se vuoi una risposta. Se hai fatto
+        l&rsquo;accesso, il messaggio è collegato al tuo account. I messaggi restano finché non
+        sono stati gestiti; se ce lo chiedi, ne cancelliamo uno prima.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="it-leaves">
+      <h2 id="it-leaves" class="section-title">Altri servizi</h2>
+      <p class="prose">
+        Oltre al nostro server, l&rsquo;app parla solo con questi, e solo quando usi la funzione:
+      </p>
+      <ul class="feature-grid">
+        <li>
+          <span class="feature-icon" aria-hidden="true">📍</span>
+          <h3>OpenStreetMap</h3>
+          <p>I negozi di alcune città sono già dentro l&rsquo;app. Per le altre città, o quando aggiorni l&rsquo;elenco, il nome della città va all&rsquo;API pubblica Overpass (overpass-api.de, overpass.private.coffee o overpass.kumi.systems) per elencarne i supermercati. La risposta resta sul telefono per un mese.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🏷️</span>
+          <h3>Open Food Facts</h3>
+          <p>Quando cerchi un codice a barre, quel numero va a world.openfoodfacts.org per trovare il prodotto, e da lì si carica la sua foto. Non viene inviato nient&rsquo;altro. Un codice che contiene la data di scadenza (GS1) viene letto sul telefono e non va da nessuna parte.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🔄</span>
+          <h3>Il tuo server, se ne hai uno</h3>
+          <p>Le versioni senza account possono sincronizzarsi tramite un server SpesaPlan di cui inserisci tu l&rsquo;indirizzo. Riceve profilo, piano, dispensa e prezzi sotto un codice casuale, di cui conserva solo l&rsquo;hash.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="it-processors">
+      <h2 id="it-processors" class="section-title">Chi altro tratta i dati</h2>
+      <p class="prose">
+        Fly.io, Inc. ospita il server e il suo database a Francoforte, come nostro responsabile
+        del trattamento. Come ogni server, il nostro vede l&rsquo;indirizzo IP da cui arriva ogni
+        richiesta. Lo usa solo per limitare quante volte uno stesso indirizzo può provare ad
+        accedere, registrarsi o inviare un messaggio: l&rsquo;indirizzo resta in memoria, viene
+        dimenticato entro due ore e non viene mai scritto da nessuna parte. Le connessioni sono
+        cifrate (HTTPS) e il database è raggiungibile solo dalla rete privata di Fly.io.
+      </p>
+      <p class="prose">
+        Nessun altro riceve i tuoi dati. Non li vendiamo, non li cediamo e non li usiamo per la
+        pubblicità.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="it-retention">
+      <h2 id="it-retention" class="section-title">Per quanto tempo</h2>
+      <ul class="prose">
+        <li><b>Account, famiglia, lista condivisa e le tue impostazioni</b> — finché non elimini
+          l&rsquo;account (o lasci la famiglia, per la parte della famiglia).</li>
+        <li><b>Inviti</b> — finché non vengono accettati, rifiutati o ritirati.</li>
+        <li><b>Accessi</b> — fino a 180 giorni dopo l&rsquo;ultimo uso.</li>
+        <li><b>Scontrini e i prezzi che ne derivano</b> — restano come storico dei prezzi. Se
+          elimini l&rsquo;account restano, non più collegati a te; quando nella tua famiglia non
+          resta nessuno, nemmeno a lei.</li>
+        <li><b>Messaggi</b> — finché non sono stati gestiti.</li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="it-rights">
+      <h2 id="it-rights" class="section-title">Il tuo controllo e i tuoi diritti</h2>
+      <p class="prose">
+        Nell&rsquo;app, <b>Profilo → Account e famiglia → Elimina account</b> cancella subito il
+        tuo account: e-mail, nome, hash della password, accessi e le tue impostazioni. La famiglia
+        continua senza di te, oppure viene eliminata con la sua lista se eri l&rsquo;ultimo a
+        farne parte. La copia sul telefono resta finché non azzeri l&rsquo;app
+        (<b>Profilo → Dati</b>) o la elimini.
+      </p>
+      <p class="prose">
+        In base al GDPR puoi anche chiederci una copia dei tuoi dati, di correggerli, di
+        cancellarli, di trasferirli altrove, o di limitarne o contestarne l&rsquo;uso — scrivi a
+        <a href="mailto:lvigtor@gmail.com">lvigtor@gmail.com</a>. Usiamo i dati dell&rsquo;account
+        per darti ciò per cui ti sei registrato (il contratto, art. 6(1)(b) GDPR) e i prezzi
+        degli scontrini per tutti perché mantenere reali i prezzi è lo scopo del servizio
+        (legittimo interesse, art. 6(1)(f)); puoi opporti, o semplicemente scansionare gli
+        scontrini senza aver fatto l&rsquo;accesso. Puoi anche presentare reclamo al
+        <a href="https://www.garanteprivacy.it/" target="_blank" rel="noopener">Garante per la protezione dei dati personali</a>.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="it-permissions">
+      <h2 id="it-permissions" class="section-title">Permessi</h2>
+      <p class="prose">
+        La fotocamera serve a scansionare codici a barre e a fotografare scontrini ed etichette;
+        l&rsquo;accesso alle foto, a scegliere una foto già scattata. L&rsquo;accesso alla rete
+        locale viene chiesto solo per raggiungere un server SpesaPlan sul tuo Wi-Fi. Ogni permesso
+        viene chiesto al primo uso della funzione, e l&rsquo;app funziona anche senza.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="it-analytics">
+      <h2 id="it-analytics" class="section-title">Statistiche</h2>
+      <p class="prose">
+        Nessuna. Niente visualizzazioni di pagina, eventi, identificatori pubblicitari né
+        segnalazione dei crash nostra.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="it-testflight">
+      <h2 id="it-testflight" class="section-title">Versione beta</h2>
+      <p class="prose">
+        Finché l&rsquo;app è distribuita tramite TestFlight, Apple raccoglie i dati di
+        installazione e dei crash descritti
+        <a href="https://www.apple.com/legal/privacy/data/it/test-flight/" target="_blank" rel="noopener">nell&rsquo;informativa di Apple su TestFlight</a>.
+        È una raccolta di Apple, secondo i termini di Apple. A noi arriva solo come report anonimi
+        dei crash e come feedback che scegli di inviare, e non contiene mai piani, dispensa o
+        prezzi.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="it-children">
+      <h2 id="it-children" class="section-title">Minori</h2>
+      <p class="prose">
+        SpesaPlan è pensata per adulti che gestiscono una casa. Non creare un account se hai meno
+        di 14 anni, l&rsquo;età da cui in Italia puoi acconsentire da solo.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="it-changes">
+      <h2 id="it-changes" class="section-title">Modifiche e contatti</h2>
+      <p class="prose">
+        Se questa informativa cambia, cambia anche la data in cima alla pagina, e qualsiasi nuovo
+        invio di dati da parte dell&rsquo;app viene descritto qui prima di essere pubblicato.
+        Domande e richieste: Viktor Lavrov,
+        <a href="mailto:lvigtor@gmail.com">lvigtor@gmail.com</a>.
       </p>
     </section>
 
@@ -173,6 +532,47 @@
         document.documentElement.dataset.theme = next;
         localStorage.setItem('products-page:theme', next);
       });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      const panes = { en: document.getElementById('lang-en'), it: document.getElementById('lang-it') };
+      const buttons = document.querySelectorAll('.langbar button');
+      const header = {
+        eyebrow: document.getElementById('hdr-eyebrow'),
+        title: document.getElementById('hdr-title'),
+        lead: document.getElementById('hdr-lead')
+      };
+      const copy = {
+        en: {
+          eyebrow: 'Last updated 23 September 2026',
+          title: 'SpesaPlan — privacy policy',
+          lead: 'SpesaPlan works without an account, and then everything you enter stays on your phone. An account is optional — it lets the people you live with share one plan, one list and one pantry — and it is the only reason SpesaPlan keeps anything about you on its server. No analytics, no advertising.'
+        },
+        it: {
+          eyebrow: 'Aggiornata il 23 settembre 2026',
+          title: 'SpesaPlan — informativa sulla privacy',
+          lead: "SpesaPlan funziona senza account, e allora tutto ciò che inserisci resta sul telefono. L'account è facoltativo — serve a condividere con chi vive con te un piano, una lista e una dispensa — ed è l'unico motivo per cui SpesaPlan conserva qualcosa su di te nel suo server. Niente statistiche, niente pubblicità."
+        }
+      };
+
+      function show(lang) {
+        Object.keys(panes).forEach((key) => { panes[key].hidden = key !== lang; });
+        buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+        header.eyebrow.textContent = copy[lang].eyebrow;
+        header.title.textContent = copy[lang].title;
+        header.lead.textContent = copy[lang].lead;
+        document.documentElement.lang = lang;
+        try { localStorage.setItem('spesaplan-privacy:lang', lang); } catch (e) {}
+      }
+
+      buttons.forEach((b) => b.addEventListener('click', () => show(b.dataset.lang)));
+
+      let saved = null;
+      try { saved = localStorage.getItem('spesaplan-privacy:lang'); } catch (e) {}
+      // Parenthesised on purpose: `||` binds tighter than `?:`.
+      show(saved || ((navigator.language || '').slice(0, 2) === 'it' ? 'it' : 'en'));
     })();
   </script>
 </body>
