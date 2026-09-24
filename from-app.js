@@ -10,6 +10,10 @@
  * visitor: it is one timestamp in local storage.
  *
  * Loaded in <head>, before the page paints, so the buttons never flash.
+ *
+ * Every page of the site loads it, and so does Science Timeline, which shares
+ * this origin: a visitor from an app can land on any of them and walk on to
+ * the front page. A new page, or a new donation block, needs the same.
  * ---------------------------------------------------------------------- */
 (() => {
   const KEY = 'mrwd-from-app-until';
