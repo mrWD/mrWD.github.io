@@ -61,7 +61,7 @@
         </nav>
       </div>
 
-      <p class="eyebrow" id="hdr-eyebrow">Last updated 23 September 2026</p>
+      <p class="eyebrow" id="hdr-eyebrow">Last updated 25 September 2026</p>
       <h1 class="title" id="hdr-title">SpesaPlan — privacy policy</h1>
       <p class="subtitle lead" id="hdr-lead">
         SpesaPlan works without an account, and then everything you enter stays on your phone.
@@ -114,8 +114,9 @@
       </p>
       <ul class="prose">
         <li><b>Your account</b> — your e-mail address, the name you give, and your password,
-          stored only as a scrypt hash, never as the password itself. A sign-in is a random
-          token of which the server keeps only a hash; one unused for 180 days stops working.</li>
+          stored only as a scrypt hash, never as the password itself (with Apple, Google or
+          Facebook there is no password at all — see below). A sign-in is a random token of
+          which the server keeps only a hash; one unused for 180 days stops working.</li>
         <li><b>Your household</b> — who is in it, and the addresses someone invited, until the
           invite is accepted, declined or withdrawn. The server sends no e-mail: whoever invites
           you tells you themselves.</li>
@@ -135,6 +136,32 @@
         the server only while you are signed in, and are used for nothing but your
         household&rsquo;s plan and your own targets. If you would rather not keep them there,
         leave them empty or use the app without an account.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="en-providers">
+      <h2 id="en-providers" class="section-title">Signing in with Apple, Google or Facebook</h2>
+      <p class="prose">
+        Instead of a password you can sign in with Apple (on the iPhone), Google or Facebook.
+        From them SpesaPlan gets only an id for you that stays the same, your name and your
+        e-mail address. Apple can hide the address behind a relay address of its own; Facebook
+        gives it only if you allow it. If the provider confirms the address is yours and a
+        SpesaPlan account already uses it, you land in that account; an address the provider has
+        not confirmed is not used at all.
+      </p>
+      <p class="prose">
+        Google and Facebook open in your phone&rsquo;s browser, never inside the app, and no
+        Apple, Google or Facebook software runs in SpesaPlan. For Apple, the server also keeps a
+        token Apple issues to SpesaPlan, only so that deleting your account also ends
+        SpesaPlan&rsquo;s access in your Apple ID, as Apple requires. We never post anything,
+        read your contacts or friends, or ask for anything else.
+      </p>
+      <p class="note">
+        The provider knows that you signed in to SpesaPlan. What it does with that is covered by
+        its own policy:
+        <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple</a>,
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google</a>,
+        <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">Meta</a>.
       </p>
     </section>
 
@@ -217,6 +244,7 @@
           account (or leave the household, for the household&rsquo;s part).</li>
         <li><b>Invites</b> — until accepted, declined or withdrawn.</li>
         <li><b>Sign-ins</b> — until 180 days after their last use.</li>
+        <li><b>Links to Apple, Google or Facebook</b> — until you delete the account.</li>
         <li><b>Receipts and the prices they gave</b> — kept as price history. When you delete
           your account they stay, no longer linked to you; once nobody is left in your household,
           no longer linked to it either.</li>
@@ -228,7 +256,8 @@
       <h2 id="en-rights" class="section-title">Your control and your rights</h2>
       <p class="prose">
         In the app, <b>Profile → Account and household → Delete account</b> deletes your account
-        at once: e-mail, name, password hash, sign-ins and your own settings. The household
+        at once: e-mail, name, password hash, sign-ins, links to Apple, Google or Facebook, and
+        your own settings; with Apple, SpesaPlan&rsquo;s access in your Apple ID ends too. The household
         carries on without you, or is deleted with its shared list if you were the last one in
         it. The copy on your phone stays until you reset the app (<b>Profile → Data</b>) or
         delete it.
@@ -333,7 +362,8 @@
       </p>
       <ul class="prose">
         <li><b>Il tuo account</b> — l&rsquo;indirizzo e-mail, il nome che indichi e la password,
-          salvata solo come hash scrypt, mai in chiaro. Un accesso è un codice casuale di cui il
+          salvata solo come hash scrypt, mai in chiaro (con Apple, Google o Facebook la password
+          non c&rsquo;è affatto — vedi sotto). Un accesso è un codice casuale di cui il
           server tiene solo l&rsquo;hash; se non viene usato per 180 giorni smette di
           funzionare.</li>
         <li><b>La tua famiglia</b> — chi ne fa parte e gli indirizzi invitati, finché
@@ -355,6 +385,32 @@
         server solo mentre hai fatto l&rsquo;accesso e servono soltanto al piano della famiglia e
         ai tuoi obiettivi. Se preferisci non conservarle lì, lasciale vuote o usa l&rsquo;app
         senza account.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="it-providers">
+      <h2 id="it-providers" class="section-title">Accesso con Apple, Google o Facebook</h2>
+      <p class="prose">
+        Invece della password puoi accedere con Apple (su iPhone), Google o Facebook. Da loro
+        SpesaPlan riceve solo un identificativo che resta sempre lo stesso, il tuo nome e il tuo
+        indirizzo e-mail. Apple può nascondere l&rsquo;indirizzo dietro un proprio indirizzo di
+        inoltro; Facebook lo fornisce solo se lo permetti. Se il fornitore conferma che
+        l&rsquo;indirizzo è tuo e un account SpesaPlan lo usa già, entri in quell&rsquo;account;
+        un indirizzo non confermato dal fornitore non viene usato affatto.
+      </p>
+      <p class="prose">
+        Google e Facebook si aprono nel browser del telefono, mai dentro l&rsquo;app, e in
+        SpesaPlan non gira alcun software di Apple, Google o Facebook. Per Apple, il server
+        conserva anche un token che Apple rilascia a SpesaPlan, solo perché eliminando il tuo
+        account finisca anche l&rsquo;accesso di SpesaPlan nel tuo ID Apple, come Apple richiede.
+        Non pubblichiamo mai nulla, non leggiamo contatti o amici e non chiediamo altro.
+      </p>
+      <p class="note">
+        Il fornitore sa che hai effettuato l&rsquo;accesso a SpesaPlan. Cosa ne fa è regolato
+        dalla sua informativa:
+        <a href="https://www.apple.com/it/legal/privacy/" target="_blank" rel="noopener">Apple</a>,
+        <a href="https://policies.google.com/privacy?hl=it" target="_blank" rel="noopener">Google</a>,
+        <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">Meta</a>.
       </p>
     </section>
 
@@ -439,6 +495,7 @@
           l&rsquo;account (o lasci la famiglia, per la parte della famiglia).</li>
         <li><b>Inviti</b> — finché non vengono accettati, rifiutati o ritirati.</li>
         <li><b>Accessi</b> — fino a 180 giorni dopo l&rsquo;ultimo uso.</li>
+        <li><b>Collegamenti con Apple, Google o Facebook</b> — finché non elimini l&rsquo;account.</li>
         <li><b>Scontrini e i prezzi che ne derivano</b> — restano come storico dei prezzi. Se
           elimini l&rsquo;account restano, non più collegati a te; quando nella tua famiglia non
           resta nessuno, nemmeno a lei.</li>
@@ -450,7 +507,9 @@
       <h2 id="it-rights" class="section-title">Il tuo controllo e i tuoi diritti</h2>
       <p class="prose">
         Nell&rsquo;app, <b>Profilo → Account e famiglia → Elimina account</b> cancella subito il
-        tuo account: e-mail, nome, hash della password, accessi e le tue impostazioni. La famiglia
+        tuo account: e-mail, nome, hash della password, accessi, collegamenti con Apple, Google o
+        Facebook e le tue impostazioni; con Apple finisce anche l&rsquo;accesso di SpesaPlan nel
+        tuo ID Apple. La famiglia
         continua senza di te, oppure viene eliminata con la sua lista se eri l&rsquo;ultimo a
         farne parte. La copia sul telefono resta finché non azzeri l&rsquo;app
         (<b>Profilo → Dati</b>) o la elimini.
@@ -547,12 +606,12 @@
       };
       const copy = {
         en: {
-          eyebrow: 'Last updated 23 September 2026',
+          eyebrow: 'Last updated 25 September 2026',
           title: 'SpesaPlan — privacy policy',
           lead: 'SpesaPlan works without an account, and then everything you enter stays on your phone. An account is optional — it lets the people you live with share one plan, one list and one pantry — and it is the only reason SpesaPlan keeps anything about you on its server. No analytics, no advertising.'
         },
         it: {
-          eyebrow: 'Aggiornata il 23 settembre 2026',
+          eyebrow: 'Aggiornata il 25 settembre 2026',
           title: 'SpesaPlan — informativa sulla privacy',
           lead: "SpesaPlan funziona senza account, e allora tutto ciò che inserisci resta sul telefono. L'account è facoltativo — serve a condividere con chi vive con te un piano, una lista e una dispensa — ed è l'unico motivo per cui SpesaPlan conserva qualcosa su di te nel suo server. Niente statistiche, niente pubblicità."
         }
