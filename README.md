@@ -140,6 +140,13 @@ to 414×900 as opaque PNGs. Its repo, `mrWD/it-skills`, is private too, so the p
 header links to the GitHub profile. The App Store lists it as "IT Skills: Senior Path";
 the folder keeps the short name the app shows under its icon.
 
+Travel Planner's screenshots come from a Release build on an iPhone 18 Pro simulator,
+with the app's example Instagram export imported and trips planned for Lisbon and San
+Donà di Piave. The app follows the system appearance, so each screen is shot twice with
+the simulator switched between light and dark (`xcrun simctl ui <device> appearance`),
+then scaled to 414×900 as opaque PNGs. Its repo, `mrWD/travel-planner`, is private, so
+the page's header links to the GitHub profile.
+
 ## Running locally
 
 ```bash
