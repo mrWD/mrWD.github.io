@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Travel Planner — a trip planned around the places you saved</title>
+  <meta name="description" content="Say where, for how many days, what you like and how you get around, and it plans the trip day by day — a map, the time at each stop and the way between them — around the places you saved on Instagram, TikTok and YouTube, read from your own data export. No account, no keys needed; the data stays on the phone." />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📍</text></svg>" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="stylesheet" href="../../product.css" />
+  <script src="../../from-app.js"></script>
+  <style>
+    :root { --accent: #f5a524; --accent-2: #6aa2ff; }
+    html[data-theme='light'] { --accent: #b45309; --accent-2: #2563eb; }
+  </style>
+</head>
+<body>
+  <div class="glow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <div class="header-top">
+        <a class="brand" href="../../">
+          <span class="brand-mark">VL</span>
+          <span class="brand-text">Viktor Lavrov</span>
+        </a>
+        <nav class="header-links">
+          <a href="../../">All products</a>
+          <a href="https://github.com/mrWD" target="_blank" rel="noopener">GitHub</a>
+          <button id="theme-toggle" class="icon-btn" type="button" aria-label="Toggle colour theme">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path class="icon-moon" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/><g class="icon-sun"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></g></svg>
+          </button>
+        </nav>
+      </div>
+
+      <div class="hero">
+        <div class="hero-text">
+          <p class="eyebrow">iOS · Android · web · in development</p>
+          <h1 class="title">Travel Planner</h1>
+          <p class="subtitle lead">
+            Say where, for how many days, what you like and how you get around. It plans the
+            trip day by day — a map, the time at each stop, the way between them — and builds it
+            around the places you saved on Instagram, TikTok and YouTube, read from your own
+            data export.
+          </p>
+
+          <ul class="badges">
+            <li>Free</li>
+            <li>No account</li>
+            <li>No API keys needed</li>
+            <li>Data stays on the phone</li>
+            <li>Russian and English</li>
+          </ul>
+
+          <div class="cta">
+            <a class="btn primary" href="#how">
+              <span>How a plan is made</span>
+              <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn" href="#check">
+              <span>Check before you go</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual phone">
+          <img src="assets/plan.png" width="414" height="900" alt="The plan for three days in Lisbon: ten places, on foot and by public transport, under a note that it was made automatically and may be wrong, so opening hours, routes and transport should be checked before you go. Day 1 holds three history stops, about 1.1 km in all, drawn on the map of Alfama and starting at São Jorge Castle at 09:30." />
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section class="section" aria-labelledby="look">
+      <h2 id="look" class="section-title">What it looks like</h2>
+      <div class="shots-row">
+        <figure>
+          <a class="shot" href="assets/day-trip.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/day-trip.png" width="414" height="900" alt="Day 3 of a three-day stay in San Donà di Piave, marked Day trip: Venice — six places and about 57 km in the day. The map shows the stops from Murano to San Marco and the lines to and from San Donà; below it, the journey there — San Donà di Piave to Venice by public transport, about an hour and 25 km, with Route and Tickets links — and the first stop, Murano, from 10:30 to 11:20." loading="lazy" decoding="async" /></a>
+          <figcaption>A day trip — the train there and back is part of the plan</figcaption>
+        </figure>
+        <figure>
+          <a class="shot" href="assets/map.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/map.png" width="414" height="900" alt="The map of saved places: want-to-go pins in Portugal, France and the Netherlands and one on Madeira, out in the Atlantic, with purple question marks on the ones still waiting for a check. Filters at the top: Want to go 9, To check 3, Visited 0." loading="lazy" decoding="async" /></a>
+          <figcaption>Map — every place from your saved posts</figcaption>
+        </figure>
+        <figure>
+          <a class="shot" href="assets/place.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/place.png" width="414" height="900" alt="A place recognised from an Instagram post: the Santuário de Nossa Senhora da Conceição do Sameiro above Braga, Portugal, on a map and marked Check, with a card asking whether this is the right place and Correct and Wrong buttons. Below, Visited, Plan a trip here and Directions, a note that the place was found automatically and should be checked in a maps app, and the source — a post by @visitportugal from 23 September 2025." loading="lazy" decoding="async" /></a>
+          <figcaption>A place — with the post it came from, waiting for your check</figcaption>
+        </figure>
+        <figure>
+          <a class="shot" href="assets/import.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/import.png" width="414" height="900" alt="The result of importing the example Instagram export: nine saved posts found, seven captions read, ten places recognised, nine new on the map, four waiting for a check and one with no recognisable place, with Open the map and Check the list buttons. Below, how to request a data export from Instagram, TikTok and YouTube, and a note that the app does not log in to accounts or scrape private feeds." loading="lazy" decoding="async" /></a>
+          <figcaption>Import — an export read on the phone</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="features">
+      <h2 id="features" class="section-title">What it does</h2>
+      <ul class="feature-grid">
+        <li>
+          <span class="feature-icon" aria-hidden="true">🗓️</span>
+          <h3>A plan, day by day</h3>
+          <p>Days, interests and the ways you get around go in. Out come days of nearby stops in a sensible order, each with a visit length, a start time and the walk, ride or drive to the next.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">📍</span>
+          <h3>Your saved posts on a map</h3>
+          <p>A pin in the caption, a landmark it names, a town in its hashtags — each saved post becomes a place, with a link back to the post, and the plan puts those places first.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🚆</span>
+          <h3>Day trips that include the journey</h3>
+          <p>A small town can't fill three days, so a longer stay by car or public transport looks up to 45 km out. A day in Venice from San Donà di Piave starts with the train there and ends with the train back, each with a route and a ticket search.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">✏️</span>
+          <h3>Edit anything</h3>
+          <p>Reorder stops, move them between days, add or remove places and days, change how long a visit takes or when the day starts — the times and transfers follow.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🎟️</span>
+          <h3>Tickets as links</h3>
+          <p>Flights, trains and buses are searched on Google Flights, Aviasales, Trainline and Rome2rio, on their own sites. Nothing is booked or paid for in the app.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🔑</span>
+          <h3>No keys needed</h3>
+          <p>Maps are OpenStreetMap, places come from Wikipedia and OpenStreetMap, and five cities ship with the app. With your own Anthropic key, Claude writes the day summaries; without one, templates do.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">✅</span>
+          <h3>You confirm the guesses</h3>
+          <p>A place the app is not sure of waits for your "correct" or "wrong". A wrong one is remembered, so importing the next export doesn't bring it back, and its post waits for you to set the place by hand.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🌍</span>
+          <h3>Russian and English</h3>
+          <p>The interface, the built-in places and the plans themselves. The phone's language decides, and Settings can switch it.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="how">
+      <h2 id="how" class="section-title">How a plan is made</h2>
+      <p class="prose">
+        Where and when is worked out by code, the same way every time. A language model, if you
+        add a key, only writes the words around a finished plan — it never picks the places or
+        the times.
+      </p>
+      <div class="steps">
+        <ol>
+          <li>
+            <h3>Places</h3>
+            <p>
+              A built-in set for Lisbon, Barcelona, Rome, Paris and Amsterdam. Anywhere else,
+              sights with a Wikipedia article, places to eat from OpenStreetMap, and your own
+              saved places within 25 km.
+            </p>
+          </li>
+          <li>
+            <h3>Ranking</h3>
+            <p>
+              By your interests and by how well known a place is — how many Wikipedias write
+              about it. Places from your posts get a boost; a pin that only knows the town is
+              never planned as a stop.
+            </p>
+          </li>
+          <li>
+            <h3>Days</h3>
+            <p>
+              One chain through the places, nearest to nearest, cut into days. A longer stay by
+              car or public transport adds days out to the best-known towns around.
+            </p>
+          </li>
+          <li>
+            <h3>Timing</h3>
+            <p>
+              A visit length for each kind of place, and every transfer estimated from the
+              distance and the way you travel — a regional train or bus between towns, not
+              city transit.
+            </p>
+          </li>
+          <li>
+            <h3>Words</h3>
+            <p>
+              Day summaries and tips from templates in Russian or English, or from Claude with
+              your key.
+            </p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="import">
+      <h2 id="import" class="section-title">Where your places come from</h2>
+      <p class="prose">
+        Instagram, TikTok and YouTube don't let an app read what you saved, so Travel Planner
+        takes the route they have to offer: your own data export. Request it in Instagram's or
+        TikTok's settings, or in Google Takeout for YouTube, then open the file in Travel
+        Planner — it is read on the phone, straight from the zip.
+      </p>
+      <p class="note">
+        An older Instagram export lists only links. For those, the app reads each public post's
+        caption from Instagram's official embed — the page any website shows when it embeds a
+        post. There is no login and no scraping of private feeds; a private or deleted post
+        simply stays unresolved, and you can set its place by hand. A guess the app is unsure
+        of waits for your "correct" or "wrong", and a pin that only knows the town is marked
+        approximate.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="check">
+      <h2 id="check" class="section-title">Check before you go</h2>
+      <p class="prose">
+        Everything in a plan is put together automatically, and any of it can be wrong. A place
+        may be closed, gone or not where its pin is — a pin from a post is a guess until you
+        confirm it. Opening hours, prices, tickets and entry rules are not checked. Travel times
+        are estimates from the distance, not timetables, and a line on the map may be a way
+        nobody should walk or drive. Descriptions written by a language model can contain
+        mistakes and made-up facts.
+      </p>
+      <p class="note">
+        So check everything that matters — official websites, a maps app, the local transport —
+        before you set off, and don't go anywhere you aren't sure is safe. The app asks you to
+        accept this on first launch and repeats it on every plan. It comes with no guarantees:
+        its plans are used at your own risk.
+      </p>
+      <div class="shots-row">
+        <figure>
+          <a class="shot" href="assets/notice.png" target="_blank" rel="noopener" title="Open full size"><img src="assets/notice.png" width="414" height="900" alt="The notice shown on first launch, Check before you go: plans, places and pins are put together automatically from OpenStreetMap, Wikipedia and imported posts, and any of it can be wrong — a place may be closed or not where its pin is, opening hours, prices, tickets and entry rules are not checked, travel times are estimates and a route may be impassable or unsafe, descriptions can contain mistakes. Check everything that matters yourself before you set off; the app gives no guarantees and its plans are used at your own risk. One button: I understand." loading="lazy" decoding="async" /></a>
+          <figcaption>The notice every user accepts on first launch</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="data">
+      <h2 id="data" class="section-title">Where the data lives</h2>
+      <p class="prose">
+        On the phone. Trips, saved places and imported posts stay in the app's own storage;
+        there is no account and no server of its own. An Anthropic key, if you add one, is kept
+        in the phone's secure storage — the Keychain on iOS, the Keystore on Android.
+      </p>
+      <p class="note">
+        The app talks to outside services only for the step that needs them: OpenStreetMap's
+        Nominatim, Photon and Overpass for places and addresses, Wikipedia and Wikidata for
+        sights, Instagram's public embed and TikTok's and YouTube's oEmbed for captions, and
+        Anthropic — only with your key — for descriptions. The export file itself is never
+        uploaded.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="getting">
+      <h2 id="getting" class="section-title">Getting it</h2>
+      <p class="prose">
+        Not published yet — there is no TestFlight or store build so far. The iOS, Android and
+        browser versions run from the same code.
+      </p>
+      <p class="note">
+        Want to try it early, or seen it plan something wrong?
+        <a href="mailto:lvigtor@gmail.com?subject=Travel%20Planner">Email me</a>.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><a href="../../">← All products</a> · Found a bug or a wrong place? <a href="mailto:lvigtor@gmail.com?subject=Travel%20Planner%20feedback">Email me</a> · <a href="../../legal/">Legal &amp; privacy</a>.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem('products-page:theme');
+      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      document.documentElement.dataset.theme = saved || (prefersLight ? 'light' : 'dark');
+      document.getElementById('theme-toggle').addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem('products-page:theme', next);
+      });
+    })();
+  </script>
+  <script src="../../track.js"></script>
+</body>
+</html>

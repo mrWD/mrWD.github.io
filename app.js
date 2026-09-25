@@ -173,6 +173,20 @@ const PROJECTS = [
     ],
   },
   {
+    name: 'Travel Planner',
+    tagline: 'A trip planned around the places you saved',
+    description:
+      'Say where, for how many days, what you like and how you get around, and it plans the trip day by day — a map, the time at each stop, the way between them — around the places you saved on Instagram, TikTok and YouTube, read from your own data export. Where and when is computed, not generated: a language model only writes the descriptions, and only with your own key.',
+    category: 'iOS app',
+    tags: ['React Native', 'Expo', 'TypeScript', 'Local-first', 'OpenStreetMap', 'Russian and English'],
+    icon: '📍',
+    accent: '#f5a524',
+    status: 'WIP',
+    links: [
+      { label: 'Learn more', url: 'products/travel-planner/' },
+    ],
+  },
+  {
     name: 'AI Job Search',
     statsKey: 'ai-job-search', // matches a key in stats.json
     tagline: 'A job hunt that runs while you do something else',
