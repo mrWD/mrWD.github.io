@@ -134,11 +134,15 @@ screenshots placed on an ellipse) and the sticky contents rail. The folder is
 behind it is still `mrWD/lang-tutor` and is private, so the page's header links
 to the GitHub profile instead.
 
-IT Skills' screenshots come from a Release build on an iPhone 17 Pro Max simulator,
-seeded with demo progress and a 9:41 status bar, shot once per appearance and scaled
-to 414×900 as opaque PNGs. Its repo, `mrWD/it-skills`, is private too, so the page's
-header links to the GitHub profile. The App Store lists it as "IT Skills: Senior Path";
-the folder keeps the short name the app shows under its icon.
+IT Skills' screenshots show the English interface with the app's demo progress
+(`scripts/screenshots/seed.mts` in the app repo). They are renders of the app's web
+build at the iPhone 17 Pro Max's size, laid out the way the iOS app lays it out: the
+status bar, the back button and the emoji come from earlier simulator shots of the same
+screens, the tab bar is redrawn, and Inter stands in for SF Pro. One per appearance,
+scaled to 414×900 as opaque PNGs. `scripts/screenshots/shots.sh` in the app repo shoots
+the same screens on a simulator instead. Its repo, `mrWD/it-skills`, is private too, so
+the page's header links to the GitHub profile. The App Store lists it as "IT Skills:
+Senior Path"; the folder keeps the short name the app shows under its icon.
 
 Travel Planner's screenshots come from a Release build on an iPhone 18 Pro simulator,
 with the app's example Instagram export imported and trips planned for Lisbon and San
