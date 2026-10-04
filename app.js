@@ -187,6 +187,20 @@ const PROJECTS = [
     ],
   },
   {
+    name: 'Daylight Health Coach',
+    tagline: 'Three decisions a day from your own health data',
+    description:
+      'A personal health and training advisor for iPhone and Apple Watch. It reads Apple Health and a strength log you can type in, compares everything with your own four-week baseline, and answers one question: train hard, go easy or rest, and why. Rules decide and two safety engines keep it from ever diagnosing or recommending a weight; the on-device model only rephrases. No account, no servers.',
+    category: 'iOS app',
+    tags: ['SwiftUI', 'HealthKit', 'Apple Watch', 'Local-first', 'On-device AI', '4 languages'],
+    icon: '🌅',
+    accent: '#ff9a5c',
+    status: 'Beta',
+    links: [
+      { label: 'Learn more', url: 'products/daylight/' },
+    ],
+  },
+  {
     name: 'AI Job Search',
     statsKey: 'ai-job-search', // matches a key in stats.json
     tagline: 'A job hunt that runs while you do something else',
