@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Travel Planner — privacy policy</title>
+  <meta name="description" content="What Travel Planner stores and what leaves your device. No accounts, no servers of its own, no analytics. Map, place and caption lookups go straight from your device to the public services that answer them." />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📍</text></svg>" />
+  <link rel="stylesheet" href="../../../styles.css" />
+  <link rel="stylesheet" href="../../../product.css" />
+  <script src="../../../from-app.js"></script>
+  <style>
+    :root { --accent: #f5a524; --accent-2: #6aa2ff; }
+    html[data-theme='light'] { --accent: #b45309; --accent-2: #2563eb; }
+  </style>
+</head>
+<body>
+  <div class="glow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <div class="header-top">
+        <a class="brand" href="../../../">
+          <span class="brand-mark">VL</span>
+          <span class="brand-text">Viktor Lavrov</span>
+        </a>
+        <nav class="header-links">
+          <a href="../../../">All products</a>
+          <a href="https://github.com/mrWD" target="_blank" rel="noopener">GitHub</a>
+          <button id="theme-toggle" class="icon-btn" type="button" aria-label="Toggle colour theme">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path class="icon-moon" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/><g class="icon-sun"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></g></svg>
+          </button>
+        </nav>
+      </div>
+
+      <p class="eyebrow">Last updated 10 October 2026</p>
+      <h1 class="title">Travel Planner — privacy policy</h1>
+      <p class="subtitle lead">
+        Travel Planner has no account and no server of its own. Your trips and saved places stay
+        on your device. To draw maps and find places, it asks public services directly from your
+        device — never through us.
+      </p>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section class="section" aria-labelledby="scope">
+      <h2 id="scope" class="section-title">What this covers</h2>
+      <p class="prose">
+        This policy is about the <b>Travel Planner app</b> — the iOS build distributed through
+        TestFlight, the Android build and the web version. The site you are reading it on is
+        covered separately by <a href="../../../legal/">Legal &amp; privacy</a>.
+      </p>
+      <p class="prose">
+        Travel Planner is an independent project. There is no company backend, no sign-up and no
+        user account. &ldquo;We&rdquo; below means the developer of the app.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="stored">
+      <h2 id="stored" class="section-title">What we store</h2>
+      <p class="prose">
+        Nothing. Everything the app keeps lives on your device: your trips and their plans, the
+        places you saved, the posts read from a data export you imported (their links, captions,
+        authors and hashtags), your settings, and a cache of place lookups so they are not
+        repeated. In the installed app that is the app&rsquo;s own private storage; on the web it
+        is your browser&rsquo;s storage.
+      </p>
+      <p class="prose">
+        A data export from Instagram, TikTok or YouTube is read on the device and never uploaded.
+        Only your saved posts are taken from it; nothing else in it is kept.
+      </p>
+      <p class="prose">
+        If you add an Anthropic API key, it is kept apart from everything else: in the iOS
+        Keychain or the Android Keystore (on the web, in your browser&rsquo;s storage).
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="leaves">
+      <h2 id="leaves" class="section-title">What leaves your device</h2>
+      <p class="prose">
+        To do its job the app asks public services for map and place data. Each request goes
+        from your device straight to the service — which therefore sees your IP address — and
+        that service&rsquo;s own privacy policy applies to it:
+      </p>
+      <ul class="prose">
+        <li><b>OpenStreetMap</b> map tiles (and CARTO&rsquo;s, if OpenStreetMap&rsquo;s fail): the area of the map you look at.</li>
+        <li><b>Nominatim, Photon and Overpass</b> (OpenStreetMap data): the destination you type, and place names from your imported posts&rsquo; captions, to find where they are.</li>
+        <li><b>Wikipedia and Wikidata</b>: a location, to find the sights and towns around it.</li>
+        <li><b>Instagram</b>: for an older export that lists only links, the address of each saved post&rsquo;s public embed page, to read its caption. No login is used and nothing is posted. (The web version asks through its own server, because browsers may not call Instagram directly; that server passes the request on and keeps nothing.) <b>TikTok and YouTube</b>: a saved video&rsquo;s address, for its title.</li>
+        <li><b>Anthropic</b> — only if you added your own key: the names and categories of a plan&rsquo;s places, your interests and the city, to write the day summaries and tips. The request is made with your key, under your agreement with Anthropic.</li>
+      </ul>
+      <p class="prose">
+        <b>Look up post captions online</b>, on the Import screen, turns the import&rsquo;s online
+        lookups off; the import then works offline. Links you tap — directions, ticket searches, a post, a
+        Wikipedia article — open in your maps app or browser.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="analytics">
+      <h2 id="analytics" class="section-title">Analytics</h2>
+      <p class="prose">
+        None, in the installed app and on the web alike. No page views, no events, no
+        identifiers, and no crash reporting of our own.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="deleting">
+      <h2 id="deleting" class="section-title">Deleting your data</h2>
+      <p class="prose">
+        Settings → <b>Delete all data</b> removes every trip, saved place, imported post and the
+        API key from the device; the key also has a delete button of its own. Deleting the app
+        removes everything.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="testflight">
+      <h2 id="testflight" class="section-title">Beta testing</h2>
+      <p class="prose">
+        While the app is distributed through TestFlight, Apple collects the installation and
+        crash data described in
+        <a href="https://www.apple.com/legal/privacy/data/en/test-flight/" target="_blank" rel="noopener">Apple&rsquo;s TestFlight privacy notice</a>.
+        That is Apple&rsquo;s collection under Apple&rsquo;s terms. It reaches us only as
+        anonymous crash reports and the feedback you choose to send, and never includes your
+        trips, your saved places or anything you imported.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="children">
+      <h2 id="children" class="section-title">Children</h2>
+      <p class="prose">
+        The app is not directed at children and collects no data from anyone, of any age.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="changes">
+      <h2 id="changes" class="section-title">Changes</h2>
+      <p class="prose">
+        If this policy changes, the date at the top of the page changes with it, and anything
+        newly sent anywhere is described here before it ships.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="contact">
+      <h2 id="contact" class="section-title">Contact</h2>
+      <p class="prose">
+        Questions: <a href="mailto:lvigtor@gmail.com">lvigtor@gmail.com</a>
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><a href="../">← Travel Planner</a> · <a href="../../../">All products</a> · <a href="../../../legal/">Legal &amp; privacy</a></p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem('products-page:theme');
+      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      document.documentElement.dataset.theme = saved || (prefersLight ? 'light' : 'dark');
+      document.getElementById('theme-toggle').addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem('products-page:theme', next);
+      });
+    })();
+  </script>
+  <script src="../../../track.js"></script>
+</body>
+</html>
