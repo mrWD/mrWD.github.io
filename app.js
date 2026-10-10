@@ -181,9 +181,10 @@ const PROJECTS = [
     tags: ['React Native', 'Expo', 'TypeScript', 'Local-first', 'OpenStreetMap', 'Russian and English'],
     icon: '📍',
     accent: '#f5a524',
-    status: 'WIP',
+    status: 'Beta',
     links: [
       { label: 'Learn more', url: 'products/travel-planner/' },
+      { label: 'Join the TestFlight beta', url: 'https://testflight.apple.com/join/cTAFaGQj' },
     ],
   },
   {
