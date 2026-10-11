@@ -86,7 +86,7 @@
         </nav>
       </div>
 
-      <p class="eyebrow" id="hdr-eyebrow">Last updated 21 September 2026</p>
+      <p class="eyebrow" id="hdr-eyebrow">Last updated 11 October 2026</p>
       <h1 class="title" id="hdr-title">Lingary — privacy policy</h1>
       <p class="subtitle lead" id="hdr-lead">
         Lingary has no accounts. Your learning stays on your phone,
@@ -106,7 +106,7 @@
     <section class="section" aria-labelledby="en-scope">
       <h2 id="en-scope" class="section-title">What this covers</h2>
       <p class="prose">
-        This policy is about the <b>Lingary iOS app</b>. The site you're reading it on is
+        This policy is about the <b>Lingary app for iOS and Android</b>. The site you're reading it on is
         covered separately by <a href="../../../legal/">Legal &amp; privacy</a>.
       </p>
       <p class="prose">
@@ -125,10 +125,14 @@
         statistics.
       </p>
       <p class="prose">
-        That database is stored with iOS file protection enabled, so it is encrypted at rest
+        On iOS that database is stored with file protection enabled, so it is encrypted at rest
         and unreadable while the device is locked. API keys are kept separately in the iOS
-        Keychain, marked device-only and excluded from backups. <b>None of it is transmitted
-        to us</b> — the course server only ever learns your language pair, to send you its course.
+        Keychain, marked device-only and excluded from backups. On Android the database sits in
+        the app's private storage, which other apps cannot read, and API keys in storage
+        encrypted with a key held by the Android Keystore; neither goes into Android's backups or
+        device-to-device transfers. <b>None of it is transmitted to us</b> — the course server
+        learns your language pair, to send you its course, and the text of a tutor reply only if
+        you report it.
       </p>
     </section>
 
@@ -179,8 +183,8 @@
         <b>How your data is protected there.</b> The providers in the table are the only third
         parties Lingary sends your data to. Lingary offers only providers that publish privacy
         terms binding them to keep the data they receive secure and to handle it as those terms
-        describe, and we consider that protection equal to the protection this policy and the
-        App Store Review Guidelines require. The details differ between providers — how long data
+        describe, and we consider that protection equal to the protection this policy, the
+        App Store Review Guidelines and Google Play's policies require. The details differ between providers — how long data
         is kept, where it is stored, whether data from a free account may be used to improve the
         provider's models — so read the policy of the provider you choose.
       </p>
@@ -222,20 +226,23 @@
         <li><b>Downloading a course</b> — the language pair you are learning, and nothing about you.</li>
         <li><b>Requesting a course</b> for a pair that has none yet — the language pair.</li>
         <li><b>Reporting a mistake in a lesson</b> — the language pair, which lesson, and the text you wrote.</li>
+        <li><b>Reporting one of the tutor's replies</b> — the language pair, the reply you report, and
+          the note you wrote, if any.</li>
         <li><b>Asking for a course to be written</b> — the language pair. The course that comes back
           is published for everyone learning that pair; the app says so before you confirm.</li>
       </ul>
       <p class="prose">
         Requests and reports are kept in a log on that server and may be forwarded to our email so
         we can act on them. They carry no account, device identifier or contact details — only
-        what you typed, so don't put anything personal in a report. They are kept until they have
+        what you typed and, in a reply report, the reply — so don't put anything personal in a
+        report. They are kept until they have
         been dealt with; to have one deleted sooner, email us with roughly what it said and when.
       </p>
       <p class="prose">
         Like any server, it sees the IP address a request comes from. It uses it only to stop one
         address from flooding it: the address is held in memory for at most an hour and is never
-        written anywhere. <b>Your conversations, voice, word bank, level and API keys never go to
-        this server.</b>
+        written anywhere. <b>Apart from a reply you report, your conversations, voice, word bank,
+        level and API keys never go to this server.</b>
       </p>
     </section>
 
@@ -251,19 +258,23 @@
           library the app links against references camera APIs. <b>Lingary never opens the
           camera</b> and captures no photo or video.</li>
       </ul>
+      <p class="note">
+        On Android the app asks for the microphone and, on Android 13 and later, for
+        notifications. There is no speech-recognition or camera permission there.
+      </p>
     </section>
 
     <section class="section" aria-labelledby="en-feedback">
       <h2 id="en-feedback" class="section-title">Feedback</h2>
       <p class="prose">
-        <b>Apart from course requests and lesson reports (see
+        <b>Apart from course requests, lesson reports and reports about the tutor's replies (see
         <a href="#en-courses">The course server</a>), the app sends nothing to us.</b>
         Settings → About → Feedback opens <a href="../#feedback">the project page</a> in your
         browser, where there is an email address.
       </p>
       <p class="prose">
-        So what reaches us is what you write yourself — an email, or the text of a lesson
-        report — containing exactly what you chose to put in it. Earlier versions had an in-app form that filed a
+        So what reaches us is what you send yourself — an email, the text of a lesson report, or
+        a tutor reply you report with your note — containing exactly what you chose to put in it. Earlier versions had an in-app form that filed a
         ticket in a third-party tracker; it was removed, along with the API token it required
         the app to carry.
       </p>
@@ -319,13 +330,14 @@
         <li><b>Settings → Privacy</b> lists every provider you have a key for, with a switch: turn
           one off and nothing more is sent to it.</li>
         <li>Deleting the app removes the local database with it.</li>
-        <li>A course request or lesson report you sent is deleted on request — email us.</li>
+        <li>A course request, lesson report or reply report you sent is deleted on request — email us.</li>
         <li>Anything already sent to an AI provider sits under <em>your</em> account with them —
           use their dashboard or support to review or delete it.</li>
       </ul>
       <p class="prose">
         If you have statutory data rights (GDPR, CCPA and similar): the only thing we may hold
-        is a course request or lesson report you sent, which is not linked to you — email us and
+        is a course request, lesson report or reply report you sent, which is not linked to you —
+        email us and
         we will delete it. For data held by
         an AI provider, that provider is the controller and you are their customer.
       </p>
@@ -352,7 +364,7 @@
     <section class="section" aria-labelledby="ru-scope">
       <h2 id="ru-scope" class="section-title">К чему это относится</h2>
       <p class="prose">
-        Политика описывает <b>приложение Lingary для iOS</b>. Сайт, на котором вы её читаете,
+        Политика описывает <b>приложение Lingary для iOS и Android</b>. Сайт, на котором вы её читаете,
         покрыт отдельно — страницей <a href="../../../legal/">Legal &amp; privacy</a>.
       </p>
       <p class="prose">
@@ -370,10 +382,14 @@
         задания, заметки по грамматике и статистика.
       </p>
       <p class="prose">
-        База данных хранится с включённой защитой файлов iOS: зашифрована на диске и недоступна
+        На iOS база данных хранится с включённой защитой файлов: зашифрована на диске и недоступна
         для чтения, пока устройство заблокировано. API-ключи лежат отдельно, в Keychain,
-        помечены как привязанные к устройству и исключены из резервных копий. <b>Ничего из этого
-        нам не передаётся</b> — серверу курсов достаётся только языковая пара, чтобы прислать курс.
+        помечены как привязанные к устройству и исключены из резервных копий. На Android база
+        лежит в закрытом хранилище приложения, недоступном другим приложениям, а API-ключи — в
+        хранилище, зашифрованном ключом из Android Keystore; ни то ни другое не попадает в
+        резервные копии Android и при переносе на новое устройство не копируется. <b>Ничего из
+        этого нам не передаётся</b> — серверу курсов достаётся языковая пара, чтобы прислать курс,
+        а текст ответа тьютора — только если вы на него пожалуетесь.
       </p>
     </section>
 
@@ -426,7 +442,8 @@
         стороны, которым Lingary отправляет ваши данные. Lingary предлагает только тех
         провайдеров, которые публикуют условия конфиденциальности, обязывающие их хранить
         полученные данные в безопасности и обращаться с ними так, как описано в этих условиях, и
-        мы считаем такую защиту равной той, которой требуют эта политика и правила App Store.
+        мы считаем такую защиту равной той, которой требуют эта политика и правила App Store и
+        Google Play.
         Детали у провайдеров разные — сколько хранятся данные, где они хранятся, могут ли данные с
         бесплатной учётной записи использоваться для улучшения моделей провайдера, — поэтому
         прочитайте политику того провайдера, которого выбрали.
@@ -469,21 +486,24 @@
         <li><b>Загрузка курса</b> — языковая пара, которую вы учите, и ничего о вас.</li>
         <li><b>Запрос курса</b> для пары, у которой его ещё нет, — языковая пара.</li>
         <li><b>Сообщение об ошибке в уроке</b> — языковая пара, какой урок и ваш текст.</li>
+        <li><b>Жалоба на ответ тьютора</b> — языковая пара, ответ, на который вы жалуетесь, и ваш
+          комментарий, если вы его написали.</li>
         <li><b>Просьба написать курс</b> — языковая пара. Готовый курс публикуется для всех, кто
           учит эту пару; приложение предупреждает об этом до подтверждения.</li>
       </ul>
       <p class="prose">
         Запросы и сообщения хранятся в журнале на этом сервере и могут пересылаться нам на почту,
         чтобы мы могли их разобрать. В них нет учётной записи, идентификатора устройства или
-        контактов — только то, что вы написали, поэтому не пишите в сообщение ничего личного.
+        контактов — только то, что вы написали, а в жалобе на ответ ещё и сам ответ, поэтому не
+        пишите в сообщение ничего личного.
         Они хранятся, пока их не разберут; чтобы удалить своё раньше, напишите нам, примерно
         указав, что и когда было отправлено.
       </p>
       <p class="prose">
         Как любой сервер, он видит IP-адрес, с которого пришёл запрос, и использует его только для
         защиты от потока запросов: адрес держится в памяти не дольше часа и никуда не
-        записывается. <b>Ваши разговоры, голос, словарь, уровень и API-ключи на этот сервер не
-        попадают никогда.</b>
+        записывается. <b>Кроме ответа, на который вы пожаловались, ваши разговоры, голос,
+        словарь, уровень и API-ключи на этот сервер не попадают никогда.</b>
       </p>
     </section>
 
@@ -500,19 +520,24 @@
           живого голоса, с которой собрано приложение, ссылается на API камеры. <b>Lingary камеру
           никогда не открывает</b> и не снимает ни фото, ни видео.</li>
       </ul>
+      <p class="note">
+        На Android приложение спрашивает доступ к микрофону и, начиная с Android 13, к
+        уведомлениям. Разрешений на распознавание речи и камеру там нет.
+      </p>
     </section>
 
     <section class="section" aria-labelledby="ru-feedback">
       <h2 id="ru-feedback" class="section-title">Обратная связь</h2>
       <p class="prose">
-        <b>Кроме запросов курсов и сообщений об ошибках в уроках (см.
+        <b>Кроме запросов курсов, сообщений об ошибках в уроках и жалоб на ответы тьютора (см.
         <a href="#ru-courses">Сервер курсов</a>), приложение нам ничего не отправляет.</b>
         «Настройки → О приложении → Обратная связь» открывает <a href="../#feedback">страницу
         проекта</a> в браузере, где указан адрес электронной почты.
       </p>
       <p class="prose">
-        То есть до нас доходит только то, что вы написали сами, — письмо или текст сообщения об
-        ошибке, — и ровно с тем содержимым, которое вы в него вложили. В прежних версиях была встроенная форма, создававшая задачу в
+        То есть до нас доходит только то, что вы отправили сами, — письмо, текст сообщения об
+        ошибке или ответ тьютора с вашим комментарием, — и ровно с тем содержимым, которое вы в
+        него вложили. В прежних версиях была встроенная форма, создававшая задачу в
         стороннем трекере, — она удалена вместе с API-токеном, который приложению приходилось
         носить с собой.
       </p>
@@ -570,14 +595,15 @@
         <li><b>Настройки → Конфиденциальность</b> — список провайдеров, для которых есть ключ, с
           переключателем: выключите — и ему больше ничего не отправляется.</li>
         <li>Удаление приложения уносит локальную базу вместе с собой.</li>
-        <li>Отправленный запрос курса или сообщение об ошибке удаляем по просьбе — напишите нам.</li>
+        <li>Отправленный запрос курса, сообщение об ошибке или жалобу на ответ удаляем по просьбе —
+          напишите нам.</li>
         <li>То, что уже отправлено AI-провайдеру, находится в <em>вашей</em> учётной записи у
           него — смотреть и удалять через его панель или поддержку.</li>
       </ul>
       <p class="prose">
         Если на вас распространяются законные права на данные (GDPR, CCPA и подобные):
-        у нас может быть только отправленный вами запрос курса или сообщение об ошибке, не
-        связанные с вами, — напишите нам, и мы их удалим. За данные на стороне AI-провайдера отвечает сам провайдер, а вы — его клиент.
+        у нас может быть только отправленный вами запрос курса, сообщение об ошибке или жалоба на
+        ответ, не связанные с вами, — напишите нам, и мы их удалим. За данные на стороне AI-провайдера отвечает сам провайдер, а вы — его клиент.
       </p>
     </section>
 
@@ -626,12 +652,12 @@
       };
       const copy = {
         en: {
-          eyebrow: 'Last updated 21 September 2026',
+          eyebrow: 'Last updated 11 October 2026',
           title: 'Lingary — privacy policy',
           lead: 'Lingary has no accounts. Your learning stays on your phone, and when you talk to an AI provider you talk to it directly, with your own key.'
         },
         ru: {
-          eyebrow: 'Обновлено 21 сентября 2026',
+          eyebrow: 'Обновлено 11 октября 2026',
           title: 'Lingary — политика конфиденциальности',
           lead: 'У Lingary нет учётных записей. Учёба остаётся на вашем телефоне, а с AI-провайдером вы общаетесь напрямую, со своим ключом.'
         }
