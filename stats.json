@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-13T11:53:39Z",
+  "generated": "2026-10-14T09:34:52Z",
   "note": "Metrics differ per product — see the metric field. Not comparable.",
   "products": {
     "science-timeline": {
@@ -32,25 +32,30 @@
       "metric": "visits"
     },
     "film-table": {
-      "clicks": 2,
+      "clicks": 3,
       "buttons": {
-        "open": 2
+        "open": 2,
+        "appstore": 1
       },
-      "count": 2,
+      "count": 3,
       "metric": "clicks"
     },
     "games-table": {
-      "clicks": 0,
-      "count": 0,
+      "clicks": 1,
+      "buttons": {
+        "appstore": 1
+      },
+      "count": 1,
       "metric": "clicks"
     },
     "books-table": {
-      "clicks": 3,
+      "clicks": 4,
       "buttons": {
         "open": 3,
+        "appstore": 1,
         "source": 1
       },
-      "count": 3,
+      "count": 4,
       "metric": "clicks"
     },
     "ai-job-search": {
