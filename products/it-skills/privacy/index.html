@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>IT Skills — privacy policy</title>
-  <meta name="description" content="What IT Skills stores and what leaves your device. No accounts, no servers, no analytics. The only network request is the one you make yourself: publishing a project to your own GitHub." />
+  <meta name="description" content="What IT Skills keeps and where. Without an account your progress stays on your device; with one, it is kept on the IT Skills server in Frankfurt to sync your devices. Password-reset codes are e-mailed through Gmail. No analytics, no advertising, no tracking." />
   <meta name="robots" content="index, follow" />
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>" />
@@ -37,12 +37,13 @@
         </nav>
       </div>
 
-      <p class="eyebrow">Last updated 11 October 2026</p>
+      <p class="eyebrow">Last updated 15 October 2026</p>
       <h1 class="title">IT Skills — privacy policy</h1>
       <p class="subtitle lead">
-        IT Skills has no servers and no accounts. Your progress stays on your device. The app
-        sends something over the network only when you ask it to publish a project to your own
-        GitHub account.
+        IT Skills works without an account, and then your progress stays on your device. An
+        account is optional: it keeps your progress on the IT Skills server, hosted in Frankfurt,
+        so it syncs across your devices. The courses come from the same server either way. No
+        analytics, no advertising, no tracking.
       </p>
     </div>
   </header>
@@ -53,114 +54,329 @@
       <h2 id="scope" class="section-title">What this covers</h2>
       <p class="prose">
         This policy is about the <b>IT Skills app</b>, listed on the App Store and Google Play
-        as &ldquo;IT Skills: Senior Path&rdquo; — the iOS build distributed through TestFlight,
-        the Android build distributed through Google Play, and the web version. The site you
-        are reading it on is covered separately by <a href="../../../legal/">Legal &amp; privacy</a>.
+        as &ldquo;IT Skills: Senior Path&rdquo; — the iOS build distributed through TestFlight
+        and the Android build distributed through Google Play — and the IT Skills server behind
+        it, <code>itskills-api.fly.dev</code>. The site you are reading it on is covered
+        separately by <a href="../../../legal/">Legal &amp; privacy</a>.
       </p>
       <p class="prose">
-        IT Skills is an independent project. There is no company backend, no sign-up and no
-        user account. &ldquo;We&rdquo; below means the developer of the app.
+        IT Skills is an independent project by Viktor Lavrov, who decides what happens to the
+        data described here — the controller, in the words of the GDPR. &ldquo;We&rdquo; below
+        means him. Contact: <a href="mailto:lvigtor@gmail.com">lvigtor@gmail.com</a>.
       </p>
     </section>
 
-    <section class="section" aria-labelledby="stored">
-      <h2 id="stored" class="section-title">What we store</h2>
+    <section class="section" aria-labelledby="device">
+      <h2 id="device" class="section-title">Without an account</h2>
       <p class="prose">
-        Nothing. Everything the app keeps lives on your device: the name you typed in, your
-        self-assessment, your skill levels, lesson and test results, the files of your course
-        projects, certificates and interview scores. In the installed app that is the
-        app&rsquo;s own private storage; on the web it is your browser&rsquo;s storage.
-        Deleting the app or your browsing data deletes it.
+        The app keeps everything in its own storage on your device: the name you typed in, your
+        goal, your self-assessment and skill levels, lesson and test results, the files of your
+        course projects, certificates and interview scores. None of it is sent to us: without an
+        account we have no copy.
       </p>
       <p class="prose">
-        If you give the app a GitHub personal access token, it is kept apart from everything
-        else: in the iOS Keychain or the Android Keystore, and on the web only in the memory of
-        the open tab, gone when you close it. It is never written to plain storage and never
-        included in a backup.
+        The app still talks to our server to get the courses: the course list, skills and goals
+        when it starts, when you switch its language, and at most every ten minutes when you
+        come back to it; and a course when you enrol in it or open it. These requests say which
+        language the app is in, which course is wanted and whether in JavaScript or Python, and
+        which version of it the device already has. They carry no account, no device identifier
+        and nothing you entered. Like any website, our server and its host see the IP address a
+        request comes from; our server does not record these requests or that address — only a
+        request that fails with a server error is logged, with the path it asked for. That is why
+        the first start needs the internet; a course you have downloaded then works offline.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="account">
+      <h2 id="account" class="section-title">With an account</h2>
+      <p class="prose">
+        You create an account in the app with an e-mail address and a password. It lives on our
+        server, <code>itskills-api.fly.dev</code>, hosted by Fly.io in Frankfurt, Germany, which
+        keeps:
+      </p>
+      <ul class="prose">
+        <li><b>Your account</b> — your e-mail address; your password, stored only as a salted
+          scrypt hash, never as the password itself; and when you confirmed the address with a
+          password-reset code, if you ever did. We do not check that an address is yours when you
+          sign up.</li>
+        <li><b>Your devices</b> — a record for every sign-in on a device: a random id, its model,
+          such as &ldquo;iPhone 15 Pro&rdquo; or &ldquo;Pixel 8&rdquo; (never the name you gave
+          your phone), whether it runs iOS or Android, when it signed in, when it last connected
+          and when it was signed out. A sign-in is a random token of which the server keeps only
+          a hash; one unused for 180 days stops working. Signing out ends the sign-in, but the
+          device&rsquo;s record stays with the account.</li>
+        <li><b>Your progress</b> — the name you typed in (or the default, such as
+          &ldquo;Student&rdquo;); your goal: the role, level and track you are aiming for; your
+          GitHub username, if you entered one; your self-assessment, your skill levels and the
+          skills marked to work on; lessons with their scores, and tests passed or failed with
+          their scores; the courses you enrolled in, their order, depth and code language; the
+          files of your course projects, with the code you wrote in them; the names and links of
+          projects you published to GitHub, or whose publishing the app simulated; your
+          certificates; your mock interview results — the track, the date, the score, the skills
+          to work on and the skill levels your strongest answers earned, never the answers
+          themselves; XP, your streak and the app&rsquo;s language.</li>
+      </ul>
+      <p class="prose">
+        The server keeps your progress as a history of changes — each with its time on your
+        device, the time it arrived and the device it came from — plus the current state built
+        from them. That is how a device that was offline catches up. The history includes earlier
+        versions of your project files: the app saves them as you type and sends the latest a
+        couple of seconds after you stop, and once a minute while you keep typing.
+      </p>
+      <p class="prose">
+        When you create an account, sign in, or set a new password with a reset code, the
+        progress already on the device joins the account; the sign-up and sign-in screens say
+        so. A backup you restore while signed in replaces your account&rsquo;s progress.
+      </p>
+      <p class="note">
+        The code you type in a lesson&rsquo;s exercises is not kept anywhere — only the files of
+        course projects are — and your answers in a mock interview never leave the device. Course
+        downloads are the same for everyone and are not linked to your account.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="reset">
+      <h2 id="reset" class="section-title">Password reset</h2>
+      <p class="prose">
+        If you forget your password, <b>Forgot your password?</b> on the sign-in screen sends a
+        6-digit code to the account&rsquo;s e-mail address. The server keeps only a hash of the
+        code, with its times and the tries spent on it. The code works once, for 15 minutes, and
+        takes at most 5 tries; an account takes at most 10 wrong codes a day. Setting a new
+        password with it signs every other device out of the account.
+      </p>
+      <p class="prose">
+        The e-mail is sent from our Gmail account, <code>lvigtor@gmail.com</code>, through
+        Google&rsquo;s mail servers. It holds your address and the code, in Russian if the app is
+        in Russian and in English otherwise. Gmail keeps a copy of every message sent from that
+        mailbox, and a message that cannot be delivered comes back to it. We delete these copies
+        within 30 days, and at once when we delete an account at your request; the code in them
+        stops working 15 minutes after it is sent.
+        This is the only e-mail the server sends: no newsletters, no marketing.
       </p>
     </section>
 
     <section class="section" aria-labelledby="leaves">
-      <h2 id="leaves" class="section-title">What leaves your device</h2>
+      <h2 id="leaves" class="section-title">Other services</h2>
       <p class="prose">
-        Only what you publish. When you press <b>Publish to GitHub</b> on a finished course
-        project and have saved a token, the app sends that project&rsquo;s files and the
-        repository name to <code>api.github.com</code>, authenticated with your token, to create
-        the repository in your account. That request goes from your device straight to GitHub
-        — never through us — and GitHub&rsquo;s own privacy policy applies to what it receives.
-        Without a token, publishing is simulated on the device and nothing is sent.
+        Apart from our server, the app talks to others only when you ask it to. When you press
+        <b>Publish to GitHub</b> on a finished course project and have saved a token, the app
+        asks GitHub for your username and sends that project&rsquo;s files and the repository
+        name to <code>api.github.com</code>, authenticated with your token, to create a public
+        repository in your account. That request goes from your device straight to GitHub —
+        never through us — and GitHub&rsquo;s own privacy policy applies to what it receives.
+        Without a token, publishing is simulated on the device and nothing is sent to GitHub. If
+        you are signed in, the link to the repository — published or simulated — becomes part of
+        your progress, and so does the GitHub username you entered; the token never does.
       </p>
       <p class="prose">
-        Nothing else goes out. Lessons, exercises, the course catalogue and the Python that runs
-        your code ship inside the app; your code runs on the device; interview answers are
-        scored on the device by matching key terms, not by an online AI service; a lesson you
-        listen to is read aloud by the speech engine built into your device or browser. Links
-        you tap open in your browser, and sharing a certificate or copying a backup happen only
-        when you choose to.
+        Your code runs on the device, Python included. Interview answers are scored on the
+        device by matching key terms, not by an online AI service. A lesson you listen to is read
+        aloud by your device&rsquo;s speech engine; some of its voices may work online, under the
+        terms of the engine&rsquo;s maker. Links you tap open in your browser, and sharing a
+        certificate or copying a backup happen only when you choose to.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="stored">
+      <h2 id="stored" class="section-title">On your device</h2>
+      <p class="prose">
+        Your progress and the courses you downloaded live in the app&rsquo;s own private
+        storage. The sign-in to your account and the GitHub personal access token, if you give
+        one, are kept apart from everything else, in the iOS Keychain or the Android Keystore.
+        They work only on this device: a backup does not bring them to another one, and the token
+        is never sent to our server.
+      </p>
+      <p class="prose">
+        Signing out removes your progress and the token from the device; the progress stays in
+        the account. If some changes could not be sent yet, the app asks first, and
+        <b>Sign out anyway</b> loses them. Downloaded courses stay on the device.
+      </p>
+      <p class="prose">
+        Deleting the app deletes its storage, with two exceptions that belong to your phone, not
+        to the app: your phone&rsquo;s own backup to iCloud or Google may include the app&rsquo;s
+        storage and bring it back when you reinstall; and on iOS the Keychain can keep the
+        sign-in and the token after the app is deleted, so a reinstalled app may start signed in.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="processors">
+      <h2 id="processors" class="section-title">Who else handles it</h2>
+      <p class="prose">
+        Fly.io, Inc. hosts the server and its database in Frankfurt, and keeps the
+        database&rsquo;s daily backups, as our processor. Google provides the Gmail account the
+        reset e-mail is sent from; it receives your address and the code and keeps them under
+        Google&rsquo;s own terms and privacy policy, in Google&rsquo;s data centres, which may be
+        outside the EU. Fly.io, Inc. and Google LLC are US companies, and both take part in the
+        EU&ndash;U.S. Data Privacy Framework.
+      </p>
+      <p class="prose">
+        Connections from the app are encrypted (HTTPS) as far as Fly.io&rsquo;s network, whose
+        nearest point may be outside the EU; from there they reach our server inside Fly.io&rsquo;s
+        private network. The database can be reached only from that private network, and its
+        disk is encrypted. This is not end-to-end encryption: our server reads what the app sends
+        it, and your e-mail address, name and progress are stored as they are, protected by the
+        disk&rsquo;s encryption and by who can reach the server. The reset e-mail leaves our
+        server for Google encrypted (TLS).
+      </p>
+      <p class="prose">
+        Like any server, ours sees the IP address each request comes from. It uses it for one
+        thing: to limit how often one address can create an account, sign in, or ask for or
+        enter a reset code. For the same reason it counts sign-ins and reset codes per e-mail
+        address, and requests per account. These counts are kept only in the server&rsquo;s
+        memory (the wrong reset codes of an account are counted with the code, above), never
+        written to its database or its log. An address is dropped some time after
+        its count has filled back up — an hour at most for an IP address, three hours for an
+        e-mail address — when the server next checks that limit or restarts for an update; until
+        then it can stay in memory for days.
+      </p>
+      <p class="prose">
+        Nobody else gets your data. We do not sell it, share it, or use it for advertising or
+        tracking.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="logs">
+      <h2 id="logs" class="section-title">Server log</h2>
+      <p class="prose">
+        The server writes a line to its log when an account is created, a device signs in, a
+        password is changed or reset, or an account is deleted. The line holds the time and the
+        random ids of the account and, where there is one, the device — no e-mail address, no
+        password, no IP address and no progress. A sent reset e-mail is logged without the
+        address; a failed one with the mail server&rsquo;s error, from which the address is cut
+        out. A request turned away for coming too often is logged with the limit it hit, not with
+        who sent it. An error is logged with the kind of request that failed and where the server
+        broke, not with what the request carried. Fly.io keeps the log for 7 days.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="retention">
+      <h2 id="retention" class="section-title">How long it is kept</h2>
+      <ul class="prose">
+        <li><b>Account, devices and progress</b>, with the whole history of changes — until you
+          delete the account. An account is not deleted for being unused, and
+          <b>Reset progress</b> does not delete the history.</li>
+        <li><b>Sign-ins</b> — until you sign out, until a password change signs the device out,
+          or until 180 days after their last use. The token&rsquo;s record is then deleted within about a
+          week; the device&rsquo;s record stays with the account.</li>
+        <li><b>A reset code</b> — works for 15 minutes. Its record (the hash, times and tries)
+          stays until you ask for a new code, change the password in the app or delete the
+          account.</li>
+        <li><b>Copies of reset e-mails</b> — in our Gmail mailbox; we delete them within 30 days,
+          and at once when we delete an account at your request.</li>
+        <li><b>IP and e-mail addresses counted against guessing</b> — in memory only, as
+          above.</li>
+        <li><b>The server log</b> — for the 7 days Fly.io keeps it.</li>
+        <li><b>Backups</b> — Fly.io copies the database disk every day and keeps each copy for
+          five days, encrypted like the disk itself. What you delete is gone from them within
+          about a week.</li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="rights">
+      <h2 id="rights" class="section-title">Your control and your rights</h2>
+      <p class="prose">
+        In the app, <b>Profile → Account → Delete account</b> deletes your account at once, with
+        everything the server keeps for it: the e-mail, the password hash, your devices and
+        sign-ins, reset codes, and all your progress with its history. Step by step, and how to
+        ask us by e-mail instead: <a href="../delete-account/">Delete your account</a>.
+      </p>
+      <p class="prose">
+        Every device is signed out. The device you delete it from keeps no progress. Any other
+        device that was signed in to the account keeps its copy of the progress, now without an
+        account, until the app is deleted there (<b>Reset progress</b> does not remove that
+        copy); if you sign in on that device again, to any account, the copy joins the account
+        you sign in to.
+      </p>
+      <p class="prose">
+        <b>Sign out</b> removes your progress from the device, not from the account.
+        <b>Profile → Reset progress</b>, while you are signed in, clears your progress on every
+        device of the account, but the server keeps the earlier history until you delete the
+        account.
+      </p>
+      <p class="prose">
+        You can change your name, goal and GitHub username in the app. The app cannot change the
+        e-mail address: write to us, confirm the change from the old and the new address, and we
+        change it. <b>Profile → Copy the backup</b> gives you
+        your current progress as text; for everything the server keeps about you, history
+        included, write to us.
+      </p>
+      <p class="prose">
+        Under the GDPR you can ask us for a copy of your data, to correct it, to delete it, to
+        take it elsewhere, or to restrict or object to how we use it — write to
+        <a href="mailto:lvigtor@gmail.com">lvigtor@gmail.com</a>. If the request is about your
+        account, we first write to the account&rsquo;s address and act once you confirm from
+        it. We answer within one month. We keep account data to give you what you signed up for
+        (the contract, GDPR art. 6(1)(b)); we count IP and e-mail addresses against password guessing and keep the server
+        log to keep accounts and the server safe (legitimate interest, art. 6(1)(f)). You can
+        also complain to a data protection authority, for example the one where you live —
+        <a href="https://www.edpb.europa.eu/about-edpb/about-edpb/members_en" target="_blank" rel="noopener">the EU authorities</a>.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="backups">
+      <h2 id="backups" class="section-title">Copying a backup</h2>
+      <p class="prose">
+        Profile → <b>Copy the backup</b> puts your progress on the clipboard as text, at your
+        request, so you can keep it wherever you like and restore it on another device. It goes
+        wherever you paste it, not to us — unless you restore it while signed in: then it becomes
+        your account&rsquo;s progress. The GitHub token is not part of it.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="permissions">
+      <h2 id="permissions" class="section-title">Permissions</h2>
+      <p class="prose">
+        The app asks for no permissions: no camera, microphone, photos, contacts, location or
+        notifications.
       </p>
     </section>
 
     <section class="section" aria-labelledby="analytics">
       <h2 id="analytics" class="section-title">Analytics</h2>
       <p class="prose">
-        None, in the installed app and on the web alike. No page views, no events, no
-        identifiers, and no crash reporting of our own.
-      </p>
-    </section>
-
-    <section class="section" aria-labelledby="backups">
-      <h2 id="backups" class="section-title">Backups and deleting your data</h2>
-      <p class="prose">
-        Profile → <b>Copy the backup</b> puts your progress on the clipboard as text, at your
-        request, so you can keep it wherever you like and restore it on another device. It goes
-        wherever you paste it. Never to us. The GitHub token is not part of it.
-      </p>
-      <p class="prose">
-        Profile → <b>Reset progress</b> deletes everything the app stores, the saved token
-        included. Deleting the app does the same.
+        None. No page views, no analytics events, no advertising identifiers and no crash
+        reporting of our own: the app contains no analytics, advertising or crash-reporting code.
+        What the server keeps is described above and is used only to run your account.
       </p>
     </section>
 
     <section class="section" aria-labelledby="testflight">
       <h2 id="testflight" class="section-title">Beta testing</h2>
       <p class="prose">
-        While the app is distributed through TestFlight, Apple collects the installation and
-        crash data described in
+        While the app is distributed through TestFlight, Apple collects the installation, usage
+        and crash data described in
         <a href="https://www.apple.com/legal/privacy/data/en/test-flight/" target="_blank" rel="noopener">Apple&rsquo;s TestFlight privacy notice</a>.
-        That is Apple&rsquo;s collection under Apple&rsquo;s terms. It reaches us only as
-        anonymous crash reports and the feedback you choose to send, and never includes your
-        progress or anything you typed into the app.
+        That is Apple&rsquo;s collection under Apple&rsquo;s terms. It reaches us as install and
+        session counts, crash reports and the feedback you choose to send, and never includes
+        your progress.
       </p>
       <p class="prose">
         On Android the app is distributed through open testing on Google Play, and Google
         collects the installation and crash data described in
         <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google&rsquo;s privacy policy</a>.
-        That, too, is Google&rsquo;s collection under Google&rsquo;s terms. It reaches us only
-        as install counts, anonymous crash reports and the feedback you choose to send, and
-        never includes your progress or anything you typed into the app.
+        That, too, is Google&rsquo;s collection under Google&rsquo;s terms. It reaches us as
+        install counts, crash reports and the feedback you choose to send, and never includes
+        your progress.
       </p>
     </section>
 
     <section class="section" aria-labelledby="children">
       <h2 id="children" class="section-title">Children</h2>
       <p class="prose">
-        The app is not directed at children and collects no data from anyone, of any age.
+        The app is not directed at children. Without an account your progress never leaves your
+        device, at any age. Please don&rsquo;t create an account if you are under 16, unless
+        where you live you may agree to this yourself at a younger age. The app does not ask your
+        age; if a child has created an account, write to us and we will delete it.
       </p>
     </section>
 
     <section class="section" aria-labelledby="changes">
-      <h2 id="changes" class="section-title">Changes</h2>
+      <h2 id="changes" class="section-title">Changes and contact</h2>
       <p class="prose">
-        If this policy changes, the date at the top of the page changes with it. Since the app
-        collects nothing, any change would be about something newly added — and it would be
-        described here before it shipped.
-      </p>
-    </section>
-
-    <section class="section" aria-labelledby="contact">
-      <h2 id="contact" class="section-title">Contact</h2>
-      <p class="prose">
-        Questions: <a href="mailto:lvigtor@gmail.com">lvigtor@gmail.com</a>
+        If this policy changes, the date at the top of the page changes with it, and anything
+        new the app or the server keeps or sends anywhere is described here before it ships.
+        Questions and requests: Viktor Lavrov,
+        <a href="mailto:lvigtor@gmail.com">lvigtor@gmail.com</a>.
       </p>
     </section>
 
@@ -168,7 +384,7 @@
 
   <footer class="site-footer">
     <div class="wrap">
-      <p><a href="../">← IT Skills</a> · <a href="../../../">All products</a> · <a href="../../../legal/">Legal &amp; privacy</a></p>
+      <p><a href="../">← IT Skills</a> · <a href="../delete-account/">Delete your account</a> · <a href="../../../">All products</a> · <a href="../../../legal/">Legal &amp; privacy</a></p>
     </div>
   </footer>
 

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>IT Skills — a study plan that starts from what you already know</title>
-  <meta name="description" content="A learning app for engineers built on a graph of 306 skills: 31 courses from Python, PostgreSQL and FastAPI to System Design, machine learning and game development. What you already know is credited, not re-taught, and JavaScript, SQL and Python exercises really run. Ten interface languages; no account, no servers." />
+  <meta name="description" content="A learning app for engineers built on a graph of 306 skills: 31 courses from Python, PostgreSQL and FastAPI to System Design, machine learning and game development. What you already know is credited, not re-taught, and JavaScript, SQL and Python exercises really run. Ten interface languages; an optional account syncs your progress between devices." />
   <meta name="robots" content="index, follow" />
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>" />
@@ -49,8 +49,8 @@
 
           <ul class="badges">
             <li>Free</li>
-            <li>No account</li>
-            <li>No servers at all</li>
+            <li>Account optional</li>
+            <li>Syncs across devices</li>
             <li>Works offline</li>
             <li>3,817 exercises</li>
           </ul>
@@ -237,17 +237,21 @@
     <section class="section" aria-labelledby="data">
       <h2 id="data" class="section-title">Where the data lives</h2>
       <p class="prose">
-        On your device, in the app's own private storage. There is no account and no sync; to
-        move to another phone, Profile → <b>Copy the backup</b> on the old one puts your
-        progress on the clipboard as text, and <b>Restore from the backup</b> on the new one takes it
-        back. A GitHub token, if you give one, is kept separately in the iOS Keychain or the
-        Android Keystore and never goes into a backup.
+        Without an account, on your device only, in the app's own private storage; to move to
+        another phone, Profile → <b>Copy the backup</b> on the old one puts your progress on the
+        clipboard as text, and <b>Restore from the backup</b> on the new one takes it back. With an
+        account — optional, an e-mail and a password — your progress is also kept on the app's
+        server in Frankfurt (Fly.io), so every device you sign in on picks up where you left off.
+        Courses are downloaded from that server when you open them and then work offline. A GitHub
+        token, if you give one, stays in the iOS Keychain or the Android Keystore: it never goes
+        into a backup or to the server.
       </p>
       <p class="note">
-        The app has no backend and reports nothing. The one network request it can make is the
-        one you ask for: publishing a finished project, straight from your device to
-        <code>api.github.com</code> with your own token — see the
-        <a href="privacy/">privacy policy</a>.
+        No ads, no analytics, no tracking. The app talks to its own server to download courses
+        and, if you sign in, to sync your progress; and to <code>api.github.com</code> only when
+        you publish a finished project with your own token. The details are in the
+        <a href="privacy/">privacy policy</a>; you can <a href="delete-account/">delete your
+        account</a> in the app or by e-mail.
       </p>
     </section>
 
@@ -281,8 +285,8 @@
         pretend to execute what it cannot.
       </p>
       <p class="note">
-        Certificates are issued by the app on your device: a record of what you finished, not a
-        qualification anyone can verify. The lessons were written with AI assistance. Every
+        Certificates are issued by the app itself and kept on your device (and in your account,
+        if you have one): a record of what you finished, not a qualification anyone can verify. The lessons were written with AI assistance. Every
         exercise's reference solution is checked automatically on each change, but not every
         page of theory has been read by a person yet — if you spot a mistake,
         <a href="mailto:lvigtor@gmail.com?subject=IT%20Skills%20feedback">tell me</a>.
@@ -293,7 +297,7 @@
 
   <footer class="site-footer">
     <div class="wrap">
-      <p><a href="../../">← All products</a> · Found a bug or a wrong answer? <a href="mailto:lvigtor@gmail.com?subject=IT%20Skills%20feedback">Email me</a> · <a href="privacy/">Privacy policy</a> · <a href="../../legal/">Legal &amp; privacy</a>.</p>
+      <p><a href="../../">← All products</a> · Found a bug or a wrong answer? <a href="mailto:lvigtor@gmail.com?subject=IT%20Skills%20feedback">Email me</a> · <a href="privacy/">Privacy policy</a> · <a href="delete-account/">Delete your account</a> · <a href="../../legal/">Legal &amp; privacy</a>.</p>
     </div>
   </footer>
 
