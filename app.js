@@ -4,11 +4,12 @@
  * To add a project, add an entry to PROJECTS below — the array order is the
  * order on the page. Every field except `name` and `links` is optional.
  *
+ *   platforms where it runs, for the filters — any of PLATFORMS below
  *   accent   hex colour for the icon tile, tagline, badge and buttons
  *   status   small pill in the card's top-right corner
  *   featured tints the whole card with the accent colour
  *   links    buttons, in order; the first one is the highlighted button
- *            icon: 'github' | 'chrome' | 'firefox' | 'download' (optional)
+ *            icon: 'github' | 'chrome' | 'firefox' | 'download' | 'apple' | 'play' (optional)
  * ---------------------------------------------------------------------- */
 const PROJECTS = [
   {
@@ -16,7 +17,7 @@ const PROJECTS = [
     tagline: 'The history of science on one line you can zoom to a single day',
     description:
       'Discoveries, inventions and Nobel prizes from the seventh millennium BC to this week, on a timeline that zooms continuously from millennia down to days. Vague dates stay vague — "around 300 BC" is a century-wide interval, not an invented 1 January. Wikidata supplies the history, Crossref the current week from twenty leading journals.',
-    category: 'Web app',
+    platforms: ['Web app'],
     tags: ['Open data', 'Canvas', 'TypeScript', 'Wikidata', 'Crossref'],
     icon: '🔭',
     accent: '#4c8dff',
@@ -33,7 +34,7 @@ const PROJECTS = [
     tagline: 'An AI language tutor you talk to, out loud',
     description:
       'Live voice or text conversations with a tutor that works out your CEFR level by talking to you, then builds practice out of the mistakes you actually made — missions, a spaced-repetition deck and five drill modes, in 61 languages. Bring your own key from OpenAI, Google, Groq or Fish Audio and pay the provider directly, or download the models and run the whole loop on the phone with no key and no connection.',
-    category: 'iOS app',
+    platforms: ['iOS app'],
     tags: ['SwiftUI', 'SwiftData', 'BYOK', 'On-device AI', 'Offline'],
     icon: '🗣️',
     accent: '#ff8f6b',
@@ -49,7 +50,7 @@ const PROJECTS = [
     tagline: '7,992 languages and 13,706 dialects, on one map',
     description:
       'An interactive atlas built on Glottolog, Wikidata, WALS and ASJP: families, speaker counts, endangerment status, and four separate measures of how any two languages relate — family tree, grammar, vocabulary and distance. Search works across 84,000 alternative names in 15 interface languages.',
-    category: 'Web app',
+    platforms: ['Web app'],
     tags: ['Open data', 'Leaflet', 'Vanilla JS', 'Glottolog', 'WALS'],
     icon: '🌍',
     accent: '#5ec8d8',
@@ -66,7 +67,7 @@ const PROJECTS = [
     tagline: 'A TV Time replacement that lives in your browser',
     description:
       'Track the shows and movies you watch, without an account. Your library stays in local storage, backups are plain JSON files you own, and it installs as a PWA on Android and iPhone.',
-    category: 'Web app',
+    platforms: ['Web app', 'iOS app'],
     tags: ['PWA', 'iOS', 'Local-first', 'React', 'TypeScript', 'MIT'],
     icon: '🎬',
     accent: '#f2789f',
@@ -83,7 +84,7 @@ const PROJECTS = [
     tagline: 'Games you play — or would rather watch as a longplay',
     description:
       'Seven statuses across play and watch tracks, a searchable library backed by RAWG and Steam data, and recommendations scored on your platforms, genres and Metacritic. No accounts, works offline.',
-    category: 'Web app',
+    platforms: ['Web app', 'iOS app'],
     tags: ['PWA', 'iOS', 'Local-first', 'React', 'TypeScript', 'MIT'],
     icon: '🎮',
     accent: '#7c9cff',
@@ -100,7 +101,7 @@ const PROJECTS = [
     tagline: 'The books you’re reading, tracked page by page',
     description:
       'One tap logs a sitting, and the app tells you how many pages and hours are left. Progress, a wish list and a finished shelf, with recommendations built on the device from the authors and subjects you actually read. Open Library needs no key, so there is no server at all.',
-    category: 'Web app',
+    platforms: ['Web app', 'iOS app'],
     tags: ['PWA', 'iOS', 'Local-first', 'React', 'TypeScript', 'MIT'],
     icon: '📚',
     accent: '#e2a13c',
@@ -117,7 +118,7 @@ const PROJECTS = [
     tagline: 'What monthly deposits actually grow into',
     description:
       'A compound-growth table ported from the spreadsheet it replaces: what you pay in every month, what it earns, and the balance for every month of up to thirty years. The return can be quoted per month, quarter or year and converts by compounding, not division. Nothing leaves the device, and it reads in twenty languages.',
-    category: 'Web app',
+    platforms: ['iOS app'],
     tags: ['PWA', 'Local-first', 'React', 'TypeScript', '20 languages', 'MIT'],
     icon: '📈',
     accent: '#22c55e',
@@ -132,7 +133,7 @@ const PROJECTS = [
     tagline: 'A year of goals, and the hour a day you spend on them',
     description:
       'A yearly goals tracker ported from the spreadsheet it replaces: twelve months of focus, a ring showing how much of the year is behind you, and the three daily hours — professional, languages, everything else — that move it. Seven years of the original sheet ship as sample data, searchable across every year at once. Nothing leaves the device; the app makes no network requests at all.',
-    category: 'iOS app',
+    platforms: ['iOS app'],
     tags: ['Capacitor', 'Local-first', 'React', 'TypeScript', '20 languages', 'Offline'],
     icon: '🎯',
     accent: '#3d70f7',
@@ -146,15 +147,16 @@ const PROJECTS = [
     name: 'IT Skills',
     tagline: 'A study plan that starts from what you already know',
     description:
-      'Thirty-one courses for engineers — from Python, PostgreSQL and FastAPI to System Design, machine learning and game development — hung on a graph of 306 skills. Say what you know and pick one of nineteen goals: it credits the rest, orders the courses by what depends on what, and leaves only the gap. JavaScript, SQL and real Python with pandas and scikit-learn run on the device. Ten interface languages, and an optional account that syncs your progress between devices.',
-    category: 'iOS app',
+      'Thirty-six courses for engineers, one technology each — from Python, PostgreSQL and FastAPI to Kubernetes, System Design, machine learning and game development — hung on a graph of 311 skills. Say what you know and pick one of nineteen goals: it credits the rest, orders the courses by what depends on what, leaves only the gap and says when you will be done. JavaScript, SQL and real Python with pandas and scikit-learn run on the device. Ten interface languages, and an optional account that syncs your progress between devices.',
+    platforms: ['iOS app', 'Android app'],
     tags: ['React Native', 'Expo', 'TypeScript', 'Offline-first', 'Sync', '10 languages'],
     icon: '🧭',
     accent: '#7f8fff',
     status: 'Beta',
     links: [
       { label: 'Learn more', url: 'products/it-skills/' },
-      { label: 'Join the TestFlight beta', url: 'https://testflight.apple.com/join/bm55aegA' },
+      { label: 'iOS beta', url: 'https://testflight.apple.com/join/bm55aegA', icon: 'apple' },
+      { label: 'Android beta', url: 'https://play.google.com/apps/testing/com.mrwd.itskills', icon: 'play' },
     ],
   },
   {
@@ -162,7 +164,7 @@ const PROJECTS = [
     tagline: 'A week of food, planned to your budget',
     description:
       "A grocery planner for Italy: set the weekly budget, who is eating and the shops you can reach, and it plans the meals, splits the shopping between those shops so the basket costs least, and keeps the pantry. Prices come from wherever they are real — till receipts read on the phone, shared by shoppers at the same shop, the chains' own websites where they allow it, and the Ministry's monthly survey — and the rest is labelled an estimate.",
-    category: 'iOS app',
+    platforms: ['iOS app'],
     tags: ['React Native', 'Expo', 'TypeScript', 'Local-first', '4 languages', 'Italy'],
     icon: '🛒',
     accent: '#4cc38a',
@@ -177,7 +179,7 @@ const PROJECTS = [
     tagline: 'A trip planned around the places you saved',
     description:
       'Say where, for how many days, what you like and how you get around, and it plans the trip day by day — a map, the time at each stop, the way between them — around the places you saved on Instagram, TikTok and YouTube, read from your own data export. Where and when is computed, not generated: a language model only writes the descriptions, and only with your own key.',
-    category: 'iOS app',
+    platforms: ['iOS app'],
     tags: ['React Native', 'Expo', 'TypeScript', 'Local-first', 'OpenStreetMap', 'Russian and English'],
     icon: '📍',
     accent: '#f5a524',
@@ -192,7 +194,7 @@ const PROJECTS = [
     tagline: 'Three decisions a day from your own health data',
     description:
       'A personal health and training advisor for iPhone and Apple Watch. It reads Apple Health and a strength log you can type in, compares everything with your own four-week baseline, and answers one question: train hard, go easy or rest, and why. Rules decide and two safety engines keep it from ever diagnosing or recommending a weight; the on-device model only rephrases. No account, no servers.',
-    category: 'iOS app',
+    platforms: ['iOS app'],
     tags: ['SwiftUI', 'HealthKit', 'Apple Watch', 'Local-first', 'On-device AI', '4 languages'],
     icon: '🌅',
     accent: '#ff9a5c',
@@ -207,7 +209,7 @@ const PROJECTS = [
     tagline: 'A job hunt that runs while you do something else',
     description:
       'Reads your CV, walks company career pages, ATS platforms and job boards, and scores every posting against you with a reason — then says what to change in the CV for that particular role and generates a tailored one. Runs on your own computer; the thinking is done by Claude Code, Cursor, or a local model through Ollama, so with a local model nothing leaves the machine.',
-    category: 'Desktop app',
+    platforms: ['Desktop app'],
     tags: ['macOS', 'Windows', 'Linux', 'Python', 'Local-first', 'MIT'],
     icon: '🎯',
     accent: '#6aa9ff',
@@ -224,7 +226,7 @@ const PROJECTS = [
     tagline: 'Hold a key, read your screen in your language',
     description:
       'A menu-bar app for macOS, Windows and Linux. Hold the hotkey to overlay a translation on top of whatever is on screen, release to go back. 25 languages, offline and private by default — built for gamers learning a language.',
-    category: 'Desktop app',
+    platforms: ['Desktop app'],
     tags: ['macOS', 'Windows', 'Linux', 'Python', 'OCR', 'MIT'],
     icon: '🔤',
     accent: '#67e8c3',
@@ -240,7 +242,7 @@ const PROJECTS = [
     tagline: 'Better prompts, suggested where you already chat',
     description:
       'A lightbulb button inside 10+ AI chats — Claude, ChatGPT, Gemini, Perplexity, Copilot, Le Chat, Grok, DeepSeek, Qwen and LMArena — that rewrites what you typed into a sharper prompt, with examples.',
-    category: 'Extension',
+    platforms: ['Extension'],
     tags: ['Chrome', 'Firefox', 'Open source'],
     icon: '💡',
     accent: '#ffc46b',
@@ -266,7 +268,7 @@ const PROJECTS = [
     tagline: 'Two subtitle tracks at once, for language learners',
     description:
       'Shows your native and target language subtitles side by side on Netflix, Prime Video and Disney+. Styling and position are adjustable, and words you save go straight to Anki or Quizlet. No data collected.',
-    category: 'Extension',
+    platforms: ['Extension'],
     tags: ['Chrome', 'Netflix', 'Prime Video', 'Disney+', 'Anki'],
     icon: '📺',
     accent: '#a78bfa',
@@ -291,6 +293,7 @@ const ICONS = {
     '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.4"/><path d="M21 8.2H12M8.6 13.7 4.1 6M15.4 13.7l-4.5 7.8"/>',
   firefox: '<circle cx="12" cy="12" r="9"/><path d="M12 3c3 2 4.5 4.4 4.5 7.2 0 2.6-2 4.5-4.5 4.5S7.5 12.8 7.5 10"/>',
   download: '<path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M4.5 19.5h15"/>',
+  play: '<path d="M6.5 4.6v14.8a.9.9 0 0 0 1.36.77l12.3-7.4a.9.9 0 0 0 0-1.54L7.86 3.83a.9.9 0 0 0-1.36.77Z"/>',
   apple:
     '<path class="solid" d="M16.4 12.7c0-2.2 1.8-3.3 1.9-3.3-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.7.8-3.3.8-.7 0-1.7-.8-2.8-.8-1.5 0-2.8.8-3.6 2.1-1.5 2.6-.4 6.5 1.1 8.6.7 1 1.6 2.2 2.7 2.2 1.1 0 1.5-.7 2.8-.7 1.3 0 1.6.7 2.8.7 1.2 0 1.9-1 2.6-2 .8-1.2 1.2-2.3 1.2-2.4 0 0-2.2-.9-2.2-3.5ZM14.2 6.3c.6-.7 1-1.7.9-2.7-.9 0-2 .6-2.6 1.3-.6.6-1.1 1.7-.9 2.6 1 .1 2-.5 2.6-1.2Z"/>',
 };
@@ -354,7 +357,11 @@ function accentFor(project) {
 
 /* -------------------------------------------------------------- rendering */
 
-const state = { category: 'All', query: '' };
+/* The filters, in this order; one shows once a project runs there. A project on
+ * several platforms (a web app with an iOS beta) shows under each of them. */
+const PLATFORMS = ['Web app', 'iOS app', 'Android app', 'Desktop app', 'Extension'];
+
+const state = { platform: 'All', query: '' };
 
 function icon(name) {
   return `<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">${ICONS[name] || ''}</svg>`;
@@ -418,28 +425,29 @@ function buildCard(project) {
 }
 
 function matchesFilter(project) {
-  if (state.category !== 'All' && (project.category || 'Other') !== state.category) return false;
+  if (state.platform !== 'All' && !(project.platforms || []).includes(state.platform)) return false;
   if (!state.query) return true;
 
-  const haystack = [project.name, project.tagline, project.description, project.category, ...(project.tags || [])]
+  const haystack = [project.name, project.tagline, project.description, ...(project.platforms || []), ...(project.tags || [])]
     .join(' ')
     .toLowerCase();
   return state.query.split(/\s+/).every((word) => haystack.includes(word));
 }
 
 function renderFilters() {
-  const categories = ['All', ...new Set(PROJECTS.map((p) => p.category || 'Other'))];
+  const present = new Set(PROJECTS.flatMap((p) => p.platforms || []));
+  const filters = ['All', ...PLATFORMS.filter((p) => present.has(p))];
   const box = $('#filters');
   box.replaceChildren();
 
-  for (const cat of categories) {
+  for (const platform of filters) {
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'chip';
-    btn.textContent = cat;
-    btn.setAttribute('aria-pressed', String(cat === state.category));
+    btn.textContent = platform;
+    btn.setAttribute('aria-pressed', String(platform === state.platform));
     btn.addEventListener('click', () => {
-      state.category = cat;
+      state.platform = platform;
       renderFilters();
       renderGrid();
     });
@@ -453,6 +461,8 @@ function renderGrid() {
 
   grid.replaceChildren(...visible.map(buildCard));
   $('#empty').hidden = visible.length > 0;
+  const total = `${PROJECTS.length} project${PROJECTS.length === 1 ? '' : 's'}`;
+  $('#status').textContent = visible.length === PROJECTS.length ? total : `${visible.length} of ${total}`;
 }
 
 /* ---------------------------------------------------------------- startup */
@@ -499,5 +509,4 @@ initTheme();
 initSearch();
 renderFilters();
 renderGrid();
-$('#status').textContent = `${PROJECTS.length} project${PROJECTS.length === 1 ? '' : 's'}`;
 loadStats(); // fills in the user badges once the numbers arrive
