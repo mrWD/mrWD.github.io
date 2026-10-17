@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Python</title>
+  </head>
+  <body>
+    <!--
+      A phone's Python. Hermes runs no WebAssembly, so the app keeps this page in a hidden
+      WebView, loaded from the app bundle with Pyodide beside it: Python works offline.
+      The app calls window.pythonRun({ id, code, files, after, filename }); the page answers
+      through ReactNativeWebView.postMessage with { type: 'ready' | 'failed' | 'result', ... }.
+      The Python half of the rules (_runner.py, pytest.py) is read from beside this page.
+    -->
+    <script>
+      // What goes wrong in the page reaches the app's log: a WebView has no console to read.
+      function report(message) {
+        if (window.ReactNativeWebView) window.ReactNativeWebView.postMessage(JSON.stringify({ type: 'log', message: String(message) }));
+      }
+      window.addEventListener(
+        'error',
+        function (e) {
+          report('error: ' + (e.message || (e.target && (e.target.src || e.target.href)) || e));
+        },
+        true,
+      );
+      window.addEventListener('unhandledrejection', function (e) {
+        report('rejection: ' + (e.reason && e.reason.stack ? e.reason.stack : e.reason));
+      });
+
+      // A WebView refuses fetch() on file:// pages, and Pyodide fetches its WebAssembly and
+      // standard library: requests for the bundle's files go through XMLHttpRequest instead.
+      (function () {
+        var nativeFetch = window.fetch;
+        window.fetch = function (input, init) {
+          // A string, a URL object or a Request.
+          var url = new URL(input instanceof Request ? input.url : String(input), location.href);
+          if (url.protocol !== 'file:') return nativeFetch.call(window, input, init);
+          return new Promise(function (resolve, reject) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url.href);
+            xhr.responseType = 'arraybuffer';
+            xhr.onload = function () {
+              var type = /\.wasm$/.test(url.pathname) ? 'application/wasm' : /\.json$/.test(url.pathname) ? 'application/json' : 'application/octet-stream';
+              resolve(new Response(xhr.response, { status: 200, headers: { 'Content-Type': type } }));
+            };
+            xhr.onerror = function () {
+              report('cannot load ' + url.href);
+              reject(new TypeError('Cannot load ' + url.href));
+            };
+            xhr.send();
+          });
+        };
+      })();
+    </script>
+    <script src="pyodide.js"></script>
+    <script src="runner.js"></script>
+    <script>
+      (function () {
+        function post(message) {
+          window.ReactNativeWebView.postMessage(JSON.stringify(message));
+        }
+        var runner = loadPyodide({ indexURL: new URL('./', location.href).href }).then(function (pyodide) {
+          return PythonRunner.create(
+            pyodide,
+            function (name) {
+              return fetch(new URL(name, location.href)).then(function (r) {
+                return r.text();
+              });
+            },
+            {
+              // Loading numpy or pandas takes seconds the first time: not the program's own time.
+              loading: function (request, packages) {
+                post({ type: 'loading', id: request.id, packages: packages });
+              },
+              loaded: function (request) {
+                post({ type: 'loaded', id: request.id });
+              },
+            },
+          );
+        });
+        runner.then(
+          function () {
+            post({ type: 'ready' });
+          },
+          function (e) {
+            post({ type: 'failed', error: String(e) });
+          },
+        );
+        window.pythonRun = function (request) {
+          runner
+            .then(function (r) {
+              return r.run(request);
+            })
+            .then(
+              function (result) {
+                post({ type: 'result', id: request.id, stdout: result.stdout, status: result.status, error: result.error, files: result.files });
+              },
+              function (e) {
+                post({ type: 'result', id: request.id, stdout: '', status: 1, error: String(e) });
+              },
+            );
+        };
+      })();
+    </script>
+  </body>
+</html>
