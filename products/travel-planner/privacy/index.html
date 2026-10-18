@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Travel Planner — privacy policy</title>
-  <meta name="description" content="What Travel Planner stores and what leaves your device. No accounts, no servers of its own, no analytics. Map, place and caption lookups go straight from your device to the public services that answer them." />
+  <meta name="description" content="What Travel Planner stores and what leaves your device. No accounts, no servers of its own, no analytics. Map, place and title lookups go straight from your device to the public services that answer them." />
   <meta name="robots" content="index, follow" />
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📍</text></svg>" />
@@ -71,7 +71,8 @@
       </p>
       <p class="prose">
         A data export from Instagram, TikTok or YouTube is read on the device and never uploaded.
-        Only your saved posts are taken from it; nothing else in it is kept.
+        Only your saved posts are taken from it; nothing else in it is kept. Titles the app looks
+        up for TikTok and YouTube videos are used once, to find the place, and are not kept.
       </p>
       <p class="prose">
         If you add an Anthropic API key, it is kept apart from everything else: in the iOS
@@ -87,14 +88,14 @@
         that service&rsquo;s own privacy policy applies to it:
       </p>
       <ul class="prose">
-        <li><b>OpenStreetMap</b> map tiles (and CARTO&rsquo;s, if OpenStreetMap&rsquo;s fail): the area of the map you look at.</li>
+        <li><b>OpenStreetMap</b> map tiles: the area of the map you look at. The app names itself to OpenStreetMap and Wikimedia, with a link to its page, as their usage policies ask.</li>
         <li><b>Nominatim, Photon and Overpass</b> (OpenStreetMap data): the destination you type, and place names from your imported posts&rsquo; captions, to find where they are.</li>
         <li><b>Wikipedia and Wikidata</b>: a location, to find the sights and towns around it.</li>
-        <li><b>Instagram</b>: for an older export that lists only links, the address of each saved post&rsquo;s public embed page, to read its caption. No login is used and nothing is posted. (The web version asks through its own server, because browsers may not call Instagram directly; that server passes the request on and keeps nothing.) <b>TikTok and YouTube</b>: a saved video&rsquo;s address, for its title.</li>
-        <li><b>Anthropic</b> — only if you added your own key: the names and categories of a plan&rsquo;s places, your interests and the city, to write the day summaries and tips. The request is made with your key, under your agreement with Anthropic.</li>
+        <li><b>TikTok and YouTube</b>: when a saved video has no title in your export, its address, sent to that platform&rsquo;s official oEmbed service, for the title. The title is used once, on your device, to find the place, and is not kept. <b>Instagram</b> is never contacted: captions come only from your export.</li>
+        <li><b>Anthropic</b> — only if you added your own key and agreed to this in the app: the trip&rsquo;s destination, the interests you chose, and the names and categories of the planned places (places from your imported posts included), to write the day summaries and tips. No posts, captions or your location are sent. The request is made with your key, under your agreement with Anthropic.</li>
       </ul>
       <p class="prose">
-        <b>Look up post captions online</b>, in Settings and on the Import screen, turns the
+        <b>Look up places online</b>, in Settings and on the Import screen, turns the
         import&rsquo;s online lookups off; the import then works offline. Links you tap — directions, ticket searches, a post, a
         Wikipedia article — open in your maps app or browser.
       </p>
@@ -105,15 +106,26 @@
       <p class="prose">
         Travel Planner uses <b>YouTube API Services</b>. When a YouTube video among your saved
         posts has no title in the export, the app asks YouTube for it, sending only the
-        video&rsquo;s address. No Google account is used. The title (or the channel name, if
-        there is no title) is kept with that saved post on your device, and nothing else from
-        YouTube is stored.
+        video&rsquo;s address. No Google account is used. The title and the channel name are
+        used once, on your device, to find the place the video is about, and are not stored:
+        the app keeps only the video&rsquo;s link from your export and the place it found.
       </p>
       <p class="prose">
         By using Travel Planner you agree to be bound by the
         <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener">YouTube Terms of Service</a>.
+      </p>
+      <p class="prose">
         Google handles those requests under the
-        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>.
+        <a href="https://www.google.com/policies/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="open-source">
+      <h2 id="open-source" class="section-title">Open-source software</h2>
+      <p class="prose">
+        The app is built with open-source packages; their licences are listed in the app under
+        Settings &rarr; <b>Open-source licences</b>. Map data &copy;
+        <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a> (ODbL).
       </p>
     </section>
 

@@ -127,12 +127,12 @@
         <li>
           <span class="feature-icon" aria-hidden="true">🎟️</span>
           <h3>Tickets as links</h3>
-          <p>Flights, trains and buses are searched on Google Flights, Aviasales, Trainline and Rome2rio, on their own sites. Nothing is booked or paid for in the app.</p>
+          <p>Flights, trains and buses are searched on Google Flights, Aviasales, Trainline and Rome2rio, on their own sites. They are plain links: no partnership, nothing earned from them, and nothing is booked or paid for in the app.</p>
         </li>
         <li>
           <span class="feature-icon" aria-hidden="true">🔑</span>
           <h3>No keys needed</h3>
-          <p>Maps are OpenStreetMap, places come from Wikipedia and OpenStreetMap, and five cities ship with the app. With your own Anthropic key, Claude writes the day summaries; without one, templates do.</p>
+          <p>Maps are OpenStreetMap, places come from Wikipedia and OpenStreetMap, and five cities ship with the app. With your own Anthropic key, Claude writes the day summaries — the app shows exactly what it sends before it does; without a key, templates do.</p>
         </li>
         <li>
           <span class="feature-icon" aria-hidden="true">✅</span>
@@ -207,12 +207,11 @@
         Planner — it is read on the phone, straight from the zip.
       </p>
       <p class="note">
-        An older Instagram export lists only links. For those, the app reads each public post's
-        caption from Instagram's official embed — the page any website shows when it embeds a
-        post. There is no login and no scraping of private feeds; a private or deleted post
-        simply stays unresolved, and you can set its place by hand. A guess the app is unsure
-        of waits for your "correct" or "wrong", and a pin that only knows the town is marked
-        approximate.
+        An Instagram export made since 2025 includes each post's caption, and that is what the
+        app reads. An older export lists only links, so request a new one. The app never
+        contacts Instagram and scrapes nothing: a post it can't place simply waits for you to
+        set the place by hand. A guess the app is unsure of waits for your "correct" or
+        "wrong", and a pin that only knows the town is marked approximate.
       </p>
     </section>
 
@@ -249,11 +248,12 @@
         in the phone's secure storage — the Keychain on iOS, the Keystore on Android.
       </p>
       <p class="note">
-        The app talks to outside services only for the step that needs them: OpenStreetMap's
-        Nominatim, Photon and Overpass for places and addresses, Wikipedia and Wikidata for
-        sights, Instagram's public embed and TikTok's and YouTube's oEmbed for captions, and
-        Anthropic — only with your key — for descriptions. The export file itself is never
-        uploaded. Details are in the <a href="privacy/">privacy policy</a>.
+        The app talks to outside services only for the step that needs them: OpenStreetMap for
+        the map; Nominatim, Photon and Overpass for places and addresses; Wikipedia and Wikidata
+        for sights; TikTok's and YouTube's official oEmbed for the title of a saved video that
+        has none in the export (used once, not kept); and Anthropic — only with your key and
+        your OK — for descriptions. Instagram is never contacted, and the export file itself is
+        never uploaded. Details are in the <a href="privacy/">privacy policy</a>.
       </p>
     </section>
 
@@ -281,6 +281,7 @@
   <footer class="site-footer">
     <div class="wrap">
       <p><a href="../../">← All products</a> · Found a bug or a wrong place? <a href="mailto:lvigtor@gmail.com?subject=Travel%20Planner%20feedback">Email me</a> · <a href="privacy/">Privacy policy</a> · <a href="../../legal/">Legal &amp; privacy</a>.</p>
+      <p>Travel Planner uses YouTube API Services — <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener">YouTube Terms of Service</a> · <a href="https://www.google.com/policies/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>.</p>
     </div>
   </footer>
 
