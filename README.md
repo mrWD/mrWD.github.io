@@ -72,7 +72,7 @@ collector. Four metrics, and they are *not* comparable:
 
 | Metric | Source | Means |
 | --- | --- | --- |
-| `clicks` | [`track.js`](track.js) → Abacus | presses of this site's own action buttons |
+| `clicks` | [`track.js`](track.js) → [`counter/`](counter/) → Abacus | presses of this site's own action buttons |
 | `users` | Chrome Web Store, Firefox Add-ons | active installs; uninstalling drops out |
 | `downloads` | GitHub release assets | lifetime downloads; never goes down |
 | `visits` | the project's own `stats.json` | page visits the project counts itself |
@@ -81,9 +81,13 @@ collector. Four metrics, and they are *not* comparable:
 back to the store number until someone has clicked. [`track.js`](track.js) runs
 on the index and on every product page: it classifies each outbound button
 (`open`, `download`, `invite`, `chrome`, `firefox`, `appstore`, `source`) and
-increments `<slug>--<action>` on Abacus — no cookies, no identifiers, no reply
-read. `source` is recorded but kept out of the headline number; navigation
-inside this site, the header links and the footer are not counted at all.
+posts `<slug>--<action>` to [`counter/`](counter/), the site's own tiny Vercel
+function, which increments that key on Abacus from the server — so Abacus never
+sees a visitor. No cookies, no identifiers, no reply read. `source` is recorded
+but kept out of the headline number; navigation inside this site, the header
+links and the footer are not counted at all. The counter accepts only keys for
+the slugs it knows, so a new product needs its folder name in `SLUGS` here *and*
+in `counter/api/hit.js` (`node counter/test.mjs` checks that they agree).
 
 Adding a counter means the site is no longer script-free, so
 [`legal/`](legal/index.html) says exactly what is recorded. Keep those in sync.
@@ -94,9 +98,7 @@ previous value and the run still succeeds, so a hiccup never blanks the site.
 
 Only a few projects have a store number to read: the two extensions (`users`),
 the two downloadable apps (`downloads`) and Languages of the World (`visits`,
-from its own counter). The other web apps and Lingary are in `SLUGS` for clicks
-only. The TestFlight betas that are not in `SLUGS` (InvestTable, GoalsTable,
-IT Skills, SpesaPlan) have no counter at all yet.
+from its own counter). Every other product is in `SLUGS` for clicks only.
 
 ## Product pages
 

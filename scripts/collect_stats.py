@@ -43,6 +43,8 @@ UA = (
 
 # Every product on the site, by folder name under products/. Click counters
 # exist for all of them; the store/release numbers below only for some.
+# counter/api/hit.js only accepts keys for these slugs — keep the two in step
+# (counter/test.mjs checks both against products/).
 SLUGS = [
     "science-timeline",
     "lingary",
@@ -50,6 +52,12 @@ SLUGS = [
     "film-table",
     "games-table",
     "books-table",
+    "invest-table",
+    "goals-table",
+    "it-skills",
+    "spesaplan",
+    "travel-planner",
+    "daylight",
     "ai-job-search",
     "ai-screen-translator",
     "ai-prompt-suggester",

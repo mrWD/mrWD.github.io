@@ -3,10 +3,12 @@
  * the store links — so each product can eventually show how often people
  * actually go and use it.
  *
- * Uses Abacus (abacus.jasoncameron.dev), the same free counter langs-db
- * already runs on: no account, no cookies, no personal data. One request
- * per click, carrying nothing but the key it increments — which product and
- * which button. Nothing identifies the visitor, and no reply is read.
+ * One request per click, carrying nothing but the key it increments — which
+ * product and which button — and no cookies. It goes to a small function of
+ * my own on Vercel (counter/ in this repo), which forwards only that key to
+ * Abacus (abacus.jasoncameron.dev), the free counter langs-db also runs on.
+ * Abacus never sees the visitor; Vercel does, as any host sees an address it
+ * answers, and keeps its request logs for about an hour. No reply is read.
  *
  * The numbers are pulled back once a day by scripts/collect_stats.py into
  * stats.json; the cards render them only once they're large enough to mean
@@ -14,8 +16,9 @@
  * simply misses it.
  * ---------------------------------------------------------------------- */
 (() => {
-  const NAMESPACE = 'mrwd-products';
-  const ENDPOINT = 'https://abacus.jasoncameron.dev/hit';
+  // The deployed counter/ project. The host is the Vercel project's name — if it
+  // is deployed under another name, this is the one line to change.
+  const COUNTER_URL = 'https://mrwd-counter.vercel.app/api/hit';
 
   /** Which button was this — by destination, falling back to its label.
    *  Returns null for links that aren't a product action. */
@@ -80,12 +83,15 @@
     const key = `${slug}--${action}`;
 
     try {
-      // no-cors + keepalive: fire and forget, survives the page unloading
-      fetch(`${ENDPOINT}/${NAMESPACE}/${encodeURIComponent(key)}`, {
+      // no-cors + keepalive: fire and forget, survives the page unloading, never
+      // holds up the navigation. credentials: 'omit' — no cookies, ever.
+      fetch(`${COUNTER_URL}?key=${encodeURIComponent(key)}`, {
+        method: 'POST',
         mode: 'no-cors',
         keepalive: true,
         cache: 'no-store',
-      });
+        credentials: 'omit',
+      }).catch(() => {}); // blocked or offline: say nothing in the console
     } catch {
       /* Counting is never worth breaking a click over. */
     }

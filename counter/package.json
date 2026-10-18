@@ -1,0 +1,9 @@
+{
+  "name": "mrwd-counter",
+  "private": true,
+  "description": "Click counter for mrwd.github.io: forwards a button key to Abacus, nothing else.",
+  "type": "module",
+  "scripts": {
+    "test": "node test.mjs"
+  }
+}
