@@ -14,6 +14,7 @@
   <style>
     :root { --accent: #7c9cff; --accent-2: #67e8c3; }
     html[data-theme='light'] { --accent: #3b5ce0; --accent-2: #0e9c7c; }
+    .prose code { white-space: nowrap; } /* a counter key, not to be split at its -- */
   </style>
 </head>
 <body>
@@ -35,11 +36,12 @@
         </nav>
       </div>
 
-      <p class="eyebrow">Last updated 29 July 2026</p>
+      <p class="eyebrow">Last updated 18 October 2026</p>
       <h1 class="title">Legal &amp; privacy</h1>
       <p class="subtitle lead">
         The terms behind the projects listed on this site. Short version: they're
-        personal projects, given away as is, and this site doesn't track you.
+        personal projects, given away as is, and this site counts button presses,
+        not people.
       </p>
     </div>
   </header>
@@ -79,8 +81,8 @@
     <section class="section" aria-labelledby="privacy">
       <h2 id="privacy" class="section-title">Privacy</h2>
       <p class="prose">
-        <b>No cookies, no analytics, no personal data.</b> Nothing here identifies you,
-        follows you between sites or builds a profile. At most two things are stored on
+        <b>No cookies, no third-party scripts, no profiles.</b> Nothing here follows you
+        between sites or builds a picture of you. At most two things are stored on
         your device, both in local storage: your light/dark theme preference, so the page
         doesn't flash the wrong colour on your next visit, and — only if you arrived
         through a link inside one of my apps — a note to hide donation buttons for the
@@ -90,14 +92,24 @@
       </p>
       <p class="prose">
         One thing <em>is</em> counted. When you click a button that goes to a product —
-        Open, Download, Add to Chrome, Ask for an invite — a single request increments a
-        public tally of how many times that button has been pressed, so I can tell which
-        projects people actually use. The request carries nothing but the name of the
-        button; there is no cookie, no identifier and no record of who clicked. It's
-        handled by <a href="https://abacus.jasoncameron.dev" target="_blank" rel="noopener">Abacus</a>,
-        a free counter service that stores a number and nothing else. Block it and the
-        button still works — the click simply isn't counted. Links to the source code
-        and this page are not counted at all.
+        Open, Download, Add to Chrome, Ask for an invite — your browser sends one request
+        carrying the name of that button (for example <code>film-table--open</code>) and
+        no cookie or identifier. It goes to a small counter of my own, running on
+        <a href="https://vercel.com" target="_blank" rel="noopener">Vercel</a>, which adds
+        one to a public tally on <a href="https://jasoncameron.dev/abacus/" target="_blank" rel="noopener">Abacus</a>,
+        a free counter service. Only the button name is passed on; Abacus never sees you.
+        What's kept is the tally — how many times each button was pressed, not who
+        pressed it. Block the request and the button still works; the click simply
+        isn't counted. Links to the source code and to this site's own pages are not
+        counted at all.
+      </p>
+      <p class="prose">
+        Like any server you connect to, the counter does see your IP address. Vercel keeps
+        a log of the requests it serves, your IP address among them, for about an hour,
+        under <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener">Vercel's privacy policy</a>.
+        The counter itself writes nothing down: to keep one machine from inflating the
+        numbers, it holds a scrambled, one-way form of your address in memory for a minute
+        or so, and never stores it anywhere.
       </p>
       <p class="prose">
         The site is served as static files by GitHub Pages. Like any web host, GitHub
@@ -125,8 +137,8 @@
       <p class="prose">
         Data displayed by the projects comes from third-party sources under their own
         licences — among them Glottolog, Wikidata, WALS, ASJP, TVmaze, TMDB, Cinemeta,
-        iTunes, RAWG and Steam — and is aggregated automatically. It can be incomplete
-        or out of date; verify against the primary source before relying on it.
+        iTunes, RAWG, IGDB and Steam — and is aggregated automatically. It can be
+        incomplete or out of date; verify against the primary source before relying on it.
       </p>
     </section>
 

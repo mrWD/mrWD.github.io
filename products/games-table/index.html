@@ -148,13 +148,18 @@
       <h2 id="data" class="section-title">Where the data lives</h2>
       <p class="prose">
         Your library is stored on the device and never uploaded. Game metadata comes
-        from <a href="https://rawg.io" target="_blank" rel="noopener">RAWG</a>, with Steam as a
-        fallback for PC titles.
+        from <a href="https://rawg.io" target="_blank" rel="noopener">RAWG</a>, with
+        <a href="https://www.igdb.com" target="_blank" rel="noopener">IGDB</a> (Twitch's
+        games database) as a second catalogue for console games and cover art, and Steam
+        as a fallback for PC titles.
       </p>
       <p class="note">
-        Both go through a thin serverless proxy, for two boring reasons: a RAWG key
-        can't be shipped in a browser, and Steam sends no CORS headers at all. The
-        proxy passes metadata through — it never sees your library.
+        All three go through a thin serverless proxy, for two boring reasons:
+        the RAWG and IGDB keys can't be shipped in a browser, and Steam sends no CORS
+        headers at all. The proxy passes metadata through — it never sees your library
+        and stores nothing about you. The app and the proxy are hosted on Vercel, which
+        keeps a log of the requests it serves, your IP address among them, for about an
+        hour.
       </p>
     </section>
 
@@ -185,7 +190,7 @@
     <section class="section" aria-labelledby="honest">
       <h2 id="honest" class="section-title">What it isn't</h2>
       <p class="prose">
-        A free, fan-made project, not affiliated with RAWG, Valve, YouTube or Twitch.
+        A free, fan-made project, not affiliated with RAWG, IGDB, Valve, YouTube or Twitch.
         There's no social layer and no sync between devices — moving your library
         means exporting a backup and importing it on the other device.
       </p>
