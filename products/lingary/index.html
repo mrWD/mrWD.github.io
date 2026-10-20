@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lingary — an AI language tutor you talk to, on your iPhone</title>
+  <title>Lingary — an AI language tutor you talk to, on your phone</title>
   <meta name="description" content="Live voice and text conversations with an AI language tutor. Bring your own API key, or run the whole thing on-device with no key and no connection. 61 languages, nothing stored on a server." />
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Lingary" />
-  <meta property="og:description" content="An iOS language tutor you actually talk to. Bring your own API key — or run it fully offline on the device. 61 languages, no account, no server." />
+  <meta property="og:description" content="A language tutor for iPhone and Android that you actually talk to. Bring your own API key — or run it fully offline on the device. 61 languages, no account, no server." />
   <meta property="og:image" content="assets/voice-light.png" />
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗣️</text></svg>" />
@@ -305,7 +305,7 @@
 
       <div class="hero">
         <div class="hero-text">
-          <p class="eyebrow">iOS app · TestFlight beta</p>
+          <p class="eyebrow">iOS and Android · open beta</p>
           <h1 class="title">Lingary</h1>
           <p class="subtitle lead">
             A language tutor you hold a conversation with, out loud, on your phone.
@@ -326,8 +326,8 @@
               <span>Join the beta on TestFlight</span>
               <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
             </a>
-            <a class="btn" href="#offline">
-              <span>How it works offline</span>
+            <a class="btn" href="https://play.google.com/store/apps/details?id=com.langtutor.app" target="_blank" rel="noopener">
+              <span>Join the beta on Google Play</span>
             </a>
           </div>
         </div>
@@ -696,18 +696,19 @@
           </div>
           <div class="platform">
             <h3>🔊 Voice — what you hear</h3>
-            <p>The free iOS system voice, OpenAI TTS, Gemini TTS or Fish Audio S2. Preview any of them before committing, and decide whether it's used in live dialogue.</p>
+            <p>The phone's free system voice, OpenAI TTS, Gemini TTS or Fish Audio S2. Preview any of them before committing, and decide whether it's used in live dialogue.</p>
           </div>
           <div class="platform">
             <h3>👂 Speech — hearing you</h3>
-            <p>WhisperKit or Apple's recogniser on the device, or OpenAI Whisper, Gemini Audio or Groq Whisper in the cloud when you want the accuracy.</p>
+            <p>Whisper or Apple's recogniser on the device, or OpenAI Whisper, Gemini Audio or Groq Whisper in the cloud when you want the accuracy.</p>
           </div>
         </div>
         <p class="note">
           A settings screen shows which combination is actually live right now, since a
           pick that can't run — no key, no network, nothing downloaded — quietly falls
-          back rather than failing. Keys live in the iOS Keychain, encrypted and tied to
-          that one device, and are only ever sent to the provider you chose.
+          back rather than failing. Keys are kept encrypted — in the iOS Keychain, or under
+          an Android Keystore key — tied to that one device, and are only ever sent to the
+          provider you chose.
         </p>
       </section>
 
@@ -721,7 +722,7 @@
         <div class="platforms">
           <div class="platform">
             <h3>Downloaded models</h3>
-            <p>Gemma 4 E2B as the tutor, WhisperKit for hearing you, Supertonic 3 for a natural neural voice in 31 languages. About 3&nbsp;GB, works on any supported iPhone.</p>
+            <p>Gemma 4 E2B as the tutor, Whisper for hearing you, Supertonic 3 for a natural neural voice in 31 languages. About 3&nbsp;GB; works on any supported iPhone, and on Android phones with the memory to hold it.</p>
           </div>
           <div class="platform">
             <h3>Apple Intelligence</h3>
@@ -814,20 +815,24 @@
       <section class="section" aria-labelledby="status">
         <h2 id="status" class="section-title">Where it's at</h2>
         <p class="prose">
-          In open beta on TestFlight, waiting on App Store review. It's usable day to
-          day — that's what it's being built against — but expect rough edges, and
-          expect things to move.
+          In open beta on TestFlight and on Google Play, waiting on App Store review.
+          It's usable day to day — that's what it's being built against — but expect
+          rough edges, and expect things to move.
         </p>
         <div class="cta">
           <a class="btn primary" href="https://testflight.apple.com/join/Bz4qMzPQ" target="_blank" rel="noopener">
             <span>Join the beta on TestFlight</span>
             <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
           </a>
+          <a class="btn" href="https://play.google.com/store/apps/details?id=com.langtutor.app" target="_blank" rel="noopener">
+            <span>Join the beta on Google Play</span>
+          </a>
         </div>
         <p class="note">
-          You'll need Apple's TestFlight app; the link walks you through it. Runs on
-          iPhone and iPad, iOS 17 or newer. Offline mode wants a recent device — the
-          models are large and it holds several in memory at once.
+          On iPhone and iPad you'll need Apple's TestFlight app; the link walks you
+          through it, and it runs on iOS 17 or newer. On Android it installs from Google
+          Play like any other app, on Android 8.0 or newer. Offline mode wants a recent
+          device — the models are large and it holds several in memory at once.
         </p>
       </section>
 
@@ -853,7 +858,7 @@
         <ul class="prose">
           <li><b>What happened and what you expected</b>, and what you did just before.</li>
           <li><b>App version and build</b> — Settings → About shows both.</li>
-          <li><b>Your device and iOS version</b>, and whether you were in cloud or offline mode.</li>
+          <li><b>Your device and its iOS or Android version</b>, and whether you were in cloud or offline mode.</li>
           <li><b>The diagnostics export</b> if the problem is hard to describe — Settings → About → Export diagnostic data. It stays on your phone until you attach it, and you can read it first.</li>
         </ul>
         <p class="note">
