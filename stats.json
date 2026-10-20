@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-19T10:00:23Z",
+  "generated": "2026-10-20T09:29:26Z",
   "note": "Metrics differ per product — see the metric field. Not comparable.",
   "products": {
     "science-timeline": {
@@ -12,11 +12,12 @@
       "metric": "clicks"
     },
     "lingary": {
-      "clicks": 5,
+      "clicks": 6,
       "buttons": {
+        "open": 1,
         "appstore": 5
       },
-      "count": 5,
+      "count": 6,
       "metric": "clicks"
     },
     "langs-db": {
@@ -78,7 +79,7 @@
     "ai-screen-translator": {
       "clicks": 0,
       "buttons": {
-        "source": 3
+        "source": 4
       },
       "sources": {
         "github_releases": 0
@@ -96,11 +97,11 @@
         "chrome": 1
       },
       "sources": {
-        "chrome": 15,
+        "chrome": 16,
         "firefox": 0
       },
       "store": {
-        "count": 15,
+        "count": 16,
         "metric": "users"
       },
       "count": 1,
@@ -112,10 +113,10 @@
         "chrome": 1
       },
       "sources": {
-        "chrome": 108
+        "chrome": 110
       },
       "store": {
-        "count": 108,
+        "count": 110,
         "metric": "users"
       },
       "count": 1,
