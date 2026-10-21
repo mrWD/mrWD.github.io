@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-20T09:29:26Z",
+  "generated": "2026-10-21T09:25:18Z",
   "note": "Metrics differ per product — see the metric field. Not comparable.",
   "products": {
     "science-timeline": {
@@ -12,12 +12,13 @@
       "metric": "clicks"
     },
     "lingary": {
-      "clicks": 6,
+      "clicks": 7,
       "buttons": {
         "open": 1,
+        "invite": 1,
         "appstore": 5
       },
-      "count": 6,
+      "count": 7,
       "metric": "clicks"
     },
     "langs-db": {
@@ -97,11 +98,11 @@
         "chrome": 1
       },
       "sources": {
-        "chrome": 16,
+        "chrome": 17,
         "firefox": 0
       },
       "store": {
-        "count": 16,
+        "count": 17,
         "metric": "users"
       },
       "count": 1,
