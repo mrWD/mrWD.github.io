@@ -6,7 +6,7 @@
  * build starts from an empty cache and the old one is deleted. The server's API is another
  * origin and never cached here: the app keeps the courses and the progress itself.
  */
-var BUILD = 'ddea68e-20261017085425';
+var BUILD = '285caf7-20261023234553';
 var CACHE = 'it-skills-' + BUILD;
 var SCOPE = new URL(self.registration.scope).pathname;
 
