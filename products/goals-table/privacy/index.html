@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>GoalsTable — privacy policy</title>
-  <meta name="description" content="What GoalsTable stores and what leaves your device. Nothing leaves it: no accounts, no servers, no analytics — the app makes no network requests at all." />
+  <meta name="description" content="What GoalsTable stores and what leaves your device. Your goals never leave it: no accounts, no sync, no catalogue. The one request the app makes is an anonymous usage count once a day, which you can turn off." />
   <meta name="robots" content="index, follow" />
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>" />
@@ -37,11 +37,11 @@
         </nav>
       </div>
 
-      <p class="eyebrow">Last updated 29 August 2026</p>
+      <p class="eyebrow">Last updated 28 October 2026</p>
       <h1 class="title">GoalsTable — privacy policy</h1>
       <p class="subtitle lead">
-        GoalsTable has no servers and no accounts. Your goals stay on your device, and the
-        app makes no network requests at all.
+        GoalsTable has no accounts and no sync. Your goals stay on your device. The one request
+        the app makes is an anonymous usage count, once a day, and you can turn it off.
       </p>
     </div>
   </header>
@@ -64,27 +64,65 @@
     <section class="section" aria-labelledby="stored">
       <h2 id="stored" class="section-title">What we store</h2>
       <p class="prose">
-        Nothing. Your goals, your monthly plans and your daily check-ins live in your
-        browser&rsquo;s storage on the web, and in the app&rsquo;s own private storage in the
-        installed app. Deleting your browsing data or the app deletes them — which is why the
-        app keeps offering you an export.
+        None of your goals. Your goals, your monthly plans and your daily check-ins live in
+        your browser&rsquo;s storage on the web, and in the app&rsquo;s own private storage in
+        the installed app. Deleting your browsing data or the app deletes them — which is why
+        the app keeps offering you an export. What we do keep are the running totals of the
+        <a href="#usage-stats">usage statistics</a> below, which hold nothing per device.
       </p>
     </section>
 
     <section class="section" aria-labelledby="leaves">
       <h2 id="leaves" class="section-title">What leaves your device</h2>
       <p class="prose">
-        Nothing. GoalsTable queries no catalogue and has no backend of its own: everything it
-        shows, it holds locally. The app works with the network switched off and behaves the
-        same way when it is on.
+        Your goals never do. GoalsTable queries no catalogue and keeps nothing of yours on a
+        server: everything it shows, it holds locally. The only request it makes is the daily
+        usage count described in the next section, and only while that is switched on. The app
+        works with the network switched off and behaves the same way when it is on.
       </p>
     </section>
 
-    <section class="section" aria-labelledby="analytics">
-      <h2 id="analytics" class="section-title">Analytics</h2>
+    <section class="section" aria-labelledby="usage-stats">
+      <h2 id="usage-stats" class="section-title">Usage statistics</h2>
       <p class="prose">
-        None, in the installed app and on the web alike. No page views, no events, no
-        identifiers, and no crash reporting of our own.
+        To see how many people use GoalsTable and which parts are worth more work, the app
+        keeps a few counters on your device and sends them in <b>one request a day</b>, the
+        first time you open it that day. It is on unless you turn it off; the app says so in one
+        line the first time you open it. Versions without the switch described below send
+        nothing. The request carries exactly this:
+      </p>
+      <ul class="prose">
+        <li>the app&rsquo;s name, the platform (iOS, Android or web) and the app version;</li>
+        <li>the language the app is shown in;</li>
+        <li>your device&rsquo;s date that day — the date, not the time;</li>
+        <li>the week you started using a version with statistics, or &ldquo;earlier&rdquo; if you used GoalsTable before they existed;</li>
+        <li>whether this is the first request ever, the first of the week and the first of the month;</li>
+        <li>how many times each of a fixed set of actions happened since the last request — a goal ticked off, a backup exported, a screen opened;</li>
+        <li>how many errors of each kind happened, by type alone, such as <code>TypeError</code>.</li>
+      </ul>
+      <p class="prose">
+        It never carries an identifier of any kind — no device, user, advertising or session
+        ID — and none of your goals, plans, check-ins or anything else you type, no error
+        messages and no location. Nothing in it says at what time anything happened.
+      </p>
+      <p class="prose">
+        The request goes to a small function of ours on Vercel, which adds the counts to running
+        totals in an Upstash Redis database: per app, per day, week and month, nothing per
+        device or per request. The totals are deleted after 400 days. The function sees your IP
+        address, as any server does, and never stores or logs it; to stop one address flooding
+        it, it holds a scrambled, one-way form of the address in memory for ten minutes.
+        Vercel keeps a log of the requests it serves, your IP address among them, for about an
+        hour, under
+        <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener">Vercel&rsquo;s privacy policy</a>.
+      </p>
+      <p class="prose">
+        The numbers are not used for advertising or to track you, not combined with any other
+        data, and not shared or sold. There is no crash reporting of our own beyond these counts.
+      </p>
+      <p class="prose">
+        <b>Turning it off:</b> Profile &rarr; <b>Share anonymous usage statistics</b>. Switching
+        it off stops the requests and deletes the counters kept on your device. In a browser
+        that sends Global Privacy Control, the web version starts with it off.
       </p>
     </section>
 
@@ -110,16 +148,16 @@
     <section class="section" aria-labelledby="children">
       <h2 id="children" class="section-title">Children</h2>
       <p class="prose">
-        The app is not directed at children and collects no data from anyone, of any age.
+        The app is not directed at children and collects no personal data from anyone, of any
+        age: the usage counts above carry no identifiers and nothing you type.
       </p>
     </section>
 
     <section class="section" aria-labelledby="changes">
       <h2 id="changes" class="section-title">Changes</h2>
       <p class="prose">
-        If this policy changes, the date at the top of the page changes with it. Since the app
-        collects nothing, any change would be about something newly added — and it would be
-        described here before it shipped.
+        If this policy changes, the date at the top of the page changes with it, and anything
+        newly sent anywhere is described here before it ships.
       </p>
     </section>
 

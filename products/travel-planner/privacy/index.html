@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Travel Planner — privacy policy</title>
-  <meta name="description" content="What Travel Planner stores and what leaves your device. No accounts, no servers of its own, no analytics. Map, place and title lookups go straight from your device to the public services that answer them." />
+  <meta name="description" content="What Travel Planner stores and what leaves your device. No accounts; your trips stay on the device. Map, place and title lookups go straight from your device to the public services that answer them, and an anonymous usage count goes to us once a day unless you turn it off." />
   <meta name="robots" content="index, follow" />
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📍</text></svg>" />
@@ -35,12 +35,13 @@
         </nav>
       </div>
 
-      <p class="eyebrow">Last updated 18 October 2026</p>
+      <p class="eyebrow">Last updated 28 October 2026</p>
       <h1 class="title">Travel Planner — privacy policy</h1>
       <p class="subtitle lead">
-        Travel Planner has no account and no server of its own. Your trips and saved places stay
-        on your device. To draw maps and find places, it asks public services directly from your
-        device — never through us.
+        Travel Planner has no account, and your trips and saved places stay on your device. To
+        draw maps and find places, it asks public services directly from your device — never
+        through us. What does come to us is an anonymous usage count, once a day, which you can
+        turn off.
       </p>
     </div>
   </header>
@@ -63,7 +64,7 @@
     <section class="section" aria-labelledby="stored">
       <h2 id="stored" class="section-title">What we store</h2>
       <p class="prose">
-        Nothing. Everything the app keeps lives on your device: your trips and their plans, the
+        Nothing of yours. Everything the app keeps lives on your device: your trips and their plans, the
         places you saved, the posts read from a data export you imported (their links, captions,
         authors and hashtags), your settings, and a cache of place lookups so they are not
         repeated. In the installed app that is the app&rsquo;s own private storage; on the web it
@@ -77,6 +78,10 @@
       <p class="prose">
         If you add an Anthropic API key, it is kept apart from everything else: in the iOS
         Keychain or the Android Keystore (on the web, in your browser&rsquo;s storage).
+      </p>
+      <p class="prose">
+        What we do keep are the running totals of the <a href="#usage-stats">usage statistics</a>
+        below, which hold nothing per device.
       </p>
     </section>
 
@@ -98,6 +103,10 @@
         <b>Look up places online</b>, in Settings and on the Import screen, turns the
         import&rsquo;s online lookups off; the import then works offline. Links you tap — directions, ticket searches, a post, a
         Wikipedia article — open in your maps app or browser.
+      </p>
+      <p class="prose">
+        Apart from those, the app sends one request a day to us: the anonymous usage count
+        described under <a href="#usage-stats">Usage statistics</a>, while that is switched on.
       </p>
     </section>
 
@@ -129,11 +138,48 @@
       </p>
     </section>
 
-    <section class="section" aria-labelledby="analytics">
-      <h2 id="analytics" class="section-title">Analytics</h2>
+    <section class="section" aria-labelledby="usage-stats">
+      <h2 id="usage-stats" class="section-title">Usage statistics</h2>
       <p class="prose">
-        None, in the installed app and on the web alike. No page views, no events, no
-        identifiers, and no crash reporting of our own.
+        To see how many people use Travel Planner and which parts are worth more work, the app
+        keeps a few counters on your device and sends them in <b>one request a day</b>, the
+        first time you open it that day. It is on unless you turn it off; the app says so in one
+        line the first time you open it. Versions without the switch described below send
+        nothing. The request carries exactly this:
+      </p>
+      <ul class="prose">
+        <li>the app&rsquo;s name, the platform (iOS, Android or web) and the app version;</li>
+        <li>the language the app is shown in;</li>
+        <li>your device&rsquo;s date that day — the date, not the time;</li>
+        <li>the week you started using a version with statistics, or &ldquo;earlier&rdquo; if you used Travel Planner before they existed;</li>
+        <li>whether this is the first request ever, the first of the week and the first of the month;</li>
+        <li>how many times each of a fixed set of actions happened since the last request — a trip planned, an export imported, a screen opened;</li>
+        <li>how many errors of each kind happened, by type alone — for example <code>TypeError</code>, or &ldquo;a place lookup failed&rdquo;.</li>
+      </ul>
+      <p class="prose">
+        It never carries an identifier of any kind — no device, user, advertising or session
+        ID — and none of your trips, destinations, places, imported posts or anything else you
+        type, no error messages and no location. Nothing in it says at what time anything
+        happened.
+      </p>
+      <p class="prose">
+        The request goes to a small function of ours on Vercel, which adds the counts to running
+        totals in an Upstash Redis database: per app, per day, week and month, nothing per
+        device or per request. The totals are deleted after 400 days. The function sees your IP
+        address, as any server does, and never stores or logs it; to stop one address flooding
+        it, it holds a scrambled, one-way form of the address in memory for ten minutes.
+        Vercel keeps a log of the requests it serves, your IP address among them, for about an
+        hour, under
+        <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener">Vercel&rsquo;s privacy policy</a>.
+      </p>
+      <p class="prose">
+        The numbers are not used for advertising or to track you, not combined with any other
+        data, and not shared or sold. There is no crash reporting of our own beyond these counts.
+      </p>
+      <p class="prose">
+        <b>Turning it off:</b> Settings &rarr; <b>Share anonymous usage statistics</b>. Switching
+        it off stops the requests and deletes the counters kept on your device. In a browser
+        that sends Global Privacy Control, the web version starts with it off.
       </p>
     </section>
 
@@ -142,7 +188,8 @@
       <p class="prose">
         Settings → <b>Delete all data</b> removes every trip, saved place, imported post and the
         API key from the device; the key also has a delete button of its own. Deleting the app
-        removes everything.
+        removes everything. The usage totals hold nothing per device, so there is no entry of
+        yours in them to delete; they expire after 400 days.
       </p>
     </section>
 
@@ -161,7 +208,8 @@
     <section class="section" aria-labelledby="children">
       <h2 id="children" class="section-title">Children</h2>
       <p class="prose">
-        The app is not directed at children and collects no data from anyone, of any age.
+        The app is not directed at children and collects no personal data from anyone, of any
+        age: the usage counts above carry no identifiers and nothing you type.
       </p>
     </section>
 

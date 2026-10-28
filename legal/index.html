@@ -36,12 +36,13 @@
         </nav>
       </div>
 
-      <p class="eyebrow">Last updated 18 October 2026</p>
+      <p class="eyebrow">Last updated 28 October 2026</p>
       <h1 class="title">Legal &amp; privacy</h1>
       <p class="subtitle lead">
         The terms behind the projects listed on this site. Short version: they're
         personal projects, given away as is, and this site counts button presses,
-        not people.
+        not people. Six of the apps count, just as anonymously, which of their features
+        get used.
       </p>
     </div>
   </header>
@@ -119,9 +120,65 @@
       </p>
       <p class="prose">
         The projects themselves are separate programs with their own behaviour. The
-        trackers keep your library on your device. The browser extensions are additionally
-        covered by the privacy disclosures in their store listings. Where a project sends
-        anything to a third party, its own page and repository say so.
+        trackers keep your library on your device. Six apps send me anonymous usage counts,
+        described in the next section. The browser extensions are additionally covered by the
+        privacy disclosures in their store listings. Where a project sends anything to a third
+        party, its own page and repository say so.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="app-stats">
+      <h2 id="app-stats" class="section-title">Usage statistics in the apps</h2>
+      <p class="prose">
+        FilmTable, GamesTable, BooksTable, GoalsTable, InvestTable and Travel Planner send me
+        anonymous usage counts, so I can see how many people use them and which parts are worth
+        more work. It is on unless you turn it off: the app says so in one line the first time
+        you open it, and <b>Share anonymous usage statistics</b> in its Settings or Profile
+        screen switches it off. Versions of the apps without that switch send nothing.
+      </p>
+      <p class="prose">
+        The app keeps a few counters on your device and sends them in <b>one request a day</b>,
+        the first time you open it that day. The request carries exactly this:
+      </p>
+      <ul class="prose">
+        <li>which app it is, the platform (iOS, Android or web) and the app version;</li>
+        <li>the language the app is shown in;</li>
+        <li>your device&rsquo;s date that day — the date, not the time;</li>
+        <li>the week you started using the app with statistics in it, or &ldquo;earlier&rdquo; if you used it before they existed;</li>
+        <li>whether this is the app&rsquo;s first request ever, the first of the week and the first of the month;</li>
+        <li>how many times each of a fixed set of things happened since the last request — a title added, an import finished, a screen opened;</li>
+        <li>how many errors of each kind happened, by type alone — for example <code>TypeError</code>, or &ldquo;the TMDB lookup failed&rdquo;.</li>
+      </ul>
+      <p class="prose">
+        It never carries an identifier of any kind — no device, user, advertising or session
+        ID — and nothing you keep in the app: no titles, goals, figures, trips or places, no
+        searches, nothing you type, no error messages and no location. Nothing in it says at
+        what time anything happened.
+      </p>
+      <p class="prose">
+        The request goes to a small function of my own on
+        <a href="https://vercel.com" target="_blank" rel="noopener">Vercel</a>. It adds the
+        counts to running totals in an <a href="https://upstash.com" target="_blank" rel="noopener">Upstash</a>
+        Redis database — per app, per day, week and month, such as how many devices opened an
+        app on a given day, on which platforms and in which languages. Nothing is kept per
+        device or per request, and the totals are deleted after 400 days.
+      </p>
+      <p class="prose">
+        Like any server, the function sees your IP address; it never stores or logs it. To
+        stop one address flooding it, it holds a scrambled, one-way form of the address in
+        memory for ten minutes. Vercel keeps a log of the requests it serves, your IP address
+        among them, for about an hour, under
+        <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener">Vercel's privacy policy</a>.
+        Upstash receives only the totals, from the function, never from you.
+      </p>
+      <p class="prose">
+        The numbers are for me, to decide what to work on. They are not used for advertising
+        or to track you, not combined with any other data, and not shared or sold.
+      </p>
+      <p class="prose">
+        <b>Turning it off</b> stops the requests and deletes the counters kept on your device.
+        In a browser that sends Global Privacy Control, the web versions start with it off.
+        Blocking the request also works: the app behaves the same without it.
       </p>
     </section>
 

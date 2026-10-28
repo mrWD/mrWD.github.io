@@ -118,7 +118,7 @@ const PROJECTS = [
     name: 'InvestTable',
     tagline: 'What monthly deposits actually grow into',
     description:
-      'A compound-growth table ported from the spreadsheet it replaces: what you pay in every month, what it earns, and the balance for every month of up to thirty years. The return can be quoted per month, quarter or year and converts by compounding, not division. Nothing leaves the device, and it reads in twenty languages.',
+      'A compound-growth table ported from the spreadsheet it replaces: what you pay in every month, what it earns, and the balance for every month of up to thirty years. The return can be quoted per month, quarter or year and converts by compounding, not division. Your figures never leave the device, and it reads in twenty languages.',
     platforms: ['iOS app'],
     tags: ['PWA', 'Local-first', 'React', 'TypeScript', '20 languages', 'MIT'],
     icon: '📈',
@@ -133,7 +133,7 @@ const PROJECTS = [
     name: 'GoalsTable',
     tagline: 'A year of goals, and the hour a day you spend on them',
     description:
-      'A yearly goals tracker ported from the spreadsheet it replaces: twelve months of focus, a ring showing how much of the year is behind you, and the three daily hours — professional, languages, everything else — that move it. Seven years of the original sheet ship as sample data, searchable across every year at once. Nothing leaves the device; the app makes no network requests at all.',
+      'A yearly goals tracker ported from the spreadsheet it replaces: twelve months of focus, a ring showing how much of the year is behind you, and the three daily hours — professional, languages, everything else — that move it. Seven years of the original sheet ship as sample data, searchable across every year at once. Your goals never leave the device.',
     platforms: ['iOS app'],
     tags: ['Capacitor', 'Local-first', 'React', 'TypeScript', '20 languages', 'Offline'],
     icon: '🎯',
