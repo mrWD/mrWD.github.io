@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-28T10:40:13Z",
+  "generated": "2026-10-29T10:57:00Z",
   "note": "Metrics differ per product — see the metric field. Not comparable.",
   "products": {
     "science-timeline": {
@@ -80,7 +80,7 @@
     "ai-screen-translator": {
       "clicks": 0,
       "buttons": {
-        "source": 9
+        "source": 18
       },
       "sources": {
         "github_releases": 0
@@ -114,10 +114,10 @@
         "chrome": 1
       },
       "sources": {
-        "chrome": 110
+        "chrome": 109
       },
       "store": {
-        "count": 110,
+        "count": 109,
         "metric": "users"
       },
       "count": 1,
