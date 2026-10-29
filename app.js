@@ -133,7 +133,7 @@ const PROJECTS = [
     name: 'GoalsTable',
     tagline: 'A year of goals, and the hour a day you spend on them',
     description:
-      'A yearly goals tracker ported from the spreadsheet it replaces: twelve months of focus, a ring showing how much of the year is behind you, and the three daily hours — professional, languages, everything else — that move it. Seven years of the original sheet ship as sample data, searchable across every year at once. Your goals never leave the device.',
+      'A yearly goals tracker ported from the spreadsheet it replaces: twelve months of focus, a ring showing how much of the year is behind you, and the three daily hours — professional, languages, everything else — that move it. Seven years of made-up sample goals come with it, searchable across every year at once. Your goals never leave the device.',
     platforms: ['iOS app'],
     tags: ['Capacitor', 'Local-first', 'React', 'TypeScript', '20 languages', 'Offline'],
     icon: '🎯',
