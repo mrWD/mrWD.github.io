@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Page not found — Viktor Lavrov</title>
+  <script>
+    // IT Skills is a single page at /it-skills/: an address inside it (/it-skills/course/python)
+    // has no file here, so it goes back to the app, which puts the address back (?from404=).
+    (function () {
+      var base = '/it-skills/';
+      var path = location.pathname;
+      if (path.indexOf(base) === 0 && path !== base) {
+        location.replace(base + '?from404=' + encodeURIComponent(path + location.search + location.hash));
+        return;
+      }
+      try {
+        var saved = localStorage.getItem('products-page:theme');
+        document.documentElement.dataset.theme = saved || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧰</text></svg>" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="glow" aria-hidden="true"></div>
+  <main class="wrap" style="padding: 18vh 0 12vh">
+    <h1>Page not found</h1>
+    <p>There is nothing at this address.</p>
+    <p><a href="/">All products →</a></p>
+  </main>
+</body>
+</html>

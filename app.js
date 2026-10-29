@@ -42,7 +42,7 @@ const PROJECTS = [
     links: [
       { label: 'Learn more', url: 'products/lingary/' },
       { label: 'TestFlight', url: 'https://testflight.apple.com/join/Bz4qMzPQ' },
-      { label: 'Google Play', url: 'https://play.google.com/store/apps/details?id=com.langtutor.app' },
+      { label: 'Google Play', url: 'https://play.google.com/store/apps/details?id=com.langtutor.app', icon: 'play' },
     ],
   },
   {
@@ -148,14 +148,15 @@ const PROJECTS = [
     name: 'IT Skills',
     tagline: 'A study plan that starts from what you already know',
     description:
-      'Thirty-six courses for engineers, one technology each — from Python, PostgreSQL and FastAPI to Kubernetes, System Design, machine learning and game development — hung on a graph of 311 skills. Say what you know and pick one of nineteen goals: it credits the rest, orders the courses by what depends on what, leaves only the gap and says when you will be done. JavaScript, SQL and real Python with pandas and scikit-learn run on the device. Ten interface languages, and an optional account that syncs your progress between devices.',
-    platforms: ['iOS app', 'Android app'],
-    tags: ['React Native', 'Expo', 'TypeScript', 'Offline-first', 'Sync', '10 languages'],
+      'Thirty-seven courses for engineers, one technology each — from Python, PostgreSQL and FastAPI to Nginx, Kubernetes, System Design, machine learning and game development — hung on a graph of 338 skills. Say what you know and pick one of nineteen goals: it credits the rest, orders the courses by what depends on what, leaves only the gap and says when you will be done. JavaScript, SQL and real Python with pandas and scikit-learn run on the device. In English, Russian and German, with an optional account that syncs your progress between devices.',
+    platforms: ['Web app', 'iOS app', 'Android app'],
+    tags: ['React Native', 'Expo', 'TypeScript', 'Offline-first', 'Sync', '3 languages'],
     icon: '🧭',
     accent: '#7f8fff',
     status: 'Beta',
     links: [
       { label: 'Learn more', url: 'products/it-skills/' },
+      { label: 'Open app', url: 'it-skills/' },
       { label: 'iOS beta', url: 'https://testflight.apple.com/join/bm55aegA', icon: 'apple' },
       { label: 'Android beta', url: 'https://play.google.com/apps/testing/com.mrwd.itskills', icon: 'play' },
     ],
