@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-29T10:57:00Z",
+  "generated": "2026-10-30T10:55:24Z",
   "note": "Metrics differ per product — see the metric field. Not comparable.",
   "products": {
     "science-timeline": {
@@ -61,6 +61,53 @@
       "count": 4,
       "metric": "clicks"
     },
+    "invest-table": {
+      "clicks": 2,
+      "buttons": {
+        "appstore": 2
+      },
+      "count": 2,
+      "metric": "clicks"
+    },
+    "goals-table": {
+      "clicks": 2,
+      "buttons": {
+        "appstore": 2
+      },
+      "count": 2,
+      "metric": "clicks"
+    },
+    "it-skills": {
+      "clicks": 25,
+      "buttons": {
+        "open": 13,
+        "invite": 2,
+        "appstore": 10
+      },
+      "count": 25,
+      "metric": "clicks"
+    },
+    "spesaplan": {
+      "clicks": 2,
+      "buttons": {
+        "appstore": 2
+      },
+      "count": 2,
+      "metric": "clicks"
+    },
+    "travel-planner": {
+      "clicks": 5,
+      "buttons": {
+        "appstore": 5
+      },
+      "count": 5,
+      "metric": "clicks"
+    },
+    "daylight": {
+      "clicks": 0,
+      "count": 0,
+      "metric": "clicks"
+    },
     "ai-job-search": {
       "clicks": 58,
       "buttons": {
@@ -98,11 +145,11 @@
         "chrome": 1
       },
       "sources": {
-        "chrome": 15,
+        "chrome": 16,
         "firefox": 1
       },
       "store": {
-        "count": 16,
+        "count": 17,
         "metric": "users"
       },
       "count": 1,
@@ -114,10 +161,10 @@
         "chrome": 1
       },
       "sources": {
-        "chrome": 109
+        "chrome": 111
       },
       "store": {
-        "count": 109,
+        "count": 111,
         "metric": "users"
       },
       "count": 1,
