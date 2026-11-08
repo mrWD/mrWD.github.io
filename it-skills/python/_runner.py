@@ -14,15 +14,21 @@ import concurrent.futures
 import contextlib
 import concurrent.futures.thread
 import gc
+import importlib
+import importlib.util
 import io
+import itertools
 import linecache
+import logging
 import os
 import shutil
 import sys
+import textwrap
 import threading
 import traceback
+import warnings
 
-from pyodide.code import eval_code_async
+from pyodide.webloop import PyodideTask, WebLoop
 
 # The folder a program runs in: the terminal's.
 APP = "/app"
@@ -104,14 +110,171 @@ threading.Thread.start = _start
 
 def _asyncio_run(main, *, debug=None, loop_factory=None):
     # A program runs inside the browser's event loop, which nothing can block on: runner.js
-    # turns `asyncio.run()` outside functions into `await`. Inside a function, Python's own
-    # message for a call from a running loop.
+    # turns `asyncio.run()` outside functions into `await __ar()`. Inside a function, Python's
+    # own message for a call from a running loop.
     if asyncio.iscoroutine(main):
         main.close()
     raise RuntimeError("asyncio.run() cannot be called from a running event loop")
 
 
 asyncio.run = _asyncio_run
+
+# An error the event loop cannot hand to anyone (a task's exception never retrieved, one at the
+# end of an asyncio.run()) is told as Python's own event loop tells it, through the `asyncio`
+# logger, and when Python tells it: a task's, once the task is gone and nobody asked for it —
+# Pyodide's own loop tells it as soon as such a task fails.
+WebLoop.default_exception_handler = asyncio.BaseEventLoop.default_exception_handler
+
+
+def _decrement_in_progress(self, fut=None):
+    self._in_progress -= 1
+    if self._no_in_progress_handler and self._in_progress == 0:
+        self._no_in_progress_handler()
+
+
+WebLoop._decrement_in_progress = _decrement_in_progress
+# A task is a Task, as Python names it in what it prints of one, and a program's tasks are
+# numbered from Task-1, as in a new `python` (a run starts the count again).
+PyodideTask.__name__ = PyodideTask.__qualname__ = "Task"
+_TASK_NUMBERS = [itertools.count(1)]
+_CREATE_TASK = WebLoop.create_task
+
+
+def _create_task(self, coro, *, name=None, context=None):
+    return _CREATE_TASK(self, coro, name=f"Task-{next(_TASK_NUMBERS[0])}" if name is None else name, context=context)
+
+
+WebLoop.create_task = _create_task
+
+
+async def _asyncio_main(main, *, debug=None, loop_factory=None):
+    """
+    `asyncio.run(main())` outside a function, as runner.js rewrites it: main() runs as the task
+    asyncio.run makes of it, so `asyncio.timeout()`, `wait_for()` and `current_task()` work as
+    they do there; when it ends, the tasks it left running are cancelled and the loop's
+    exception handler and task factory are what they were, as a new loop's would be. A
+    SystemExit or KeyboardInterrupt in any of its tasks ends it, as it stops Python's loop.
+    """
+    if not asyncio.iscoroutine(main):
+        raise ValueError("a coroutine was expected, got {!r}".format(main))
+    loop = asyncio.get_running_loop()
+    before = asyncio.all_tasks()
+    handler, factory = loop.get_exception_handler(), loop.get_task_factory()
+    hooks = loop._system_exit_handler, loop._keyboard_interrupt_handler
+    task = loop.create_task(main)
+    stopped = []
+
+    def stop(error):
+        stopped.append(error)
+        task.cancel()
+
+    # A task's SystemExit leaves its step for the event loop, which hands it to these.
+    loop._system_exit_handler = lambda code: stop(SystemExit(code))
+    loop._keyboard_interrupt_handler = lambda: stop(KeyboardInterrupt())
+    try:
+        try:
+            return await task
+        except asyncio.CancelledError:
+            if not stopped:
+                raise
+        raise stopped[0]
+    finally:
+        loop._system_exit_handler, loop._keyboard_interrupt_handler = hooks
+        await _end_tasks(before)
+        loop.set_exception_handler(handler)
+        loop.set_task_factory(factory)
+        # Python's asyncio.run ends with two tasks of its own (async generators, the executor).
+        next(_TASK_NUMBERS[0])
+        next(_TASK_NUMBERS[0])
+
+
+builtins.__ar = _asyncio_main
+
+
+# What a program may change for the whole interpreter, as it was before the first one: a run
+# puts it back when it ends, as a new `python` would start with it.
+_ENVIRON = dict(os.environ)
+_STREAMS = (sys.stdin, sys.stdout, sys.stderr)
+_RECURSION_LIMIT = sys.getrecursionlimit()
+_INT_DIGITS = sys.get_int_max_str_digits()
+_THREAD_HOOK = threading.excepthook
+_WARNING_FILTERS = list(warnings.filters)
+_SHOW_WARNING = warnings.showwarning
+_LEVEL_NAMES = (dict(logging._levelToName), dict(logging._nameToLevel))
+# Each logger made outside a program, by Python or by a package, as it was made. One that a
+# program made goes back to what `getLogger` gives: no handlers and no level of its own.
+_LOGGERS = {}
+_NEW_LOGGER = (logging.NOTSET, (), (), True, False)
+
+
+def _loggers():
+    yield "", logging.root
+    for name, logger in list(logging.Logger.manager.loggerDict.items()):
+        if isinstance(logger, logging.Logger):
+            yield name, logger
+
+
+def _note_loggers():
+    for name, logger in _loggers():
+        if name not in _LOGGERS:
+            _LOGGERS[name] = (logger.level, tuple(logger.handlers), tuple(logger.filters), logger.propagate, logger.disabled)
+
+
+def _restore_logging():
+    """Logging as it was: `basicConfig` in the next program configures it again."""
+    for name, logger in _loggers():
+        level, handlers, filters, propagate, disabled = _LOGGERS.get(name, _NEW_LOGGER)
+        for handler in logger.handlers:
+            if handler not in handlers:
+                # A file handler writes what it holds into its file before the run hands it back.
+                with contextlib.suppress(Exception):
+                    handler.flush()
+                    handler.close()
+        logger.handlers[:] = handlers
+        logger.filters[:] = filters
+        logger.level, logger.propagate, logger.disabled = level, propagate, disabled
+    logging.Logger.manager._clear_cache()
+    logging.disable(logging.NOTSET)
+    logging.captureWarnings(False)
+    logging.setLoggerClass(logging.Logger)
+    logging.setLogRecordFactory(logging.LogRecord)
+    logging.raiseExceptions = True
+    for table, saved in zip((logging._levelToName, logging._nameToLevel), _LEVEL_NAMES):
+        table.clear()
+        table.update(saved)
+
+
+def _restore():
+    _restore_logging()
+    warnings.filters[:] = _WARNING_FILTERS
+    warnings._filters_mutated()
+    warnings.showwarning = _SHOW_WARNING
+    if dict(os.environ) != _ENVIRON:
+        os.environ.clear()
+        os.environ.update(_ENVIRON)
+    sys.setrecursionlimit(_RECURSION_LIMIT)
+    sys.set_int_max_str_digits(_INT_DIGITS)
+    threading.excepthook = _THREAD_HOOK
+
+
+_note_loggers()
+
+
+async def _end_tasks(before):
+    """
+    As `asyncio.run()` ends: the tasks a program left running are cancelled, and finish; one
+    that ended with another error instead is reported, as asyncio.run reports it.
+    """
+    left = [task for task in asyncio.all_tasks() if task not in before]
+    for task in left:
+        task.cancel()
+    if not left:
+        return
+    await asyncio.gather(*left, return_exceptions=True)
+    loop = asyncio.get_running_loop()
+    for task in left:
+        if not task.cancelled() and task.exception() is not None:
+            loop.call_exception_handler({"message": "unhandled exception during asyncio.run() shutdown", "exception": task.exception(), "task": task})
 
 
 def _clear(folder):
@@ -123,7 +286,7 @@ def _clear(folder):
             os.remove(path)
 
 
-def _prepare(files, filename, cwd):
+def _prepare(files, filename, cwd, module):
     """The program's folder with its files only, as if nothing had run before."""
     os.chdir(APP)
     _clear(APP)
@@ -139,11 +302,13 @@ def _prepare(files, filename, cwd):
     for path in list(sys.path_importer_cache):
         if path == APP or path.startswith(APP + "/"):
             del sys.path_importer_cache[path]
-    sys.path[:] = [os.path.dirname(os.path.join(APP, filename))] + _SYS_PATH
-    sys.argv[:] = [filename]
     folder = os.path.join(APP, cwd)
     if os.path.isdir(folder):
         os.chdir(folder)
+    # `python -m` looks for the module from the folder it runs in, `python main.py` beside the file.
+    sys.path[:] = [os.getcwd() if module else os.path.dirname(os.path.join(APP, filename))] + _SYS_PATH
+    sys.argv[:] = [os.path.join(APP, filename) if module else filename]
+    _note_loggers()
 
 
 def _files():
@@ -172,12 +337,24 @@ def _exit_status(e):
 
 
 def shown(e):
-    """The traceback as Python prints it, from the learner's first frame on."""
+    """
+    The traceback as Python prints it, from the learner's first frame on. The frames of this
+    module, which runs an `asyncio.run()` of the program's, are left out of every exception
+    of it, chained or grouped.
+    """
     te = traceback.TracebackException.from_exception(e)
     stack = list(te.stack)
-    while stack and stack[0].filename.startswith("/lib/"):
+    while stack and stack[0].filename.startswith(("/lib/", "<frozen ")):
         stack.pop(0)
-    te.stack = traceback.StackSummary.from_list(stack)
+    te.stack = stack
+    seen, todo = set(), [te]
+    while todo:
+        one = todo.pop()
+        if id(one) in seen:
+            continue
+        seen.add(id(one))
+        one.stack = traceback.StackSummary.from_list([frame for frame in one.stack if frame.filename != __file__])
+        todo.extend(other for other in (one.__cause__, one.__context__, *(getattr(one, "exceptions", None) or ())) if other is not None)
     return "".join(te.format()).rstrip("\n")
 
 
@@ -251,22 +428,61 @@ def _failed_in(e, filename):
     return tb is not None and tb.tb_frame.f_code.co_filename == filename
 
 
-async def run(code, filename="solution.py", after=None, files=None, cwd="", collect=False):
+async def _execute(code, source, names, filename):
+    """
+    Runs `code` in `names` as the file `filename`, awaiting at its top level as Pyodide's
+    eval_code_async does. `source` is the code as the learner wrote it, which a traceback
+    shows: runner.js changed it only where it awaits `asyncio.run()`, in the same columns.
+    """
+    source = code if source is None else source
+    try:
+        compiled = compile(textwrap.dedent(code), filename, "exec", flags=ast.PyCF_ALLOW_TOP_LEVEL_AWAIT, dont_inherit=True)
+    except SyntaxError as e:
+        lines = source.splitlines()
+        if e.filename == filename and e.lineno and 0 < e.lineno <= len(lines):
+            e.text = lines[e.lineno - 1] + "\n"
+        raise
+    lines = source.splitlines(True)
+    # As linecache reads a file: every line ends with a newline (tracebacks count on it).
+    if lines and not lines[-1].endswith("\n"):
+        lines[-1] += "\n"
+    linecache.cache[filename] = (len(source), None, lines, filename)
+    coroutine = eval(compiled, names)
+    if coroutine is not None:
+        await coroutine
+
+
+async def run(code, filename="solution.py", after=None, files=None, cwd="", collect=False, module=None, source=None, after_source=None):
     """
     Runs `code` as the program `filename` beside `files`, from the folder `cwd`, then `after` —
-    a check's asserts — with the program's names. Returns (exit status, traceback or None, and
-    with `collect` the folder's files after the run).
+    a check's asserts — with the program's names. With `module` (`pkg.app`) it runs as
+    `python -m` runs it: its package is imported first, and its relative imports work. Returns
+    (exit status, traceback or None, and with `collect` the folder's files after the run).
+    `source` and `after_source` are the two as written, before runner.js awaited their runs.
     """
     files = files.to_py() if hasattr(files, "to_py") else dict(files or {})
-    _prepare(files, filename, cwd or "")
+    _prepare(files, filename, cwd or "", module)
     names = {"__name__": "__main__", "__builtins__": builtins}
     if filename in files:
         names["__file__"] = os.path.join(APP, filename)
     status, error = 0, None
+    _TASK_NUMBERS[0] = itertools.count(1)
+    before = asyncio.all_tasks()
+    loop = asyncio.get_running_loop()
+    handler, factory = loop.get_exception_handler(), loop.get_task_factory()
+    # A SystemExit a task of the program raises reaches the event loop: not the host's page.
+    loop._system_exit_handler = lambda code: None
+    loop._keyboard_interrupt_handler = lambda: None
     try:
-        await eval_code_async(code, names, filename=filename, return_mode="none")
+        if module:
+            package = module.rpartition(".")[0]
+            if package:
+                importlib.import_module(package)
+            names["__package__"] = package
+            names["__spec__"] = importlib.util.find_spec(module)
+        await _execute(code, source, names, filename)
         if after is not None:
-            await eval_code_async(after, names, filename=CHECK, return_mode="none")
+            await _execute(after, after_source, names, CHECK)
     except SystemExit as e:
         status = _exit_status(e)
     except BaseException as e:
@@ -276,10 +492,22 @@ async def run(code, filename="solution.py", after=None, files=None, cwd="", coll
             e.args = (why,)
         status, error = 1, shown(e)
     finally:
+        await _end_tasks(before)
+        loop.set_exception_handler(handler)
+        loop.set_task_factory(factory)
+        # What the program printed is written where it went, and the output is the run's again.
+        for stream in (sys.stdout, sys.stderr):
+            with contextlib.suppress(Exception):
+                stream.flush()
+        streams = (sys.stdin, sys.stdout, sys.stderr)
+        sys.stdin, sys.stdout, sys.stderr = _STREAMS
         # The program ends: its names go, and what they held is finalized now, in its own
         # output, not during the next run.
         names.clear()
         gc.collect()
+        _restore()
+        # A file the program printed into closes once its warnings settings are gone, as at exit.
+        del streams
         sys.stdout.flush()
         sys.stderr.flush()
     return status, error, (_files() if collect else None)

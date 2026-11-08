@@ -4,7 +4,10 @@
  * after, filename }` in, `{ type: 'result', id, stdout, status, error }` out, and `loading` /
  * `loaded` while a run waits for packages (`loading` names them).
  */
-/* global importScripts, loadPyodide, PythonRunner */
+/* global importScripts, loadPyodide, PythonRunner, sealPython */
+// Before Pyodide: the program reaches this folder and nothing else (seal.js).
+importScripts('seal.js');
+sealPython(self, new URL('./', self.location.href).href);
 importScripts('pyodide.js', 'runner.js');
 
 var runner = loadPyodide({ indexURL: new URL('./', self.location.href).href }).then(function (pyodide) {
@@ -44,7 +47,7 @@ self.onmessage = function (event) {
     })
     .then(
       function (result) {
-        self.postMessage({ type: 'result', id: request.id, stdout: result.stdout, status: result.status, error: result.error, files: result.files });
+        self.postMessage({ type: 'result', id: request.id, stdout: result.stdout, status: result.status, error: result.error, files: result.files, cut: result.cut });
       },
       function (e) {
         self.postMessage({ type: 'result', id: request.id, stdout: '', status: 1, error: String(e) });

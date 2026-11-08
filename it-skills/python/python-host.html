@@ -2,6 +2,14 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <!--
+      Nothing but the app's own files: no request to the network of any kind, no frame, no form,
+      no plug-in (docs/LANGUAGE-PACKS.md, rule 2). seal.js narrows it further to this folder.
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src file: 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval'; connect-src file:; worker-src 'none'; frame-src 'none'; child-src 'none'; object-src 'none'; img-src 'none'; media-src 'none'; font-src 'none'; style-src 'none'; base-uri 'none'; form-action 'none'"
+    />
     <title>Python</title>
   </head>
   <body>
@@ -35,7 +43,7 @@
         window.fetch = function (input, init) {
           // A string, a URL object or a Request.
           var url = new URL(input instanceof Request ? input.url : String(input), location.href);
-          if (url.protocol !== 'file:') return nativeFetch.call(window, input, init);
+          if (url.protocol !== 'file:') return nativeFetch.call(window, input, init); // refused by seal.js
           return new Promise(function (resolve, reject) {
             var xhr = new XMLHttpRequest();
             xhr.open('GET', url.href);
@@ -52,6 +60,11 @@
           });
         };
       })();
+    </script>
+    <script src="seal.js"></script>
+    <script>
+      // After the file: shim above, before Pyodide: the program reaches this folder and nothing else.
+      sealPython(window, new URL('./', location.href).href);
     </script>
     <script src="pyodide.js"></script>
     <script src="runner.js"></script>
@@ -94,7 +107,7 @@
             })
             .then(
               function (result) {
-                post({ type: 'result', id: request.id, stdout: result.stdout, status: result.status, error: result.error, files: result.files });
+                post({ type: 'result', id: request.id, stdout: result.stdout, status: result.status, error: result.error, files: result.files, cut: result.cut });
               },
               function (e) {
                 post({ type: 'result', id: request.id, stdout: '', status: 1, error: String(e) });

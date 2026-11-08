@@ -20,48 +20,136 @@
   var PACKAGES = { numpy: 'numpy', pandas: 'pandas', sklearn: 'scikit-learn', scipy: 'scipy' };
 
   /**
-   * Pyodide cannot block on `asyncio.run()` in a browser, but it awaits at the top level of a
-   * program: `asyncio.run(main())` outside a function becomes `(await main())`. The line
-   * numbers stay, so an error still points at the learner's line.
+   * The most a run may print, in bytes (`PYTHON_OUTPUT_LIMIT` in src/engine/runners/python.ts,
+   * docs/LANGUAGE-PACKS.md, rule 4). Past it the write fails, which ends a program that prints
+   * in a loop; one that catches the error and goes on is stopped by its time limit. The result
+   * keeps the start of the output and says it was cut.
    */
+  var OUTPUT_LIMIT = 1024 * 1024;
+
+  /**
+   * Pyodide cannot block on `asyncio.run()` in a browser, but it awaits at the top level of a
+   * program: there `asyncio.run(main())` becomes `await  __ar(main())`, which runs `main()` as
+   * the task asyncio.run makes of it (`__ar` is a built-in of _runner.py). Only the call's
+   * first 12 characters change, for 12 others, so every line and column stays: an error's
+   * carets point at the learner's code, which the traceback shows (the runner is given the
+   * program as written). Not inside a `def`, a `class`, a `lambda`, a string or a comment.
+   */
+  var RUN = 'asyncio.run(';
+
   function awaitTopLevelRuns(code) {
-    var lines = code.split('\n');
+    var out = '';
+    var copied = 0;
+    var lines = logicalLines(code);
     // The indentation of each `def` / `class` the line is inside: no `await` can go there.
     var blocks = [];
-    for (var i = 0; i < lines.length; i++) {
-      var line = lines[i];
-      if (!line.trim() || /^\s*#/.test(line)) continue;
-      var indent = /^[ \t]*/.exec(line)[0].length;
+    for (var l = 0; l < lines.length; l++) {
+      var start = lines[l][0];
+      var end = lines[l][1];
+      var text = code.slice(start, end);
+      var indent = /^[ \t]*/.exec(text)[0].length;
+      var first = text.charAt(indent);
+      if (first === '' || first === '\n' || first === '\r' || first === '#') continue;
       while (blocks.length && indent <= blocks[blocks.length - 1]) blocks.pop();
-      if (/^[ \t]*(async[ \t]+def|def|class)\b/.test(line)) blocks.push(indent);
-      else if (!blocks.length) lines[i] = awaitRuns(line);
+      if (/^(async[ \t]+def|def|class)\b/.test(text.slice(indent))) {
+        blocks.push(indent);
+        continue;
+      }
+      if (blocks.length) continue;
+      var calls = runsIn(code, start, end);
+      for (var c = 0; c < calls.length; c++) {
+        var at = calls[c][0];
+        var close = calls[c][1];
+        var trailer = /^[ \t]*[.[(]/.test(code.slice(close + 1, end));
+        // `asyncio.run(x).y` needs brackets around the await: `(await __ar(x)).y`.
+        out += code.slice(copied, at) + (trailer ? '(await __ar(' : 'await  __ar(') + code.slice(at + RUN.length, close) + (trailer ? '))' : ')');
+        copied = close + 1;
+      }
     }
-    return lines.join('\n');
+    return out + code.slice(copied);
   }
 
-  function awaitRuns(line) {
-    var at = line.indexOf('asyncio.run(');
-    while (at !== -1) {
-      var open = at + 'asyncio.run'.length;
-      var close = closing(line, open);
-      if (close === -1) return line;
-      line = line.slice(0, at) + '(await ' + line.slice(open + 1, close) + ')' + line.slice(close + 1);
-      at = line.indexOf('asyncio.run(', at);
+  /** The end of the string literal that opens at `i` (a quote, maybe tripled), past escapes. */
+  function stringEnd(code, i) {
+    var q = code[i];
+    var triple = code.substr(i, 3) === q + q + q;
+    var j = i + (triple ? 3 : 1);
+    while (j < code.length) {
+      if (code[j] === '\\') j += 2;
+      else if (triple ? code.substr(j, 3) === q + q + q : code[j] === q) return j + (triple ? 3 : 1);
+      else if (!triple && code[j] === '\n') return j;
+      else j++;
     }
-    return line;
+    return code.length;
   }
 
-  /** The index of the bracket that closes the one at `open`, past strings; -1 if not on the line. */
-  function closing(line, open) {
+  /** The program's logical lines, as [start, end): a line goes on inside brackets, a string or after `\`. */
+  function logicalLines(code) {
+    var lines = [];
+    var start = 0;
     var depth = 0;
-    var quote = null;
-    for (var i = open; i < line.length; i++) {
-      var c = line[i];
-      if (quote) {
-        if (c === '\\') i++;
-        else if (c === quote) quote = null;
-      } else if (c === '"' || c === "'") quote = c;
-      else if (c === '(') depth++;
+    for (var i = 0; i < code.length; i++) {
+      var c = code[i];
+      if (c === '"' || c === "'") i = stringEnd(code, i) - 1;
+      else if (c === '#') {
+        while (i + 1 < code.length && code[i + 1] !== '\n') i++;
+      } else if (c === '\\' && code[i + 1] === '\n') i++;
+      else if (c === '(' || c === '[' || c === '{') depth++;
+      else if ((c === ')' || c === ']' || c === '}') && depth > 0) depth--;
+      else if (c === '\n' && depth === 0) {
+        lines.push([start, i + 1]);
+        start = i + 1;
+      }
+    }
+    if (start < code.length) lines.push([start, code.length]);
+    return lines;
+  }
+
+  /**
+   * The `asyncio.run(…)` calls in code[start, end), as [index of the call, index of its closing
+   * bracket]: outside strings, comments and lambdas, and not `x.asyncio.run(`.
+   */
+  function runsIn(code, start, end) {
+    var calls = [];
+    var depth = 0;
+    // The bracket depth of a lambda whose body goes on, or -1.
+    var lambda = -1;
+    for (var i = start; i < end; i++) {
+      var c = code[i];
+      if (c === '"' || c === "'") {
+        i = stringEnd(code, i) - 1;
+        continue;
+      }
+      if (c === '#') {
+        while (i + 1 < end && code[i + 1] !== '\n') i++;
+        continue;
+      }
+      if (c === '(' || c === '[' || c === '{') depth++;
+      else if (c === ')' || c === ']' || c === '}') {
+        depth--;
+        if (depth < lambda) lambda = -1;
+      } else if (c === ',' && depth === lambda) lambda = -1;
+      var word = i === start || !/[\w.]/.test(code[i - 1]);
+      if (word && lambda === -1 && /^lambda\b/.test(code.slice(i, i + 7))) lambda = depth;
+      if (word && lambda === -1 && code.substr(i, RUN.length) === RUN) {
+        var close = closing(code, i + RUN.length - 1, end);
+        if (close === -1) continue;
+        calls.push([i, close]);
+        i = close;
+      }
+    }
+    return calls;
+  }
+
+  /** The index of the bracket that closes the one at `open`, past strings, before `end`; -1 if none. */
+  function closing(code, open, end) {
+    var depth = 0;
+    for (var i = open; i < end; i++) {
+      var c = code[i];
+      if (c === '"' || c === "'") i = stringEnd(code, i) - 1;
+      else if (c === '#') {
+        while (i + 1 < end && code[i + 1] !== '\n') i++;
+      } else if (c === '(') depth++;
       else if (c === ')' && --depth === 0) return i;
     }
     return -1;
@@ -75,12 +163,24 @@
    */
   async function create(pyodide, read, hooks) {
     var bytes = [];
+    var cut = false;
+    // While Python's own buffers drain after a cut: what they hold goes nowhere.
+    var discarding = false;
     var decoder = new TextDecoder();
     // Like a terminal, the output shows both streams; input() reads the end of the input.
     var collect = {
       isatty: true,
       write: function (buffer) {
-        for (var i = 0; i < buffer.length; i++) bytes.push(buffer[i]);
+        if (discarding) return buffer.length;
+        var room = OUTPUT_LIMIT - bytes.length;
+        for (var i = 0; i < buffer.length && i < room; i++) bytes.push(buffer[i]);
+        if (buffer.length > room) {
+          cut = true;
+          // An errno Pyodide knows becomes an OSError in Python, quietly: File too large.
+          var full = new Error('the output limit of ' + OUTPUT_LIMIT + ' bytes is reached');
+          full.code = 'EFBIG';
+          throw full;
+        }
         return buffer.length;
       },
     };
@@ -125,6 +225,21 @@
       return { names: names, modules: modules };
     }
 
+    /**
+     * Empties what Python's streams still hold after a cut — the failed write left it in their
+     * buffers — so the next run does not start by printing the end of this one.
+     */
+    function drain() {
+      discarding = true;
+      try {
+        pyodide.runPython('import sys\nfor _s in (sys.__stdout__, sys.__stderr__, sys.stdout, sys.stderr):\n    try:\n        _s.flush()\n    except Exception:\n        pass\ndel _s');
+      } catch (e) {
+        // Nothing left to drain.
+      } finally {
+        discarding = false;
+      }
+    }
+
     function takeOutput() {
       var text = decoder.decode(new Uint8Array(bytes));
       bytes = [];
@@ -133,7 +248,7 @@
 
     /**
      * Runs `code` as the program `filename` beside `files`, from the folder `cwd`, then
-     * `after` (a check's asserts) with its names. Resolves with what the program printed, its
+     * `after` (a check's asserts) with its names; with `module`, as `python -m` runs it. Resolves with what the program printed, its
      * exit status, the traceback if it failed and, with `collect`, the folder's files after.
      */
     async function run(request) {
@@ -166,18 +281,28 @@
         }
       }
       bytes = [];
+      cut = false;
       var files = pyodide.toPy(request.files || {});
       try {
         var after = request.after ? awaitTopLevelRuns(request.after) : null;
-        var result = await runner.run(awaitTopLevelRuns(request.code), request.filename || 'solution.py', after, files, request.cwd || '', !!request.collect);
+        var result = await runner.run(awaitTopLevelRuns(request.code), request.filename || 'solution.py', after, files, request.cwd || '', !!request.collect, request.module || null, request.code, request.after || null);
         var got = result.toJs({ dict_converter: Object.fromEntries });
         result.destroy();
+        if (cut) drain();
         var out = { stdout: takeOutput(), status: got[0] };
-        if (got[1] != null) out.error = got[1];
+        // A run cut at its output limit ended on the failed write, not on its own error.
+        if (cut) {
+          out.status = 1;
+          out.cut = true;
+        } else if (got[1] != null) out.error = got[1];
         if (got[2] != null) out.files = got[2];
         return out;
       } catch (e) {
         // The runner itself failed: say so rather than nothing.
+        if (cut) {
+          drain();
+          return { stdout: takeOutput(), status: 1, cut: true };
+        }
         return { stdout: takeOutput(), status: 1, error: String((e && e.message) || e) };
       } finally {
         files.destroy();
@@ -187,5 +312,5 @@
     return { run: run };
   }
 
-  root.PythonRunner = { create: create, awaitTopLevelRuns: awaitTopLevelRuns, modules: MODULES, packages: PACKAGES };
+  root.PythonRunner = { create: create, awaitTopLevelRuns: awaitTopLevelRuns, modules: MODULES, packages: PACKAGES, outputLimit: OUTPUT_LIMIT };
 })(typeof globalThis !== 'undefined' ? globalThis : self);
