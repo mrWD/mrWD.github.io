@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-08T11:21:46Z",
+  "generated": "2026-11-09T12:59:38Z",
   "note": "Metrics differ per product — see the metric field. Not comparable.",
   "products": {
     "science-timeline": {
@@ -145,11 +145,11 @@
         "chrome": 1
       },
       "sources": {
-        "chrome": 16,
+        "chrome": 15,
         "firefox": 1
       },
       "store": {
-        "count": 17,
+        "count": 16,
         "metric": "users"
       },
       "count": 1,
@@ -161,10 +161,10 @@
         "chrome": 1
       },
       "sources": {
-        "chrome": 120
+        "chrome": 117
       },
       "store": {
-        "count": 120,
+        "count": 117,
         "metric": "users"
       },
       "count": 1,
