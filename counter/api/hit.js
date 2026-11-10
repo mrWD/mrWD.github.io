@@ -27,6 +27,7 @@ export const SLUGS = [
   'ai-screen-translator',
   'books-table',
   'daylight',
+  'disk-cleaner',
   'double-subtitles',
   'film-table',
   'games-table',

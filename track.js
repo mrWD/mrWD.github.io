@@ -66,6 +66,10 @@
     // contact address aren't anyone using a product.
     if (link.closest('.site-header .header-links, .site-footer')) return;
 
+    // Nor is a donation. On a product page every link counts for that product,
+    // so without this the jar's buttons would land in <slug>--open.
+    if (link.closest('[data-donation]')) return;
+
     // Some products live on this very host (mrwd.github.io/langs-db/), so
     // "same host" can't mean "not a product". Only this site's own pages —
     // the index, the product pages, the legal page — are navigation.

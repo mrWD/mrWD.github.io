@@ -239,6 +239,21 @@ const PROJECTS = [
     ],
   },
   {
+    name: 'Disk Cleaner',
+    tagline: 'Free up space on a Mac without losing anything',
+    description:
+      'Finds what takes up space and can go: build folders in your git projects, Xcode data and simulators, Android images, Docker, AI models, package caches, old installers in Downloads. Every item says what it is and why it’s safe to remove, anything running is locked, and before anything is deleted you see the exact commands.',
+    platforms: ['Desktop app'],
+    tags: ['macOS', 'Go', 'Fyne', 'Local-first'],
+    icon: '🧹',
+    accent: '#2fb8aa',
+    status: 'Free',
+    links: [
+      { label: 'Learn more', url: 'products/disk-cleaner/' },
+      { label: 'GitHub', url: 'https://github.com/mrWD/disk-cleaner', icon: 'github' },
+    ],
+  },
+  {
     name: 'AI Prompt Suggester',
     statsKey: 'ai-prompt-suggester', // matches a key in stats.json
     tagline: 'Better prompts, suggested where you already chat',

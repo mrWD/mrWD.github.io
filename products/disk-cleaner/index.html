@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Disk Cleaner — free up space on a Mac without losing anything</title>
+  <meta name="description" content="A free macOS app that finds what takes up space and can be removed without losing anything: build folders in your projects, Xcode data, simulators, Android images, Docker, AI models, package caches. Every item says why it is safe to remove, and you see the exact commands before anything is deleted." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Disk Cleaner" />
+  <meta property="og:description" content="Finds build folders, Xcode data, simulators, Docker, AI models and caches you can remove without losing anything. Explains every item and shows the exact commands first. Free, macOS." />
+  <meta property="og:image" content="assets/package-caches-light.png" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧹</text></svg>" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="stylesheet" href="../../product.css" />
+  <script src="../../from-app.js"></script>
+  <style>
+    :root { --accent: #2fb8aa; --accent-2: #6aa9ff; }
+    html[data-theme='light'] { --accent: #0f8a80; --accent-2: #1f6feb; }
+    /* The app window is wide: it reads better full width under the text than
+       squeezed into the hero's second column, same as on AI Job Search. */
+    @media (min-width: 900px) { .hero { grid-template-columns: 1fr; } }
+    .hero-text { max-width: 68ch; }
+    .hero-shot { margin-top: 2rem; }
+    .hero-shot img { border-radius: 14px; box-shadow: var(--shadow); }
+    /* Nine and six cards: three across reads as a block, where the default four
+       across leaves one or two cards alone on the last row. */
+    .feature-grid { grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); }
+    .feature-grid + .note { margin-top: 1.5rem; }
+    /* The install commands. No other page needs a code block, so it lives here.
+       It scrolls sideways inside itself on a phone instead of widening the page. */
+    .commands {
+      max-width: 68ch;
+      margin: 1rem 0 1.4rem;
+      padding: 1rem 1.15rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface);
+      overflow-x: auto;
+      font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace;
+      font-size: 0.9rem;
+      line-height: 1.75;
+    }
+    .commands code { padding: 0; background: none; font-size: inherit; }
+    /* A command broken at its hyphen can't be copied as is. The long paths in
+       the lists may break anywhere instead, or they'd push past a phone's edge. */
+    .note code { white-space: nowrap; }
+    li code { overflow-wrap: anywhere; }
+    .platforms { margin-top: 1.4rem; }
+    /* The donation card from the index page; here it follows the last section. */
+    .support { margin-top: 0.5rem; }
+  </style>
+</head>
+<body>
+  <div class="glow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <div class="header-top">
+        <a class="brand" href="../../">
+          <span class="brand-mark">VL</span>
+          <span class="brand-text">Viktor Lavrov</span>
+        </a>
+        <nav class="header-links">
+          <a href="../../">All products</a>
+          <a href="https://github.com/mrWD/disk-cleaner" target="_blank" rel="noopener">GitHub</a>
+          <button id="theme-toggle" class="icon-btn" type="button" aria-label="Toggle colour theme">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path class="icon-moon" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/><g class="icon-sun"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></g></svg>
+          </button>
+        </nav>
+      </div>
+
+      <div class="hero">
+        <div class="hero-text">
+          <p class="eyebrow">Desktop app · macOS</p>
+          <h1 class="title">Disk Cleaner</h1>
+          <p class="subtitle lead">
+            Finds what takes up space on your Mac and can go without you losing anything:
+            build folders in your projects, Xcode data, old simulators, Docker, AI models,
+            package caches. Every item says what it is and why it's safe to remove, and
+            before anything is deleted you see the exact list of commands.
+          </p>
+
+          <ul class="badges">
+            <li>Free</li>
+            <li>No ads</li>
+            <li>English and Russian</li>
+            <li>Source on GitHub</li>
+          </ul>
+
+          <div class="cta">
+            <a class="btn primary" href="#install">
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 3v12M7 11l5 5 5-5M4 20h16" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>How to install</span>
+            </a>
+            <a class="btn" href="https://github.com/mrWD/disk-cleaner" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="solid" d="M12 1.7a10.3 10.3 0 0 0-3.26 20.07c.52.1.7-.22.7-.5v-1.9c-2.86.62-3.47-1.2-3.47-1.2-.47-1.2-1.15-1.52-1.15-1.52-.94-.64.07-.63.07-.63 1.04.07 1.58 1.07 1.58 1.07.92 1.58 2.42 1.13 3.01.86.1-.67.36-1.13.65-1.39-2.28-.26-4.68-1.14-4.68-5.08 0-1.12.4-2.04 1.06-2.76-.11-.26-.46-1.3.1-2.72 0 0 .86-.28 2.83 1.05a9.8 9.8 0 0 1 5.16 0c1.97-1.33 2.83-1.05 2.83-1.05.56 1.42.21 2.46.1 2.72.66.72 1.06 1.64 1.06 2.76 0 3.95-2.4 4.82-4.7 5.07.37.32.7.94.7 1.9v2.82c0 .28.18.6.71.5A10.3 10.3 0 0 0 12 1.7Z"/></svg>
+              <span>Source</span>
+            </a>
+          </div>
+          <p class="note">
+            macOS only. There's no download: a script builds the app on your Mac from
+            the source and signs it ad-hoc, without a developer certificate, so it isn't
+            notarised by Apple.
+          </p>
+        </div>
+
+        <figure class="hero-shot">
+          <a class="shot" href="assets/package-caches-light.png" target="_blank" rel="noopener" title="Open full size">
+            <img class="shot-light" src="assets/package-caches-light.png" width="1180" height="780"
+                 alt="The Package caches section. On the left, a sidebar of eleven sections, each with how much it found, and under it a disk card: 248.3 GB available of 494.4 GB. On the right, two categories marked Safe, Go and JavaScript tools, with four caches and their paths and sizes, and a line listing the caches it also checked and found nothing in." />
+            <img class="shot-dark" src="assets/package-caches-dark.png" width="1180" height="780"
+                 alt="The Package caches section with the sidebar, the disk card and two Safe categories, in the app's dark appearance." />
+          </a>
+          <figcaption>Every section in the sidebar with how much it found. Each category carries a Safe or Caution label.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section class="section" aria-labelledby="finds">
+      <h2 id="finds" class="section-title">What it finds</h2>
+      <ul class="feature-grid">
+        <li>
+          <span class="feature-icon" aria-hidden="true">🌿</span>
+          <h3>Build folders in your projects</h3>
+          <p>
+            <code>node_modules</code>, <code>Pods</code>, <code>build</code> and the like in your
+            git repositories and worktrees, and only what git ignores. Projects with no
+            commits for 30 days are listed apart from active ones. Plus leftover
+            <code>.xcarchive</code>, <code>.ipa</code>, <code>.apk</code>, <code>.aab</code>,
+            <code>.dmg</code> and <code>.app</code> files next to the code that git doesn't track.
+          </p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🔨</span>
+          <h3>Xcode and simulators</h3>
+          <p>
+            Derived Data, archives, device support files, the documentation cache and
+            SwiftUI previews. iOS, watchOS, tvOS and visionOS runtimes, the simulators
+            themselves and their dyld cache.
+          </p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🤖</span>
+          <h3>Android</h3>
+          <p>Emulators, system images, NDK versions and SDK sources.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🐳</span>
+          <h3>Docker</h3>
+          <p>Containers, images, volumes and the build cache.</p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🧠</span>
+          <h3>AI models</h3>
+          <p>
+            LM Studio and Ollama models, the Hugging Face cache, and models that apps
+            downloaded on their own.
+          </p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🛠️</span>
+          <h3>Developer tools</h3>
+          <p>
+            Cursor, VS Code, Claude Code, Codex, JetBrains IDEs, Android Studio, Zed and
+            more: leftovers of apps you've uninstalled, old versions, caches, temp files
+            and downloaded runtimes.
+          </p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">📦</span>
+          <h3>Package caches</h3>
+          <p>
+            npm and npx, Yarn, CocoaPods, Gradle, uv, pip, Homebrew, Go, SwiftPM,
+            Electron, Expo, browsers for tests, Python bytecode and a few more.
+          </p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">⬇️</span>
+          <h3>Downloads</h3>
+          <p>
+            Installers, app builds and archives in your Downloads folder. These go to the
+            Trash instead of being deleted, so you can still get them back. A mounted
+            <code>.dmg</code> can't be selected.
+          </p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🗂️</span>
+          <h3>App caches and logs</h3>
+          <p>
+            App caches in <code>~/Library/Caches</code> (Apple's own system caches are left
+            out), leftovers of app updates, and <code>~/Library/Logs</code>.
+          </p>
+        </li>
+      </ul>
+      <p class="note">
+        A section that finds nothing says so, and lists what it checked.
+      </p>
+    </section>
+
+    <section class="section" id="how" aria-labelledby="how-title">
+      <h2 id="how-title" class="section-title">Nothing is deleted blind</h2>
+      <div class="steps">
+        <ol>
+          <li>
+            <h3>Let it look</h3>
+            <p>
+              It scans every section when it opens. The sidebar shows how much each one
+              found, and the disk card under it shows how much space is free.
+            </p>
+          </li>
+          <li>
+            <h3>Read before you tick</h3>
+            <p>
+              Click a category's header and it tells you three things: what it is, why
+              it's safe to remove, and what happens after cleaning. For Xcode's Derived
+              Data, say: Xcode makes it again on the next build, and that build takes
+              longer than usual.
+            </p>
+          </li>
+          <li>
+            <h3>Check the commands, then clean</h3>
+            <p>
+              Tick what you want gone. A review window then shows every command that will
+              run, grouped by section, and nothing is deleted until you press Clean.
+              Afterwards it tells you how much free space you actually got back.
+            </p>
+          </li>
+        </ol>
+        <div class="shots">
+          <figure>
+            <a class="shot" href="assets/app-caches-light.png" target="_blank" rel="noopener" title="Open full size">
+              <img class="shot-light" src="assets/app-caches-light.png" width="1180" height="780" loading="lazy" decoding="async"
+                   alt="The App caches &amp; logs section: two categories marked Safe, App caches and Update leftovers. Their only items, Google's cache and orca-updater, are greyed out with an orange Running label, so neither can be ticked, and the section's Select All and Clean All buttons are greyed out too." />
+              <img class="shot-dark" src="assets/app-caches-dark.png" width="1180" height="780" loading="lazy" decoding="async"
+                   alt="The App caches &amp; logs section with both items greyed out and labelled Running, in the app's dark appearance." />
+            </a>
+            <figcaption>Anything running or in use is greyed out and can't be selected.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="safe">
+      <h2 id="safe" class="section-title">What keeps it safe</h2>
+      <ul class="feature-grid">
+        <li>
+          <span class="feature-icon" aria-hidden="true">🏷️</span>
+          <h3>Safe and Caution</h3>
+          <p>
+            Safe means it comes back by itself and nothing is lost, like Derived Data or
+            the npm cache. Caution means you'd lose something you have to set up again or
+            wait a long time to download, like a simulator or an Android emulator.
+          </p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🔒</span>
+          <h3>Running things are locked</h3>
+          <p>
+            A running container, simulator or emulator, the Gradle daemon, a process
+            started from a worktree: the checkbox is disabled and the reason is shown
+            next to it.
+          </p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🧹</span>
+          <h3>Clean All Safe</h3>
+          <p>
+            One button cleans everything marked Safe, in the section you're looking at or
+            in all of them at once. Caution items and anything in use are left out. It
+            opens the same review window first.
+          </p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🚫</span>
+          <h3>A Never clean list</h3>
+          <p>
+            Select items and press Never Clean, or add a whole folder in Settings. They
+            stay in the list with a Never clean label, can't be selected, and Clean All
+            Safe skips them. Allow cleaning takes one back.
+          </p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">🧪</span>
+          <h3>Dry run</h3>
+          <p>
+            Turn it on in Settings and the app shows what it would delete, but doesn't
+            touch anything. A good way to try it the first time.
+          </p>
+        </li>
+        <li>
+          <span class="feature-icon" aria-hidden="true">👀</span>
+          <h3>Only what you can see</h3>
+          <p>
+            Checkboxes belong to the section on screen. Open another section or start a
+            search and they're cleared, so you never clean something you can't see.
+          </p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="never">
+      <h2 id="never" class="section-title">What it never deletes</h2>
+      <ul class="prose">
+        <li>Anything running, as above.</li>
+        <li>Anything on your Never clean list, or inside a folder on it.</li>
+        <li>
+          Simulator entries that share a disk image, the newest runtime of each platform,
+          and simulators whose runtime is missing.
+        </li>
+        <li>Anything git tracks in a worktree.</li>
+        <li>
+          Your home folder, the folders right inside it (<code>~/Projects</code>,
+          <code>~/Library</code> and so on) and other apps' data
+          (<code>~/Library/Application Support</code>, <code>Preferences</code>,
+          <code>Keychains</code>, <code>Mail</code>…). The part of the app that does the
+          deleting refuses these itself, even if a section gets it wrong.
+        </li>
+        <li>
+          With the administrator password, anything outside
+          <code>/Library/Developer/CoreSimulator/Caches</code>. Commands that run with
+          administrator rights aren't allowed at all.
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="permissions">
+      <h2 id="permissions" class="section-title">What it asks for</h2>
+      <p class="prose">
+        On first launch, before the first scan, it explains what it uses and why, with a
+        switch for each. The same switches are in Settings → Permissions:
+      </p>
+      <ul class="prose">
+        <li>
+          <b>Looking in Downloads.</b> macOS asks for access to that folder. Files from
+          Downloads always go to the Trash.
+        </li>
+        <li>
+          <b>Project folders in Documents or Desktop</b>, if you keep projects there:
+          macOS protects those folders the same way.
+        </li>
+        <li>
+          <b>The administrator password.</b> macOS asks for it each time, and only to
+          remove simulator caches. With the switch off, those items are skipped.
+        </li>
+      </ul>
+      <p class="prose">
+        macOS doesn't let an app change its own permissions, so to take one away
+        completely there's an Open System Settings link next to it. There's no account,
+        and the app sends nothing anywhere.
+      </p>
+    </section>
+
+    <section class="section" id="install" aria-labelledby="install-title">
+      <h2 id="install-title" class="section-title">Install</h2>
+      <p class="prose">macOS only. Open Terminal and run:</p>
+      <pre class="commands"><code>git clone https://github.com/mrWD/disk-cleaner.git
+cd disk-cleaner
+./scripts/build.sh --install</code></pre>
+      <p class="prose">
+        The script installs whatever the build is missing, builds the app, puts
+        <b>Disk Cleaner</b> in <code>/Applications</code> and opens it. From then on it's an
+        ordinary app in Launchpad, Spotlight and the Dock.
+      </p>
+
+      <div class="platforms">
+        <div class="platform">
+          <h3>Xcode Command Line Tools</h3>
+          <p>Fyne compiles part of itself from C, so the build needs a C compiler.</p>
+          <p class="platform-note">macOS opens a window: click Install and wait, the script carries on by itself.</p>
+        </div>
+        <div class="platform">
+          <h3>Go</h3>
+          <p>Through Homebrew if you have it. Without Homebrew, the official archive from go.dev goes into <code>~/sdk</code>, no administrator password needed.</p>
+          <p class="platform-note">Go 1.21 or newer, if you already have it, is kept.</p>
+        </div>
+        <div class="platform">
+          <h3>fyne</h3>
+          <p>The tool that packages the build into a <code>.app</code>.</p>
+        </div>
+      </div>
+
+      <p class="note">
+        The first build takes a few minutes. To update, run <code>git pull</code> and
+        <code>./scripts/build.sh --install</code> again: the running copy is closed and
+        replaced. No git yet? macOS offers to install the Command Line Tools as soon as
+        you run <code>git clone</code>. Accept, then run the three commands again.
+      </p>
+      <p class="note">
+        Because the app is signed ad-hoc, macOS may ask for Downloads access again after
+        each rebuild.
+      </p>
+
+      <div class="cta">
+        <a class="btn primary" href="https://github.com/mrWD/disk-cleaner" target="_blank" rel="noopener">
+          <span>Source on GitHub</span>
+          <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- Same three destinations as the index page and the app's own Settings. -->
+    <section class="support" id="support" aria-labelledby="support-title" data-donation>
+      <div class="support-text">
+        <h2 id="support-title">Support Disk Cleaner</h2>
+        <p>
+          It's free and has no ads. If it saved you some space, you can put something
+          in the jar.
+        </p>
+      </div>
+      <div class="support-links">
+        <a class="btn" href="https://buymeacoffee.com/ipupok" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path d="M4 9h13v6.5a4.5 4.5 0 0 1-4.5 4.5h-4A4.5 4.5 0 0 1 4 15.5z" stroke-linejoin="round"/><path d="M17 10.5h1.8a2.7 2.7 0 0 1 0 5.4H17" stroke-linejoin="round"/><path d="M7.5 3v2.5M11 3v2.5M14.5 3v2.5" stroke-linecap="round"/></svg>
+          <span>Buy Me a Coffee</span>
+        </a>
+        <a class="btn" href="https://ko-fi.com/ipupok" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path d="M3.5 7h13v7a5 5 0 0 1-5 5h-3a5 5 0 0 1-5-5z" stroke-linejoin="round"/><path d="M16.5 8.5h2a2.6 2.6 0 0 1 0 5.2h-2" stroke-linejoin="round"/><path class="solid" d="M8 12.2c0-1 .8-1.7 1.6-1.3.3.2.4.5.4.5s.1-.3.4-.5c.8-.4 1.6.3 1.6 1.3 0 1.2-2 2.3-2 2.3s-2-1.1-2-2.3z"/></svg>
+          <span>Ko-fi</span>
+        </a>
+        <a class="btn" href="https://www.paypal.com/donate/?hosted_button_id=VBNDB5AHYLGCY" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path d="M6.8 19.5 8.9 5.2h5.2c2.5 0 4 1.4 3.6 3.7-.4 2.5-2.3 3.9-5 3.9h-2l-.9 6.7z" stroke-linejoin="round"/><path d="M10 12.8h2.3c2.4 0 4 1.2 3.6 3.4-.3 2.2-2 3.3-4.4 3.3H9.4" stroke-linejoin="round"/></svg>
+          <span>PayPal</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><a href="../../">← All products</a> · Found a bug, or something it should find? <a href="https://github.com/mrWD/disk-cleaner/issues" target="_blank" rel="noopener">Open an issue</a> · <a href="../../legal/">Legal &amp; privacy</a>.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Same theme switch as the index page, kept inline so this page doesn't
+    // pull in app.js and its project list.
+    (function () {
+      const saved = localStorage.getItem('products-page:theme');
+      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      document.documentElement.dataset.theme = saved || (prefersLight ? 'light' : 'dark');
+      document.getElementById('theme-toggle').addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem('products-page:theme', next);
+      });
+    })();
+  </script>
+  <script src="../../track.js"></script>
+</body>
+</html>

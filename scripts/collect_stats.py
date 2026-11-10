@@ -60,6 +60,7 @@ SLUGS = [
     "daylight",
     "ai-job-search",
     "ai-screen-translator",
+    "disk-cleaner",
     "ai-prompt-suggester",
     "double-subtitles",
 ]

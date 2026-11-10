@@ -20,7 +20,7 @@ products/<slug>/         one page per product, with its own assets/
 Product pages live under `products/` — `science-timeline`, `lingary`, `langs-db`,
 `film-table`, `games-table`, `books-table`, `invest-table`, `goals-table`,
 `it-skills`, `spesaplan`, `travel-planner`, `daylight`, `ai-job-search`, `ai-screen-translator`,
-`ai-prompt-suggester`, `double-subtitles` — and **not** at the site root. A repo
+`disk-cleaner`, `ai-prompt-suggester`, `double-subtitles` — and **not** at the site root. A repo
 with its own GitHub Pages site claims that path first: `mrWD/film-table`
 publishes to `mrwd.github.io/film-table/`, which silently shadowed a root-level
 folder of the same name. The one root folder left, `ai-screen-translator/`, is
@@ -152,6 +152,13 @@ Donà di Piave. The app follows the system appearance, so each screen is shot tw
 the simulator switched between light and dark (`xcrun simctl ui <device> appearance`),
 then scaled to 414×900 as opaque PNGs. Its repo, `mrWD/travel-planner`, is private, so
 the page's header links to the GitHub profile.
+
+Disk Cleaner's screenshots come from the screenshot test in the app repo
+(`go test -tags screenshots -run TestScreenshots ./internal/ui/ -args -lang=en`, plus
+`-dark` for the dark ones), which renders the window at 1180×780 from a real scan of
+this Mac. The app's Settings link to `products/disk-cleaner/`, so that URL has to stay.
+Its page is the only one with a code block (the three install commands), styled on the
+page itself.
 
 ## Running locally
 
