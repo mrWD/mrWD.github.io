@@ -351,8 +351,10 @@
       </ul>
       <p class="prose">
         macOS doesn't let an app change its own permissions, so to take one away
-        completely there's an Open System Settings link next to it. There's no account,
-        and the app sends nothing anywhere.
+        completely there's an Open System Settings link next to it. There's no account.
+        The only thing the app sends anywhere is one question to GitHub at launch: is
+        there a newer version? Nothing about you or your Mac goes with it, and you can
+        turn it off in Settings.
       </p>
     </section>
 
@@ -386,9 +388,11 @@ cd disk-cleaner
       </div>
 
       <p class="note">
-        The first build takes a few minutes. To update, run <code>git pull</code> and
-        <code>./scripts/build.sh --install</code> again: the running copy is closed and
-        replaced. No git yet? macOS offers to install the Command Line Tools as soon as
+        The first build takes a few minutes. When a new version is on GitHub, the app
+        says so in the sidebar and shows what's new. Update opens Terminal, pulls the
+        changes and runs the same script, then the new version opens by itself. If the
+        folder you built from has changes of your own, it leaves them alone and shows
+        the commands to run by hand. No git yet? macOS offers to install the Command Line Tools as soon as
         you run <code>git clone</code>. Accept, then run the three commands again.
       </p>
       <p class="note">
