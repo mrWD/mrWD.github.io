@@ -249,6 +249,7 @@ const PROJECTS = [
     accent: '#2fb8aa',
     status: 'Free',
     links: [
+      { label: 'Download', url: 'https://github.com/mrWD/disk-cleaner/releases/latest/download/Disk-Cleaner.dmg', icon: 'download' },
       { label: 'Learn more', url: 'products/disk-cleaner/' },
       { label: 'GitHub', url: 'https://github.com/mrWD/disk-cleaner', icon: 'github' },
     ],
