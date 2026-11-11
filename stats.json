@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-10T12:45:37Z",
+  "generated": "2026-11-11T12:05:57Z",
   "note": "Metrics differ per product — see the metric field. Not comparable.",
   "products": {
     "science-timeline": {
@@ -139,17 +139,22 @@
       "count": 0,
       "metric": "downloads"
     },
+    "disk-cleaner": {
+      "clicks": 0,
+      "count": 0,
+      "metric": "clicks"
+    },
     "ai-prompt-suggester": {
       "clicks": 1,
       "buttons": {
         "chrome": 1
       },
       "sources": {
-        "chrome": 15,
+        "chrome": 17,
         "firefox": 1
       },
       "store": {
-        "count": 16,
+        "count": 18,
         "metric": "users"
       },
       "count": 1,
@@ -161,10 +166,10 @@
         "chrome": 1
       },
       "sources": {
-        "chrome": 115
+        "chrome": 118
       },
       "store": {
-        "count": 115,
+        "count": 118,
         "metric": "users"
       },
       "count": 1,
