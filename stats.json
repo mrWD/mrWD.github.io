@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-13T12:19:23Z",
+  "generated": "2026-11-14T11:35:42Z",
   "note": "Metrics differ per product — see the metric field. Not comparable.",
   "products": {
     "science-timeline": {
@@ -24,13 +24,13 @@
     "langs-db": {
       "clicks": 0,
       "sources": {
-        "self_reported": 82
+        "self_reported": 84
       },
       "store": {
-        "count": 82,
+        "count": 84,
         "metric": "visits"
       },
-      "count": 82,
+      "count": 84,
       "metric": "visits"
     },
     "film-table": {
@@ -115,10 +115,10 @@
         "source": 6
       },
       "sources": {
-        "github_releases": 102
+        "github_releases": 104
       },
       "store": {
-        "count": 102,
+        "count": 104,
         "metric": "downloads"
       },
       "count": 58,
@@ -150,11 +150,11 @@
         "chrome": 1
       },
       "sources": {
-        "chrome": 17,
+        "chrome": 16,
         "firefox": 1
       },
       "store": {
-        "count": 18,
+        "count": 17,
         "metric": "users"
       },
       "count": 1,
@@ -166,10 +166,10 @@
         "chrome": 1
       },
       "sources": {
-        "chrome": 118
+        "chrome": 112
       },
       "store": {
-        "count": 118,
+        "count": 112,
         "metric": "users"
       },
       "count": 1,
