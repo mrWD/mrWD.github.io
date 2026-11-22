@@ -286,6 +286,16 @@ def _clear(folder):
             os.remove(path)
 
 
+def _from_app(module):
+    """Whether a module was imported from the program's folder: its file, or its package's folders."""
+    if (getattr(module, "__file__", None) or "").startswith(APP + "/"):
+        return True
+    try:
+        return any(str(p) == APP or str(p).startswith(APP + "/") for p in (getattr(module, "__path__", None) or []))
+    except Exception:
+        return False
+
+
 def _prepare(files, filename, cwd, module):
     """The program's folder with its files only, as if nothing had run before."""
     os.chdir(APP)
@@ -295,9 +305,11 @@ def _prepare(files, filename, cwd, module):
         os.makedirs(os.path.dirname(path), exist_ok=True)
         with open(path, "w", encoding="utf-8") as f:
             f.write(text)
-    # Modules the last run imported from its folder are imported anew, from what is there now.
+    # Modules the last run imported from its folder are imported anew, from what is there now:
+    # files, and packages too, a folder without __init__.py among them (it has no __file__, only
+    # a __path__), or `import data` would find last run's data/ folder instead of this run's data.py.
     for name, module in list(sys.modules.items()):
-        if (getattr(module, "__file__", None) or "").startswith(APP + "/"):
+        if _from_app(module):
             del sys.modules[name]
     for path in list(sys.path_importer_cache):
         if path == APP or path.startswith(APP + "/"):
