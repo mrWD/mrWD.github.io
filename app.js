@@ -123,10 +123,10 @@ const PROJECTS = [
     tags: ['PWA', 'Local-first', 'React', 'TypeScript', '20 languages', 'MIT'],
     icon: '📈',
     accent: '#22c55e',
-    status: 'Beta',
+    status: 'Live',
     links: [
       { label: 'Learn more', url: 'products/invest-table/' },
-      { label: 'Join the TestFlight beta', url: 'https://testflight.apple.com/join/ThAa955N' },
+      { label: 'App Store', url: 'https://apps.apple.com/app/investtable/id6806642629', icon: 'apple' },
     ],
   },
   {
@@ -138,10 +138,10 @@ const PROJECTS = [
     tags: ['Capacitor', 'Local-first', 'React', 'TypeScript', '20 languages', 'Offline'],
     icon: '🎯',
     accent: '#3d70f7',
-    status: 'Beta',
+    status: 'Live',
     links: [
       { label: 'Learn more', url: 'products/goals-table/' },
-      { label: 'Join the TestFlight beta', url: 'https://testflight.apple.com/join/EbV3NMrK' },
+      { label: 'App Store', url: 'https://apps.apple.com/app/goalstable/id6806621740', icon: 'apple' },
     ],
   },
   {
